@@ -1,0 +1,62 @@
+query,subject,keywords
+what is queue,DS,queue
+circular queue operations,DS,circular queue|queue
+queue kitni baar aaya hai,DS,queue
+explain stack push and pop,DS,stack
+singly linked list insertion,DS,linked list
+binary serch algorithm,DS,binary search
+hashing collision techniques,DS,hashing|hash
+AVL tree rotations,DS,avl
+graph traversal bfs dfs,DS,traversal|graph
+quick sort algorithm,DS,quick sort
+sql queries,DBMS,sql
+acid properties of a transaction,DBMS,transaction
+er diagram for a library,DBMS,er diagram|entity
+deadlock in operating system,OS,deadlock
+cpu scheduling algorithms,OS,scheduling
+paging and page replacement,OS,paging|page replacement
+semaphores for synchronisation,OS,semaphore
+tcp connection establishment,CN,tcp
+osi reference model layers,CN,osi model|osi reference|open systems
+routing algorithms,CN,routing
+dynamic programming approach,DAA,dynamic programming
+0/1 knapsack problem,DAA,knapsack
+merge sort complexity,DAA,merge sort
+divide and conquer method,DAA,divide and conquer
+expert systems architecture,AI,expert system
+fuzzy logic,AI,fuzzy
+artificial neural networks,AI,neural
+k means clustering,ML,clustering|k-means|k means
+turing machine design,TOC,turing machine
+pumping lemma for regular languages,TOC,pumping lemma
+construct a dfa,TOC,dfa|finite automata
+pushdown automata,TOC,pushdown|push down
+agile methodology,SE,agile
+iaas paas saas service models,CC,saas|paas|iaas
+virtualisation in cloud,CC,virtualization|virtualisation
+mapreduce programming model,BDA,mapreduce
+hadoop architecture,BDA,hadoop
+javascript functions and events,WP,javascript
+xml dtd and schema,WP,xml
+digital signature,CNS,digital signature
+cache memory mapping,CA,cache
+addressing modes,CA,addressing mode
+decision tree,ML,decision tree
+normalisation in dbms,DBMS,normal form|normalization|normalisation
+what is decision tree,,decision tree
+hashing,,hashing|hash
+kubernetes,,NONE
+fenwick tree,,NONE
+french revolution,,NONE
+photosynthesis in plants,,NONE
+docker containers,,NONE
+blockchain consensus,,NONE
+quantum computing qubits,,NONE
+python decorators,,NONE
+segment tree,,NONE
+bitcoin mining,,NONE
+tensorflow keras model,,NONE
+microservices architecture,,NONE
+kotlin coroutines,,NONE
+newton's laws of motion,,NONE
+inflation and gdp,,NONE

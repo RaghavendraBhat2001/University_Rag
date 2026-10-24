@@ -1,0 +1,62 @@
+query,subject,should_match,best_distance,nearest_question,nearest_is_right,rank_of_first_right,distance_of_first_right
+what is queue,DS,YES,0.422,Explain the various types of queues with example.,True,1,0.422
+circular queue operations,DS,YES,0.464,Define a Queue. Explain the insert and delete operation in circular queue.,True,1,0.464
+queue kitni baar aaya hai,DS,YES,0.827,Explain the various types of queues with example.,True,1,0.827
+explain stack push and pop,DS,YES,0.226,Define stack. Explain the PUSH and POP operations of stack with an example.,True,1,0.226
+singly linked list insertion,DS,YES,0.388,Write a function for Insertion at End and Deletion at End in Singly Linked List.,True,1,0.388
+binary serch algorithm,DS,YES,0.583,Write an algorithm for Binary search.,True,1,0.583
+hashing collision techniques,DS,YES,0.243,Define Hashing. Explain hashing techniques and techniques for collision resolution.,True,1,0.243
+AVL tree rotations,DS,YES,0.489,Write notes on : AVL Trees.,True,1,0.489
+graph traversal bfs dfs,DS,YES,0.4,Define graph. Explain BFS graph traversal.,True,1,0.4
+quick sort algorithm,DS,YES,0.208,Explain Quick sort algorithm in detail with an example.,True,1,0.208
+sql queries,DBMS,YES,0.537,"Using the following tables write the SQL statement to solve the questions Customer(custid,custname,location) Product(pro",True,1,0.537
+acid properties of a transaction,DBMS,YES,0.124,Discuss ACID properties of a transaction.,True,1,0.124
+er diagram for a library,DBMS,YES,0.447,Draw ER diagram for College database management system.,True,1,0.447
+deadlock in operating system,OS,YES,0.421,What is deadlock ? What are the necessary conditions for the deadlock to occur ?,True,1,0.421
+cpu scheduling algorithms,OS,YES,0.665,Explain different types of disk scheduling algorithms.,True,1,0.665
+paging and page replacement,OS,YES,0.521,Briefly explain any two page replacement algorithms with examples.,True,1,0.521
+semaphores for synchronisation,OS,YES,0.517,What are semaphores and list their advantages ? Also explain primitive semaphore operations.,True,1,0.517
+tcp connection establishment,CN,YES,0.635,Explain the features of Transmission Control Protocol (TCP).,True,1,0.635
+osi reference model layers,CN,YES,0.402,Explain ISO-OSI reference model with a neat diagram.,True,1,0.402
+routing algorithms,CN,YES,0.475,Explain the Distance Vector Routing algorithm with an example.,True,1,0.475
+dynamic programming approach,DAA,YES,0.577,Find ⁷C₄ using dynamic programming.,True,1,0.577
+0/1 knapsack problem,DAA,YES,0.45,Write a short note on Knapsack problem.,True,1,0.45
+merge sort complexity,DAA,YES,0.329,"Write algorithm for Merge sort. Find its complexity. Trace your algorithm to sort the following numbers : {4, 9, 3, 6, 2",True,1,0.329
+divide and conquer method,DAA,YES,0.44,Advantages and disadvantages of divide and conquer.,True,1,0.44
+expert systems architecture,AI,YES,0.31,Define expert system. Explain the architecture of an expert system in detail with a neat diagram and an example.,True,1,0.31
+fuzzy logic,AI,YES,0.138,Explain fuzzy logic ?,True,1,0.138
+artificial neural networks,AI,YES,0.406,What are neural networks ? Explain briefly working of ANN.,True,1,0.406
+k means clustering,ML,YES,0.494,Explain about the terms : i) K-mean clustering ii) Hierarchical clustering.,True,1,0.494
+turing machine design,TOC,YES,0.451,Write a short note on variations of Turing Machine.,True,1,0.451
+pumping lemma for regular languages,TOC,YES,0.083,State and prove pumping lemma for regular languages.,True,1,0.083
+construct a dfa,TOC,YES,0.422,Minimize the following DFA.,True,1,0.422
+pushdown automata,TOC,YES,0.337,Define the pushdown automata based on the types of acceptance.,True,1,0.337
+agile methodology,SE,YES,0.454,State the Agile Manifesto. Explain the basic practices in Agile Software Development and analyze them from the HOT persp,True,1,0.454
+iaas paas saas service models,CC,YES,0.436,"Explain the cloud (IaaS, PaaS, SaaS) service models in detail with a diagram.",True,1,0.436
+virtualisation in cloud,CC,YES,0.598,Define OS virtualization. Discuss the virtual infrastructure requirements.,True,1,0.598
+mapreduce programming model,BDA,YES,0.449,Explain the working of MapReduce.,True,1,0.449
+hadoop architecture,BDA,YES,0.479,Discuss Hadoop ecosystem and its components.,True,1,0.479
+javascript functions and events,WP,YES,0.426,Explain how functions can be written in JavaScript.,True,1,0.426
+xml dtd and schema,WP,YES,0.754,Explain XML document in the form of tree structure with diagrammatic representation.,True,1,0.754
+digital signature,CNS,YES,0.429,Describe the process of digital signatures and their importance in ensuring message authenticity and non-repudiation. Ho,True,1,0.429
+cache memory mapping,CA,YES,0.303,Discuss the different mapping techniques used in cache memories.,True,1,0.303
+addressing modes,CA,YES,0.218,What are addressing modes ? Explain the various addressing modes with examples.,True,1,0.218
+decision tree,ML,YES,0.448,Write Decision Tree Algorithm and expl ain with suitable example.,True,1,0.448
+normalisation in dbms,DBMS,YES,0.6,What is normalization ? Explain briefly various types of normal forms with examples.,True,1,0.6
+what is decision tree,,YES,0.319,Discuss the process of building decision tree for classification.,True,1,0.319
+hashing,,YES,0.265,Write a note on Hashing.,True,1,0.265
+kubernetes,,NO,0.893,Explain K-Nearest Neighbour techniques with an example.,,,
+fenwick tree,,NO,0.917,Show that a tree with n vertices will consist of n–1 edges.,,,
+french revolution,,NO,0.952,State and prove Baye’s theorem.,,,
+photosynthesis in plants,,NO,0.954,Write short notes on : Rice’s theorem.,,,
+docker containers,,NO,1.096,What are joins ? Explain different types of joins.,,,
+blockchain consensus,,NO,0.905,Define block cipher. Explain CBC mode of encryption and decryption with a diagram.,,,
+quantum computing qubits,,NO,0.838,Define soft computing technology and list some techniques. Compare soft computing and hard computing.,,,
+python decorators,,NO,0.943,Explain the different types of cascading style sheets with code.,,,
+segment tree,,NO,0.67,"What is tree traversal ? Write the preorder, postorder and inorder traversal for the following tree.",,,
+bitcoin mining,,NO,0.782,What is data mining ? With neat diagram explain steps of data mining.,,,
+tensorflow keras model,,NO,0.936,What is Kerberos ? Explain how it provides authenticated services. Explain the format of the X.509 certificate.,,,
+microservices architecture,,NO,0.787,Explain the basic organization of a micro programmed control unit.,,,
+kotlin coroutines,,NO,0.811,Write short notes on : Waltz algorithm.,,,
+newton's laws of motion,,NO,0.791,Show that p → (q → r) ⇔ (p ∧ q) → r using the laws of logic.,,,
+inflation and gdp,,NO,0.949,The difference between the simple interest and true discount on a certain sum of money for 6 months at 12½% per annum is,,,

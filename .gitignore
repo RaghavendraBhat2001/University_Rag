@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# FAISS Vector Index (contains >280MB index files which exceed GitHub's 100MB file limit)
+faiss_store/
+
+# Logs and runtime scratch directories
+logs/
+*.log
+scratch/
+_archive/
+
+# Sensitive environment variables and secrets
+.env
+.env.*
+.streamlit/secrets.toml
+
+# OS artifacts
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store

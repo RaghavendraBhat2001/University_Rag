@@ -1,0 +1,975 @@
+======================================================================
+uniRAG ACADEMIC INTELLIGENCE · ALL SUBJECTS MODEL SOLUTIONS
+Target Exam: Bangalore University MCA Examination
+======================================================================
+
+
+################### SUBJECT: DBMS ###################
+
+[DBMS] QUESTION #1 [6 MARKS] (2025, 2022, 2020)
+Question: Discuss ACID properties of a transaction.
+--------------------------------------------------
+### ACID Properties of a Database Transaction (6 Marks)
+
+A transaction is a logical unit of work that contains one or more database operations (read/write). To maintain database integrity, every DBMS enforces the four ACID properties:
+
+1. **Atomicity ("All or Nothing")**:
+   - Ensures that either all operations of the transaction are executed successfully and committed, or none of them take effect.
+   - If a failure occurs mid-transaction, all changes are rolled back to the pre-transaction state.
+   - *DBMS Component:* Managed by the **Transaction Manager** and **Recovery Subsystem** using write-ahead transaction logs (UNDO logs).
+
+2. **Consistency (Preserving Invariants)**:
+   - A transaction must transform the database from one valid consistent state to another consistent state satisfying all integrity constraints (e.g., primary keys, foreign keys, balance >= 0).
+   - If a transaction violates any constraint, it is aborted and rolled back.
+   - *DBMS Component:* Enforced by the **Integrity Subsystem** and application logic.
+
+3. **Isolation (Concurrent Execution Separation)**:
+   - Multiple transactions executing concurrently must execute without interfering with each other. The intermediate state of a transaction remains invisible to other concurrently executing transactions.
+   - Prevents concurrency anomalies: Dirty Reads, Non-repeatable Reads, and Phantom Reads.
+   - *DBMS Component:* Enforced by the **Concurrency Control Subsystem** using Locking protocols (2PL) or Timestamp Ordering.
+
+4. **Durability (Permanence of Committed Changes)**:
+   - Once a transaction commits successfully, its updates persist permanently in non-volatile storage, even in the event of an immediate system crash or power outage.
+   - *DBMS Component:* Enforced by the **Recovery Manager** using REDO logs and write-ahead logging (WAL).
+
+---
+**Illustrative Real-World Example (Bank Fund Transfer):**
+Transferring ₹5,000 from Account A (₹20,000) to Account B (₹10,000):
+```sql
+START TRANSACTION;
+UPDATE Accounts SET balance = balance - 5000 WHERE acc_no = 'A';
+UPDATE Accounts SET balance = balance + 5000 WHERE acc_no = 'B';
+COMMIT;
+```
+- *Atomicity:* If power fails after debiting A, B is not credited; rollback restores ₹5,000 to A.
+- *Consistency:* Total money across A and B remains ₹30,000 before and after transaction.
+- *Isolation:* A concurrent balance inquiry cannot see A debited before B is credited.
+- *Durability:* Once COMMIT executes, ₹15,000 in both accounts survives a server restart.
+
+============================================================
+
+[DBMS] QUESTION #2 [6 MARKS] (2022, 2020)
+Question: Write a note on hashing techniques.
+--------------------------------------------------
+### Hashing Techniques in DBMS (6 Marks)
+
+Hashing is a direct data access technique that maps search key values directly to storage bucket addresses using a mathematical hash function $h(K)$, achieving average $O(1)$ search, insert, and delete complexity.
+
+#### 1. Static Hashing:
+- The number of bucket addresses $M$ is fixed at database creation time.
+- Hash function: $h(K) = K \pmod M$.
+- **Bucket Overflow Problem:** When a record hashes to a bucket that is already full.
+  - Handled via **Open Hashing (Chaining / Overflow Buckets):** Overflow linked lists attached to the primary bucket.
+  - Handled via **Closed Hashing (Linear/Quadratic Probing):** Searches for the next available bucket sequentially.
+- *Limitation:* Poor scalability when databases grow or shrink significantly.
+
+#### 2. Dynamic Hashing (Extendible & Linear Hashing):
+Allows the hash table structure to grow and shrink dynamically without requiring complete re-hashing of all records.
+
+- **Extendible Hashing:**
+  - Uses an in-memory directory of pointers to disk buckets.
+  - **Global Depth ($d$):** Number of bits used to index the directory ($2^d$ directory entries).
+  - **Local Depth ($d' \le d$):** Number of bits shared by records inside a specific bucket.
+  - When a bucket overflows:
+    * If $d' = d$: Directory doubles in size ($d \leftarrow d + 1$).
+    * If $d' < d$: Only the overflowing bucket splits into two; local depths increment to $d'+1$; directory does not double.
+- **Linear Hashing:**
+  - Does not use a directory. Splits buckets linearly in round-robin order using a split pointer, maintaining an average storage utilization of ~75-80%.
+
+#### Summary Comparison:
+| Parameter | Static Hashing | Extendible Hashing | Linear Hashing |
+| :--- | :--- | :--- | :--- |
+| **Bucket Count** | Fixed | Dynamic ($2^d$ directory) | Dynamic (split pointer) |
+| **Directory Overhead** | None | Yes (Memory directory) | None |
+| **Re-hashing Overhead** | Massive when full | Localized to split bucket | Incremental |
+
+============================================================
+
+[DBMS] QUESTION #3 [6 MARKS] (2022, 2020)
+Question: What is Schema ? Explain with a neat diagram 3 schema architecture of DBMS.
+--------------------------------------------------
+### Schema and 3-Schema Architecture in DBMS (6 Marks)
+
+#### 1. Definition of Schema:
+A **Database Schema** is the overall structural design and skeleton of the database, specifying tables, fields, data types, constraints, and relationships. It is stored in the data dictionary (system catalog) and rarely changes, whereas the data stored at a particular moment is termed the **Database Instance**.
+
+#### 2. Three-Schema (ANSI/SPARC) Architecture:
+The primary objective is to separate user applications from the physical database, achieving **Data Independence**.
+
+```
++-----------------------------------------------------------+
+|              EXTERNAL LEVEL (User Views)                  |
+|   [ View 1: Student ]      [ View 2: Accounts ]  [ View 3 ]|
++-----------------------------------------------------------+
+                             |
+                   External / Conceptual Mapping
+                             |
++-----------------------------------------------------------+
+|              CONCEPTUAL LEVEL (Logical Schema)            |
+|   Entities, Attributes, Relationships, Integrity Rules     |
+|   (Relational Schema: e.g., Students, Courses, Grades)    |
++-----------------------------------------------------------+
+                             |
+                  Conceptual / Internal Mapping
+                             |
++-----------------------------------------------------------+
+|              INTERNAL LEVEL (Physical Schema)             |
+|   Storage Structures, Record Formats, B+ Trees, Hashing   |
++-----------------------------------------------------------+
+                             |
+                 [ Physical Database Storage ]
+```
+
+#### 3. The Three Levels Explained:
+1. **External Level (Sub-schemas / Views):**
+   - The view closest to the end-users. Each user group views only the subset of data relevant to their role, hiding confidential fields (e.g., students view marks, HR views salary).
+2. **Conceptual Level (Logical Community Schema):**
+   - Describes *what* data is stored in the whole database and relationships among them without detailing storage mechanisms. Includes entities, data types, user constraints, and security rules.
+3. **Internal Level (Physical Schema):**
+   - Describes *how* data is stored physically on disk: file organizations (heap, sorted, hashed), indexing mechanisms (B+ trees), data compression, and block allocations.
+
+#### 4. Data Independence Achieved:
+- **Logical Data Independence:** Ability to modify the Conceptual Schema (e.g. adding a new table or attribute) without altering existing External Views or application programs.
+- **Physical Data Independence:** Ability to modify the Internal Schema (e.g. reorganizing file structures or adding indexes) without altering the Conceptual Schema or application programs.
+
+============================================================
+
+[DBMS] QUESTION #4 [6 MARKS] (2022, 2020)
+Question: Explain domain constraint, key constraint and referential integrity constraints.
+--------------------------------------------------
+### Relational Integrity Constraints (6 Marks)
+
+Integrity constraints are rules enforced by the DBMS to ensure database accuracy, consistency, and validity during insert, update, and delete operations.
+
+#### 1. Domain Constraint:
+- Specifies that the value of each attribute $A$ in any tuple must be an atomic value belonging to the predefined domain $dom(A)$.
+- Enforces data type, format, permissible range, and nullability.
+- *Examples in SQL:*
+  ```sql
+  age INT CHECK (age >= 18 AND age <= 60),
+  gender CHAR(1) CHECK (gender IN ('M', 'F', 'O')),
+  email VARCHAR(100) NOT NULL
+  ```
+- *Violation:* Attempting to insert `"abc"` into an `INT` field or `age = 15` triggers a constraint violation error.
+
+#### 2. Key Constraint:
+- States that no two distinct tuples in any relation state $r(R)$ can have identical values for the Primary Key or Candidate Key attribute(s).
+- **Superkey:** A set of attributes that uniquely identifies a tuple.
+- **Candidate Key:** A minimal superkey (no redundant attributes).
+- **Primary Key:** The chosen candidate key; strictly requires **Uniqueness** and **Entity Integrity** (Primary key attributes can never be `NULL`).
+- *SQL Example:*
+  ```sql
+  student_id VARCHAR(10) PRIMARY KEY
+  ```
+
+#### 3. Referential Integrity Constraint:
+- Enforced between two relations (Referencing relation $R_1$ and Referenced relation $R_2$).
+- A tuple in $R_1$ has a **Foreign Key (FK)** that references the **Primary Key (PK)** of $R_2$.
+- The foreign key value must either:
+  1. Match an existing primary key value in the referenced relation, or
+  2. Be `NULL` (if nulls are allowed).
+- **Referential Action Rules:**
+  * `ON DELETE CASCADE`: Deleting referenced parent tuple automatically deletes matching child tuples.
+  * `ON DELETE RESTRICT / NO ACTION`: Rejects deletion of parent tuple if child records exist.
+  * `ON DELETE SET NULL`: Sets child foreign key to `NULL`.
+- *SQL Example:*
+  ```sql
+  FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+      ON DELETE RESTRICT ON UPDATE CASCADE
+  ```
+
+============================================================
+
+[DBMS] QUESTION #5 [6 MARKS] (2022, 2020)
+Question: Explain views in SQL with example.
+--------------------------------------------------
+### Views in SQL (6 Marks)
+
+#### 1. Definition:
+A **View** in SQL is a virtual table whose contents are defined by an underlying `SELECT` query. A view does not store data physically on disk (except in materialized views); instead, the DBMS stores the view definition in the system catalog and dynamically executes the underlying query whenever the view is queried.
+
+#### 2. Syntax and Creation:
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+#### 3. Practical Example:
+Suppose a university has an `Employees` table:
+`Employees(emp_id, emp_name, department, salary, ssn)`
+
+To allow department managers to see employee details without exposing confidential `salary` and `ssn`:
+```sql
+-- Create View:
+CREATE VIEW DeptStaffView AS
+SELECT emp_id, emp_name, department
+FROM Employees
+WHERE department = 'Computer Science';
+
+-- Querying the View:
+SELECT * FROM DeptStaffView WHERE emp_name LIKE 'R%';
+
+-- Dropping the View:
+DROP VIEW DeptStaffView;
+```
+
+#### 4. Advantages of Views:
+1. **Data Security & Confidentiality:** Restricts user access to specific rows and columns without granting table-level permissions.
+2. **Query Simplification:** Pre-packages complex multi-table `JOIN`s, subqueries, and aggregations into a simple virtual table.
+3. **Logical Data Independence:** If table structures change slightly, the view query can be updated without breaking legacy client applications.
+
+#### 5. Updatable Views vs. Non-Updatable Views:
+A view is updatable (`INSERT`, `UPDATE`, `DELETE`) only if:
+- It is based on a single base table.
+- It contains the primary key of the base table.
+- It contains **no** `GROUP BY`, `DISTINCT`, aggregate functions (`COUNT`, `AVG`), or `UNION` operations.
+
+============================================================
+
+[DBMS] QUESTION #6 [10 MARKS] (2022, 2020)
+Question: Explain different types of database users.
+--------------------------------------------------
+### Classification of Database Users (10 Marks)
+
+Database users interact with the DBMS across various abstractions, from system governance to routine data retrieval. They are categorized into the following distinct classes:
+
+#### 1. Database Administrator (DBA):
+The central authority responsible for enterprise database management and operations:
+- **Schema Definition & Modification:** Defines internal, conceptual, and external schemas.
+- **Access Control & Security:** Grants/revokes user permissions and privileges.
+- **Integrity Enforcement:** Establishes constraints, triggers, and consistency rules.
+- **Backup & Disaster Recovery:** Schedules regular backups and handles crash recovery.
+- **Performance Tuning:** Monitors disk utilization, rebuilds indexes, and tunes buffer pools.
+
+#### 2. Database Designers:
+- **Logical Designers:** Model business requirements into Conceptual schemas (ER diagrams), perform normalization (BCNF/3NF), and specify business constraints.
+- **Physical Designers:** Translate logical schemas into storage structures, choosing indexing strategies (B+ trees, hashing) and partitioning methods.
+
+#### 3. End Users:
+End users access the database for day-to-day operations and decision-making:
+- **a) Naive / Parametric Users:**
+  - Largest user group. They do not know SQL or database internals.
+  - Interact exclusively through canned forms, mobile apps, or web interfaces.
+  - *Examples:* Bank tellers, airline reservation clerks, e-commerce shoppers.
+- **b) Casual / Sophisticated Users:**
+  - Understand query languages (SQL) and relational concepts.
+  - Write complex ad-hoc queries, generate custom reports, and perform data analysis without using application interfaces.
+  - *Examples:* Business analysts, researchers, data scientists.
+- **c) Standalone Users:**
+  - Maintain personal databases using ready-made software packages (e.g., Microsoft Access, personal SQLite applications).
+
+#### 4. Application Programmers (Software Developers):
+- Write software applications in host languages (Java, Python, C#, Node.js) that embed DML statements or use ORM frameworks (Hibernate, SQLAlchemy) to interact with the DBMS.
+- Test, debug, and maintain database application interfaces.
+
+#### 5. System Analysts:
+- Determine end-user requirements and bridge business needs with database developers to formulate functional specifications.
+
+============================================================
+
+[DBMS] QUESTION #7 [6 MARKS] (2025, 2024)
+Question: What are the main characteristics of DBMS ?
+--------------------------------------------------
+### Main Characteristics of the Database Approach (6 Marks)
+
+Unlike traditional file-processing systems where each application manages its own files, a Database Management System (DBMS) exhibits the following core characteristics:
+
+1. **Self-Describing Nature of a Database System:**
+   - A DBMS contains not only the database itself but also a complete definition of its structure and constraints stored in the **System Catalog (Data Dictionary / Metadata)**.
+   - Allows DBMS software to work with different databases dynamically without hardcoded assumptions.
+
+2. **Program-Data and Program-Operation Independence:**
+   - In file systems, file record formats are hardcoded in application source code.
+   - In a DBMS, data structures (physical storage, indexing) can change without altering application programs (**Data Independence**).
+
+3. **Support of Multiple Views of the Data:**
+   - Different users have different perspectives. A DBMS allows each user group to access only the subset of data relevant to their role via tailored **External Views**.
+
+4. **Multi-User Transaction Processing and Concurrency Control:**
+   - Allows hundreds of concurrent users to read and update data simultaneously without conflict.
+   - Enforces **ACID properties** through concurrency control (locking/timestamping) ensuring serializability.
+
+5. **Data Sharing and Integration:**
+   - Centralizes enterprise data, eliminating redundant data silos and ensuring a single source of truth.
+
+6. **Enforcement of Integrity Constraints:**
+   - Automatically validates data against business rules: Primary key uniqueness, Foreign key referential integrity, and Domain validation.
+
+============================================================
+
+[DBMS] QUESTION #8 [6 MARKS] (2025, 2024)
+Question: Discuss Embedded SQL and Dynamic SQL.
+--------------------------------------------------
+### Embedded SQL vs. Dynamic SQL (6 Marks)
+
+Both Embedded SQL and Dynamic SQL enable high-level programming languages (C, C++, Java) to communicate with relational databases.
+
+#### 1. Embedded SQL (Static SQL):
+- SQL statements are directly written inside the host program source code and prefixed with `EXEC SQL`.
+- Processed by an application **pre-compiler** before host language compilation.
+- Query structure is completely fixed at design/compile time; only parameter values (host variables) vary at runtime.
+- *Syntax Example (in C):*
+  ```c
+  EXEC SQL SELECT salary INTO :emp_sal FROM Employee WHERE emp_id = :id;
+  ```
+- *Advantages:* High runtime efficiency, syntax and semantic checks performed at compile time, strong security.
+
+#### 2. Dynamic SQL:
+- SQL statements are constructed as character strings at runtime and executed dynamically.
+- Used when queries cannot be determined ahead of time (e.g. ad-hoc filter screens with variable checkboxes).
+- Enabled via standardized APIs: **JDBC, ODBC, or `PREPARE` / `EXECUTE` commands**.
+- *Syntax Example:*
+  ```sql
+  PREPARE stmt FROM 'SELECT * FROM Students WHERE marks >= ?';
+  EXECUTE stmt USING @min_marks;
+  ```
+
+#### 3. Key Comparison:
+| Feature | Embedded (Static) SQL | Dynamic SQL |
+| :--- | :--- | :--- |
+| **Query Formulation** | Fixed at compile time | Constructed as string at runtime |
+| **Parsing & Optimization**| Done ahead-of-time (pre-compile) | Done at runtime per invocation |
+| **Execution Speed** | Fast (pre-compiled execution plan) | Slightly slower (runtime compilation) |
+| **Flexibility** | Rigid query structure | Highly versatile & dynamic |
+| **SQL Injection Risk** | Very Low | Higher if string concatenation is used |
+
+============================================================
+
+[DBMS] QUESTION #9 [10 MARKS] (2022, 2020)
+Question: Explain Two Phase Locking Protocol used in concurrency control.
+--------------------------------------------------
+### Two-Phase Locking (2PL) Protocol (10 Marks)
+
+The Two-Phase Locking (2PL) protocol is a concurrency control mechanism that guarantees **Conflict Serializability** by enforcing strict rules on when transactions may acquire and release locks.
+
+#### 1. Lock Types:
+- **Shared Lock (S):** Acquired for reading data items (`read_lock`). Multiple transactions can hold shared locks concurrently on the same item.
+- **Exclusive Lock (X):** Acquired for writing data items (`write_lock`). Only one transaction can hold an exclusive lock; all other lock requests are blocked.
+
+#### 2. The Two Phases of 2PL:
+Every transaction must execute in two distinct phases:
+
+```
+Number of
+Locks Held
+   ^
+   |        Lock Point
+   |            *
+   |          /   \
+   |         /     \
+   |        /       \
+   |       /         \
+   +-------------------------> Time
+     Growing Phase   Shrinking Phase
+     (Locks Acquired) (Locks Released)
+```
+
+1. **Phase 1: Growing Phase (Expanding Phase):**
+   - The transaction may obtain new locks (both Shared and Exclusive) or upgrade an S lock to an X lock.
+   - **Crucial Rule:** The transaction CANNOT release any lock during this phase.
+2. **Lock Point:**
+   - The exact moment when the transaction has acquired the final lock it requires. Serializability order is determined by the order of lock points.
+3. **Phase 2: Shrinking Phase (Contracting Phase):**
+   - The transaction may release locks or downgrade an X lock to an S lock.
+   - **Crucial Rule:** The transaction CANNOT acquire any new lock once it releases its first lock.
+
+#### 3. Variations of 2PL:
+- **Basic 2PL:** Guarantees conflict serializability, but is vulnerable to **Cascading Aborts** and Deadlocks.
+- **Strict 2PL:**
+  - Requires all **Exclusive (X) locks** to be held until the transaction commits or aborts.
+  - Guarantees **Strict Schedules** and completely eliminates cascading rollbacks.
+- **Rigorous 2PL:**
+  - Requires all **Shared (S) AND Exclusive (X) locks** to be held until transaction commit. Easiest to implement.
+
+#### 4. Limitations of 2PL:
+- **Deadlocks:** Concurrent transactions waiting for locks held by each other can form cycles (e.g. $T_1$ holds $A$ waiting for $B$, while $T_2$ holds $B$ waiting for $A$). Resolved via Wait-For Graphs or Timeout mechanisms.
+
+============================================================
+
+
+################### SUBJECT: DS ###################
+
+[DS] QUESTION #1 [6 MARKS] (2022, 2021)
+Question: Define data structure and explain the operations performed on the linear data structure.
+--------------------------------------------------
+### Data Structures & Linear Operations (6 Marks)
+
+#### 1. Definition:
+A **Data Structure** is a specialized mathematical and logical format for organizing, storing, processing, and retrieving data efficiently inside computer memory.
+
+#### 2. Linear Data Structure:
+A data structure is linear if its elements form a sequential sequence where each element (except first and last) has a unique predecessor and successor (e.g., Arrays, Linked Lists, Stacks, Queues).
+
+#### 3. Standard Operations Performed:
+1. **Traversal:** Visiting each element in the data structure exactly once to process or display it (e.g., printing all array elements in $O(n)$).
+2. **Insertion:** Adding a new element at a designated position (at beginning, middle, or end).
+3. **Deletion:** Removing an existing element from the data structure and reorganizing adjacent elements.
+4. **Searching:** Finding the location of an element with a specified target key:
+   - *Linear Search:* $O(n)$ on unsorted lists.
+   - *Binary Search:* $O(\log n)$ on sorted sequential arrays.
+5. **Sorting:** Arranging elements in a specified logical order (ascending or descending) using algorithms like QuickSort, MergeSort, or BubbleSort.
+6. **Merging:** Combining elements of two distinct linear structures into a single composite structure.
+
+============================================================
+
+[DS] QUESTION #2 [6 MARKS] (2022, 2021)
+Question: Convert the following infix expression to postfix expression using stack A – (B/C)*D + (E^F).
+--------------------------------------------------
+### Infix to Postfix Conversion Using Stack (6 Marks)
+
+**Given Infix Expression:** `A - ( B / C ) * D + ( E ^ F )`
+
+#### Operator Precedence & Associativity:
+- `^` (Exponentiation): Precedence 3, Right-to-Left
+- `*`, `/` (Multiplication/Division): Precedence 2, Left-to-Right
+- `+`, `-` (Addition/Subtraction): Precedence 1, Left-to-Right
+- `(`: Pushed to stack; popped upon matching `)`
+
+#### Step-by-Step Stack Trace Table:
+| Symbol Scanned | Operator Stack | Postfix Output Buffer |
+| :---: | :---: | :---: |
+| `A` | *(empty)* | `A` |
+| `-` | `-` | `A` |
+| `(` | `- (` | `A` |
+| `B` | `- (` | `A B` |
+| `/` | `- ( /` | `A B` |
+| `C` | `- ( /` | `A B C` |
+| `)` | `-` *(pops `/`)* | `A B C /` |
+| `*` | `- *` *(higher than `-`)* | `A B C /` |
+| `D` | `- *` | `A B C / D` |
+| `+` | `+` *(pops `*` then `-`)* | `A B C / D * -` |
+| `(` | `+ (` | `A B C / D * -` |
+| `E` | `+ (` | `A B C / D * - E` |
+| `^` | `+ ( ^` | `A B C / D * - E` |
+| `F` | `+ ( ^` | `A B C / D * - E F` |
+| `)` | `+` *(pops `^`)* | `A B C / D * - E F ^` |
+| *(End of input)* | *(empty, pops `+`)* | `A B C / D * - E F ^ +` |
+
+---
+**Final Resulting Postfix Expression:**
+`A B C / D * - E F ^ +`
+
+============================================================
+
+[DS] QUESTION #3 [6 MARKS] (2022, 2021)
+Question: Write an algorithm for PUSH and POP operations on stack.
+--------------------------------------------------
+### Algorithms for PUSH and POP Operations on Stack (6 Marks)
+
+A **Stack** is a Last-In, First-Out (LIFO) linear data structure where all insertions and deletions occur at a single end termed `TOP`.
+
+Assume an array `STACK[1..MAXSIZE]` with pointer `TOP` initialized to `0` (or `-1` in 0-indexed systems).
+
+#### 1. PUSH Operation:
+Inserts element `ITEM` onto the top of the stack.
+```text
+Algorithm PUSH(STACK, TOP, MAXSIZE, ITEM)
+Step 1: [Check for Stack Overflow]
+        If TOP = MAXSIZE then:
+            Write "Error: Stack Overflow"
+            Exit
+Step 2: [Increment Top Pointer]
+        TOP := TOP + 1
+Step 3: [Insert Element]
+        STACK[TOP] := ITEM
+Step 4: [Success]
+        Write "Item pushed successfully"
+        Exit
+```
+*Time Complexity:* $O(1)$ | *Space Complexity:* $O(1)$
+
+#### 2. POP Operation:
+Removes and returns the topmost element `ITEM` from the stack.
+```text
+Algorithm POP(STACK, TOP, ITEM)
+Step 1: [Check for Stack Underflow]
+        If TOP = 0 then:
+            Write "Error: Stack Underflow"
+            Exit
+Step 2: [Retrieve Top Element]
+        ITEM := STACK[TOP]
+Step 3: [Decrement Top Pointer]
+        TOP := TOP - 1
+Step 4: [Return Value]
+        Return ITEM
+        Exit
+```
+*Time Complexity:* $O(1)$ | *Space Complexity:* $O(1)$
+
+============================================================
+
+[DS] QUESTION #4 [6 MARKS] (2022, 2021)
+Question: Write an algorithm to insert an element in the beginning of the linked list.
+--------------------------------------------------
+### Algorithm: Insert at Beginning of Singly Linked List (6 Marks)
+
+In a Singly Linked List, each node contains two fields: `INFO` (data) and `NEXT` (pointer to the succeeding node). `START` points to the first node.
+
+#### Algorithm:
+```text
+Algorithm INSERT_FIRST(START, ITEM)
+Step 1: [Allocate Memory for New Node]
+        NEW_NODE := Allocate Node in Memory
+Step 2: [Check Memory Allocation]
+        If NEW_NODE = NULL then:
+            Write "Error: Memory Overflow / Out of Heap Space"
+            Exit
+Step 3: [Set Node Data]
+        NEW_NODE.INFO := ITEM
+Step 4: [Link New Node to Current Head]
+        NEW_NODE.NEXT := START
+Step 5: [Update Start Pointer]
+        START := NEW_NODE
+Step 6: [Finished]
+        Write "Element inserted successfully at head"
+        Exit
+```
+
+#### Diagrammatic Representation:
+```
+Before:
+  START ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]
+
+New Node Created:
+  [ ITEM | NULL ]
+
+Step 4 & 5 (Linked & Re-pointed):
+  NEW_NODE.NEXT = START;
+  START = NEW_NODE;
+
+After:
+  START ----> [ ITEM | NEXT ] ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]
+```
+*Time Complexity:* $O(1)$ (constant time, no traversal required).
+
+============================================================
+
+[DS] QUESTION #5 [6 MARKS] (2022, 2021)
+Question: What is Adjacency matrix of graph ? Write the adjacency matrix for the given graph.
+--------------------------------------------------
+### Adjacency Matrix Representation of Graphs (6 Marks)
+
+#### 1. Definition:
+An **Adjacency Matrix** is a 2-dimensional square boolean array $A$ of size $V 	imes V$ (where $V$ is the number of vertices in graph $G = (V, E)$).
+The matrix entry $A[i][j]$ is defined as:
+$$A[i][j] = \begin{cases} 1 & \text{if there is an edge from vertex } v_i \text{ to } v_j \\ 0 & \text{otherwise} \end{cases}$$
+*(For weighted graphs, $A[i][j]$ stores the edge weight $w(i,j)$ instead of $1$, and $\infty$ or $0$ if no edge exists).*
+
+#### 2. Key Properties:
+- For an **Undirected Graph**, the adjacency matrix is symmetric ($A[i][j] = A[j][i]$).
+- For a **Directed Graph (Digraph)**, the matrix is generally asymmetric.
+- *Space Complexity:* $\Theta(V^2)$ regardless of the number of edges. Best suited for **Dense Graphs**.
+- *Edge Existence Check:* $O(1)$ time complexity.
+
+#### 3. Standard Example (4-Vertex Undirected Cycle Graph $V = \{1, 2, 3, 4\}$ with edges $(1,2), (2,3), (3,4), (4,1)$):
+```
+    1 --------- 2
+    |           |
+    |           |
+    4 --------- 3
+```
+**Adjacency Matrix:**
+```
+     1   2   3   4
+1  [ 0   1   0   1 ]
+2  [ 1   0   1   0 ]
+3  [ 0   1   0   1 ]
+4  [ 1   0   1   0 ]
+```
+
+============================================================
+
+[DS] QUESTION #6 [5 MARKS] (2024, 2022)
+Question: Explain the technique of collision resolution with open addressing.
+--------------------------------------------------
+### Collision Resolution Using Open Addressing (5 Marks)
+
+In hashing, a **collision** occurs when two distinct keys hash to the same bucket address ($h(k_1) = h(k_2)$). In **Open Addressing (Closed Hashing)**, all elements are stored directly inside the hash table array without linked lists. When a collision occurs, alternative cells are probed until an empty slot is found.
+
+#### 1. Linear Probing:
+- Checks sequential slots: $h(k, i) = (h'(k) + i) \pmod M$, for $i = 0, 1, 2, \dots, M-1$.
+- *Advantage:* Excellent CPU cache locality.
+- *Disadvantage:* Suffers from **Primary Clustering** (long blocks of occupied slots build up, drastically increasing average probe time).
+
+#### 2. Quadratic Probing:
+- Uses a quadratic function of probe number:
+  $$h(k, i) = (h'(k) + c_1 i + c_2 i^2) \pmod M$$
+- Eliminates primary clustering, but can lead to **Secondary Clustering** (keys with the same initial hash follow identical probe sequences).
+
+#### 3. Double Hashing:
+- Uses two independent hash functions $h_1(k)$ and $h_2(k)$:
+  $$h(k, i) = (h_1(k) + i \cdot h_2(k)) \pmod M$$
+- *Condition:* $h_2(k)$ must be relatively prime to $M$ (e.g. $M$ is prime).
+- *Advantage:* Produces near-ideal uniform distribution; minimizes clustering anomalies.
+
+============================================================
+
+[DS] QUESTION #7 [6 MARKS] (2024, 2023)
+Question: What are Asymptotic Notations ? Explain with an example.
+--------------------------------------------------
+### Asymptotic Notations in Algorithm Analysis (6 Marks)
+
+Asymptotic notations are mathematical tools used to describe the limiting behavior and growth rate of an algorithm's running time or memory usage as the input size $n$ approaches infinity ($n 	o \infty$).
+
+#### 1. Big-O Notation ($O$ - Asymptotic Upper Bound):
+- Represents the **worst-case** performance (maximum time an algorithm can take).
+- **Formal Definition:** $f(n) = O(g(n))$ if there exist positive constants $c > 0$ and $n_0 \ge 1$ such that:
+  $$0 \le f(n) \le c \cdot g(n) \quad orall n \ge n_0$$
+- *Example:* If $f(n) = 3n^2 + 5n + 2$, choose $c = 4$ and $n_0 = 6$, so $f(n) \le 4n^2$, meaning $f(n) = O(n^2)$.
+
+#### 2. Big-$\Omega$ Notation ($\Omega$ - Asymptotic Lower Bound):
+- Represents the **best-case** performance (minimum time guaranteed).
+- **Formal Definition:** $f(n) = \Omega(g(n))$ if there exist positive constants $c > 0$ and $n_0 \ge 1$ such that:
+  $$0 \le c \cdot g(n) \le f(n) \quad orall n \ge n_0$$
+- *Example:* $3n^2 + 5n \ge 3n^2$ for all $n \ge 1$, so $f(n) = \Omega(n^2)$.
+
+#### 3. Big-$\Theta$ Notation ($\Theta$ - Asymptotic Tight Bound):
+- Bounds the function from both above and below within constant factors.
+- **Formal Definition:** $f(n) = \Theta(g(n))$ if there exist positive constants $c_1, c_2 > 0$ and $n_0 \ge 1$ such that:
+  $$0 \le c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n) \quad orall n \ge n_0$$
+- *Example:* Linear search on an array of size $n$ has worst-case $O(n)$, best-case $\Omega(1)$, and average-case $\Theta(n)$.
+
+============================================================
+
+
+################### SUBJECT: OS ###################
+
+[OS] QUESTION #1 [6 MARKS] (2023, 2022)
+Question: Write difference between paging and segmentation.
+--------------------------------------------------
+### Difference Between Paging and Segmentation (6 Marks)
+
+Both Paging and Segmentation are non-contiguous memory management schemes implemented in modern Operating Systems.
+
+| Parameter | Paging | Segmentation |
+| :--- | :--- | :--- |
+| **Block Size** | Fixed-size blocks called **Pages** (frame size = page size, e.g. 4KB). | Variable-size blocks called **Segments** reflecting logical program units. |
+| **Viewpoint** | Physical view; managed invisibly by the OS and Memory Management Unit (MMU). | Logical view; defined by user/compiler (code, data, stack, subroutines). |
+| **Address Structure** | Virtual address = `(Page Number, Offset)`. | Virtual address = `(Segment Number, Offset)`. |
+| **Internal Fragmentation** | **Present** (in the final page frame of a process). | **Absent** (segments allocated exactly to required byte length). |
+| **External Fragmentation** | **Absent** (any page can fit into any free physical frame). | **Present** (free variable memory holes between segments require compaction). |
+| **Table Structure** | Uses a **Page Table** containing Base address of each physical frame. | Uses a **Segment Table** containing both **Base** address and **Limit** (size). |
+| **Protection & Sharing** | Difficult to share logical procedures cleanly. | Natural for sharing code modules and protecting functions.
+
+============================================================
+
+[OS] QUESTION #2 [6 MARKS] (2023, 2020)
+Question: Explain Readers-Writers problem of synchronization.
+--------------------------------------------------
+### The Readers-Writers Problem of Synchronization (6 Marks)
+
+#### 1. Problem Statement:
+A shared database or file is accessed concurrently by multiple processes:
+- **Readers:** Only read the dataset; multiple readers can access data simultaneously without conflict.
+- **Writers:** Modify the dataset; require exclusive access (no other reader or writer may access concurrently).
+
+#### 2. Synchronization Primitives:
+- `semaphore rw_mutex = 1;` // Controls mutual exclusion for writers and first/last reader
+- `semaphore mutex = 1;`    // Protects updates to `read_count`
+- `int read_count = 0;`     // Number of active reader processes
+
+#### 3. Reader Process Pseudocode:
+```c
+do {
+    wait(mutex);
+    read_count++;
+    if (read_count == 1)
+        wait(rw_mutex); // First reader locks out all writers
+    signal(mutex);
+
+    // Reading performed here...
+
+    wait(mutex);
+    read_count--;
+    if (read_count == 0)
+        signal(rw_mutex); // Last reader releases lock for writers
+    signal(mutex);
+} while (TRUE);
+```
+
+#### 4. Writer Process Pseudocode:
+```c
+do {
+    wait(rw_mutex);
+
+    // Writing / Modifying data performed here...
+
+    signal(rw_mutex);
+} while (TRUE);
+```
+
+#### 5. Starvation Concern:
+In the first readers-writers solution shown above (Reader Preference), continuous incoming readers can keep `rw_mutex` locked indefinitely, causing **Writer Starvation**.
+
+============================================================
+
+[OS] QUESTION #3 [5 MARKS] (2023, 2020)
+Question: Define semaphores. Explain the implementation of semaphore in solving dining-philosophers problem.
+--------------------------------------------------
+### Semaphores and the Dining-Philosophers Problem (5 Marks)
+
+#### 1. Definition of Semaphore:
+A **Semaphore** is an integer synchronization variable accessed only through two standard atomic operations:
+- **`wait(S)` (or `P(S)`):**
+  ```c
+  wait(S) {
+      while (S <= 0) ; // busy wait (or block process in queue)
+      S--;
+  }
+  ```
+- **`signal(S)` (or `V(S)`):**
+  ```c
+  signal(S) { S++; }
+  ```
+Types: **Binary Semaphore (Mutex)** (range 0 to 1) and **Counting Semaphore** (unbounded range).
+
+#### 2. Dining Philosophers Problem:
+Five philosophers sit around a circular table with 5 bowls of rice and 5 chopsticks. A philosopher alternately thinks and eats. To eat, a philosopher requires both the left and right chopsticks.
+
+#### 3. Semaphore Solution & Deadlock Prevention:
+Represent each chopstick as a semaphore: `semaphore chopstick[5] = {1, 1, 1, 1, 1};`
+
+*Naïve Solution:* Each philosopher picks left chopstick, then right chopstick.
+**Deadlock Hazard:** If all 5 philosophers get hungry simultaneously and pick their left chopstick, all chopsticks are held and none can pick their right chopstick.
+
+*Deadlock-Free Asymmetric Solution:*
+An odd philosopher picks left first then right; an even philosopher picks right first then left:
+```c
+void philosopher(int i) {
+    while (1) {
+        think();
+        if (i % 2 == 0) {
+            wait(chopstick[(i + 1) % 5]); // pick right
+            wait(chopstick[i]);           // pick left
+        } else {
+            wait(chopstick[i]);           // pick left
+            wait(chopstick[(i + 1) % 5]); // pick right
+        }
+        eat();
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+    }
+}
+```
+
+============================================================
+
+[OS] QUESTION #4 [3 MARKS] (2025, 2023)
+Question: Write short notes on a virtual machine.
+--------------------------------------------------
+### Virtual Machine (VM) (3 Marks)
+
+A **Virtual Machine** is a completely isolated software emulation of a physical computer architecture that executes programs and guest operating systems just like a physical machine.
+
+- **Hypervisor / Virtual Machine Monitor (VMM):** Software layer that virtualizes hardware resources (CPU, RAM, Storage).
+  * **Type 1 (Bare-Metal):** Runs directly on physical hardware (e.g., VMware ESXi, KVM, Xen).
+  * **Type 2 (Hosted):** Runs on top of a host OS (e.g., Oracle VirtualBox, VMware Workstation).
+- **Key Advantages:**
+  1. *Resource Consolidation:* Maximizes hardware utilization by running multiple VMs on one physical server.
+  2. *Security & Sandboxing:* Failures or malware inside one VM cannot breach the host or peer VMs.
+  3. *Snapshotting & Migration:* Seamless backup and live migration across cloud clusters.
+
+============================================================
+
+[OS] QUESTION #5 [10 MARKS] (2025, 2024)
+Question: Consider the following system snapshot using data structures in Banker’s Algorithm, with resources A, B, C, D and process P0 to P4. Max (A B C D) / Allocation (A B C D) / Available (A B C D) — P0: 6 0 1 2 / 4 0 0 1 / 3 2 1 1; P1: 1 7 5 0 / 1 1 0 0; P2: 2 3 5 6 / 1 2 5 4; P3: 1 6 5 3 / 0 6 3 3; P4: 1 6 5 6 / 0 2 1 2. a) Compute need matrix. b) Is the system in a safe state ? Why ?
+--------------------------------------------------
+### Banker's Algorithm Safety Analysis (10 Marks)
+
+#### Given Data:
+- Resources: `A, B, C, D`
+- Initial Available Vector: `Available = [3, 2, 1, 1]`
+
+#### Part (a): Need Matrix Computation
+$$\text{Need}[i][j] = \text{Max}[i][j] - \text{Allocation}[i][j]$$
+
+| Process | Max (A B C D) | Allocation (A B C D) | Need = Max - Allocation |
+| :---: | :---: | :---: | :---: |
+| **P0** | 6 0 1 2 | 4 0 0 1 | **[2, 0, 1, 1]** |
+| **P1** | 1 7 5 0 | 1 1 0 0 | **[0, 6, 5, 0]** |
+| **P2** | 2 3 5 6 | 1 2 5 4 | **[1, 1, 0, 2]** |
+| **P3** | 1 6 5 3 | 0 6 3 3 | **[1, 0, 2, 0]** |
+| **P4** | 1 6 5 6 | 0 2 1 2 | **[1, 4, 4, 4]** |
+
+---
+#### Part (b): Safety Algorithm Trace
+Initialize: `Work = Available = [3, 2, 1, 1]`, `Finish[P0..P4] = false`
+
+1. **Check P0:**
+   - $\text{Need}_0 = [2, 0, 1, 1] \le \text{Work} = [3, 2, 1, 1]$ -> **TRUE**
+   - Execute P0. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_0 = [3, 2, 1, 1] + [4, 0, 0, 1] = \mathbf{[7, 2, 1, 2]}$
+   - `Finish[P0] = true`
+
+2. **Check P2:**
+   - $\text{Need}_2 = [1, 1, 0, 2] \le \text{Work} = [7, 2, 1, 2]$ -> **TRUE**
+   - Execute P2. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_2 = [7, 2, 1, 2] + [1, 2, 5, 4] = \mathbf{[8, 4, 6, 6]}$
+   - `Finish[P2] = true`
+
+3. **Check P1:**
+   - $\text{Need}_1 = [0, 6, 5, 0] \le \text{Work} = [8, 4, 6, 6]$ -> `6 > 4` (**FALSE**, must wait)
+
+4. **Check P3:**
+   - $\text{Need}_3 = [1, 0, 2, 0] \le \text{Work} = [8, 4, 6, 6]$ -> **TRUE**
+   - Execute P3. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_3 = [8, 4, 6, 6] + [0, 6, 3, 3] = \mathbf{[8, 10, 9, 9]}$
+   - `Finish[P3] = true`
+
+5. **Re-check P1:**
+   - $\text{Need}_1 = [0, 6, 5, 0] \le \text{Work} = [8, 10, 9, 9]$ -> **TRUE**
+   - Execute P1. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_1 = [8, 10, 9, 9] + [1, 1, 0, 0] = \mathbf{[9, 11, 9, 9]}$
+   - `Finish[P1] = true`
+
+6. **Check P4:**
+   - $\text{Need}_4 = [1, 4, 4, 4] \le \text{Work} = [9, 11, 9, 9]$ -> **TRUE**
+   - Execute P4. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_4 = [9, 11, 9, 9] + [0, 2, 1, 2] = \mathbf{[9, 13, 10, 11]}$
+   - `Finish[P4] = true`
+
+#### Conclusion:
+Yes, the system is in a **SAFE STATE** because all processes can finish without deadlock.
+**Safe Sequence Found:** `P0 -> P2 -> P3 -> P1 -> P4` (or `P0 -> P3 -> P2 -> P1 -> P4`).
+
+============================================================
+
+
+################### SUBJECT: CN ###################
+
+[CN] QUESTION #1 [6 MARKS] (2024, 2023, 2022)
+Question: Define network topology. Explain different topologies with its merits and demerits.
+--------------------------------------------------
+### Network Topologies: Classification, Merits & Demerits (6 Marks)
+
+#### 1. Definition:
+A **Network Topology** is the structural arrangement of nodes (computers, switches, routers) and connecting communication links in a computer network.
+
+#### 2. Topologies Comparison:
+1. **Mesh Topology:**
+   - Every device has a dedicated point-to-point link to every other device ($n(n-1)/2$ links).
+   - *Merits:* Robust, dedicated links prevent traffic congestion, highly secure, easy fault isolation.
+   - *Demerits:* Massive cabling requirement, high hardware and I/O port cost, difficult installation.
+2. **Star Topology:**
+   - All nodes connect to a central controller (Hub or Switch).
+   - *Merits:* Easy to install and reconfigure, link failure affects only that node, easy fault detection.
+   - *Demerits:* Single point of failure (if central hub fails, the entire network goes down).
+3. **Bus Topology:**
+   - All devices tap into a single shared backbone cable with terminators at both ends.
+   - *Merits:* Minimal cabling, low cost, simple to implement for small networks.
+   - *Demerits:* Difficult fault detection, signal reflection, backbone cable break stops all communication.
+4. **Ring Topology:**
+   - Each device connects to exactly two neighbors, forming a closed transmission ring.
+   - *Merits:* Orderly token-based transmission, equal access opportunity.
+   - *Demerits:* Unidirectional traffic; break in the ring disables the entire loop.
+
+============================================================
+
+[CN] QUESTION #2 [10 MARKS] (2024, 2023)
+Question: Explain ISO-OSI reference model with a neat diagram.
+--------------------------------------------------
+### ISO-OSI Reference Model (10 Marks)
+
+The Open Systems Interconnection (OSI) model developed by ISO is a 7-layer architectural framework for standardized network communications.
+
+```
++-----------------------------------------------------------+
+| Layer 7: APPLICATION LAYER (HTTP, FTP, SMTP, DNS)        |
++-----------------------------------------------------------+
+| Layer 6: PRESENTATION LAYER (SSL/TLS, ASCII, Encryption)  |
++-----------------------------------------------------------+
+| Layer 5: SESSION LAYER (Sockets, RPC, Session Checkpoints)|
++-----------------------------------------------------------+
+| Layer 4: TRANSPORT LAYER (TCP, UDP - Segments)            |
++-----------------------------------------------------------+
+| Layer 3: NETWORK LAYER (IP, ICMP, Routing - Packets)      |
++-----------------------------------------------------------+
+| Layer 2: DATA LINK LAYER (Ethernet, MAC, PPP - Frames)    |
++-----------------------------------------------------------+
+| Layer 1: PHYSICAL LAYER (Cables, Bits, Voltages, Connect) |
++-----------------------------------------------------------+
+```
+
+#### Functions of the 7 Layers:
+1. **Layer 1 - Physical Layer:** Transmits raw unstructured bit streams over physical media (voltages, pins, frequencies).
+2. **Layer 2 - Data Link Layer:** Provides hop-to-hop node transfer; frames packets, handles physical addressing (MAC), flow control, and error detection (CRC).
+3. **Layer 3 - Network Layer:** Responsible for end-to-end packet routing across networks using logical IP addressing and routing protocols (OSPF, BGP).
+4. **Layer 4 - Transport Layer:** End-to-end host-to-host process delivery (ports), segmentation and reassembly, reliable delivery (TCP acknowledgments), flow control.
+5. **Layer 5 - Session Layer:** Establishes, manages, and terminates conversational sessions between remote applications; maintains synchronization checkpoints.
+6. **Layer 6 - Presentation Layer:** Formats, translates, encrypts, and compresses data (JSON, JPEG, TLS/SSL) so applications understand transmitted payload.
+7. **Layer 7 - Application Layer:** Direct interface to end-user network services and software (Web browsers, Email clients, File transfers).
+
+============================================================
+
+
+################### SUBJECT: DAA ###################
+
+[DAA] QUESTION #1 [6 MARKS] (2025, 2023)
+Question: Explain different asymptotic notations in detail.
+--------------------------------------------------
+### Asymptotic Notations in Algorithm Analysis (6 Marks)
+
+Asymptotic analysis evaluates algorithmic time and space complexity as input size $n \to \infty$, abstracting hardware variations.
+
+1. **Big-O Notation ($O$):**
+   - Upper bound (Worst-Case rate of growth).
+   - $f(n) = O(g(n)) \iff \exists c > 0, n_0 \ge 1$ such that $0 \le f(n) \le c \cdot g(n) \; \forall n \ge n_0$.
+2. **Big-Omega Notation ($\Omega$):**
+   - Lower bound (Best-Case guarantee).
+   - $f(n) = \Omega(g(n)) \iff \exists c > 0, n_0 \ge 1$ such that $0 \le c \cdot g(n) \le f(n) \; \forall n \ge n_0$.
+3. **Big-Theta Notation ($\Theta$):**
+   - Asymptotically tight bound.
+   - $f(n) = \Theta(g(n)) \iff c_1 g(n) \le f(n) \le c_2 g(n) \; \forall n \ge n_0$.
+4. **Little-o ($o$) and Little-omega ($\omega$):**
+   - Strictly upper ($f(n) < c \cdot g(n)$) and strictly lower bounds where ratio limits converge to 0 and $\infty$ respectively.
+
+============================================================
+
+[DAA] QUESTION #2 [6 MARKS] (2025, 2022)
+Question: Present Brute-force based algorithm to perform pattern matching and investigate its efficiency.
+--------------------------------------------------
+### Brute-Force String Pattern Matching Algorithm & Efficiency (6 Marks)
+
+Given Text $T[0..n-1]$ and Pattern $P[0..m-1]$ ($m \le n$):
+
+#### Algorithm:
+```text
+Algorithm BruteForceStringMatch(T[0..n-1], P[0..m-1])
+For i := 0 to n - m do:
+    j := 0
+    While j < m and P[j] = T[i + j] do:
+        j := j + 1
+    If j = m then:
+        Return i  // Match found at index i
+Return -1         // No match found
+```
+
+#### Efficiency Analysis:
+- **Best Case:** $O(m)$ when pattern matches at the very beginning of text.
+- **Worst Case:** $O(m(n - m + 1)) \approx O(m \cdot n)$ when characters match repeatedly until the last pattern character (e.g., $T = \text{"AAAAAAA"}$, $P = \text{"AAAAB"}$).
+- **Space Complexity:** $O(1)$ auxiliary space.
+
+============================================================
+
+
+################### SUBJECT: TOC ###################
+
+[TOC] QUESTION #1 [6 MARKS] (2025, 2022, 2021)
+Question: Write short notes on Rice theorem and Halting problem.
+--------------------------------------------------
+### Rice's Theorem & The Halting Problem (6 Marks)
+
+#### 1. Rice's Theorem:
+- **Statement:** Any non-trivial semantic property of the language recognized by a Turing machine is **Undecidable**.
+- A property $P$ of recursively enumerable languages is *non-trivial* if at least one RE language satisfies $P$ and at least one RE language does not satisfy $P$.
+- *Implication:* Questions like "Does Turing machine $M$ accept an empty language?", "Does $M$ accept a regular language?", or "Does $M$ accept all strings?" cannot be solved by any general algorithm.
+
+#### 2. The Halting Problem of Turing Machine:
+- **Statement:** Given a description of an arbitrary Turing machine $M$ and input $w$, determine whether $M$ will eventually halt on input $w$ or loop forever:
+  $$H = \{ \langle M, w \rangle \mid M \text{ halts on input } w \}$$
+- **Alan Turing's Proof (by Contradiction / Diagonalization):**
+  - Assume a decider $H$ exists that returns `TRUE` if $M(w)$ halts and `FALSE` if it loops.
+  - Construct a new machine $D$: On input $\langle M \rangle$, run $H(\langle M, \langle M \rangle \rangle)$. If $H$ says halts, $D$ loops forever; if $H$ says loops, $D$ halts immediately.
+  - Now run $D$ on its own description: $D(\langle D \rangle)$.
+    * If $D(\langle D \rangle)$ halts $\implies D$ must loop.
+    * If $D(\langle D \rangle)$ loops $\implies D$ must halt.
+  - A logical contradiction! Thus, no such decider $H$ can exist. The Halting Problem is **Undecidable**.
+
+============================================================

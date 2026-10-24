@@ -1,0 +1,255 @@
+======================================================================
+uniRAG ACADEMIC INTELLIGENCE · READY MODEL SOLUTIONS
+Course / Subject Scope: DS
+Target Exam: Bangalore University MCA Examination
+Total Solved Repeated Questions: 7
+======================================================================
+
+QUESTION #1 [6 MARKS] (Exam Sittings: 2022, 2021)
+Question: Define data structure and explain the operations performed on the linear data structure.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Data Structures & Linear Operations (6 Marks)
+
+#### 1. Definition:
+A **Data Structure** is a specialized mathematical and logical format for organizing, storing, processing, and retrieving data efficiently inside computer memory.
+
+#### 2. Linear Data Structure:
+A data structure is linear if its elements form a sequential sequence where each element (except first and last) has a unique predecessor and successor (e.g., Arrays, Linked Lists, Stacks, Queues).
+
+#### 3. Standard Operations Performed:
+1. **Traversal:** Visiting each element in the data structure exactly once to process or display it (e.g., printing all array elements in $O(n)$).
+2. **Insertion:** Adding a new element at a designated position (at beginning, middle, or end).
+3. **Deletion:** Removing an existing element from the data structure and reorganizing adjacent elements.
+4. **Searching:** Finding the location of an element with a specified target key:
+   - *Linear Search:* $O(n)$ on unsorted lists.
+   - *Binary Search:* $O(\log n)$ on sorted sequential arrays.
+5. **Sorting:** Arranging elements in a specified logical order (ascending or descending) using algorithms like QuickSort, MergeSort, or BubbleSort.
+6. **Merging:** Combining elements of two distinct linear structures into a single composite structure.
+
+======================================================================
+
+QUESTION #2 [6 MARKS] (Exam Sittings: 2022, 2021)
+Question: Convert the following infix expression to postfix expression using stack A – (B/C)*D + (E^F).
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Infix to Postfix Conversion Using Stack (6 Marks)
+
+**Given Infix Expression:** `A - ( B / C ) * D + ( E ^ F )`
+
+#### Operator Precedence & Associativity:
+- `^` (Exponentiation): Precedence 3, Right-to-Left
+- `*`, `/` (Multiplication/Division): Precedence 2, Left-to-Right
+- `+`, `-` (Addition/Subtraction): Precedence 1, Left-to-Right
+- `(`: Pushed to stack; popped upon matching `)`
+
+#### Step-by-Step Stack Trace Table:
+| Symbol Scanned | Operator Stack | Postfix Output Buffer |
+| :---: | :---: | :---: |
+| `A` | *(empty)* | `A` |
+| `-` | `-` | `A` |
+| `(` | `- (` | `A` |
+| `B` | `- (` | `A B` |
+| `/` | `- ( /` | `A B` |
+| `C` | `- ( /` | `A B C` |
+| `)` | `-` *(pops `/`)* | `A B C /` |
+| `*` | `- *` *(higher than `-`)* | `A B C /` |
+| `D` | `- *` | `A B C / D` |
+| `+` | `+` *(pops `*` then `-`)* | `A B C / D * -` |
+| `(` | `+ (` | `A B C / D * -` |
+| `E` | `+ (` | `A B C / D * - E` |
+| `^` | `+ ( ^` | `A B C / D * - E` |
+| `F` | `+ ( ^` | `A B C / D * - E F` |
+| `)` | `+` *(pops `^`)* | `A B C / D * - E F ^` |
+| *(End of input)* | *(empty, pops `+`)* | `A B C / D * - E F ^ +` |
+
+---
+**Final Resulting Postfix Expression:**
+`A B C / D * - E F ^ +`
+
+======================================================================
+
+QUESTION #3 [6 MARKS] (Exam Sittings: 2022, 2021)
+Question: Write an algorithm for PUSH and POP operations on stack.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Algorithms for PUSH and POP Operations on Stack (6 Marks)
+
+A **Stack** is a Last-In, First-Out (LIFO) linear data structure where all insertions and deletions occur at a single end termed `TOP`.
+
+Assume an array `STACK[1..MAXSIZE]` with pointer `TOP` initialized to `0` (or `-1` in 0-indexed systems).
+
+#### 1. PUSH Operation:
+Inserts element `ITEM` onto the top of the stack.
+```text
+Algorithm PUSH(STACK, TOP, MAXSIZE, ITEM)
+Step 1: [Check for Stack Overflow]
+        If TOP = MAXSIZE then:
+            Write "Error: Stack Overflow"
+            Exit
+Step 2: [Increment Top Pointer]
+        TOP := TOP + 1
+Step 3: [Insert Element]
+        STACK[TOP] := ITEM
+Step 4: [Success]
+        Write "Item pushed successfully"
+        Exit
+```
+*Time Complexity:* $O(1)$ | *Space Complexity:* $O(1)$
+
+#### 2. POP Operation:
+Removes and returns the topmost element `ITEM` from the stack.
+```text
+Algorithm POP(STACK, TOP, ITEM)
+Step 1: [Check for Stack Underflow]
+        If TOP = 0 then:
+            Write "Error: Stack Underflow"
+            Exit
+Step 2: [Retrieve Top Element]
+        ITEM := STACK[TOP]
+Step 3: [Decrement Top Pointer]
+        TOP := TOP - 1
+Step 4: [Return Value]
+        Return ITEM
+        Exit
+```
+*Time Complexity:* $O(1)$ | *Space Complexity:* $O(1)$
+
+======================================================================
+
+QUESTION #4 [6 MARKS] (Exam Sittings: 2022, 2021)
+Question: Write an algorithm to insert an element in the beginning of the linked list.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Algorithm: Insert at Beginning of Singly Linked List (6 Marks)
+
+In a Singly Linked List, each node contains two fields: `INFO` (data) and `NEXT` (pointer to the succeeding node). `START` points to the first node.
+
+#### Algorithm:
+```text
+Algorithm INSERT_FIRST(START, ITEM)
+Step 1: [Allocate Memory for New Node]
+        NEW_NODE := Allocate Node in Memory
+Step 2: [Check Memory Allocation]
+        If NEW_NODE = NULL then:
+            Write "Error: Memory Overflow / Out of Heap Space"
+            Exit
+Step 3: [Set Node Data]
+        NEW_NODE.INFO := ITEM
+Step 4: [Link New Node to Current Head]
+        NEW_NODE.NEXT := START
+Step 5: [Update Start Pointer]
+        START := NEW_NODE
+Step 6: [Finished]
+        Write "Element inserted successfully at head"
+        Exit
+```
+
+#### Diagrammatic Representation:
+```
+Before:
+  START ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]
+
+New Node Created:
+  [ ITEM | NULL ]
+
+Step 4 & 5 (Linked & Re-pointed):
+  NEW_NODE.NEXT = START;
+  START = NEW_NODE;
+
+After:
+  START ----> [ ITEM | NEXT ] ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]
+```
+*Time Complexity:* $O(1)$ (constant time, no traversal required).
+
+======================================================================
+
+QUESTION #5 [6 MARKS] (Exam Sittings: 2022, 2021)
+Question: What is Adjacency matrix of graph ? Write the adjacency matrix for the given graph.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Adjacency Matrix Representation of Graphs (6 Marks)
+
+#### 1. Definition:
+An **Adjacency Matrix** is a 2-dimensional square boolean array $A$ of size $V 	imes V$ (where $V$ is the number of vertices in graph $G = (V, E)$).
+The matrix entry $A[i][j]$ is defined as:
+$$A[i][j] = \begin{cases} 1 & \text{if there is an edge from vertex } v_i \text{ to } v_j \\ 0 & \text{otherwise} \end{cases}$$
+*(For weighted graphs, $A[i][j]$ stores the edge weight $w(i,j)$ instead of $1$, and $\infty$ or $0$ if no edge exists).*
+
+#### 2. Key Properties:
+- For an **Undirected Graph**, the adjacency matrix is symmetric ($A[i][j] = A[j][i]$).
+- For a **Directed Graph (Digraph)**, the matrix is generally asymmetric.
+- *Space Complexity:* $\Theta(V^2)$ regardless of the number of edges. Best suited for **Dense Graphs**.
+- *Edge Existence Check:* $O(1)$ time complexity.
+
+#### 3. Standard Example (4-Vertex Undirected Cycle Graph $V = \{1, 2, 3, 4\}$ with edges $(1,2), (2,3), (3,4), (4,1)$):
+```
+    1 --------- 2
+    |           |
+    |           |
+    4 --------- 3
+```
+**Adjacency Matrix:**
+```
+     1   2   3   4
+1  [ 0   1   0   1 ]
+2  [ 1   0   1   0 ]
+3  [ 0   1   0   1 ]
+4  [ 1   0   1   0 ]
+```
+
+======================================================================
+
+QUESTION #6 [5 MARKS] (Exam Sittings: 2024, 2022)
+Question: Explain the technique of collision resolution with open addressing.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Collision Resolution Using Open Addressing (5 Marks)
+
+In hashing, a **collision** occurs when two distinct keys hash to the same bucket address ($h(k_1) = h(k_2)$). In **Open Addressing (Closed Hashing)**, all elements are stored directly inside the hash table array without linked lists. When a collision occurs, alternative cells are probed until an empty slot is found.
+
+#### 1. Linear Probing:
+- Checks sequential slots: $h(k, i) = (h'(k) + i) \pmod M$, for $i = 0, 1, 2, \dots, M-1$.
+- *Advantage:* Excellent CPU cache locality.
+- *Disadvantage:* Suffers from **Primary Clustering** (long blocks of occupied slots build up, drastically increasing average probe time).
+
+#### 2. Quadratic Probing:
+- Uses a quadratic function of probe number:
+  $$h(k, i) = (h'(k) + c_1 i + c_2 i^2) \pmod M$$
+- Eliminates primary clustering, but can lead to **Secondary Clustering** (keys with the same initial hash follow identical probe sequences).
+
+#### 3. Double Hashing:
+- Uses two independent hash functions $h_1(k)$ and $h_2(k)$:
+  $$h(k, i) = (h_1(k) + i \cdot h_2(k)) \pmod M$$
+- *Condition:* $h_2(k)$ must be relatively prime to $M$ (e.g. $M$ is prime).
+- *Advantage:* Produces near-ideal uniform distribution; minimizes clustering anomalies.
+
+======================================================================
+
+QUESTION #7 [6 MARKS] (Exam Sittings: 2024, 2023)
+Question: What are Asymptotic Notations ? Explain with an example.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Asymptotic Notations in Algorithm Analysis (6 Marks)
+
+Asymptotic notations are mathematical tools used to describe the limiting behavior and growth rate of an algorithm's running time or memory usage as the input size $n$ approaches infinity ($n 	o \infty$).
+
+#### 1. Big-O Notation ($O$ - Asymptotic Upper Bound):
+- Represents the **worst-case** performance (maximum time an algorithm can take).
+- **Formal Definition:** $f(n) = O(g(n))$ if there exist positive constants $c > 0$ and $n_0 \ge 1$ such that:
+  $$0 \le f(n) \le c \cdot g(n) \quad orall n \ge n_0$$
+- *Example:* If $f(n) = 3n^2 + 5n + 2$, choose $c = 4$ and $n_0 = 6$, so $f(n) \le 4n^2$, meaning $f(n) = O(n^2)$.
+
+#### 2. Big-$\Omega$ Notation ($\Omega$ - Asymptotic Lower Bound):
+- Represents the **best-case** performance (minimum time guaranteed).
+- **Formal Definition:** $f(n) = \Omega(g(n))$ if there exist positive constants $c > 0$ and $n_0 \ge 1$ such that:
+  $$0 \le c \cdot g(n) \le f(n) \quad orall n \ge n_0$$
+- *Example:* $3n^2 + 5n \ge 3n^2$ for all $n \ge 1$, so $f(n) = \Omega(n^2)$.
+
+#### 3. Big-$\Theta$ Notation ($\Theta$ - Asymptotic Tight Bound):
+- Bounds the function from both above and below within constant factors.
+- **Formal Definition:** $f(n) = \Theta(g(n))$ if there exist positive constants $c_1, c_2 > 0$ and $n_0 \ge 1$ such that:
+  $$0 \le c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n) \quad orall n \ge n_0$$
+- *Example:* Linear search on an array of size $n$ has worst-case $O(n)$, best-case $\Omega(1)$, and average-case $\Theta(n)$.
+
+======================================================================

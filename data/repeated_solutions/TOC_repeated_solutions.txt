@@ -1,0 +1,30 @@
+======================================================================
+uniRAG ACADEMIC INTELLIGENCE · READY MODEL SOLUTIONS
+Course / Subject Scope: TOC
+Target Exam: Bangalore University MCA Examination
+Total Solved Repeated Questions: 1
+======================================================================
+
+QUESTION #1 [6 MARKS] (Exam Sittings: 2025, 2022, 2021)
+Question: Write short notes on Rice theorem and Halting problem.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Rice's Theorem & The Halting Problem (6 Marks)
+
+#### 1. Rice's Theorem:
+- **Statement:** Any non-trivial semantic property of the language recognized by a Turing machine is **Undecidable**.
+- A property $P$ of recursively enumerable languages is *non-trivial* if at least one RE language satisfies $P$ and at least one RE language does not satisfy $P$.
+- *Implication:* Questions like "Does Turing machine $M$ accept an empty language?", "Does $M$ accept a regular language?", or "Does $M$ accept all strings?" cannot be solved by any general algorithm.
+
+#### 2. The Halting Problem of Turing Machine:
+- **Statement:** Given a description of an arbitrary Turing machine $M$ and input $w$, determine whether $M$ will eventually halt on input $w$ or loop forever:
+  $$H = \{ \langle M, w \rangle \mid M \text{ halts on input } w \}$$
+- **Alan Turing's Proof (by Contradiction / Diagonalization):**
+  - Assume a decider $H$ exists that returns `TRUE` if $M(w)$ halts and `FALSE` if it loops.
+  - Construct a new machine $D$: On input $\langle M \rangle$, run $H(\langle M, \langle M \rangle \rangle)$. If $H$ says halts, $D$ loops forever; if $H$ says loops, $D$ halts immediately.
+  - Now run $D$ on its own description: $D(\langle D \rangle)$.
+    * If $D(\langle D \rangle)$ halts $\implies D$ must loop.
+    * If $D(\langle D \rangle)$ loops $\implies D$ must halt.
+  - A logical contradiction! Thus, no such decider $H$ can exist. The Halting Problem is **Undecidable**.
+
+======================================================================

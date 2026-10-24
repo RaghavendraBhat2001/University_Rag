@@ -1,0 +1,137 @@
+# One question per line. "SUBJECT | question" or just "question" (Auto-detect).
+# Lines starting with # are skipped.
+
+# --- demo questions (from VIVA_NOTES.md) ---
+what is decision tree? how many times has it appeared? should I read it?
+queue kitni baar aaya hai exam me
+explain hashing
+what about its types
+array vs linked list
+write a program for binary search
+explain the French revolution
+
+# --- common theory topics ---
+what is queue
+what is stack
+what is linked list
+what is binary search tree
+what is AVL tree
+what is quick sort
+what is merge sort
+what is normalization
+what is deadlock
+what is paging
+what is semaphore
+what is TCP
+what is OSI model
+what is dynamic programming
+what is a turing machine
+what is virtualization in cloud computing
+what is mapreduce
+what is hadoop
+what is agile methodology
+what is k means clustering
+what is a neural network
+what is a digital signature
+
+# --- DS LAB programs ---
+DS LAB | Given {4,7,3,2,1,7,9,0,} find the location of 7 using Binary search and also display its first occurrence.
+DS LAB | Write a program for stack using array.
+DS LAB | Given {5,3,1,6,0,2,4} order the numbers in ascending order using Quick Sort.
+DS LAB | Perform the Merge sort on the input {75,8,1,16,48,3,7,0} and display the output in descending order.
+DS LAB | Write a program to insert the elements 6,1,16,8,27 into singly linked list and delete 8,61,27.
+DS LAB | Write a program to add 6x^3+10x^2+0x+5 and 4x^2+2x+1 using linked list.
+DS LAB | Write a program to push 5,9,34,17,32 into stack and pop 3 times from the stack, also display the popped numbers.
+DS LAB | Write a recursive program to find GCD of 4,6,8.
+DS LAB | Write a program to insert the elements {5,7,0,6,3,9} into circular queue and delete 6,9&5 from it (using linked list implementation).
+DS LAB | Given S1={"Flowers"}, S2={"are beautiful"}, a) Find the length of S1. b) Concatenate S1 and S2. c) Extract the substring "low" from S1. d) Find "are" in S2 and replace it with "is".
+DS LAB | Write a program to convert an infix expression x^y/(5*2)+2 to its postfix expression.
+DS LAB | Write a program to evaluate a postfix expression 5 3+8 2-*.
+DS LAB | Write a program to create a binary tree with the elements 18,15,40,50,30,17,41 after creation insert 45 and 19 into tree and delete 15,17 and 41 from tree. Display the tree on each insertion and deletion operation.
+DS LAB | Write a program to create binary search tree with the elements {2,5,1,3,9,0,6} and perform inorder, preorder and post order traversal.
+DS LAB | Write a program to Sort the following elements using heap sort {9,16,32,8,4,1,5,8,0}.
+
+# --- OOP LAB programs ---
+OOP LAB | Develop a JAVA program to demonstrate the precedence and associativity among arithmetic operators. The program should also demonstrate how the default precedence can be overridden.
+OOP LAB | Write a JAVA program to validate a date. The program should accept day, month and year and it should report whether they form a valid date or not.
+OOP LAB | Write a JAVA program to display the following pattern (center aligned): 1 / 2 2 / 3 3 3 / 4 4 4 4 / 5 5 5 5 5
+OOP LAB | Write a JAVA program to print the first n members of Fibonacci series.
+OOP LAB | Write a program to generate the multiplication tables of a range of numbers between m and n inclusive and m < n.
+OOP LAB | Write a JAVA program to define a class, define instance methods for setting and retrieving values of instance variables and instantiate its object.
+OOP LAB | Write a JAVA program to demonstrate static member data and static member methods.
+OOP LAB | Write a JAVA Program to demonstrate nested classes.
+OOP LAB | Write a JAVA program to demonstrate dynamic method dispatch.
+OOP LAB | Write a JAVA program to implement inheritance and demonstrate use of method overriding.
+OOP LAB | Write a JAVA program to implement the concept of importing classes from user defined package and creating packages.
+OOP LAB | Write a program to demonstrate abstract class and abstract methods.
+OOP LAB | Write a JAVA Program to implement an array of objects of a class.
+OOP LAB | Write a JAVA Program to demonstrate String class and its methods.
+OOP LAB | Write a JAVA program to implement the concept of exception handling by creating user defined exceptions.
+OOP LAB | Write a JAVA program using synchronized threads, which demonstrates producer consumer concept.
+OOP LAB | Write a JAVA program that creates three threads. First thread displays "Good Morning" every one second, second thread displays "Hello" every two seconds and the third thread displays "Welcome" every three seconds.
+OOP LAB | Write a JAVA program which uses FileInputStream / FileOutputStream Classes.
+OOP LAB | Write a JAVA program to list all the files in a directory including the files present in all its subdirectories.
+OOP LAB | Write a JAVA program to demonstrate the life cycle of applet.
+
+# --- UNIX LAB ---
+UNIX LAB | Learn the use of basic UNIX commands - To access information using date, history, man, who, whoami, uptime, finger, cal.
+UNIX LAB | Learn the use of basic UNIX commands - To display contents of files using cat, vi, more, head, tail, grep, cmp, wc.
+UNIX LAB | Learn the use of basic UNIX commands - To manage files using cat, cp, ls, mv, rm, chmod, find.
+UNIX LAB | Learn the use of basic UNIX commands - Process utilities using ps, pid, ppid, tty, time, kill, exit.
+UNIX LAB | Learn the use of basic UNIX commands – Directory handling utilities using cd, mkdir, rmdir, mv, pwd.
+UNIX LAB | Write a shell script that displays list of all the files in the current directory to which the user has read, write and execute permissions.
+UNIX LAB | Write a shell script that accepts a list of file names as its arguments, count and reports the occurrence of each word that is present in the first argument file on other argument files.
+UNIX LAB | Write a shell script that accepts one or more file name as arguments and converts all of them to uppercase, provided they exist in the current directory.
+UNIX LAB | Write grep commands to the following: a. To select the lines from a file that has exactly 2 characters. b. To select the lines from a file that has more than one blank space.
+UNIX LAB | Write a shell script which accepts two file names as arguments. Compare the contents. If they are same, then delete the second file.
+UNIX LAB | Write a shell script: a. To count number of lines in a file that do not contain vowels. b. To count number of characters, words, lines in a given file.
+UNIX LAB | Write a shell script to list all the files in a given directory.
+UNIX LAB | Write a shell script to display list of users currently logged in.
+UNIX LAB | Write a shell script to read three text files in the current directory and merge them into a single file and returns a file descriptor for the new file.
+UNIX LAB | Write a program to copy a file into another using system calls.
+UNIX LAB | Write a program using system call: create, open, write, close, stat, fstat, lseek.
+UNIX LAB | Write a program to create a child process and allow the parent to display "parent" and the child to display "child" on the screen.
+UNIX LAB | Write a program to create a Zombie process.
+UNIX LAB | Write a program to implement inter process communication using pipes.
+UNIX LAB | Simulate the following CPU scheduling algorithms: a. Round Robin b. SJF (Shortest Job First).
+UNIX LAB | Write a program that illustrates file locking using semaphores.
+UNIX LAB | Write a program that implements a producer-consumer system with two processes (using semaphores).
+UNIX LAB | Write a program that illustrates inter process communication using shared memory system calls.
+UNIX LAB | Write a program that illustrates the following: a. Creating message queue. b. Writing to a message queue. c. Reading from a message queue.
+
+# --- GUIDE questions ---
+DS | what is decision tree ? how many times this question has appeared in the examination ? should I read this ? is it important for me to pass the examination.
+DS | what is queue? linear and circular. how many times it appeared. and what is the exact questions and which year?
+
+# --- SUBJECT-SCOPED versions (use these when a subject is selected in the dropdown) ---
+# Cached answers only match when the same subject is selected, so these repeat the demo and
+# theory questions with the subject that a student would normally pick.
+DS | what is decision tree? how many times has it appeared? should I read it?
+DS | queue kitni baar aaya hai exam me
+DS | explain hashing
+DS | what about its types
+DS | array vs linked list
+DS | explain the French revolution
+DS | what is queue
+DS | what is stack
+DS | what is linked list
+DS | what is binary search tree
+DS | what is AVL tree
+DS | what is quick sort
+DS | what is merge sort
+DS LAB | write a program for binary search
+DBMS | what is normalization
+OS | what is deadlock
+OS | what is paging
+OS | what is semaphore
+CN | what is TCP
+CN | what is OSI model
+DAA | what is dynamic programming
+TOC | what is a turing machine
+CC | what is virtualization in cloud computing
+BDA | what is mapreduce
+BDA | what is hadoop
+SE | what is agile methodology
+ML | what is k means clustering
+ML | what is a neural network
+CNS | what is a digital signature

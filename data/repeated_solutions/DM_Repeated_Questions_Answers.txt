@@ -1,0 +1,211 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: DM
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (3 Marks)  -  asked in 4 exam sittings [2025, 2023, 2022, 2021]
+Question: If A, B and C are three sets, then prove that A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C).
+----------------------------------------------------------------------
+Model Answer:
+SET THEORY
+
+📘 As per your notes, Set Theory is a fundamental mathematical framework that allows the construction and analysis of sets, which are collections of objects. Two basic operations in Set Theory are Intersection and Union.
+
+- Intersection (∩) of two sets A and B, denoted as A ∩ B, is the set that contains all elements common to both A and B. In other words, it is the set of elements that belong to both A and B.
+
+- Union (∪) of two sets A and B, denoted as A ∪ B, is the set that contains all elements from A and B. In other words, it is the set of elements that belong to A or B (or both).
+
+💡 Simple way to understand it:
+Think of Intersection as the Venn diagram region where two circles overlap, and Union as the combined area of two circles (including the overlapping region).
+
+======================================================================
+
+QUESTION #2  (6 Marks)  -  asked in 4 exam sittings [2025, 2023, 2022, 2021]
+Question: What is the expected value of the sum of the numbers that appear when a pair of fair dice is rolled ?
+----------------------------------------------------------------------
+Model Answer:
+EXPECTED VALUE
+
+📘 As per your notes, Expected Value (EV) is a measure of the average outcome of a random event. In the context of dice rolls, it's the sum of the products of each possible outcome and its probability.
+
+For example, when rolling a pair of fair dice, there are 36 possible outcomes (6 outcomes for each die multiplied together). If we want to find the expected value of the sum of the numbers that appear, we list all possible outcomes and their probabilities, then multiply each outcome by its probability and sum up the results.
+
+In the provided context, Example 3 lists 36 outcomes of rolling a pair of dice, each with a probability of 1/36. The expected value of the sum of the numbers is calculated by multiplying each outcome by its probability and summing up the results.
+
+💡 Simple way to understand it: Think of expected value as an average score you'd expect if you played a game many times. Each possible outcome has a certain probability, and the expected value is the average result if you consider all possible outcomes. In the dice roll example, it's like guessing the average sum you'd get if you rolled a pair of dice many times.
+
+======================================================================
+
+QUESTION #3  (5 Marks)  -  asked in 4 exam sittings [2025, 2023, 2022, 2021]
+Question: The probability distribution of a discrete random variable is given below : x: –2 –1 0 1 2 3 ; P(x): 0.1 K 0.2 2K 0.3 K. Find : i) K ii) Mean and iii) Variance.
+----------------------------------------------------------------------
+Model Answer:
+PROBABILITY DISTRIBUTION
+
+📘 As per your notes:
+The probability distribution of a discrete random variable is a set of pairs that represent the probability of the random variable taking a specific value. In this case, the random variable x has the values -2, -1, 0, 1, 2, 3, and the corresponding probabilities are 0.1, 0.2, 2K, 0.3, K, respectively (where K is an unknown constant).
+
+The expected value (mean) of a discrete random variable is calculated as the sum of the product of each value and its corresponding probability. In this case, the mean (E(x)) would be calculated as:
+
+E(x) = (-2 * 0.1) + (-1 * 0.2) + (0 * 2K) + (1 * 0.3) + (2 * K) + (3 * K)
+
+The variance of a discrete random variable is a measure of how spread out the values are from the mean. It is calculated as the weighted average of the square of the deviation of each value from the mean. In this case, the variance (V(x)) would be calculated as:
+
+V(x) = [((-2 - E(x))^2 * 0.1) + ((-1 - E(x))^2 * 0.2) + (0 - E(x))^2 * 2K + (1 - E(x))^2 * 0.3 + (2 - E(x))^2 * K + (3 - E(x))^2 * K]
+
+💡 Simple way to understand it:
+Think of a dice with faces numbered -2, -1, 0, 1, 2, 3, each face appearing with a certain probability. The probability distribution tells us the likelihood of each number appearing when the dice is rolled. The mean is the average number we'd expect to see if we rolled the dice many times, and the variance tells us how much the numbers deviate from the mean.
+
+======================================================================
+
+QUESTION #4  (5 Marks)  -  asked in 4 exam sittings [2025, 2024, 2023, 2022]
+Question: Prove that for any propositions p, q and r the compound proposition [(p→q)∧(q→r)]→(p→r) is a tautology.
+----------------------------------------------------------------------
+Model Answer:
+PROPOSITIONAL LOGIC
+
+📘 Propositional Logic:
+Propositional Logic is a branch of logic that deals with propositions, which are statements that are either true (T) or false (F). Compound propositions are formed by combining simpler propositions using logical operators such as ∧ (and), ∨ (or), → (implies), and ¬ (not).
+
+A tautology is a compound proposition that is always true, regardless of the truth values of its constituent propositions. In Propositional Logic, tautologies can be proven by applying a chain of logical identities, as demonstrated in Example 8 in the notes.
+
+💡 Simple way to understand it:
+Think of Propositional Logic as a game of connecting simple statements (propositions) using logical operators (like AND, OR, NOT, and IF-THEN) to create more complex statements (compound propositions). A tautology is like a combination that always results in a win, no matter how the simple statements are set up.
+
+======================================================================
+
+QUESTION #5  (3 Marks)  -  asked in 3 exam sittings [2025, 2023, 2021]
+Question: Prove that “null set is a subset of every set”.
+----------------------------------------------------------------------
+Model Answer:
+SET THEORY
+
+📘 Set Theory: A mathematical framework for defining, manipulating, and reasoning about collections of objects, called sets. It provides a systematic way to describe and analyze various mathematical structures.
+
+💡 Think of a set as a box containing items. A subset is a smaller box that can fit inside the main box, containing some (but not necessarily all) of the items. The null set (or empty set) is a special set that contains no items at all.
+
+- Subset: A set A is a subset of another set B if every element in A is also an element of B. In other words, all members of A are also members of B.
+- Null Set: A set with no elements is called the null set or empty set. It is denoted by the symbol {∅}.
+
+Key differences:
+- A subset always contains elements that are also in the original set, while the null set contains no elements at all.
+- A subset can have multiple elements, while the null set has none.
+
+======================================================================
+
+QUESTION #6  (6 Marks)  -  asked in 3 exam sittings [2025, 2023, 2021]
+Question: Obtain an explicit form for the following sequence aₙ defined recursively by aₙ = 2aₙ₋₁ + 1 for n ≥ 2, with a₁ = 3.
+----------------------------------------------------------------------
+Model Answer:
+RECURSIVE SEQUENCE
+
+📘 As per your notes, a recursive sequence is a sequence that is defined either by one or more initial terms and a rule for determining subsequent terms from those that precede them, or by a rule that generates terms based on previously known terms in the sequence. This concept is an extension of the definition of sequences as functions from a subset of the set of integers to a set S, where an denotes the image of the integer n.
+
+In the context of recursive sequences, a Fibonacci-like sequence is a type of recursive sequence where each term is the sum of the two preceding terms. For example, the Fibonacci sequence starts with 0, 1, and each subsequent term is the sum of the two preceding terms (0 + 1 = 1, 1 + 1 = 2, 1 + 2 = 3, and so on).
+
+💡 Simple way to understand it:
+Think of a Fibonacci-like sequence as a game where you start with two coins (0 and 1). Each turn, you pick up the two most recent coins and put the sum of those two coins back into the game. This is similar to how the Fibonacci sequence is generated, where each term is the sum of the two preceding terms.
+
+======================================================================
+
+QUESTION #7  (5 Marks)  -  asked in 3 exam sittings [2025, 2022, 2021]
+Question: The matrix of a relation on the set A = {1, 2, 3} is given by M_R = [1 0 0 / 0 1 1 / 0 1 1]. Show that R is an equivalence relation.
+----------------------------------------------------------------------
+Model Answer:
+RELATION
+
+📘 As per your notes, a Relation is a set of ordered pairs that connect elements from one or more sets. In the context, a relation on a set A to itself (a relation on A) is a subset of A x A, where A x A represents the Cartesian product of A with itself.
+
+Equivalence Relations are a specific type of relation that have three properties: reflexive, symmetric, and transitive.
+
+- Reflexive: For every element a in the set A, (a, a) belongs to the relation. In other words, every element is related to itself.
+- Symmetric: If (a, b) is in the relation, then (b, a) is also in the relation. This means that if element a is related to element b, then b is related to a.
+- Transitive: If (a, b) and (b, c) are in the relation, then (a, c) is also in the relation. This means that if a is related to b and b is related to c, then a is related to c.
+
+Equivalence relations are important throughout mathematics and computer science because they allow us to group similar objects together. For example, in set theory, we can define an equivalence relation on the integers that groups together all numbers with the same remainder when divided by a certain number.
+
+💡 Simple way to understand it: Think of an equivalence relation as a way to group similar objects together. Imagine you have a box of marbles, and you want to group them by color. You would create a relation where two marbles are related if they are the same color. This relation is reflexive (every marble is related to itself), symmetric (if two marbles are the same color, they are equally related), and transitive (if marble A is the same color as marble B, and marble B is the same color as marble C, then marble A is the same color as marble C).
+
+======================================================================
+
+QUESTION #8  (5 Marks)  -  asked in 3 exam sittings [2025, 2023, 2021]
+Question: State and prove the Bayes’ theorem.
+----------------------------------------------------------------------
+Model Answer:
+BAYES' THEOREM
+
+📘 As per your notes, Bayes' theorem is a mathematical formula used to calculate conditional probabilities in various disciplines. It helps solve problems where the goal is to update the probability of a hypothesis based on new evidence. The theorem is expressed as follows:
+
+p(F∣E) = p(E∣F) * p(F) / p(E)
+
+where:
+- p(F∣E) is the probability of hypothesis F given evidence E
+- p(E∣F) is the probability of evidence E given hypothesis F
+- p(F) is the prior probability of hypothesis F
+- p(E) is the total probability of evidence E (sum of probabilities of all possible hypotheses that could generate the evidence)
+
+The theorem can also be rewritten as:
+
+p(E∣F) * p(F) = p(E∣F) * p(F) + p(E∣F') * p(F')
+
+where F' represents the complement of F (all possible hypotheses except F).
+
+💡 A simple way to understand Bayes' theorem is by imagining a coin toss. Suppose you have a biased coin that lands on heads 70% of the time and tails 30% of the time. If you toss the coin once and it lands on heads, Bayes' theorem helps you update your belief about the coin's bias based on the new evidence (the toss result). The theorem calculates the updated probability of the coin being biased towards heads (F) given the evidence (the toss result).
+
+======================================================================
+
+QUESTION #9  (5 Marks)  -  asked in 3 exam sittings [2023, 2022, 2021]
+Question: Use Dijktra’s algorithm, find the shortest path between a to z in the weighted graph.
+----------------------------------------------------------------------
+Model Answer:
+DIJKSTRA'S ALGORITHM
+
+📘 As per your notes, Dijkstra's algorithm is a method used to find the shortest path between two vertices in a connected, simple, undirected weighted graph. The algorithm assigns tentative distances to all vertices, initially setting them to infinity for all vertices except the starting vertex, which is set to zero. In each iteration, it selects the vertex with the smallest tentative distance and updates the tentative distances of its neighboring vertices, if the updated distance is shorter. The algorithm stops when all vertices are visited.
+
+EXAMPLE 2 in the notes provides an example of using Dijkstra's algorithm to find the shortest path between vertices 'a' and 'z' in the weighted graph(a). The steps used by Dijkstra’s algorithm to find a shortest path are.
+
+💡 Simple way to understand it: Think of Dijkstra's algorithm as a journey planner that finds the shortest route between two cities on a map. Each city has multiple roads connecting it to other cities, and each road has a specific length. The algorithm starts from one city (the starting vertex), calculates the shortest path to all neighboring cities, then moves to the city with the shortest path, and repeats the process until it reaches the destination city (the ending vertex).
+
+======================================================================
+
+QUESTION #10  (5 Marks)  -  asked in 3 exam sittings [2025, 2023, 2022]
+Question: State and prove Hand Shaking theorem.
+----------------------------------------------------------------------
+Model Answer:
+HAND SHAKING THEOREM
+
+📘 The Hand Shaking Theorem states that in an undirected graph, the sum of the degrees of all vertices is equal to twice the number of edges. This theorem applies even if multiple edges and loops are present.
+
+The proof is based on the handshaking analogy: each edge connects two vertices, so each edge contributes two to the sum of the degrees of the vertices. Therefore, the total number of edges (m) is half of the sum of the degrees of the vertices. Since each edge is counted twice (once for each vertex it connects), the sum of the degrees equals twice the number of edges, i.e., 2m.
+
+💡 Imagine a party where each person shakes hands with others. The total number of handshakes is equal to the sum of the number of handshakes each person makes (their degree) multiplied by the total number of people (twice the number of edges). This is the Hand Shaking Theorem in a social setting.
+
+======================================================================
+
+QUESTION #11  (3 Marks)  -  asked in 2 exam sittings [2023, 2021]
+Question: Show that p ∨ (q ∧ r) = (p ∨ q) ∧ (p ∨ r).
+----------------------------------------------------------------------
+Model Answer:
+P ∨ (Q ∧ R) = (P ∨ Q) ∧ (P ∨ R)
+
+📘 As per your notes, the Distributive Law in Boolean Algebra states that the operation of 'OR' (∨) distributes over the operation of 'AND' (∧). In simpler terms, this means that for any elements p, q, and r in a Boolean algebra, p ∨ (q ∧ r) is equivalent to (p ∨ q) ∧ (p ∨ r).
+
+💡 Think of a Venn diagram with three overlapping circles representing p, q, and r. According to the Distributive Law, the total area covered by p OR (q AND r) is the same as the area covered by (p OR q) AND (p OR r). This is because the area covered by p OR q is the union of the areas covered by p and q, and the area covered by p OR r is also the union of the areas covered by p and r. The intersection of p with both q AND r is included in both the left and right sides of the equation, ensuring the equality.
+
+======================================================================
+
+QUESTION #12  (3 Marks)  -  asked in 2 exam sittings [2023, 2021]
+Question: Let x be the set of factors of 12 and let ≤ be the relation divisor i.e., x ≤ y, if and only if x divides y. Draw the Hasse diagram of (x, ≤).
+----------------------------------------------------------------------
+Model Answer:
+HASSE DIAGRAM
+
+📘 As per your notes, a Hasse diagram is a graphical representation of a partially ordered set (poset). It displays the relationships between elements by arranging them in a way that shows which elements are related and how they are related. The diagram is named after German mathematician Helmut Hasse.
+
+In the context of the factors of 12, the Hasse diagram would show the relationship between the numbers as they are related by the divisibility relation. The diagram would have the numbers 1, 2, 3, 4, 6, and 12, with arrows pointing from a larger number to a smaller number that divides it.
+
+💡 A simple way to understand it is like a family tree, but instead of showing relationships between people, it shows relationships between numbers based on divisibility.
+
+======================================================================

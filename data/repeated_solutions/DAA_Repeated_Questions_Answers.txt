@@ -1,0 +1,193 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: DAA
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 2 exam sittings [2025, 2022]
+Question: Present Brute-force based algorithm to perform pattern matching and investigate its efficiency.
+----------------------------------------------------------------------
+Model Answer:
+Brute-Force String Pattern Matching Algorithm & Efficiency (6 Marks)
+
+Given Text T[0..n-1] and Pattern P[0..m-1] (m <= n):
+
+Algorithm:
+Algorithm BruteForceStringMatch(T[0..n-1], P[0..m-1])
+For i := 0 to n - m do:
+    j := 0
+    While j < m and P[j] = T[i + j] do:
+        j := j + 1
+    If j = m then:
+        Return i  // Match found at index i
+Return -1         // No match found
+
+Efficiency Analysis:
+- Best Case: O(m) when pattern matches at the very beginning of text.
+- Worst Case: O(m(n - m + 1)) approx O(m x n) when characters match repeatedly until the last pattern character (e.g., T = "AAAAAAA", P = "AAAAB").
+- Space Complexity: O(1) auxiliary space.
+
+======================================================================
+
+QUESTION #2  (6 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: Given a digraph, how do you arrive at its transitive closure for the graph ? Write the procedure for the task.
+----------------------------------------------------------------------
+Model Answer:
+TRANSITIVE CLOSURE
+
+📘 As per your notes, the transitive closure of a directed graph can be defined as an n×n boolean matrix, where n is the number of vertices in the graph. Each element t_ij in the matrix represents the presence of a nontrivial path from the ith vertex to the jth vertex. If there exists a path, t_ij is 1; otherwise, it is 0.
+
+The procedure to arrive at the transitive closure of a given digraph involves the following steps:
+
+1. Initialize the transitive closure matrix T as an n×n boolean matrix with all elements set to 0.
+2. For each edge (i, j) in the original digraph, set t_ij to 1.
+3. Perform repeated matrix multiplication of the transitive closure matrix T with itself until no changes occur in the matrix. This process is repeated until the matrix stabilizes, indicating that the transitive closure has been reached.
+
+💡 Simple way to understand it:
+Think of the transitive closure as a way to trace all possible paths in a directed graph. Start by marking the direct edges, then repeatedly follow the edges to mark all reachable vertices. Keep repeating this process until no new vertices can be reached, resulting in the transitive closure.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Trace the Prim’s Algorithm for the following graph.
+----------------------------------------------------------------------
+Model Answer:
+PRIM'S ALGORITHM
+
+📘 As per your notes, Prim's Algorithm is an efficient method for finding the minimum spanning tree (MST) of a graph. The algorithm constructs an MST through a sequence of expanding subtrees. The initial subtree consists of a single vertex chosen arbitrarily from the graph's vertices. On each iteration, the algorithm adds the minimum-weight edge connecting a vertex in the current subtree to a vertex not yet included in the subtree.
+
+1. The graph for which we will trace Prim's Algorithm is as follows:
+
+   A -- 7 -- B
+  / |     | \
+ C -- 9 -- D
+  \ |     | /
+   E -- 14 -- F
+
+2. Initially, we choose an arbitrary vertex (let's say A) as the root of our subtree. Our subtree now consists of vertex A.
+
+3. Next, we find the minimum-weight edge connecting a vertex in the subtree (A) to a vertex not yet included in the subtree. The minimum-weight edge is between A and C with weight 7. We add vertex C and the edge to our subtree.
+
+4. Now, we find the minimum-weight edge connecting a vertex in the subtree (A-C) to a vertex not yet included in the subtree. The minimum-weight edge is between C and B with weight 9. We add vertex B and the edge to our subtree.
+
+5. Next, we find the minimum-weight edge connecting a vertex in the subtree (A-C-B) to a vertex not yet included in the subtree. The minimum-weight edge is between B and D with weight 14. We add vertex D and the edge to our subtree.
+
+6. Finally, there are no more edges connecting vertices in the subtree to vertices not yet included in the subtree. Our subtree now consists of vertices A, C, B, and D, and the edges connecting them, forming a minimum spanning tree.
+
+💡 Simple way to understand it: Think of Prim's Algorithm as building a house one brick at a time. You start with a single brick (a vertex), then add the next cheapest brick (edge) that can be attached to the house (subtree) you've built so far. You continue this process until the house (minimum spanning tree) is complete.
+
+> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Explain different asymptotic notations in detail.
+----------------------------------------------------------------------
+Model Answer:
+Asymptotic Notations in Algorithm Analysis (6 Marks)
+
+Asymptotic analysis evaluates algorithmic time and space complexity as input size n -> infinity, abstracting hardware variations.
+
+1. Big-O Notation (O):
+   - Upper bound (Worst-Case rate of growth).
+   - f(n) = O(g(n)) <=> there exists c > 0, n_0 >= 1 such that 0 <= f(n) <= c x g(n) for all n >= n_0.
+2. Big-Omega Notation (Omega):
+   - Lower bound (Best-Case guarantee).
+   - f(n) = Omega(g(n)) <=> there exists c > 0, n_0 >= 1 such that 0 <= c x g(n) <= f(n) for all n >= n_0.
+3. Big-Theta Notation (Theta):
+   - Asymptotically tight bound.
+   - f(n) = Theta(g(n)) <=> c_1 g(n) <= f(n) <= c_2 g(n) for all n >= n_0.
+4. Little-o (o) and Little-omega (omega):
+   - Strictly upper (f(n) < c x g(n)) and strictly lower bounds where ratio limits converge to 0 and infinity respectively.
+
+======================================================================
+
+QUESTION #5  (10 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Given the following frequency chart, find Huffman’s tree. Character / Frequency : i 0.15, a 0.2, b 0.2, m 0.15, f 0.1, o 0.05, l 0.15. Find the encoding for ibambabfool.
+----------------------------------------------------------------------
+Model Answer:
+HUFFMAN TREE
+
+📘 As per your notes, Huffman coding is an optimal prefix-free variable-length encoding scheme used to compress data. The Huffman algorithm constructs a Huffman tree from a frequency chart of symbols, where each node represents a symbol and its frequency. The tree is a binary tree with the root representing the least frequent symbol.
+
+The algorithm works by repeatedly merging the two lowest-frequency nodes into a new node, until there is only one node left, which is the root. Each merged node becomes a new parent node with the sum of the frequencies of its children as its frequency.
+
+In the given frequency chart, the symbols are i, a, b, m, f, o, and l, with frequencies 0.15, 0.2, 0.2, 0.15, 0.1, 0.05, and 0.15 respectively. To find the Huffman tree, we apply the Huffman algorithm as follows:
+
+1. Create a node for each symbol with its frequency.
+2. Sort the nodes in non-decreasing order of frequency.
+3. Merge the two nodes with the lowest frequencies into a new parent node, and add the new parent node to the sorted list.
+4. Repeat step 3 until there is only one node left, which is the root.
+
+The resulting Huffman tree represents the optimal prefix-free variable-length encoding for the given frequency chart.
+
+💡 Simple way to understand it:
+Think of Huffman coding as a library where each book represents a symbol and its frequency is the number of copies of that book. The librarian sorts the books by the number of copies and merges the two least popular books into a new shelf until there is only one shelf left. The arrangement of the books on the shelves represents the Huffman tree, which tells us the optimal way to encode the symbols for data compression.
+
+> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.
+
+======================================================================
+
+QUESTION #6  (10 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Find ⁷C₄ using dynamic programming. Find complexity to find ⁿCₚ.
+----------------------------------------------------------------------
+Model Answer:
+FIND ⁷C₄ USING DYNAMIC PROGRAMMING FIND COMPLEXITY FIND ⁿCₚ
+
+📘 Binomial Coefficients and Dynamic Programming:
+
+Binomial coefficients are numbers that represent the number of combinations of a set with n elements taken k at a time. The binomial coefficient C(n, k) is often denoted as n choose k.
+
+Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems. In the case of binomial coefficients, we can use dynamic programming to compute C(n, k) without using multiplications.
+
+The dynamic programming algorithm for binomial coefficients works by creating a two-dimensional table, where C[i, j] represents the binomial coefficient C(i, j). The table is filled in a bottom-up manner, starting from C[i, i] = 1 for all i, and then filling in the rest of the table using the formula:
+
+C[i, j] = C[i-1, j] + C[i, j-1]
+
+The time complexity of this algorithm is O(n^2) because we need to fill each cell in the table once, and there are n rows and n columns in the table. The space complexity is also O(n^2) due to the need to store the entire table.
+
+💡 Simple way to understand it:
+
+Think of filling a binomial coefficient table like filling a Sudoku grid. You start with the numbers you know (the diagonal numbers in the table), and then you fill in the rest of the grid using simple addition rules (the formula for binomial coefficients). The time it takes to fill the grid is proportional to the square of the size of the grid, just like the time it takes to compute binomial coefficients using dynamic programming.
+
+======================================================================
+
+QUESTION #7  (10 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Find DFS and BFS for the following. What is the complexity of these algorithms ?
+----------------------------------------------------------------------
+Model Answer:
+FIND DFS BFS FOLLOWING COMPLEXITY ALGORITHMS
+
+📘 As per your notes, Depth-First Search (DFS) and Breadth-First Search (BFS) are two algorithms used for traversing graphs. DFS uses a stack, while BFS uses a queue. In sparse graphs, DFS has two versions: one for connected graphs and another for disconnected graphs.
+
+In connected graphs, DFS visits all vertices and edges, and the number of trees it generates is equal to the number of connected components in the graph. For BFS, it also visits all vertices and edges but generates only one tree.
+
+The DFS pseudocode visits recursively all the unvisited vertices connected to a vertex via a path and numbers them in the order they are encountered. BFS, on the other hand, visits vertices level by level, starting from the source vertex.
+
+💡 Think of DFS as exploring a maze from the entrance, going as deep as possible before backtracking, while BFS is like exploring a maze from the entrance, level by level, ensuring all levels are explored before moving to the next.
+
+In terms of complexity, both DFS and BFS have a time complexity of O(V+E) in the average and worst cases, where V is the number of vertices and E is the number of edges. However, the space complexity of DFS is O(V) due to the use of a recursive stack, while BFS uses O(V) space for the queue and an additional O(V) space for the visited array.
+
+> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.
+
+======================================================================
+
+QUESTION #8  (10 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Find the Hamiltonian path for the following.
+----------------------------------------------------------------------
+Model Answer:
+HAMILTONIAN PATH
+
+📘 As per your notes, a Hamiltonian path is a path in a graph that visits each vertex exactly once. The Hamiltonian path problem is to determine whether a given graph has a Hamiltonian path. This problem is known to be NP-complete, which means that it is computationally difficult to solve, and its solution can be verified quickly.
+
+Adleman's approach to solving the Hamiltonian path problem involves generating DNA strands that represent paths in the graph and discarding those that do not satisfy the definition of a Hamiltonian path. This method was first proposed in 1994 by Len Adleman, a renowned U.S. computer scientist who also contributed to the development of the RSA encryption algorithm.
+
+The Hamiltonian circuit problem is a variant of the Hamiltonian path problem where the path must start and end at the same vertex and pass through all the other vertices exactly once. The Traveling Salesman problem is another related problem that involves finding the shortest tour through a given set of cities with known positive integer distances between them.
+
+💡 Simple way to understand it:
+Think of a Hamiltonian path as a route you take to visit every city in a country exactly once without revisiting any city. The Hamiltonian circuit problem is like finding a route that starts and ends at your home city, while the Traveling Salesman problem is like finding the shortest route to visit every city and return home. These problems are difficult to solve for large graphs or cities, but can be verified quickly once a solution is found.
+
+> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.
+
+======================================================================

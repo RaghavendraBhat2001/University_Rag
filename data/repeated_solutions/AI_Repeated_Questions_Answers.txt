@@ -1,0 +1,56 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: AI
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 2 exam sittings [2024, 2022]
+Question: Define expert system and explain its architecture with a neat diagram.
+----------------------------------------------------------------------
+Model Answer:
+EXPERT SYSTEM
+
+📘 Expert System:
+An expert system is a computer program designed to mimic the decision-making ability of a human expert in a specific domain. It uses artificial intelligence (AI) techniques, primarily rule-based reasoning, to solve complex problems that require knowledge and experience.
+
+The architecture of an expert system typically consists of three main components:
+
+1. Knowledge Base: This is the repository of the domain-specific knowledge and facts that the system uses to make decisions. It is usually represented in the form of rules, facts, and inference mechanisms.
+
+2. Inference Engine: This component applies logical reasoning to the knowledge base to draw conclusions, make decisions, or solve problems. It uses various reasoning strategies such as forward chaining, backward chaining, and resolution.
+
+3. User Interface: This is the interface through which users interact with the system. It can be a graphical interface, a command-line interface, or a natural language interface, depending on the system's complexity and the user's needs.
+
+💡 Simple way to understand it:
+Think of an expert system as a digital version of a human expert. It has a vast knowledge base (the expert's knowledge), an inference engine (the expert's reasoning ability), and a user interface (the way the expert communicates with others). The system uses this combination to solve problems and make decisions, just like a human expert would.
+
+======================================================================
+
+QUESTION #2  (10 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Consider the following sentences. a) John likes all kinds of food. b) Apples are food. c) Chicken is food. d) Anything anyone eats and is not killed by food. e) Bill eats peanuts and is still alive. f) Sue eats everything Bill eats. Translate these sentences in to formulas in predicate logic. Prove that “John likes peanuts” using background chaining. Convert the formula into clause form.
+----------------------------------------------------------------------
+Model Answer:
+PREDICATE LOGIC
+
+📘 Predicate Logic:
+Predicate logic is an extension of propositional logic that allows for the representation of statements about objects and properties of those objects. It introduces predicates, which are functions that associate objects with truth values, and quantifiers, which are used to express generalizations about all or some objects.
+
+In predicate logic, formulas are built using predicates, variables, logical connectives, and quantifiers. Predicates are symbols that represent properties or relations, such as "is tall" or "loves". Variables represent specific objects or values, such as "x" or "y". Logical connectives, like "and", "or", and "not", are used to combine formulas. Quantifiers, such as "forall" (for all) and "exists" (there exists), are used to express statements about all objects or some objects.
+
+💡 Simple way to understand it:
+Think of predicate logic as a more complex version of propositional logic. Instead of just dealing with simple statements like "It is raining" or "The sky is blue", it allows us to make statements about objects and their properties, like "Every dog is a mammal" or "Some cats are black". Quantifiers act like a magnifying glass, allowing us to look at all or some objects at once.
+
+7.4.2 Background Chaining:
+Background chaining is a technique used in predicate logic to handle statements that are assumed to be true but not explicitly stated. These assumptions, or background knowledge, can be chained together to help infer new statements. For example, if we know that "All humans are mortal" and "Socrates is a human", we can infer that "Socrates is mortal" without explicitly stating it.
+
+💡 Simple way to understand it:
+Think of background chaining as a chain of dominoes. Each domino represents a statement, and when one falls, it knocks over the next one. In predicate logic, these dominoes can be statements about objects and their properties, and the chain can help us infer new statements.
+
+7.4.3 Clause Form:
+A formula in predicate logic is in clause form if it is a disjunction (OR) of literals, where each literal is either a predicate applied to variables or the negation (NOT) of a predicate applied to variables. Clause form is useful because it allows for efficient reasoning using the resolution principle, a method for logical inference that combines two clauses to produce a new clause.
+
+💡 Simple way to understand it:
+Think of clause form as a list of possible scenarios. Each scenario is a combination of statements about objects and their properties, or their negations. By combining these lists, we can find new scenarios that are the result of the combination of statements from both lists.
+
+======================================================================

@@ -1,0 +1,72 @@
+======================================================================
+uniRAG ACADEMIC INTELLIGENCE · READY MODEL SOLUTIONS
+Course / Subject Scope: CN
+Target Exam: Bangalore University MCA Examination
+Total Solved Repeated Questions: 2
+======================================================================
+
+QUESTION #1 [6 MARKS] (Exam Sittings: 2024, 2023, 2022)
+Question: Define network topology. Explain different topologies with its merits and demerits.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Network Topologies: Classification, Merits & Demerits (6 Marks)
+
+#### 1. Definition:
+A **Network Topology** is the structural arrangement of nodes (computers, switches, routers) and connecting communication links in a computer network.
+
+#### 2. Topologies Comparison:
+1. **Mesh Topology:**
+   - Every device has a dedicated point-to-point link to every other device ($n(n-1)/2$ links).
+   - *Merits:* Robust, dedicated links prevent traffic congestion, highly secure, easy fault isolation.
+   - *Demerits:* Massive cabling requirement, high hardware and I/O port cost, difficult installation.
+2. **Star Topology:**
+   - All nodes connect to a central controller (Hub or Switch).
+   - *Merits:* Easy to install and reconfigure, link failure affects only that node, easy fault detection.
+   - *Demerits:* Single point of failure (if central hub fails, the entire network goes down).
+3. **Bus Topology:**
+   - All devices tap into a single shared backbone cable with terminators at both ends.
+   - *Merits:* Minimal cabling, low cost, simple to implement for small networks.
+   - *Demerits:* Difficult fault detection, signal reflection, backbone cable break stops all communication.
+4. **Ring Topology:**
+   - Each device connects to exactly two neighbors, forming a closed transmission ring.
+   - *Merits:* Orderly token-based transmission, equal access opportunity.
+   - *Demerits:* Unidirectional traffic; break in the ring disables the entire loop.
+
+======================================================================
+
+QUESTION #2 [10 MARKS] (Exam Sittings: 2024, 2023)
+Question: Explain ISO-OSI reference model with a neat diagram.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### ISO-OSI Reference Model (10 Marks)
+
+The Open Systems Interconnection (OSI) model developed by ISO is a 7-layer architectural framework for standardized network communications.
+
+```
++-----------------------------------------------------------+
+| Layer 7: APPLICATION LAYER (HTTP, FTP, SMTP, DNS)        |
++-----------------------------------------------------------+
+| Layer 6: PRESENTATION LAYER (SSL/TLS, ASCII, Encryption)  |
++-----------------------------------------------------------+
+| Layer 5: SESSION LAYER (Sockets, RPC, Session Checkpoints)|
++-----------------------------------------------------------+
+| Layer 4: TRANSPORT LAYER (TCP, UDP - Segments)            |
++-----------------------------------------------------------+
+| Layer 3: NETWORK LAYER (IP, ICMP, Routing - Packets)      |
++-----------------------------------------------------------+
+| Layer 2: DATA LINK LAYER (Ethernet, MAC, PPP - Frames)    |
++-----------------------------------------------------------+
+| Layer 1: PHYSICAL LAYER (Cables, Bits, Voltages, Connect) |
++-----------------------------------------------------------+
+```
+
+#### Functions of the 7 Layers:
+1. **Layer 1 - Physical Layer:** Transmits raw unstructured bit streams over physical media (voltages, pins, frequencies).
+2. **Layer 2 - Data Link Layer:** Provides hop-to-hop node transfer; frames packets, handles physical addressing (MAC), flow control, and error detection (CRC).
+3. **Layer 3 - Network Layer:** Responsible for end-to-end packet routing across networks using logical IP addressing and routing protocols (OSPF, BGP).
+4. **Layer 4 - Transport Layer:** End-to-end host-to-host process delivery (ports), segmentation and reassembly, reliable delivery (TCP acknowledgments), flow control.
+5. **Layer 5 - Session Layer:** Establishes, manages, and terminates conversational sessions between remote applications; maintains synchronization checkpoints.
+6. **Layer 6 - Presentation Layer:** Formats, translates, encrypts, and compresses data (JSON, JPEG, TLS/SSL) so applications understand transmitted payload.
+7. **Layer 7 - Application Layer:** Direct interface to end-user network services and software (Web browsers, Email clients, File transfers).
+
+======================================================================

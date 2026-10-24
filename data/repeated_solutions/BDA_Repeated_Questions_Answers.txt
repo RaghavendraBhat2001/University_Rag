@@ -1,0 +1,220 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: BDA
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 3 exam sittings [2026, 2024, 2023]
+Question: Mention and explain any two data reduction techniques.
+----------------------------------------------------------------------
+Model Answer:
+DATA REDUCTION TECHNIQUES
+
+📘 Data Reduction Techniques:
+
+Data Reduction Techniques are methods used to minimize the size of data or simplify complex data structures. In the context of MapReduce programming, two primary techniques are discussed: Data Compression and Dimensionality Reduction.
+
+1. Data Compression: This technique reduces the space required to store files by encoding data more efficiently. In MapReduce, you can compress the MapReduce output file using the following configuration:
+
+   conf.setBoolean('mapred.output.compress', true);
+   conf.setClass("mapred.output.compression.codec", GzipCodec.class, CompressionCodec.class);
+
+2. Dimensionality Reduction: This technique simplifies complex data structures by reducing the number of dimensions or variables. It is not explicitly mentioned in the context, but it is a common data reduction technique used in various fields, such as machine learning and data visualization.
+
+💡 Simple way to understand it:
+
+Think of data reduction techniques as simplifying a complex puzzle. Data Compression is like folding a map to fit it into a smaller pocket, while Dimensionality Reduction is like reducing the number of pieces in a jigsaw puzzle to make it easier to solve.
+
+======================================================================
+
+QUESTION #2  (10 Marks)  -  asked in 3 exam sittings [2025, 2024, 2023]
+Question: explain in detail the architecture of a HDFs system.
+----------------------------------------------------------------------
+Model Answer:
+HDFS
+
+📘 As per your notes, the Hadoop Distributed File System (HDFS) is a distributed storage system designed to handle large datasets on commodity hardware. It stores data in smaller subsets called chunks or blocks, which are distributed across multiple nodes in a cluster. The system is designed for write-once, read-many times operations, providing faster read/write access and better availability and fault tolerance.
+
+HDFS is a key component of the Hadoop ecosystem, and it is based on Google File System (GFS). The architecture of a HDFS system can be divided into two main components: the NameNode and DataNodes.
+
+1. NameNode: The NameNode is the master node in the HDFS system. It manages the file system namespace, maintains the metadata for all files in the file system, and provides the interface for clients to access the file system. The NameNode is responsible for naming, organizing, and managing the data blocks across the DataNodes.
+
+2. DataNodes: DataNodes are the worker nodes in the HDFS system. They store the actual data blocks and provide the data when requested by clients or the NameNode. Each DataNode runs a local file system and communicates with the NameNode to manage the data blocks it stores.
+
+In the Hadoop high-level architecture, the HDFS Storage component consists of both the NameNode and DataNodes. The NameNode is responsible for managing the file system namespace and metadata, while the DataNodes store the actual data blocks.
+
+💡 Simple way to understand it:
+Think of a library where books are stored across multiple shelves in different rooms. The library's main desk (NameNode) keeps track of all the books (metadata), their locations (DataNodes), and manages the organization of the books (naming, organizing, and managing the data blocks). The readers (clients) can access the books (data) by asking the main desk (NameNode) for their location (DataNodes).
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: What is Hive ? explain its features and write brief notes on Hive Meta store.
+----------------------------------------------------------------------
+Model Answer:
+HIVE
+
+📘 As per your notes, Hive is a data warehousing tool that operates on top of Hadoop. It's designed to process structured data within the Hadoop environment. Hive shares similarities with SQL, making it easier to code and use.
+
+Hive supports various data types such as structs, lists, and maps, and it incorporates SQL filters, group-by, and order-by clauses for efficient data manipulation. Custom types and functions can also be defined within Hive.
+
+One key component of Hive is the Hive Metastore, which serves as a repository for managing metadata related to Hive tables, partitions, and other objects. It provides a centralized location for storing metadata, making it easier to manage and access data across multiple Hive instances.
+
+💡 Simple way to understand it: Think of Hive as a translator that helps you query and analyze structured data in Hadoop, similar to how Google Translate helps you understand different languages. The Hive Metastore acts as a library, storing information about the data you're working with, making it easier to find and use.
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: What is Pig ? Discuss its Data Processing operations.
+----------------------------------------------------------------------
+Model Answer:
+PIG
+
+📘 As per your notes, Pig is a platform for analyzing large data sets that allows users to develop their own functions for reading, processing, and writing data. The main components of Pig are:
+
+1. Data flow language (Pig Latin): a language used to process data using Pig.
+2. Interactive shell (Grunt): an environment where you can type Pig Latin statements.
+3. Pig interpreter and execution engine: responsible for interpreting and executing Pig Latin statements.
+
+Pig Latin statements are the basic constructs to process data using Pig. They are operators that take a relation as input and yield another relation as output. These statements include schemas and expressions to process data and should end with a semi-colon.
+
+💡 Simple way to understand it: Think of Pig as a kitchen where data is the ingredients. Pig Latin is the recipe book, Grunt is the chef's station, and the Pig interpreter and execution engine are the kitchen appliances that help prepare the data according to the recipes (Pig Latin statements).
+
+======================================================================
+
+QUESTION #5  (6 Marks)  -  asked in 2 exam sittings [2024, 2022]
+Question: explain Bayesian classification in detail.
+----------------------------------------------------------------------
+Model Answer:
+BAYESIAN CLASSIFICATION
+
+📘 As per your notes, Bayesian classification is a type of machine learning algorithm that belongs to the supervised learning category. It's based on Bayes' theorem, which allows for the calculation of conditional probabilities.
+
+In Bayesian classification, the algorithm learns the probability distribution of the classes in the training data. For a new data point, it calculates the probability of that data point belonging to each class and assigns it to the class with the highest probability.
+
+There are two main components in Bayesian classification: prior probabilities and conditional probabilities.
+
+- Prior probabilities: These are the probabilities of each class before seeing any data. They can be estimated from the training data or provided by the user.
+
+- Conditional probabilities: These are the probabilities of observing the data given that it belongs to a specific class. They are also estimated from the training data.
+
+💡 Simple way to understand it: Think of Bayesian classification as a judge in a courtroom. The judge has prior beliefs about the guilt or innocence of the defendant (prior probabilities). The evidence presented in court (data) changes the judge's beliefs about the defendant's guilt (conditional probabilities). The judge then makes a decision based on the evidence and their prior beliefs (classification). The key difference is that the judge updates their beliefs as new evidence comes in, just like Bayesian classification updates its probabilities as it sees more data.
+
+======================================================================
+
+QUESTION #6  (10 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: What is clustering ? explain various clustering techniques.
+----------------------------------------------------------------------
+Model Answer:
+CLUSTERING
+
+📘 As per your notes, Clustering is a process that involves grouping similar objects together. It is an example of unsupervised learning, meaning it doesn't require predefined classes or labels. Instead, it identifies natural patterns or similarities among the data. Clustering can be used to segment data, similar to classification algorithms, but without any predefined classes.
+
+In the context of a supermarket, clustering could be used to group items like butter, cheese, and milk under the "dairy products" category, as they share similar characteristics.
+
+💡 A simple way to understand clustering is like organizing a library. Instead of having specific sections for fiction, non-fiction, and biographies, you group books based on their similarities, such as books with similar themes or authors.
+
+Various clustering techniques include:
+
+- K-means Clustering: This is one of the most popular clustering algorithms. It works by dividing the data into K clusters, where K is a user-defined number. Each data point belongs to the cluster with the nearest mean.
+
+- Hierarchical Clustering: This technique builds a hierarchy of clusters, where each cluster is either a single data point or a group of data points that are very similar to each other. Hierarchical clustering can be either agglomerative (starting with individual data points and merging them) or divisive (starting with all data points in a single cluster and splitting them).
+
+- DBSCAN (Density-Based Spatial Clustering of Applications with Noise): This algorithm groups together points that are close to each other in the feature space and have a high density of neighboring points. DBSCAN also identifies outliers or noise points that do not belong to any cluster.
+
+Key differences between K-means and Hierarchical Clustering:
+
+- K-means is a centroid-based method, where each cluster has a centroid (mean), while Hierarchical Clustering builds a hierarchy of clusters.
+- K-means requires the number of clusters (K) to be specified beforehand, while Hierarchical Clustering does not require this information.
+- K-means is faster for large datasets, but it may not perform well when the data is not spherical or when the clusters have different shapes and sizes. Hierarchical Clustering, on the other hand, can handle non-spherical clusters and varying cluster sizes, but it can be computationally expensive for large datasets.
+
+======================================================================
+
+QUESTION #7  (6 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: Explain the ecosystem of HADOOP.
+----------------------------------------------------------------------
+Model Answer:
+HADOOP ECOSYSTEM
+
+📘 As per your notes, the Hadoop ecosystem refers to a collection of open-source projects that work together to enhance the functionality of the Hadoop Core Components. The ecosystem is designed to handle big data processing tasks, from data ingestion to analysis.
+
+The Hadoop ecosystem consists of several components:
+1. Data Ingestion: Sqoop and Flume help with ingesting data into the Hadoop environment.
+2. Data Processing: MapReduce is the computational framework that splits a task across multiple nodes and processes data in parallel.
+3. Data Analysis: Hive, Pig, and Mahout are tools used for data analysis.
+4. Workflow Management: Oozie is used for managing Hadoop jobs.
+5. Database: HBase is a NoSQL database that runs on top of HDFS.
+6. Data Streaming: Flume is used for collecting, aggregating, and moving large amounts of data in real-time.
+
+💡 Simple way to understand it: Think of the Hadoop ecosystem as a toolbox for big data processing. Each tool in the box (like Sqoop, Flume, MapReduce, Hive, Pig, HBase, Oozie, and Mahout) serves a specific purpose, such as ingesting, processing, or analyzing data, just like how different tools in a carpenter's toolbox serve different purposes.
+
+======================================================================
+
+QUESTION #8  (10 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: Discuss the significance of big data in various industrial applications.
+----------------------------------------------------------------------
+Model Answer:
+BIG DATA
+
+📘 As per your notes, Big Data refers to a large volume of diverse and rapidly generated data that requires innovative methods for processing and analysis to extract valuable insights for decision-making.
+
+💡 Think of Big Data as a vast library containing books of various types (high-variety), being added to at a rapid pace (high-velocity), and occupying multiple floors (high-volume). The challenge is to find the right books (insights) quickly amidst this vast collection.
+
+In various industrial applications, Big Data plays a significant role due to its potential to drive innovation, improve efficiency, and support informed decision-making. Here's a brief overview of its importance in different sectors:
+
+1. Healthcare: Big Data can help in predicting disease outbreaks, personalizing treatment plans, and improving patient care by analyzing vast amounts of patient data, medical records, and research findings.
+
+2. Finance: Big Data can be used for fraud detection, risk management, and customer behavior analysis in banking and insurance industries. It helps in making informed decisions, reducing losses, and improving customer service.
+
+3. Retail: Big Data can help retailers understand customer preferences, optimize supply chain management, and personalize marketing strategies by analyzing sales data, social media interactions, and customer feedback.
+
+4. Manufacturing: Big Data can be used for predictive maintenance, quality control, and demand forecasting in manufacturing industries. It helps in reducing downtime, improving product quality, and optimizing production processes.
+
+Key differences between these applications:
+
+- Data sources: Healthcare data comes from patient records, medical research, and wearable devices; finance data comes from transactions, credit reports, and market data; retail data comes from sales data, social media, and customer feedback; manufacturing data comes from production data, sensor data, and supply chain data.
+
+- Data types: Healthcare data includes structured (e.g., medical records) and unstructured (e.g., patient feedback) data; finance data includes structured (e.g., transactions) and semi-structured (e.g., emails) data; retail data includes structured (e.g., sales data) and unstructured (e.g., social media posts) data; manufacturing data includes structured (e.g., production data) and time-series (e.g., sensor data) data.
+
+- Data analysis techniques: Healthcare data analysis may involve machine learning algorithms, natural language processing, and statistical analysis; finance data analysis may involve predictive modeling, risk analysis, and market analysis; retail data analysis may involve customer segmentation, recommendation systems, and sentiment analysis; manufacturing data analysis may involve predictive maintenance, quality control, and demand forecasting.
+
+======================================================================
+
+QUESTION #9  (6 Marks)  -  asked in 2 exam sittings [2026, 2023]
+Question: Explain Big Data and its characteristics.
+----------------------------------------------------------------------
+Model Answer:
+BIG DATA
+
+📘 Big Data refers to a large and complex data set that cannot be processed using traditional data processing methods or software. It is characterized by three V's: Volume, Velocity, and Variety.
+
+- Volume: Refers to the sheer amount of data generated. This data is so large that it cannot be processed using traditional data processing methods.
+
+- Velocity: Refers to the speed at which data is generated and needs to be processed. This data is generated at a high speed and needs to be processed in real-time or near real-time.
+
+- Variety: Refers to the different types of data that are generated. This data can be structured (like relational databases), semi-structured (like XML or JSON), or unstructured (like emails, videos, or social media posts).
+
+💡 Think of Big Data as a massive library. The volume is like the number of books in the library, the velocity is like the rate at which new books are added, and the variety is like the different types of books (fiction, non-fiction, academic, etc.) in the library.
+
+======================================================================
+
+QUESTION #10  (5 Marks)  -  asked in 2 exam sittings [2026, 2023]
+Question: Write short notes on : Big SQL.
+----------------------------------------------------------------------
+Model Answer:
+BIG SQL
+
+📘 Big SQL (Big SQL Data Warehousing) is a term used to describe the application of SQL (Structured Query Language) in managing and analyzing large volumes of data, also known as Big Data. It's a scalable and high-performance solution for data warehousing, designed to handle the complex data processing requirements of modern businesses.
+
+Big SQL operates on distributed systems, allowing data to be stored and processed across multiple servers. This distribution helps in managing the large volumes of data and the complex queries that come with Big Data.
+
+💡 Think of Big SQL as a large library with many shelves (servers) filled with books (data). Instead of searching for a specific book in one library, you can search across multiple libraries simultaneously, making it faster and more efficient to find the information you need.
+
+Key differences between traditional SQL and Big SQL:
+- Traditional SQL is designed for managing smaller datasets, while Big SQL is designed for Big Data.
+- Traditional SQL operates on a single server, while Big SQL operates on distributed systems.
+- Traditional SQL is optimized for transactional processing, while Big SQL is optimized for analytical processing.
+- Traditional SQL uses a relational database model, while Big SQL can use various data models, such as columnar, document, and graph.
+
+======================================================================

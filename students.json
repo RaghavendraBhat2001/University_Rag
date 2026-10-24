@@ -1,0 +1,12 @@
+{
+  "raghavendra.c.bhat@gmail.com": {
+    "name": "Raghavendra",
+    "salt": "87b3540bb5a01ba7495d44f220dd7afa",
+    "password_hash": "541ac99fec3f4f232d372b5657249ac2fe293b6a2b75469df8136ab54514bfe2"
+  },
+  "bu.university@gmail.com": {
+    "name": "Hitesh s",
+    "salt": "6fd4976af4c5d935ba95c947d914521a",
+    "password_hash": "b12eea3902385d640b18c32efec10e51df3c02760a27b405e0957b5a0b70fe4e"
+  }
+}

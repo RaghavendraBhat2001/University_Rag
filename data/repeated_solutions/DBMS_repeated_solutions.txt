@@ -1,0 +1,397 @@
+======================================================================
+uniRAG ACADEMIC INTELLIGENCE · READY MODEL SOLUTIONS
+Course / Subject Scope: DBMS
+Target Exam: Bangalore University MCA Examination
+Total Solved Repeated Questions: 9
+======================================================================
+
+QUESTION #1 [6 MARKS] (Exam Sittings: 2025, 2022, 2020)
+Question: Discuss ACID properties of a transaction.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### ACID Properties of a Database Transaction (6 Marks)
+
+A transaction is a logical unit of work that contains one or more database operations (read/write). To maintain database integrity, every DBMS enforces the four ACID properties:
+
+1. **Atomicity ("All or Nothing")**:
+   - Ensures that either all operations of the transaction are executed successfully and committed, or none of them take effect.
+   - If a failure occurs mid-transaction, all changes are rolled back to the pre-transaction state.
+   - *DBMS Component:* Managed by the **Transaction Manager** and **Recovery Subsystem** using write-ahead transaction logs (UNDO logs).
+
+2. **Consistency (Preserving Invariants)**:
+   - A transaction must transform the database from one valid consistent state to another consistent state satisfying all integrity constraints (e.g., primary keys, foreign keys, balance >= 0).
+   - If a transaction violates any constraint, it is aborted and rolled back.
+   - *DBMS Component:* Enforced by the **Integrity Subsystem** and application logic.
+
+3. **Isolation (Concurrent Execution Separation)**:
+   - Multiple transactions executing concurrently must execute without interfering with each other. The intermediate state of a transaction remains invisible to other concurrently executing transactions.
+   - Prevents concurrency anomalies: Dirty Reads, Non-repeatable Reads, and Phantom Reads.
+   - *DBMS Component:* Enforced by the **Concurrency Control Subsystem** using Locking protocols (2PL) or Timestamp Ordering.
+
+4. **Durability (Permanence of Committed Changes)**:
+   - Once a transaction commits successfully, its updates persist permanently in non-volatile storage, even in the event of an immediate system crash or power outage.
+   - *DBMS Component:* Enforced by the **Recovery Manager** using REDO logs and write-ahead logging (WAL).
+
+---
+**Illustrative Real-World Example (Bank Fund Transfer):**
+Transferring ₹5,000 from Account A (₹20,000) to Account B (₹10,000):
+```sql
+START TRANSACTION;
+UPDATE Accounts SET balance = balance - 5000 WHERE acc_no = 'A';
+UPDATE Accounts SET balance = balance + 5000 WHERE acc_no = 'B';
+COMMIT;
+```
+- *Atomicity:* If power fails after debiting A, B is not credited; rollback restores ₹5,000 to A.
+- *Consistency:* Total money across A and B remains ₹30,000 before and after transaction.
+- *Isolation:* A concurrent balance inquiry cannot see A debited before B is credited.
+- *Durability:* Once COMMIT executes, ₹15,000 in both accounts survives a server restart.
+
+======================================================================
+
+QUESTION #2 [6 MARKS] (Exam Sittings: 2022, 2020)
+Question: Write a note on hashing techniques.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Hashing Techniques in DBMS (6 Marks)
+
+Hashing is a direct data access technique that maps search key values directly to storage bucket addresses using a mathematical hash function $h(K)$, achieving average $O(1)$ search, insert, and delete complexity.
+
+#### 1. Static Hashing:
+- The number of bucket addresses $M$ is fixed at database creation time.
+- Hash function: $h(K) = K \pmod M$.
+- **Bucket Overflow Problem:** When a record hashes to a bucket that is already full.
+  - Handled via **Open Hashing (Chaining / Overflow Buckets):** Overflow linked lists attached to the primary bucket.
+  - Handled via **Closed Hashing (Linear/Quadratic Probing):** Searches for the next available bucket sequentially.
+- *Limitation:* Poor scalability when databases grow or shrink significantly.
+
+#### 2. Dynamic Hashing (Extendible & Linear Hashing):
+Allows the hash table structure to grow and shrink dynamically without requiring complete re-hashing of all records.
+
+- **Extendible Hashing:**
+  - Uses an in-memory directory of pointers to disk buckets.
+  - **Global Depth ($d$):** Number of bits used to index the directory ($2^d$ directory entries).
+  - **Local Depth ($d' \le d$):** Number of bits shared by records inside a specific bucket.
+  - When a bucket overflows:
+    * If $d' = d$: Directory doubles in size ($d \leftarrow d + 1$).
+    * If $d' < d$: Only the overflowing bucket splits into two; local depths increment to $d'+1$; directory does not double.
+- **Linear Hashing:**
+  - Does not use a directory. Splits buckets linearly in round-robin order using a split pointer, maintaining an average storage utilization of ~75-80%.
+
+#### Summary Comparison:
+| Parameter | Static Hashing | Extendible Hashing | Linear Hashing |
+| :--- | :--- | :--- | :--- |
+| **Bucket Count** | Fixed | Dynamic ($2^d$ directory) | Dynamic (split pointer) |
+| **Directory Overhead** | None | Yes (Memory directory) | None |
+| **Re-hashing Overhead** | Massive when full | Localized to split bucket | Incremental |
+
+======================================================================
+
+QUESTION #3 [6 MARKS] (Exam Sittings: 2022, 2020)
+Question: What is Schema ? Explain with a neat diagram 3 schema architecture of DBMS.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Schema and 3-Schema Architecture in DBMS (6 Marks)
+
+#### 1. Definition of Schema:
+A **Database Schema** is the overall structural design and skeleton of the database, specifying tables, fields, data types, constraints, and relationships. It is stored in the data dictionary (system catalog) and rarely changes, whereas the data stored at a particular moment is termed the **Database Instance**.
+
+#### 2. Three-Schema (ANSI/SPARC) Architecture:
+The primary objective is to separate user applications from the physical database, achieving **Data Independence**.
+
+```
++-----------------------------------------------------------+
+|              EXTERNAL LEVEL (User Views)                  |
+|   [ View 1: Student ]      [ View 2: Accounts ]  [ View 3 ]|
++-----------------------------------------------------------+
+                             |
+                   External / Conceptual Mapping
+                             |
++-----------------------------------------------------------+
+|              CONCEPTUAL LEVEL (Logical Schema)            |
+|   Entities, Attributes, Relationships, Integrity Rules     |
+|   (Relational Schema: e.g., Students, Courses, Grades)    |
++-----------------------------------------------------------+
+                             |
+                  Conceptual / Internal Mapping
+                             |
++-----------------------------------------------------------+
+|              INTERNAL LEVEL (Physical Schema)             |
+|   Storage Structures, Record Formats, B+ Trees, Hashing   |
++-----------------------------------------------------------+
+                             |
+                 [ Physical Database Storage ]
+```
+
+#### 3. The Three Levels Explained:
+1. **External Level (Sub-schemas / Views):**
+   - The view closest to the end-users. Each user group views only the subset of data relevant to their role, hiding confidential fields (e.g., students view marks, HR views salary).
+2. **Conceptual Level (Logical Community Schema):**
+   - Describes *what* data is stored in the whole database and relationships among them without detailing storage mechanisms. Includes entities, data types, user constraints, and security rules.
+3. **Internal Level (Physical Schema):**
+   - Describes *how* data is stored physically on disk: file organizations (heap, sorted, hashed), indexing mechanisms (B+ trees), data compression, and block allocations.
+
+#### 4. Data Independence Achieved:
+- **Logical Data Independence:** Ability to modify the Conceptual Schema (e.g. adding a new table or attribute) without altering existing External Views or application programs.
+- **Physical Data Independence:** Ability to modify the Internal Schema (e.g. reorganizing file structures or adding indexes) without altering the Conceptual Schema or application programs.
+
+======================================================================
+
+QUESTION #4 [6 MARKS] (Exam Sittings: 2022, 2020)
+Question: Explain domain constraint, key constraint and referential integrity constraints.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Relational Integrity Constraints (6 Marks)
+
+Integrity constraints are rules enforced by the DBMS to ensure database accuracy, consistency, and validity during insert, update, and delete operations.
+
+#### 1. Domain Constraint:
+- Specifies that the value of each attribute $A$ in any tuple must be an atomic value belonging to the predefined domain $dom(A)$.
+- Enforces data type, format, permissible range, and nullability.
+- *Examples in SQL:*
+  ```sql
+  age INT CHECK (age >= 18 AND age <= 60),
+  gender CHAR(1) CHECK (gender IN ('M', 'F', 'O')),
+  email VARCHAR(100) NOT NULL
+  ```
+- *Violation:* Attempting to insert `"abc"` into an `INT` field or `age = 15` triggers a constraint violation error.
+
+#### 2. Key Constraint:
+- States that no two distinct tuples in any relation state $r(R)$ can have identical values for the Primary Key or Candidate Key attribute(s).
+- **Superkey:** A set of attributes that uniquely identifies a tuple.
+- **Candidate Key:** A minimal superkey (no redundant attributes).
+- **Primary Key:** The chosen candidate key; strictly requires **Uniqueness** and **Entity Integrity** (Primary key attributes can never be `NULL`).
+- *SQL Example:*
+  ```sql
+  student_id VARCHAR(10) PRIMARY KEY
+  ```
+
+#### 3. Referential Integrity Constraint:
+- Enforced between two relations (Referencing relation $R_1$ and Referenced relation $R_2$).
+- A tuple in $R_1$ has a **Foreign Key (FK)** that references the **Primary Key (PK)** of $R_2$.
+- The foreign key value must either:
+  1. Match an existing primary key value in the referenced relation, or
+  2. Be `NULL` (if nulls are allowed).
+- **Referential Action Rules:**
+  * `ON DELETE CASCADE`: Deleting referenced parent tuple automatically deletes matching child tuples.
+  * `ON DELETE RESTRICT / NO ACTION`: Rejects deletion of parent tuple if child records exist.
+  * `ON DELETE SET NULL`: Sets child foreign key to `NULL`.
+- *SQL Example:*
+  ```sql
+  FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+      ON DELETE RESTRICT ON UPDATE CASCADE
+  ```
+
+======================================================================
+
+QUESTION #5 [6 MARKS] (Exam Sittings: 2022, 2020)
+Question: Explain views in SQL with example.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Views in SQL (6 Marks)
+
+#### 1. Definition:
+A **View** in SQL is a virtual table whose contents are defined by an underlying `SELECT` query. A view does not store data physically on disk (except in materialized views); instead, the DBMS stores the view definition in the system catalog and dynamically executes the underlying query whenever the view is queried.
+
+#### 2. Syntax and Creation:
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+#### 3. Practical Example:
+Suppose a university has an `Employees` table:
+`Employees(emp_id, emp_name, department, salary, ssn)`
+
+To allow department managers to see employee details without exposing confidential `salary` and `ssn`:
+```sql
+-- Create View:
+CREATE VIEW DeptStaffView AS
+SELECT emp_id, emp_name, department
+FROM Employees
+WHERE department = 'Computer Science';
+
+-- Querying the View:
+SELECT * FROM DeptStaffView WHERE emp_name LIKE 'R%';
+
+-- Dropping the View:
+DROP VIEW DeptStaffView;
+```
+
+#### 4. Advantages of Views:
+1. **Data Security & Confidentiality:** Restricts user access to specific rows and columns without granting table-level permissions.
+2. **Query Simplification:** Pre-packages complex multi-table `JOIN`s, subqueries, and aggregations into a simple virtual table.
+3. **Logical Data Independence:** If table structures change slightly, the view query can be updated without breaking legacy client applications.
+
+#### 5. Updatable Views vs. Non-Updatable Views:
+A view is updatable (`INSERT`, `UPDATE`, `DELETE`) only if:
+- It is based on a single base table.
+- It contains the primary key of the base table.
+- It contains **no** `GROUP BY`, `DISTINCT`, aggregate functions (`COUNT`, `AVG`), or `UNION` operations.
+
+======================================================================
+
+QUESTION #6 [10 MARKS] (Exam Sittings: 2022, 2020)
+Question: Explain different types of database users.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Classification of Database Users (10 Marks)
+
+Database users interact with the DBMS across various abstractions, from system governance to routine data retrieval. They are categorized into the following distinct classes:
+
+#### 1. Database Administrator (DBA):
+The central authority responsible for enterprise database management and operations:
+- **Schema Definition & Modification:** Defines internal, conceptual, and external schemas.
+- **Access Control & Security:** Grants/revokes user permissions and privileges.
+- **Integrity Enforcement:** Establishes constraints, triggers, and consistency rules.
+- **Backup & Disaster Recovery:** Schedules regular backups and handles crash recovery.
+- **Performance Tuning:** Monitors disk utilization, rebuilds indexes, and tunes buffer pools.
+
+#### 2. Database Designers:
+- **Logical Designers:** Model business requirements into Conceptual schemas (ER diagrams), perform normalization (BCNF/3NF), and specify business constraints.
+- **Physical Designers:** Translate logical schemas into storage structures, choosing indexing strategies (B+ trees, hashing) and partitioning methods.
+
+#### 3. End Users:
+End users access the database for day-to-day operations and decision-making:
+- **a) Naive / Parametric Users:**
+  - Largest user group. They do not know SQL or database internals.
+  - Interact exclusively through canned forms, mobile apps, or web interfaces.
+  - *Examples:* Bank tellers, airline reservation clerks, e-commerce shoppers.
+- **b) Casual / Sophisticated Users:**
+  - Understand query languages (SQL) and relational concepts.
+  - Write complex ad-hoc queries, generate custom reports, and perform data analysis without using application interfaces.
+  - *Examples:* Business analysts, researchers, data scientists.
+- **c) Standalone Users:**
+  - Maintain personal databases using ready-made software packages (e.g., Microsoft Access, personal SQLite applications).
+
+#### 4. Application Programmers (Software Developers):
+- Write software applications in host languages (Java, Python, C#, Node.js) that embed DML statements or use ORM frameworks (Hibernate, SQLAlchemy) to interact with the DBMS.
+- Test, debug, and maintain database application interfaces.
+
+#### 5. System Analysts:
+- Determine end-user requirements and bridge business needs with database developers to formulate functional specifications.
+
+======================================================================
+
+QUESTION #7 [6 MARKS] (Exam Sittings: 2025, 2024)
+Question: What are the main characteristics of DBMS ?
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Main Characteristics of the Database Approach (6 Marks)
+
+Unlike traditional file-processing systems where each application manages its own files, a Database Management System (DBMS) exhibits the following core characteristics:
+
+1. **Self-Describing Nature of a Database System:**
+   - A DBMS contains not only the database itself but also a complete definition of its structure and constraints stored in the **System Catalog (Data Dictionary / Metadata)**.
+   - Allows DBMS software to work with different databases dynamically without hardcoded assumptions.
+
+2. **Program-Data and Program-Operation Independence:**
+   - In file systems, file record formats are hardcoded in application source code.
+   - In a DBMS, data structures (physical storage, indexing) can change without altering application programs (**Data Independence**).
+
+3. **Support of Multiple Views of the Data:**
+   - Different users have different perspectives. A DBMS allows each user group to access only the subset of data relevant to their role via tailored **External Views**.
+
+4. **Multi-User Transaction Processing and Concurrency Control:**
+   - Allows hundreds of concurrent users to read and update data simultaneously without conflict.
+   - Enforces **ACID properties** through concurrency control (locking/timestamping) ensuring serializability.
+
+5. **Data Sharing and Integration:**
+   - Centralizes enterprise data, eliminating redundant data silos and ensuring a single source of truth.
+
+6. **Enforcement of Integrity Constraints:**
+   - Automatically validates data against business rules: Primary key uniqueness, Foreign key referential integrity, and Domain validation.
+
+======================================================================
+
+QUESTION #8 [6 MARKS] (Exam Sittings: 2025, 2024)
+Question: Discuss Embedded SQL and Dynamic SQL.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Embedded SQL vs. Dynamic SQL (6 Marks)
+
+Both Embedded SQL and Dynamic SQL enable high-level programming languages (C, C++, Java) to communicate with relational databases.
+
+#### 1. Embedded SQL (Static SQL):
+- SQL statements are directly written inside the host program source code and prefixed with `EXEC SQL`.
+- Processed by an application **pre-compiler** before host language compilation.
+- Query structure is completely fixed at design/compile time; only parameter values (host variables) vary at runtime.
+- *Syntax Example (in C):*
+  ```c
+  EXEC SQL SELECT salary INTO :emp_sal FROM Employee WHERE emp_id = :id;
+  ```
+- *Advantages:* High runtime efficiency, syntax and semantic checks performed at compile time, strong security.
+
+#### 2. Dynamic SQL:
+- SQL statements are constructed as character strings at runtime and executed dynamically.
+- Used when queries cannot be determined ahead of time (e.g. ad-hoc filter screens with variable checkboxes).
+- Enabled via standardized APIs: **JDBC, ODBC, or `PREPARE` / `EXECUTE` commands**.
+- *Syntax Example:*
+  ```sql
+  PREPARE stmt FROM 'SELECT * FROM Students WHERE marks >= ?';
+  EXECUTE stmt USING @min_marks;
+  ```
+
+#### 3. Key Comparison:
+| Feature | Embedded (Static) SQL | Dynamic SQL |
+| :--- | :--- | :--- |
+| **Query Formulation** | Fixed at compile time | Constructed as string at runtime |
+| **Parsing & Optimization**| Done ahead-of-time (pre-compile) | Done at runtime per invocation |
+| **Execution Speed** | Fast (pre-compiled execution plan) | Slightly slower (runtime compilation) |
+| **Flexibility** | Rigid query structure | Highly versatile & dynamic |
+| **SQL Injection Risk** | Very Low | Higher if string concatenation is used |
+
+======================================================================
+
+QUESTION #9 [10 MARKS] (Exam Sittings: 2022, 2020)
+Question: Explain Two Phase Locking Protocol used in concurrency control.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Two-Phase Locking (2PL) Protocol (10 Marks)
+
+The Two-Phase Locking (2PL) protocol is a concurrency control mechanism that guarantees **Conflict Serializability** by enforcing strict rules on when transactions may acquire and release locks.
+
+#### 1. Lock Types:
+- **Shared Lock (S):** Acquired for reading data items (`read_lock`). Multiple transactions can hold shared locks concurrently on the same item.
+- **Exclusive Lock (X):** Acquired for writing data items (`write_lock`). Only one transaction can hold an exclusive lock; all other lock requests are blocked.
+
+#### 2. The Two Phases of 2PL:
+Every transaction must execute in two distinct phases:
+
+```
+Number of
+Locks Held
+   ^
+   |        Lock Point
+   |            *
+   |          /   \
+   |         /     \
+   |        /       \
+   |       /         \
+   +-------------------------> Time
+     Growing Phase   Shrinking Phase
+     (Locks Acquired) (Locks Released)
+```
+
+1. **Phase 1: Growing Phase (Expanding Phase):**
+   - The transaction may obtain new locks (both Shared and Exclusive) or upgrade an S lock to an X lock.
+   - **Crucial Rule:** The transaction CANNOT release any lock during this phase.
+2. **Lock Point:**
+   - The exact moment when the transaction has acquired the final lock it requires. Serializability order is determined by the order of lock points.
+3. **Phase 2: Shrinking Phase (Contracting Phase):**
+   - The transaction may release locks or downgrade an X lock to an S lock.
+   - **Crucial Rule:** The transaction CANNOT acquire any new lock once it releases its first lock.
+
+#### 3. Variations of 2PL:
+- **Basic 2PL:** Guarantees conflict serializability, but is vulnerable to **Cascading Aborts** and Deadlocks.
+- **Strict 2PL:**
+  - Requires all **Exclusive (X) locks** to be held until the transaction commits or aborts.
+  - Guarantees **Strict Schedules** and completely eliminates cascading rollbacks.
+- **Rigorous 2PL:**
+  - Requires all **Shared (S) AND Exclusive (X) locks** to be held until transaction commit. Easiest to implement.
+
+#### 4. Limitations of 2PL:
+- **Deadlocks:** Concurrent transactions waiting for locks held by each other can form cycles (e.g. $T_1$ holds $A$ waiting for $B$, while $T_2$ holds $B$ waiting for $A$). Resolved via Wait-For Graphs or Timeout mechanisms.
+
+======================================================================

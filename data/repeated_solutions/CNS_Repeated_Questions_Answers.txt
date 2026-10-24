@@ -1,0 +1,8 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: CNS
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+No question was repeated across two or more exam sittings in the indexed papers (1 sitting(s) available).

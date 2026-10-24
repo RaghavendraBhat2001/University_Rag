@@ -1,0 +1,666 @@
+===== definition_basic =====
+[run 1] Q: what is decision tree
+  intents=['definition'] topic='Decision Tree' best_distance=0.2930000126361847 (77s)
+## DECISION TREE
+
+📘 As per your notes, a Decision Tree is a decision-making tool that uses a tree-like graph to represent various decisions and their possible consequences. It consists of three main components:
+
+1. Decision nodes, commonly represented by squares, represent points in the process where a decision must be made.
+2. Chance nodes, represented by circles, represent situations where the outcome is uncertain and depends on some probability.
+3. End nodes, represented by triangles, represent the final outcomes or decisions.
+
+💡 A simple way to understand it is like a flowchart for decision-making, where each decision leads to different outcomes, some of which are uncertain, and the final outcome is reached after a series of decisions.
+
+
+===== definition_typos =====
+[run 1] Q: wat is normalisation in dbms
+  intents=['definition'] topic='Normalization' best_distance=0.37700000405311584 (206s)
+## NORMALIZATION
+
+📘 As per your notes, Normalization in DBMS (Database Management System) is a process used to organize and structure data in a relational database to minimize redundancy and dependency, improve data integrity, and enhance the efficiency of database operations. The normalization procedure involves several normal forms, each designed to eliminate specific types of redundancies and anomalies.
+
+1. First Normal Form (1NF): Ensures each table has unique columns, all columns contain atomic (indivisible) values, and each row is unique.
+2. Second Normal Form (2NF): Requires that every non-key attribute is fully dependent on the primary key. In other words, all partial dependencies must be eliminated.
+3. Third Normal Form (3NF): Eliminates transitive dependencies, meaning that non-key attributes should not depend on other non-key attributes.
+4. Boyce-Codd Normal Form (BCNF): Ensures that every functional dependency is a full dependency, i.e., every determinant is a candidate key.
+5. Fourth Normal Form (4NF): Eliminates multi-valued dependencies (MVDs), where a single attribute can have multiple values for a single primary key.
+
+💡 Simple way to understand it:
+Think of normalization as organizing a messy bookshelf. Initially, the books are mixed up, with some books having multiple copies, some books missing pages, and some books having pages from other books inserted. Normalization is like sorting the books, removing duplicates, and organizing them in a way that each book has all its pages and no extra pages. Each normal form represents a step in this process, making the bookshelf (database) more organized and efficient.
+
+
+===== ungrounded_fenwick =====
+[run 1] Q: what is a Fenwick tree
+  intents=['definition'] topic='Fenwick Tree' best_distance=None (0s)
+## FENWICK TREE
+
+'Fenwick Tree' doesn't appear in your MCA syllabus or in any past question paper, so I haven't answered it — it looks outside what you're examined on.
+
+
+===== ungrounded_kubernetes =====
+[run 1] Q: explain Kubernetes
+  intents=['definition'] topic='Kubernetes' best_distance=None (0s)
+## KUBERNETES
+
+'Kubernetes' doesn't appear in your MCA syllabus or in any past question paper, so I haven't answered it — it looks outside what you're examined on.
+
+
+===== known_ok_health_is_a_real_crypto_term =====
+[run 1] Q: what is health
+  intents=['definition'] topic='Health' best_distance=0.7239999771118164 (82s)
+## HEALTH
+
+📘 Health is a state of complete physical, mental, and social well-being, as defined by the World Health Organization. In the context provided, health testing is used to ensure that a noise source and conditioning module in a specific system are functioning correctly and producing the desired output.
+
+💡 Think of health as a car in good working order. Health testing, in this context, is like a mechanic checking the car's engine and other parts to ensure they're functioning as intended, just like how health tests ensure the noise source and conditioning module are working correctly.
+
+Key differences:
+- Human health: Refers to the physical, mental, and social well-being of individuals.
+- Health testing in the context provided: Refers to the validation of a noise source and conditioning module in a specific system to ensure they're functioning correctly.
+
+In the case of human health, diseases like cholera, typhoid, and Minamata disease can occur due to contaminated water, while in the context provided, health testing is used to validate the noise source and conditioning module.
+
+
+===== out_of_syllabus_unambiguous =====
+[run 1] Q: explain the French revolution
+  intents=['definition'] topic='French Revolution' best_distance=None (0s)
+## FRENCH REVOLUTION
+
+'French Revolution' doesn't appear in your MCA syllabus or in any past question paper, so I haven't answered it — it looks outside what you're examined on.
+
+
+===== in_scope_quicksort =====
+[run 1] Q: what is quick sort
+  intents=['definition'] topic='Quick Sort' best_distance=0.34599998593330383 (51s)
+## QUICK SORT
+
+📘 What is Quick Sort:
+Quick Sort is a divide-and-conquer sorting algorithm that partitions a list into smaller sublists around a pivot element. It recursively sorts these sublists until the entire list is sorted. The algorithm's time efficiency is O(n log n) in all cases, with the number of key comparisons being very close to the theoretical minimum.
+
+💡 Simple way to understand it:
+Think of Quick Sort as a fast-paced game of card sorting. You pick a card (the pivot), then quickly sort the deck into two piles: cards smaller and larger than the pivot. You then repeat this process on each pile, just like a game of Jenga, until all cards are in the correct order. However, it requires additional memory to store the sublists during the sorting process.
+
+
+===== in_scope_avl =====
+[run 1] Q: what is an AVL tree
+  intents=['definition'] topic='AVL Tree' best_distance=0.5289999842643738 (69s)
+## AVL TREE
+
+📘 As per your notes, an AVL tree is a type of self-balancing binary search tree, named after its inventors G. M. Adelson-Velsky and E. M. Landis. It ensures that the height of the left and right subtrees of any node differ by at most one.
+
+💡 A simple way to understand it is like a balanced seesaw at a playground. Each seesaw (node) has a weight (number of elements) and can only tilt a maximum of one unit to maintain balance, just like an AVL tree.
+
+Key differences:
+- AVL tree: Balance factor is the difference between the heights of the left and right subtrees, ensuring a maximum height difference of 1.
+- Binary search tree: No such balance factor, and the height difference can be arbitrary.
+
+
+===== in_scope_scheduling =====
+[run 1] Q: what is process scheduling
+  intents=['definition'] topic='Process Scheduling' best_distance=0.3580000102519989 (64s)
+## PROCESS SCHEDULING
+
+📘 Process scheduling is the method by which an operating system selects one process from the ready queue to be executed by the CPU. It involves managing the execution of multiple processes concurrently, ensuring fairness, efficiency, and optimal resource utilization.
+
+💡 Think of process scheduling as a line at a popular amusement park. The park manager (operating system) decides which line (process) to prioritize and send to the roller coaster (CPU) next, ensuring a fair and efficient distribution of rides (resources) to all visitors (processes).
+
+Key differences:
+- Fairness: Ensuring that no single process hogs the CPU for an extended period, allowing other processes to run as well.
+- Efficiency: Maximizing CPU utilization and minimizing waiting times for processes.
+- Optimal resource utilization: Allocating resources (like I/O devices) efficiently among processes in the system.
+
+
+===== in_scope_stack =====
+[run 1] Q: what is a stack
+  intents=['definition'] topic='Stack' best_distance=0.25200000405311584 (101s)
+## STACK
+
+📘 A stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle. It operates based on the principle of a stack of plates, where the last plate added is the first one to be removed. In a computer, it is used to manage function calls, variables, and memory allocation.
+
+💡 Think of a stack as a pile of plates. When you add a new plate (push), it goes on top of the existing ones. To get the top plate (pop), you have to remove all the plates above it first.
+
+- Memory Stack: A region of the computer's memory used to store temporary data during the execution of a program. It is managed by the system and is used for function calls and local variables.
+- Register Stack: A smaller, faster version of the memory stack, located in the CPU. It stores the addresses of the memory stack for function calls and returns.
+
+Key differences:
+- Memory Stack is a larger, slower data structure, managed by the system, while the Register Stack is smaller, faster, and managed by the CPU.
+- The Memory Stack stores actual data, while the The Register Stack stores the addresses of the memory stack for function calls and returns, not the actual data. This allows the CPU to quickly access the necessary information during function calls and returns, improving the efficiency of the program.
+
+- Operating System Stack: A stack used by the operating system to manage system calls, interrupts, and exceptions. It is a crucial part of the system's multitasking capabilities.
+
+By understanding and utilizing stacks effectively, programmers can create more efficient and organized code.
+
+
+===== comparison_both_sides =====
+[run 1] Q: array vs linked list
+  intents=['definition'] topic='Array vs Linked List' best_distance=0.4099999964237213 (157s)
+## ARRAY VS LINKED LIST
+
+📘 As per your notes, an array and a linked list are both data structures used to store and organize data, but they differ in their structure and access methods.
+
+An array is a collection of elements of the same data type, stored in contiguous memory locations. Each element can be accessed directly using an index, which is a number that corresponds to the position of the element in the array. For example, an array named 'salary' can store the salaries of multiple employees, and each salary can be accessed using an index that corresponds to the employee's position in the array.
+
+A linked list, on the other hand, is a collection of data items, called nodes, that are connected to each other through pointers. Each node contains a data item and a pointer to the next node in the list. The last node in the list, called the tail, points to a special node called NIL, which indicates the end of the list.
+
+💡 Simple way to understand it:
+
+Think of an array as a row of lockers in a school, where each locker has a unique number and contains a student's belongings. You can directly access a student's belongings by knowing their locker number. On the other hand, a linked list is like a chain of lockers where each locker has a key that points to the next locker in the chain. You need to follow the keys to find a specific student's belongings.
+
+Key differences:
+
+- Access method: Arrays can be accessed directly using an index, while linked lists require traversing through the pointers to find the desired data.
+- Memory allocation: Arrays require a fixed amount of memory to be allocated at the start, while linked lists can dynamically allocate memory as needed.
+- Insertion and deletion: Inserting or deleting an element in an array requires shifting other elements, which can be time-consuming for large arrays. In a linked list, insertion or deletion only requires changing the pointers, making it more efficient for dynamic data structures.
+- Efficiency: Arrays provide constant-time access to elements (O(1)), while linked lists require linear time (O(n)) to access an element at a specific position. However, linked lists provide constant-time insertion and deletion (O(1)), while arrays require linear time (O(n)) for these operations.
+
+
+===== comparison_stack_queue =====
+[run 1] Q: difference between stack and queue
+  intents=['definition'] topic='Stack vs Queue' best_distance=0.16300000250339508 (104s)
+## STACK VS QUEUE
+
+📘 As per your notes, a Stack and a Queue are both abstract data types used in computer science to store and manage collections of elements. However, they differ in the way elements are added and removed.
+
+A Stack follows the Last-In-First-Out (LIFO) principle, which means that the last element added is the first one to be removed. It is often compared to a pile of plates where you can only add or remove plates from the top.
+
+On the other hand, a Queue follows the First-In-First-Out (FIFO) principle, which means that the first element added is the first one to be removed. It is often compared to a line of people waiting for a service, where the first person in line is the first one served.
+
+💡 Simple way to understand it:
+Think of a stack as a pile of plates on a table. You can only add or remove plates from the top. So, if you add a new plate on top, the oldest plate at the bottom gets hidden, and if you remove a plate from the top, the oldest plate is the one you take out. A queue, on the other hand, is like a line of people waiting for a service. The first person in line is the first one served, and new people join the line at the back.
+
+Key differences:
+- Stack follows LIFO (Last-In-First-Out), while Queue follows FIFO (First-In-First-Out).
+- In a Stack, elements are added and removed from the top, while in a Queue, elements are added at the back and removed from the front.
+- A Stack is like a pile of plates, while a Queue is like a line of people waiting for a service.
+
+
+===== chain_followup_kept =====
+[run 1] Q: explain hashing
+  intents=['definition'] topic='Hashing' best_distance=0.42899999022483826 (71s)
+## HASHING
+
+📘 As per your notes, Hashing is a method used for distributing keys among a one-dimensional array, known as a hash table. This distribution is achieved by computing a predefined function, called the hash function, for each key. The hash function assigns an integer between 0 and m-1, called the hash address, to a key. This hash address is used to locate the key in the hash table.
+
+The context discusses open hashing, also known as separate chaining, as one of the methods of hashing. In open hashing, each hash address in the hash table corresponds to a location where a key might be stored. If multiple keys have the same hash address, they are stored in a linked list at that location. This linked list is called a bucket.
+
+💡 Simple way to understand it:
+Think of a library with a large number of books. Each book has a unique title, which serves as its key. To store these books efficiently, we create a bookshelf (hash table) that can hold a certain number of books. To find a specific book quickly, we assign each book a unique number (hash address) based on its title. If multiple books have the same number, we put them in a pile (bucket) on that spot on the bookshelf. This way, we can find any book quickly by looking at its number (hash address).
+
+[run 1] Q: what about its types
+  intents=['definition'] topic='Hashing' best_distance=0.2879999876022339 (214s)
+## HASHING
+
+📘 As per your notes, Hashing is a method used for data storage and retrieval, particularly in computer science. It involves using a mathematical function to map keys (like words or numbers) to integers, which are then used as indices in an array or table. There are two main types of hashing: Open Hashing (also known as Separate Chaining) and Closed Hashing (also known as Open Addressing).
+
+In Open Hashing, keys are stored in linked lists attached to cells of a hash table. Each list contains all the keys hashed to its cell. For instance, if we have a list of words: A, FOOL, AND, HIS, MONEY, ARE, SOON, PARTED, the hash function would map each word to an integer, and the linked list at that integer's position in the hash table would store the word.
+
+💡 Simple way to understand it: Think of a phone book where each name is a key. Instead of having a separate page for each name, we put all names starting with the same letter on the same page (cell in the hash table). If the page is full, we add a new page (linked list) for that letter. This is Open Hashing, where the linked lists act as pages for overflow.
+
+Key differences between Open Hashing and Closed Hashing:
+
+- In Open Hashing, when a cell is full, we create a new linked list (page) for overflow. In Closed Hashing, when a cell is full, we try to find an empty cell elsewhere in the table (using probing techniques).
+- Open Hashing uses linked lists for handling collisions (when two keys map to the same integer), while Closed Hashing uses various probing techniques to find an empty cell.
+- Open Hashing is generally easier to implement but can have higher space complexity due to the linked lists, while Closed Hashing can have higher time complexity due to probing.
+
+[run 1] Q: how many times has that appeared
+  intents=['frequency'] topic='Hashing' best_distance=None (24s)
+### 📊 EXAM FREQUENCY: Hashing
+
+- **Appearances:** Found across **5** examination sitting(s) (**10** total matching question(s)).
+- **Exam Years:** 2025, 2024, 2023, 2022, 2021
+
+*(Ask 'show me the exact questions' to see the verbatim questions asked.)*
+
+
+===== bleed_subjects =====
+[run 1] Q: explain hashing
+  intents=['definition'] topic='Hashing' best_distance=0.42899999022483826 (71s)
+## HASHING
+
+📘 As per your notes, Hashing is a method used for distributing keys among a one-dimensional array, known as a hash table. This distribution is achieved by computing a predefined function, called the hash function, for each key. The hash function assigns an integer between 0 and m-1, called the hash address, to a key. This hash address is used to locate the key in the hash table.
+
+The context discusses open hashing, also known as separate chaining, as one of the methods of hashing. In open hashing, each hash address in the hash table corresponds to a location where a key might be stored. If multiple keys have the same hash address, they are stored in a linked list at that location. This linked list is called a bucket.
+
+💡 Simple way to understand it:
+Think of a library with a large number of books. Each book has a unique title, which serves as its key. To store these books efficiently, we create a bookshelf (hash table) that can hold a certain number of books. To find a specific book quickly, we assign each book a unique number (hash address) based on its title. If multiple books have the same number, we put them in a pile (bucket) on that spot on the bookshelf. This way, we can find any book quickly by looking at its number (hash address).
+
+[run 1] Q: how many subjects in 1st sem
+  intents=curriculum topic=None best_distance=None (0s)
+## 📚 SUBJECTS
+
+### MCA Semester 1
+**8 subjects** (6 theory, 2 lab)
+- **ACP** — The Art of Computer Programming
+- **CA** — Computer Organization and Architecture
+- **DM** — Discrete Mathematics
+- **DS** — Data Structures
+- **OOP** — Object Oriented Programming
+- **TOC** — Theory of Computation
+- **DS LAB** — Data Structures Lab
+- **OOP LAB** — Object Oriented Programming with Java Lab
+
+*Based on the subjects present in your notes and question-paper folders — not an official scheme document.*
+
+
+===== bleed_never_asked =====
+[run 1] Q: array vs linked list
+  intents=['definition'] topic='Array vs Linked List' best_distance=0.4099999964237213 (155s)
+## ARRAY VS LINKED LIST
+
+📘 As per your notes, an array and a linked list are both data structures used to store and organize data, but they differ in their structure and access methods.
+
+An array is a collection of elements of the same data type, stored in contiguous memory locations. Each element can be accessed directly using an index, which is a number that corresponds to the position of the element in the array. For example, an array named 'salary' can store the salaries of multiple employees, and each salary can be accessed using an index that corresponds to the employee's position in the array.
+
+A linked list, on the other hand, is a collection of data items, called nodes, that are connected to each other through pointers. Each node contains a data item and a pointer to the next node in the list. The last node in the list, called the tail, points to a special node called NIL, which indicates the end of the list.
+
+💡 Simple way to understand it:
+
+Think of an array as a row of lockers in a school, where each locker has a unique number and contains a student's belongings. You can directly access a student's belongings by knowing their locker number. On the other hand, a linked list is like a chain of lockers where each locker has a key that points to the next locker in the chain. You need to follow the keys to find a specific student's belongings.
+
+Key differences:
+
+- Access method: Arrays can be accessed directly using an index, while linked lists require traversing through the pointers to find the desired data.
+- Memory allocation: Arrays require a fixed amount of memory to be allocated at the start, while linked lists can dynamically allocate memory as needed.
+- Insertion and deletion: Inserting or deleting an element in an array requires shifting other elements, which can be time-consuming for large arrays. In a linked list, insertion or deletion only requires changing the pointers, making it more efficient for dynamic data structures.
+- Efficiency: Arrays provide constant-time access to elements (O(1)), while linked lists require linear time (O(n)) to access an element at a specific position. However, linked lists provide constant-time insertion and deletion (O(1)), while arrays require linear time (O(n)) for these operations.
+
+[run 1] Q: which topics have never been asked in exams
+  intents=topicless topic=None best_distance=None (118s)
+Which topic would you like me to check? This question needs a specific topic name.
+
+
+===== bleed_rdbms =====
+[run 1] Q: how many times has database redundancy elimination appeared
+  intents=['frequency'] topic='Database Redundancy Elimination' best_distance=None (28s)
+I didn't find any questions matching **'Database Redundancy Elimination'** in the indexed question papers.
+
+[run 1] Q: has RDBMS come up
+  intents=['frequency'] topic='RDBMS' best_distance=None (112s)
+### 📊 EXAM FREQUENCY: RDBMS
+
+- **Appearances:** Found across **3** examination sitting(s) (**4** total matching question(s)).
+- **Exam Years:** 2026, 2024, 2023
+
+*(Ask 'show me the exact questions' to see the verbatim questions asked.)*
+
+
+===== frequency_consistent_quicksort =====
+[run 1] Q: how many times has quick sort appeared
+  intents=['frequency'] topic='Quick Sort' best_distance=None (24s)
+### 📊 EXAM FREQUENCY: Quick Sort
+
+- **Appearances:** Found across **5** examination sitting(s) (**6** total matching question(s)).
+- **Exam Years:** 2025, 2024, 2023, 2021, 2020
+
+*(Ask 'show me the exact questions' to see the verbatim questions asked.)*
+
+
+===== frequency_consistent_queue =====
+[run 1] Q: what is queue and how many times has it appeared
+  intents=['definition', 'frequency'] topic='Queue' best_distance=0.515999972820282 (114s)
+## QUEUE
+
+📘 As per your notes, a Queue is a linear data structure that follows the First-In-First-Out (FIFO) principle. This means that the first element that enters the queue is the first one to leave. The queue operates much like a line of people waiting at a bus stop, where new arrivals join at the end (rear) and departures occur at the front.
+
+💡 Simple way to understand it: Think of a line of people waiting for a roller coaster ride. People join the line at the back, and they get on the ride as they reach the front. Once someone leaves the ride, the next person in line moves up to the front.
+
+In the context of computer science, a queue can be based on some property of the process, such as memory. It is essential to note that deletions can only occur at the front of the queue, and insertions can only happen at the rear. This structure is useful in various scenarios, such as managing tasks in a multitasking operating system or handling network packets in a network device.
+
+Key differences between a queue and other linear data structures like stacks:
+- In a stack, elements are added and removed from the same end (top), while in a queue, elements are added at the rear and removed from the front.
+- A stack follows the Last-In-First-Out (LIFO) principle, while a queue follows the FIFO principle.
+- Stacks are primarily used for function call and return mechanisms, while queues are used for managing tasks and network traffic.
+
+---
+
+### 📊 EXAM HISTORY
+- **Frequency:** Appeared across **5** examination sitting(s) / paper(s) (**7** total question(s) found).
+- **Exam Years:** 2025, 2024, 2023, 2022, 2020
+
+**Previous Exam Questions:**
+1. [**2025** — 4 Marks] Explain underflow and overflow conditions with respect to stack and queues. *((DS) Data Structures.pdf)*
+2. [**2024** — 5 Marks] Write a program to perform insertion and deletion operations on a simple queue. *((DS) Data Structures.pdf)*
+3. [**2023** — 5 Marks] Define a Queue. Explain the insert and delete operation in circular queue. *((DS) Data Structures.pdf)*
+4. [**2022** — 6 Marks] Write an algorithm to insert and delete the elements from Circular Queue. *((DS) Data Structures.pdf)*
+5. [**2020** — 6 Marks] Explain the array implementation of ordinary queue for insertion and deletion. *((DS) Data Structures.pdf)*
+6. [**2020** — 4 Marks] Explain the various types of queues with example. *((DS) Data Structures.pdf)*
+7. [**2020** — 4 Marks] Write a short note on Multilevel Feedback-Queue scheduling. *((OS) Operating Systems.pdf)*
+
+---
+
+### 💡 STUDY & REVISION GUIDANCE
+- **Exam Priority Tier:** **HIGH EXAM PRIORITY (Repeated Topic)**
+- **Evidence-Based Recommendation:** **'Queue'** has appeared repeatedly across **5** separate exam sittings (2025, 2024, 2023, 2022, 2020). Examiners frequently test this topic. Ensure you can write full, structured definitions, draw neat architectural or functional diagrams, and clearly explain operational workflows.
+- **Marks Pattern:** Asked as 4 marks × 3, 5 marks × 2, 6 marks × 2.
+
+> [!NOTE]
+> *Study guidance is computed strictly from your university's indexed examination papers and syllabus documents. It distinguishes observed factual trends from preparation advice.*
+
+
+===== hinglish_frequency =====
+[run 1] Q: queue kitni baar aaya hai exam me
+  intents=['frequency'] topic='Queue' best_distance=None (23s)
+### 📊 EXAM FREQUENCY: Queue
+
+- **Appearances:** Found across **5** examination sitting(s) (**7** total matching question(s)).
+- **Exam Years:** 2025, 2024, 2023, 2022, 2020
+
+*(Ask 'show me the exact questions' to see the verbatim questions asked.)*
+
+
+===== exact_questions_clean =====
+[run 1] Q: show all 10-mark questions on normalization
+  intents=['exact_questions'] topic='Normalization' best_distance=None (31s)
+### 📊 EXAM HISTORY
+- **Frequency:** Appeared in **2** distinct examination paper(s) (**2** total question(s) found).
+- **Exam Years:** 2026, 2025
+
+**Previous Exam Questions:**
+1. [**2026** — 6 Marks] What is data normalization ?. What is the advantage of normalization as a preprocessing technique ?. Apply Min-Max Normalization to scale the marks in the range [0,1]. Apply Z-score Normalization (Assume mean = 70 and standard deviation = 20). *((BDA) Big Data & Analytics.pdf)*
+2. [**2025** — 10 Marks] What is normalization ? Explain briefly various types of normal forms with examples. *((DBMS) Database Management Systems.pdf)*
+
+
+===== ranking_scoped =====
+[run 1] Q: what is the most frequently asked question in data structures
+  intents=['ranking'] topic='Data Structures' best_distance=None (96s)
+### 🏆 MOST FREQUENTLY ASKED QUESTIONS & REPEATED TOPICS (DS)
+
+1. **Write a note on Hashing.** [3 Marks]  
+   - **Appearances:** 5 exam sitting(s) (15 time(s)) | Years: 2025, 2024, 2023
+2. **Explain different types of ROM.** [6 Marks]  
+   - **Appearances:** 5 exam sitting(s) (7 time(s)) | Years: 2025, 2024, 2022
+3. **Write short notes on : Waltz algorithm.** [5 Marks]  
+   - **Appearances:** 4 exam sitting(s) (7 time(s)) | Years: 2026, 2025, 2024
+4. **At what time between 4 and 5 o’clock will the hands of a clock be at right angle ?** [6 Marks]  
+   - **Appearances:** 4 exam sitting(s) (4 time(s)) | Years: 2025, 2024, 2023
+5. **Write an algorithm to sort the numbers using selection sort. Sort the numbers {1, 0, 6, 5, 4, 9, 2, 3} using your algorithm.** [10 Marks]  
+   - **Appearances:** 4 exam sitting(s) (4 time(s)) | Years: 2024, 2023, 2022
+6. **Explain distributed memory MIMD architecture with neat diagram.** [10 Marks]  
+   - **Appearances:** 4 exam sitting(s) (4 time(s)) | Years: 2025, 2024, 2022
+7. **If A, B and C are three sets, then prove that A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C).** [3 Marks]  
+   - **Appearances:** 4 exam sitting(s) (4 time(s)) | Years: 2025, 2023, 2022
+8. **What is the expected value of the sum of the numbers that appear when a pair of fair dice is rolled ?** [6 Marks]  
+   - **Appearances:** 4 exam sitting(s) (4 time(s)) | Years: 2025, 2023, 2022
+9. **The probability distribution of a discrete random variable is given below : x: –2 –1 0 1 2 3 ; P(x): 0.1 K 0.2 2K 0.3 K. Find : i) K ii) Mean and iii) Variance.** [5 Marks]  
+   - **Appearances:** 4 exam sitting(s) (4 time(s)) | Years: 2025, 2023, 2022
+10. **Prove that for any propositions p, q and r the compound proposition [(p→q)∧(q→r)]→(p→r) is a tautology.** [5 Marks]  
+   - **Appearances:** 4 exam sitting(s) (4 time(s)) | Years: 2025, 2024, 2023
+
+
+===== ranking_other_phrasing =====
+[run 1] Q: rank the top 5 topics likely to appear in the exam
+  intents=['ranking'] topic='Ranking' best_distance=None (25s)
+### 🏆 MOST FREQUENTLY ASKED QUESTIONS & REPEATED TOPICS (DS)
+
+1. **Define data structure and explain the operations performed on the linear data structure.** [6 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2022, 2021
+2. **Convert the following infix expression to postfix expression using stack A – (B/C)*D + (E^F).** [6 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2022, 2021
+3. **Write an algorithm for PUSH and POP operations on stack.** [6 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2022, 2021
+4. **Write an algorithm to insert an element in the beginning of the linked list.** [6 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2022, 2021
+5. **What is Adjacency matrix of graph ? Write the adjacency matrix for the given graph.** [6 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2022, 2021
+6. **What is 2-D array ? Write a program to check whether the matrix is sparse matrix or not.** [4 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2025, 2022
+7. **Write an algorithm for insertion and deletion operations for a circular linked list.** [5 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2024, 2022
+8. **Explain the technique of collision resolution with open addressing.** [5 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2024, 2022
+9. **Define data structures. Explain the classification of data structures.** [6 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2024, 2023
+10. **What are Asymptotic Notations ? Explain with an example.** [6 Marks]  
+   - **Appearances:** 2 exam sitting(s) (2 time(s)) | Years: 2024, 2023
+
+
+===== trend_vs_frequency_same_topic =====
+[run 1] Q: has binary search tree been asked every year or only sometimes
+  intents=['trend'] topic='Binary Search Tree' best_distance=None (25s)
+### 📈 EXAM TREND: Binary Search Tree
+- **Overall Trend:** **STABLE**
+- **Yearly Appearances:**
+  - **2020:** 2 question(s)
+  - **2021:** 0 question(s)
+  - **2022:** 0 question(s)
+  - **2023:** 1 question(s)
+  - **2024:** 0 question(s)
+  - **2025:** 2 question(s)
+
+
+===== lab_binary_search =====
+[run 1] Q: write a program for binary search
+  intents=['lab_program'] topic='write program binary search' best_distance=0.30799999833106995 (173s)
+## WRITE PROGRAM BINARY SEARCH
+
+ // C program for binary search
+
+```c
+#include <stdio.h>
+
+int binarySearch(int arr[], int l, int r, int x) {
+    if (r >= l) {
+        int mid = l + (r - l) / 2;
+
+        // If the element is present at the middle itself
+        if (arr[mid] == x)
+            return mid;
+
+        // If element is smaller than mid, it can only be present in left subarray
+        if (arr[mid] > x)
+            return binarySearch(arr, l, mid - 1, x);
+
+        // Else the element can only be present in right subarray
+        return binarySearch(arr, mid + 1, r, x);
+    }
+
+    // We reach here when element is not present in array
+    return -1;
+}
+
+// Driver program to test above function
+int main() {
+    int arr[] = {2, 3, 4, 10, 40};
+    int x = 10;
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int result = binarySearch(arr, 0, n - 1, x);
+    (result == -1) ? printf("Element is not present in array")
+                   : printf("Element is present at index %d", result);
+    return 0;
+}
+```
+
+This program implements the binary search algorithm as described in the provided context. It searches for a given number in a sorted array and returns the index of the number if found, otherwise it returns -1. The binary search algorithm is recursive and compares the given number with the middle element of the array, then recursively searches the appropriate half of the array.
+
+
+===== lab_linked_list =====
+[run 1] Q: write a program to insert and delete elements in a singly linked list
+  intents=['lab_program'] topic='write program insert delete elements singly linked list' best_distance=0.5839999914169312 (212s)
+## WRITE PROGRAM INSERT DELETE ELEMENTS SINGLY LINKED LIST
+
+ // C program: Insert and delete elements in a singly linked list
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void insertAtHead(Node** head, int data) {
+    Node* newNode = createNode(data);
+    newNode->next = *head;
+    *head = newNode;
+}
+
+void insertAtTail(Node** head, int data) {
+    Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    Node* current = *head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = newNode;
+}
+
+Node* findNode(Node* head, int data) {
+    Node* current = head;
+    while (current != NULL && current->data != data) {
+        current = current->next;
+    }
+    return current;
+}
+
+void deleteNode(Node** head, int data) {
+    if (*head == NULL) {
+        return;
+    }
+    if ((*head)->data == data) {
+        Node* temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+    Node* current = *head;
+    while (current->next != NULL && current->next->data != data) {
+        current = current->next;
+    }
+    if (current->next == NULL) {
+        return;
+    }
+    Node* temp = current->next;
+    current->next = current->next->next;
+    free(temp);
+}
+
+void printList(Node* head) {
+    Node* current = head;
+    while (current != NULL) {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    Node* head = NULL;
+    insertAtHead(&head, 6);
+    insertAtTail(head, 1);
+    insertAtTail(head, 16);
+    insertAtTail(head, 8);
+    insertAtTail(head, 27);
+    printList(head);
+
+    Node* nodeToDelete = findNode(head, 16);
+    deleteNode(&head, 16);
+    printList(head);
+
+    return 0;
+}
+```
+
+
+===== diagram_request_honest =====
+[run 1] Q: draw the diagram of AVL tree rotation
+  intents=diagram_request topic=None best_distance=None (0s)
+Diagrams aren't available in this version of uniRAG — I can only give text answers. Try asking me to *explain* the same topic in words (for example, "explain AVL tree rotations").
+
+
+===== curriculum_count =====
+[run 1] Q: how many subjects in 1st sem mca
+  intents=curriculum topic=None best_distance=None (0s)
+## 📚 SUBJECTS
+
+### MCA Semester 1
+**8 subjects** (6 theory, 2 lab)
+- **ACP** — The Art of Computer Programming
+- **CA** — Computer Organization and Architecture
+- **DM** — Discrete Mathematics
+- **DS** — Data Structures
+- **OOP** — Object Oriented Programming
+- **TOC** — Theory of Computation
+- **DS LAB** — Data Structures Lab
+- **OOP LAB** — Object Oriented Programming with Java Lab
+
+*Based on the subjects present in your notes and question-paper folders — not an official scheme document.*
+
+
+===== curriculum_list =====
+[run 1] Q: what are the subjects in 3rd sem
+  intents=curriculum topic=None best_distance=None (0s)
+## 📚 SUBJECTS
+
+### MCA Semester 3 — 7 subjects
+- **BDA** — Big Data & Analytics
+- **CC** — Cloud Computing
+- **CNS** — Cryptography and Network Security
+- **ML** — Machine Learning
+- **QTR** — Quantitative, Teaching and Research Aptitude
+- **RM** — Research Methodology
+- **WP** — Web Programming_All_Question_Papers
+
+*Based on the subjects present in your notes and question-paper folders — not an official scheme document.*
+
+
+===== curriculum_labs =====
+[run 1] Q: which lab in 2nd sem
+  intents=curriculum topic=None best_distance=None (0s)
+## 🧪 LAB SUBJECTS
+
+### MCA Semester 2 — 2 lab subjects
+- **DBMS LAB** — Database Management Systems Lab
+- **UNIX LAB** — Unix Programming Lab
+
+*Based on the subjects present in your notes and question-paper folders — not an official scheme document.*
+
+
+===== invalid_input =====
+[run 1] Q: ?
+  intents=invalid_input topic=None best_distance=None (0s)
+I didn't catch an actual question there — could you type what you'd like to ask?
+
+
+===== known_risk_quicksort_complexity =====
+[run 1] Q: what is the time complexity of quick sort
+  intents=['definition'] topic='Quick Sort' best_distance=0.34599998593330383 (72s)
+## QUICK SORT
+
+📘 The time complexity of Quick Sort is O(n log n) in all cases. This algorithm works by partitioning the array into two halves, recursively sorting each half, and then merging them to get the original array sorted. The number of key comparisons is very close to the theoretical minimum, making it efficient. However, it has a significant extra storage requirement due to the use of an auxiliary stack.
+
+💡 Think of Quick Sort as a fast assembly line that divides the work into smaller tasks (sorting halves), each of which is then handled by a worker (recursive calls). The time it takes to sort the entire line (array) is proportional to the number of tasks multiplied by the average time taken to complete each task (log n), resulting in a total time of O(n log n).
+
+
+===== determinism_stack_2023 =====
+[run 1] Q: show the exact question on stacks in 2023
+  intents=['exact_questions'] topic='Stack' best_distance=None (24s)
+### 📊 EXAM HISTORY
+- **Frequency:** Appeared in **1** distinct examination paper(s) (**2** total question(s) found).
+- **Exam Years:** 2023
+- **Coverage:** asked in **1** of **6** sittings on record for DS (17%).
+
+**Previous Exam Questions:**
+1. [**2023** — 6 Marks] What is a Polish Expression ? Evaluate the following postfix expression using a stack table. 2 3 * 4 5 + * *((DS) Data Structures.pdf)*
+2. [**2023** — 5 Marks] Define stack. Explain the PUSH and POP operations of stack with an example. *((DS) Data Structures.pdf)*
+
+[run 2] Q: show the exact question on stacks in 2023
+  intents=['exact_questions'] topic='Stack' best_distance=None (23s)
+### 📊 EXAM HISTORY
+- **Frequency:** Appeared in **1** distinct examination paper(s) (**2** total question(s) found).
+- **Exam Years:** 2023
+- **Coverage:** asked in **1** of **6** sittings on record for DS (17%).
+
+**Previous Exam Questions:**
+1. [**2023** — 6 Marks] What is a Polish Expression ? Evaluate the following postfix expression using a stack table. 2 3 * 4 5 + * *((DS) Data Structures.pdf)*
+2. [**2023** — 5 Marks] Define stack. Explain the PUSH and POP operations of stack with an example. *((DS) Data Structures.pdf)*

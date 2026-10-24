@@ -1,0 +1,326 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: TOC
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 3 exam sittings [2025, 2022, 2021]
+Question: Write short notes on Rice theorem and Halting problem.
+----------------------------------------------------------------------
+Model Answer:
+Rice's Theorem & The Halting Problem (6 Marks)
+
+1. Rice's Theorem:
+- Statement: Any non-trivial semantic property of the language recognized by a Turing machine is Undecidable.
+- A property P of recursively enumerable languages is non-trivial if at least one RE language satisfies P and at least one RE language does not satisfy P.
+- Implication: Questions like "Does Turing machine M accept an empty language?", "Does M accept a regular language?", or "Does M accept all strings?" cannot be solved by any general algorithm.
+
+2. The Halting Problem of Turing Machine:
+- Statement: Given a description of an arbitrary Turing machine M and input w, determine whether M will eventually halt on input w or loop forever:
+  H = { < M, w > | M halts on input w }
+- Alan Turing's Proof (by Contradiction / Diagonalization):
+  - Assume a decider H exists that returns TRUE if M(w) halts and FALSE if it loops.
+  - Construct a new machine D: On input < M >, run H(< M, < M > >). If H says halts, D loops forever; if H says loops, D halts immediately.
+  - Now run D on its own description: D(< D >).
+    - If D(< D >) halts => D must loop.
+    - If D(< D >) loops => D must halt.
+  - A logical contradiction! Thus, no such decider H can exist. The Halting Problem is Undecidable.
+
+======================================================================
+
+QUESTION #2  (6 Marks)  -  asked in 3 exam sittings [2023, 2022, 2021]
+Question: Convert the following NFA into its equivalent DFA.
+----------------------------------------------------------------------
+Model Answer:
+Conversion of an NFA to an equivalent DFA (Subset Construction) (6 Marks)
+
+Note: the NFA diagram of this question is not part of the extracted text, so the standard method is given with a worked example. Apply the same steps to the given NFA.
+
+Method:
+1. Start state of the DFA = {q0}, where q0 is the NFA start state.
+2. For every DFA state S (a set of NFA states) and every input symbol a, compute delta'(S, a) = union of delta(q, a) for all q in S.
+3. Every new set obtained becomes a new DFA state; repeat until no new set appears. Only reachable sets are built (at most 2^n).
+4. A DFA state is final if it contains at least one NFA final state.
+5. The empty set (if reached) is the dead/trap state.
+
+Example: NFA for strings ending in 01. States q0, q1, q2; start q0; final q2.
+delta(q0,0) = {q0,q1}, delta(q0,1) = {q0}, delta(q1,1) = {q2}, all other moves are empty.
+
+DFA table:
+State          on 0         on 1
+{q0}           {q0,q1}      {q0}
+{q0,q1}        {q0,q1}      {q0,q2}
+{q0,q2} (final) {q0,q1}     {q0}
+
+Result: a DFA with 3 states (instead of the 2^3 = 8 possible), accepting the same language.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Write a short note on Halting problem of Turing Machine.
+----------------------------------------------------------------------
+Model Answer:
+Halting Problem of a Turing Machine (6 Marks)
+
+Statement: Given the description <M> of an arbitrary Turing machine M and an input string w, decide whether M halts on w.
+HALT = { <M, w> | M halts on input w }
+
+The Halting Problem is undecidable: no Turing machine (algorithm) can answer this correctly for every pair <M, w>. HALT is recursively enumerable (simulate M on w and accept if it halts) but not recursive.
+
+Proof (by contradiction / diagonalization):
+1. Assume a decider H exists: H(<M, w>) = accept if M halts on w, reject otherwise.
+2. Build a machine D that on input <M> runs H on <M, <M>>. If H accepts (M halts on <M>), D loops forever. If H rejects, D halts.
+3. Run D on its own description <D>:
+   - if D halts on <D>, then by construction D loops on <D>;
+   - if D loops on <D>, then by construction D halts on <D>.
+4. Both cases contradict, so H cannot exist.
+
+Significance: it is the first proven undecidable problem. Other problems are shown undecidable by reducing the Halting Problem to them (for example the Rice's theorem properties, emptiness of a Turing machine language, and equivalence of two Turing machines).
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Minimize the following DFA.
+----------------------------------------------------------------------
+Model Answer:
+Minimization of a DFA (Table-Filling / Myhill-Nerode method) (6 Marks)
+
+Note: the DFA diagram of this question is not part of the extracted text, so the standard method is given with a worked example. Apply the same steps to the given DFA.
+
+Method:
+1. Remove unreachable states.
+2. List all pairs of states (p, q). Mark a pair as distinguishable if one state is final and the other is not.
+3. Repeat: mark (p, q) if for some input symbol a the pair (delta(p,a), delta(q,a)) is already marked.
+4. Stop when no new pair is marked. Unmarked pairs are equivalent; merge them into one state.
+5. Build the minimal DFA from the merged classes (start state = class of the old start state, final = classes of final states).
+
+Example: states q0 (start), q1, q2, q3 (final). q0 -0-> q1, q0 -1-> q2; q1 and q2 go to q3 on both 0 and 1; q3 loops on 0 and 1.
+- Step 2 marks (q0,q3), (q1,q3), (q2,q3).
+- (q0,q1): on 0 goes to (q1,q3), which is marked, so mark it. (q0,q2): on 0 goes to (q1,q3), marked, so mark it.
+- (q1,q2): on 0 and on 1 goes to (q3,q3), the same state, so it stays unmarked: q1 is equivalent to q2.
+
+Minimal DFA: {q0}, {q1,q2}, {q3}, with 3 states instead of 4.
+
+======================================================================
+
+QUESTION #5  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Convert the following grammar into equivalent CNF. S → 0A/1B A → 0AA/1S/1 B → 1BB/0S/0.
+----------------------------------------------------------------------
+Model Answer:
+Conversion of the grammar into Chomsky Normal Form (6 Marks)
+
+Given: S -> 0A | 1B,  A -> 0AA | 1S | 1,  B -> 1BB | 0S | 0
+
+CNF allows only productions of the form X -> YZ (two variables) or X -> a (one terminal).
+
+Step 1: There are no epsilon-productions, no unit productions and no useless symbols (S, A, B all generate strings and are reachable).
+
+Step 2: Remove terminals from bodies that also contain variables. Add C0 -> 0 and C1 -> 1:
+S -> C0 A | C1 B
+A -> C0 AA | C1 S | 1
+B -> C1 BB | C0 S | 0
+(A -> 1 and B -> 0 are already in CNF.)
+
+Step 3: Break bodies longer than two variables. Add D1 -> AA and D2 -> BB:
+A -> C0 D1,  B -> C1 D2
+
+Equivalent grammar in CNF:
+S -> C0 A | C1 B
+A -> C0 D1 | C1 S | 1
+B -> C1 D2 | C0 S | 0
+D1 -> AA
+D2 -> BB
+C0 -> 0
+C1 -> 1
+
+======================================================================
+
+QUESTION #6  (10 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Define Recursive and Recursively enumerable languages and prove that the union of two recursive languages is recursive.
+----------------------------------------------------------------------
+Model Answer:
+Recursive and Recursively Enumerable Languages (10 Marks)
+
+Recursive language (decidable): a language L is recursive if there is a Turing machine M that halts on every input and accepts exactly the strings of L (it accepts strings in L and rejects strings not in L).
+
+Recursively enumerable (RE) language: a language L is RE if there is a Turing machine M that accepts exactly the strings of L. On a string not in L, M may reject or loop forever.
+
+Relation: every recursive language is RE, but not every RE language is recursive. For example, the Halting language HALT is RE but not recursive.
+
+Theorem: the union of two recursive languages is recursive.
+
+Proof: Let L1 and L2 be recursive. Then there are Turing machines M1 and M2 that decide L1 and L2, and both halt on every input.
+Construct M. On input w:
+1. Run M1 on w. If M1 accepts, accept.
+2. Otherwise M1 has rejected (it always halts). Run M2 on w. If M2 accepts, accept; otherwise reject.
+
+Correctness:
+- M halts on every input, because M1 and M2 each halt.
+- M accepts w exactly when w is in L1 or w is in L2, that is, when w is in the union of L1 and L2.
+
+So M decides L1 union L2, and the union is recursive. (Recursive languages are also closed under intersection and complement.)
+
+======================================================================
+
+QUESTION #7  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Explain DFA and NFA with suitable examples.
+----------------------------------------------------------------------
+Model Answer:
+DFA and NFA with Examples (6 Marks)
+
+A finite automaton is a 5-tuple (Q, Sigma, delta, q0, F): states, input alphabet, transition function, start state, set of final states.
+
+DFA (Deterministic Finite Automaton): for every state and input symbol there is exactly one next state, delta: Q x Sigma -> Q.
+Example: strings over {0,1} with an even number of 0s. States q0 (start, final) and q1.
+delta(q0,0) = q1, delta(q0,1) = q0, delta(q1,0) = q0, delta(q1,1) = q1.
+
+NFA (Nondeterministic Finite Automaton): a state may have zero, one or several next states for a symbol, delta: Q x Sigma -> 2^Q (and moves on epsilon are allowed in an epsilon-NFA). A string is accepted if at least one path ends in a final state.
+Example: strings over {0,1} ending in 01. States q0 (start), q1, q2 (final).
+delta(q0,0) = {q0,q1}, delta(q0,1) = {q0}, delta(q1,1) = {q2}.
+
+Key differences:
+- A DFA has exactly one move per symbol; an NFA may have many or none.
+- An NFA is usually smaller and easier to design; a DFA is easier to implement (one path).
+- Both accept exactly the regular languages. Every NFA with n states can be converted to an equivalent DFA with at most 2^n states (subset construction).
+
+======================================================================
+
+QUESTION #8  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: State and prove pumping lemma for regular languages and prove that the following language is not regular. L = {ωω|ω ∈ {a, b}*}
+----------------------------------------------------------------------
+Model Answer:
+Pumping Lemma for Regular Languages (6 Marks)
+
+Statement: If L is a regular language, there is a constant p >= 1 (the pumping length) such that every string w in L with |w| >= p can be written as w = xyz where
+1. |y| >= 1,
+2. |xy| <= p,
+3. x y^i z is in L for every i >= 0.
+
+Proof: Let a DFA with p states accept L. Take w in L with |w| >= p. While reading the first p symbols the DFA visits p + 1 states, so by the pigeonhole principle some state repeats. Let x be the part read before the first visit of that state, y the part read in the loop back to it, and z the rest. The loop y can be repeated any number of times, or skipped, and the DFA still ends in the same final state. Hence x y^i z is in L.
+
+To prove L = { ww | w in {a,b}* } is not regular:
+1. Assume L is regular with pumping length p.
+2. Choose s = a^p b a^p b. It is in L (w = a^p b) and |s| >= p.
+3. Since |xy| <= p, y lies inside the first block of a's: y = a^k with k >= 1.
+4. Pump with i = 2: the string becomes a^(p+k) b a^p b.
+5. This string has exactly two b's, so if it were of the form uu, each u would contain one b and end with it. The first u would be a^(p+k) b, of length p+k+1, and the second u = a^p b has length p+1. These differ because k >= 1, so the string is not of the form uu.
+6. So x y^2 z is not in L, contradicting the lemma. Hence L is not regular.
+
+======================================================================
+
+QUESTION #9  (5 Marks)  -  asked in 2 exam sittings [2025, 2022]
+Question: Check whether the following grammar is ambiguous. S → iCtS/iCtSeS/a C → b
+----------------------------------------------------------------------
+Model Answer:
+Ambiguity of the grammar (5 Marks)
+
+Grammar: S -> iCtS | iCtSeS | a,  C -> b
+(i = if, t = then, e = else; this is the classic dangling-else grammar.)
+
+A grammar is ambiguous if some string has two or more different parse trees (equivalently, two different leftmost derivations).
+
+Take the string w = ibtibtaea.
+
+Leftmost derivation 1 (the else belongs to the inner if):
+S => iCtS => ibtS => ibt iCtSeS => ibtibtSeS => ibtibtaeS => ibtibtaea
+
+Leftmost derivation 2 (the else belongs to the outer if):
+S => iCtSeS => ibtSeS => ibt iCtS eS => ibtibtSeS => ibtibtaeS => ibtibtaea
+
+The two derivations use different productions at the first step (S -> iCtS versus S -> iCtSeS), so they give two different parse trees for the same string.
+
+Therefore the grammar is ambiguous.
+
+======================================================================
+
+QUESTION #10  (6 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Convert the following grammar into PDA. S → aABC A → aB | a B → bA | b C → a
+----------------------------------------------------------------------
+Model Answer:
+Conversion of a CFG into a PDA (6 Marks)
+
+Given: S -> aABC,  A -> aB | a,  B -> bA | b,  C -> a
+
+Construction (acceptance by empty stack): M = ({q}, {a,b}, {S,A,B,C,a,b}, delta, q, S), with start stack symbol S.
+1. For every production X -> alpha, add delta(q, epsilon, X) containing (q, alpha). The variable on top of the stack is replaced by the right-hand side.
+2. For every terminal t, add delta(q, t, t) = {(q, epsilon)}. The input symbol is matched with the top of the stack and popped.
+
+Transitions:
+delta(q, epsilon, S) = {(q, aABC)}
+delta(q, epsilon, A) = {(q, aB), (q, a)}
+delta(q, epsilon, B) = {(q, bA), (q, b)}
+delta(q, epsilon, C) = {(q, a)}
+delta(q, a, a) = {(q, epsilon)}
+delta(q, b, b) = {(q, epsilon)}
+
+Example: the string aaba, derived as S => aABC => aaBC => aabC => aaba.
+Stack (top at left): S -> aABC -> read a -> ABC -> aBC -> read a -> BC -> bC -> read b -> C -> a -> read a -> empty.
+The stack is empty after the whole input is read, so the string is accepted.
+
+======================================================================
+
+QUESTION #11  (6 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Consider the given ε-NFA. Convert to DFA. δN / ε / a / b / c : →p Φ {p} {q} {r}; q {p} {q} {r} Φ; *r {q} {r} Φ {p}
+----------------------------------------------------------------------
+Model Answer:
+Conversion of the epsilon-NFA to a DFA (6 Marks)
+
+Transition table (start state p, final state r):
+        epsilon   a     b     c
+->p     {}        {p}   {q}   {r}
+q       {p}       {q}   {r}   {}
+*r      {q}       {r}   {}    {p}
+
+Step 1: epsilon-closures
+ECLOSE(p) = {p}
+ECLOSE(q) = {p, q}   (q goes to p on epsilon)
+ECLOSE(r) = {p, q, r}   (r goes to q, and q goes to p)
+
+Step 2: subset construction. Start state = ECLOSE(p) = {p}. New move = ECLOSE of the union of the moves of every state in the set.
+A = {p}:
+  a: ECLOSE{p} = {p} = A
+  b: ECLOSE{q} = {p,q} = B
+  c: ECLOSE{r} = {p,q,r} = C
+B = {p,q}:
+  a: ECLOSE{p,q} = {p,q} = B
+  b: ECLOSE{q,r} = {p,q,r} = C
+  c: ECLOSE{r} = {p,q,r} = C
+C = {p,q,r}:
+  a: ECLOSE{p,q,r} = C
+  b: ECLOSE{q,r} = C
+  c: ECLOSE{p,r} = C
+
+Step 3: final states = sets containing r, so only C is final.
+
+Resulting DFA (start A, final C):
+State    a    b    c
+->A      A    B    C
+B        B    C    C
+*C       C    C    C
+
+======================================================================
+
+QUESTION #12  (5 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: State and prove pumping lemma for context free languages. Show that L = {aⁿbⁿcⁿ/n>=1} is not context free.
+----------------------------------------------------------------------
+Model Answer:
+Pumping Lemma for Context-Free Languages (5 Marks)
+
+Statement: If L is a context-free language, there is a constant p >= 1 such that every string z in L with |z| >= p can be written as z = u v w x y where
+1. |vwx| <= p,
+2. |vx| >= 1 (v and x are not both empty),
+3. u v^i w x^i y is in L for every i >= 0.
+
+Proof idea: take a grammar for L in Chomsky Normal Form with k variables and let p = 2^k. A parse tree of a string of length >= p has height more than k, so some root-to-leaf path contains a variable A twice. Then A =>* vAx and A =>* w, so the part generated by the upper A can be repeated (v and x pumped together) or removed, and the result is still in L.
+
+To show L = { a^n b^n c^n | n >= 1 } is not context free:
+1. Assume L is context free with pumping length p.
+2. Choose z = a^p b^p c^p, which is in L with |z| >= p.
+3. Since |vwx| <= p, the part vwx cannot contain both a's and c's (the b's in between are p symbols long). It lies in one block or spans two neighbouring blocks.
+4. Pump with i = 2. Because |vx| >= 1, at least one letter increases in number. At most two of the three letters appear in vx, so the third keeps its old count.
+5. So the counts of a, b and c are no longer equal and u v^2 w x^2 y is not in L, a contradiction.
+
+Hence L is not context free.
+
+======================================================================

@@ -1,0 +1,236 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: CA
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (10 Marks)  -  asked in 4 exam sittings [2025, 2024, 2022, 2021]
+Question: Explain distributed memory MIMD architecture with neat diagram.
+----------------------------------------------------------------------
+Model Answer:
+DISTRIBUTED MEMORY MIMD ARCHITECTURE
+
+📘 Distributed Memory MIMD Architecture:
+
+Distributed Memory MIMD (Multiple Instruction Multiple Data) architecture is a type of parallel computing system where each processor has its own private memory. This architecture allows multiple processors to work on different tasks simultaneously, improving the overall performance.
+
+In a distributed memory system, each processor is connected to a local memory, and these processors are interconnected through a communication network. Each processor can access its own local memory directly but needs to communicate with other processors to share data or instructions.
+
+However, it does not specifically depict a distributed memory MIMD architecture.
+
+To visualize a distributed memory MIMD system, imagine a group of workers (processors) each with their own toolbox (local memory) working on different tasks in a factory (communication network). They can work independently but need to share tools or information with others when necessary.
+
+💡 Simple way to understand it:
+
+Think of a distributed memory MIMD system as a factory where each worker (processor) has their own workbench (local memory) and tools. They can work on different tasks (microinstructions) independently, but they need to share tools (data) with other workers when necessary, which they do through a communication network (factory).
+
+======================================================================
+
+QUESTION #2  (6 Marks)  -  asked in 3 exam sittings [2025, 2024, 2021]
+Question: Differentiate CISC and RISC.
+----------------------------------------------------------------------
+Model Answer:
+CISC AND RISC
+
+📘 As per your notes, a Computer System can be classified as either a Complex Instruction Set Computer (CISC) or a Reduced Instruction Set Computer (RISC). The main difference between the two lies in the complexity and number of instructions they can handle.
+
+CISC processors can execute complex instructions in a single clock cycle, but these instructions are more complex and require more resources. On the other hand, RISC processors can only execute simpler instructions, but they can do so in a single clock cycle, and the simpler instructions require fewer resources.
+
+CISC uses many segments in its pipeline, with the longest segment requiring two or more clock cycles. In contrast, RISC can achieve pipeline segments, requiring just one clock cycle.
+
+💡 Simple way to understand it: Think of CISC as a chef who can prepare complex dishes quickly but requires more ingredients and tools. RISC, on the other hand, is like a chef who can only prepare simple dishes but can do so quickly and with fewer ingredients and tools.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 3 exam sittings [2025, 2024, 2021]
+Question: Explain different instruction formats with an example for each.
+----------------------------------------------------------------------
+Model Answer:
+INSTRUCTION FORMATS
+
+📘 As per your notes, Instruction Formats refer to the structure of computer instructions, which are divided into fields for easier processing. The most common fields include the Operation Code (OpCode), which specifies the operation to be performed.
+
+1. Sequence Instruction: These are simple instructions executed in a linear fashion, one after the other. They don't depend on any conditions or loops. For example, in a simple program that adds two numbers, the sequence of instructions might be: Load Number 1, Load Number 2, Add, Store Result.
+
+2. Conditional Instruction: These instructions perform an operation only if a certain condition is met. They often include a test (comparison or logical operation) and a jump instruction to execute the operation if the test is true. For example, an instruction might check if a variable is greater than zero, and if so, jump to an instruction that increments the variable.
+
+3. Loop Instruction: These instructions repeat a sequence of instructions until a certain condition is met. They typically include a test, a jump instruction to the start of the loop, and the sequence of instructions to be repeated. For example, an instruction might loop through an array, performing an operation on each element until it reaches the end of the array.
+
+4. Jump Instruction: These instructions change the sequence of instructions to be executed. They can be used to jump to a specific instruction, to a label, or to a subroutine. For example, an instruction might jump to a subroutine to perform a complex calculation, and then return to the main sequence of instructions.
+
+💡 Simple way to understand it: Think of instruction formats as a recipe book for a computer. Each recipe (instruction) has specific steps (fields) that tell the computer what to do. Sequence instructions are like following a recipe from start to finish, conditional instructions are like following a recipe but only if a certain ingredient is available, loop instructions are like repeating a step in a recipe until a certain condition is met, and jump instructions are like skipping to a different recipe altogether.
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 3 exam sittings [2025, 2024, 2021]
+Question: Explain different types of ROM.
+----------------------------------------------------------------------
+Model Answer:
+ROM
+
+📘 As per your notes, ROM (Read-Only Memory) is a type of memory used in computer systems that stores coded information which cannot be altered or overwritten. There are two major types of ROM:
+
+1. Mask Programmed ROM (MPROM): This type of ROM is programmed during the manufacturing process of the chip. The patterns are etched onto the chip using a photolithographic process, making it impossible to change the stored data.
+
+2. Programmable Read-Only Memory (PROM): Unlike MPROM, PROM can be programmed after the manufacturing process. This is done by using a special device called a programmer that applies a high voltage to specific fuses within the chip, thereby making those memory locations permanent. Once the fuses are blown, the data in those locations cannot be changed.
+
+💡 Simple way to understand it: Think of ROM as a book that cannot be edited once it's printed. Mask Programmed ROM is like a book that's printed with the final version, while Programmable Read-Only Memory is like a book that can be written on, but once the ink dries, the words cannot be changed.
+
+Key differences:
+- Mask Programmed ROM is programmed during the manufacturing process, while Programmable Read-Only Memory can be programmed after manufacturing.
+- Once the data is stored in Mask Programmed ROM, it cannot be changed, whereas in Programmable Read-Only Memory, the data can be changed by blowing fuses during the programming process.
+
+======================================================================
+
+QUESTION #5  (6 Marks)  -  asked in 2 exam sittings [2024, 2021]
+Question: Convert the following : i) 7562₍₁₀₎ = ____₍₁₆₎ ii) 1110101₍₂₎ = ____₍₁₀₎ iii) F3A7₍₁₆₎ = ____₍₈₎
+----------------------------------------------------------------------
+Model Answer:
+CONVERT FOLLOWING : I) 7562₍₁₀₎ = __₍₁₆₎ II) 1110101₍₂₎ = ₍₁₀₎ III) F3A7₍₁₆₎ = __₍₈₎
+
+📘 As per your notes, the process of converting numbers from one base to another involves replacing each digit with its equivalent in the target base, following a specific order based on the position of the digit. The value of each digit is determined by multiplying it by the base raised to the power of its position from the rightmost digit.
+
+1. To convert 7562₍₁₀₎ to hexadecimal (base 16), we replace each digit with its equivalent in hexadecimal. Since 7, 5, and 6 are less than 16, they remain unchanged. However, 2 is greater than 9 (the highest digit in base 10), so we replace it with its equivalent in hexadecimal, which is E. Therefore, 7562₍₁₀₎ = EDC2₍₁₆₎.
+
+2. To convert 1110101₍₂₎ to decimal (base 10), we calculate the value of each digit by multiplying it by the base (2) raised to the power of its position from the rightmost digit. Starting from the right, we have: 1*2^0 + 1*2^1 + 1*2^2 + 0*2^3 + 1*2^4 + 0*2^5 + 1*2^6 = 33.
+
+3. To convert F3A7₍₁₆₎ to octal (base 8), we replace each hexadecimal digit with its equivalent in octal. Since F, 3, and 7 are less than 8, they remain unchanged. However, A is greater than 7, so we replace it with its equivalent in octal, which is 10. Therefore, F3A7₍₁₆₎ = 13775₍₈₎.
+
+======================================================================
+
+QUESTION #6  (5 Marks)  -  asked in 2 exam sittings [2024, 2021]
+Question: Construct a 4-to-1 line multiplexer using logic gates. Explain its working procedure.
+----------------------------------------------------------------------
+Model Answer:
+4-TO-1 LINE MULTIPLEXER
+
+📘 As per your notes, a 4-to-1-line multiplexer is a circuit that receives binary data from four input lines (A0, A1, A2, A3) and directs it to a single output line (O) based on the selection of a particular input data line, determined by a set of selection inputs (S0, S1).
+
+The 4-to-1-line multiplexer can be constructed using logic gates, specifically AND gates, OR gates, and an Inverter. The working procedure involves the following steps:
+
+1. The selection inputs (S0, S1) are combined with the input data lines (A0, A1, A2, A3) using AND gates to create four separate product terms (P0, P1, P2, P3).
+
+2. Each product term (P0, P1, P2, P3) is then combined with the corresponding bit of the selection line (S0, S1) using an OR gate.
+
+3. The output of each OR gate is then passed through an Inverter to invert the polarity of the signal.
+
+4. The inverted signals from the OR gates are then combined using another OR gate, which serves as the final output gate. The output of this OR gate is the selected input data line that is sent to the output line (O).
+
+💡 A 4-to-1-line multiplexer can be thought of as a traffic intersection with four incoming roads (A0, A1, A2, A3) and one outgoing road (O). The selection inputs (S0, S1) act as traffic signals that allow only one road to send traffic to the outgoing road at a time. The AND gates act as the traffic lights, allowing traffic to pass only when both the road and the green light are present. The OR gates act as the intersection, combining the traffic from the allowed roads, and the Inverter acts as a one-way street, reversing the direction of the traffic.
+
+======================================================================
+
+QUESTION #7  (5 Marks)  -  asked in 2 exam sittings [2025, 2021]
+Question: Implement the following Boolean function using 8 : 1 multiplexer. F(A, B, C, D) = Σ m(1, 3, 5, 6)
+----------------------------------------------------------------------
+Model Answer:
+8 : 1 MULTIPLEXER
+
+ // C code for 8-to-1 multiplexer implementing Boolean function F(A, B, C, D) = Σ m(1, 3, 5, 6)
+
+#include <stdio.h>
+
+void multiplexer8to1(int A, int B, int C, int D, int Sel) {
+    int function = (Sel == 1) ? A : ((Sel == 3) ? B : ((Sel == 5) ? C : ((Sel == 6) ? D : 0)));
+    printf("Output: %d\n", function);
+}
+
+int main() {
+    multiplexer8to1(1, 0, 0, 1, 1); // Test with input A=1, B=0, C=0, D=1, Sel=1
+    multiplexer8to1(0, 1, 0, 0, 3); // Test with input A=0, B=1, C=0, D=0, Sel=3
+    multiplexer8to1(0, 0, 1, 0, 5); // Test with input A=0, B=0, C=1, D=0, Sel=5
+    multiplexer8to1(0, 0, 0, 1, 6); // Test with input A=0, B=0, C=0, D=1, Sel=6
+    return 0;
+}
+
+This code implements the 8-to-1 multiplexer for the given Boolean function F(A, B, C, D) = Σ m(1, 3, 5, 6). The multiplexer8to1 function takes four input variables (A, B, C, D) and one selection variable (Sel) and outputs the result of the multiplexer operation. The main function tests the multiplexer with different input combinations.
+
+======================================================================
+
+QUESTION #8  (5 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Explain the basic organization of a micro programmed control unit.
+----------------------------------------------------------------------
+Model Answer:
+MICROPROGRAMMED CONTROL UNIT
+
+📘 As per your notes, a microprogrammed control unit is a system where each word in control memory contains a microinstruction, which specifies one or more microoperations for the system. A sequence of microinstructions constitutes a microprogram. The control memory is typically a read-only memory (ROM) because alterations are not needed once the control unit is in operation. The basic components of a microprogrammed control unit are the control memory and the circuits that select the next address, known as the microprogram sequencer.
+
+💡 A microprogrammed control unit can be thought of as a set of instructions for a machine, similar to a recipe book for a chef. The control memory is like the book itself, containing all the instructions, and the microprogram sequencer acts like the chef, following the instructions one by one to prepare a meal (execute the microprogram). The microinstructions are like individual steps in the recipe, and the microoperations are the specific actions required to complete each step.
+
+======================================================================
+
+QUESTION #9  (5 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Describe the data transfer method using DMA.
+----------------------------------------------------------------------
+Model Answer:
+DMA (DIRECT MEMORY ACCESS)
+
+📘 Direct Memory Access (DMA) is a data transfer method that allows an I/O device to access the main memory directly, bypassing the CPU. This method is used in systems with fast storage devices like magnetic disks to increase data transfer efficiency. The DMA controller manages the memory buses, ensuring that the data residing in main memory is always valid and up-to-date during the transfer.
+
+💡 Think of a conveyor belt system in a warehouse. Instead of workers manually moving boxes from the warehouse to trucks, a conveyor belt system takes over. In this analogy, the workers represent the CPU, the warehouse is the main memory, and the trucks are the I/O devices. The conveyor belt system (DMA controller) moves the boxes (data) directly from the warehouse to the trucks, bypassing the workers (CPU), increasing efficiency.
+
+Key differences:
+- With DMA, the CPU is bypassed during data transfer, reducing CPU load.
+- DMA ensures that the data in main memory is always valid during the transfer.
+- The DMA controller manages the memory buses directly, allowing faster data transfer.
+
+======================================================================
+
+QUESTION #10  (5 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: What is cache coherence problem ? Discuss about different cache coherence approaches.
+----------------------------------------------------------------------
+Model Answer:
+CACHE COHERENCE
+
+📘 Cache Coherence:
+Cache coherence is a mechanism in shared memory multiprocessors that ensures all processors see a consistent view of the memory, even when multiple processors access and modify the same data concurrently. This is crucial to maintain data integrity and correct program behavior.
+
+Two main approaches to solve the cache coherence problem are software-based and hardware-only solutions.
+
+1. Software-based solutions: These methods rely on software procedures that can tag information in the cache to disable caching of shared writable data. This approach requires more overhead as it involves frequent communication between processors and the memory controller.
+
+2. Hardware-only solutions: These solutions are handled automatically by the hardware, reducing the overhead compared to software-based methods. However, they can be more complex and expensive in terms of hardware resources.
+
+💡 Simple way to understand it:
+Think of a library where multiple readers and writers access the same books. Software-based solutions would require each reader and writer to notify the librarian (memory controller) whenever they access or modify a book (shared data), ensuring all readers have the most up-to-date version. Hardware-only solutions would have a system in place that automatically updates the books (data) in all locations whenever a change is made, without the need for constant librarian intervention.
+
+======================================================================
+
+QUESTION #11  (6 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Explain instruction level parallelism in detail.
+----------------------------------------------------------------------
+Model Answer:
+INSTRUCTION LEVEL PARALLELISM
+
+📘 Instruction Level Parallelism (ILP) is a technique used in computer systems to increase computational speed by executing multiple instructions simultaneously. This is achieved by breaking down a sequence of instructions into smaller, independent pieces that can be executed concurrently.
+
+In a conventional computer, instructions are executed sequentially, one after the other. However, in a system with ILP, the processor can work on multiple instructions at the same time, provided they are independent and do not interfere with each other.
+
+💡 Think of a factory assembly line where workers perform different tasks on different parts of a product. Instead of one worker doing one task after another, some workers can perform different tasks simultaneously, increasing the overall production speed.
+
+In the context of registers with parallel load, these registers can load multiple bits of a word simultaneously, allowing for more instructions to be processed at the same time. Similarly, in more complex systems, multiple functional units can perform identical or different operations simultaneously, further increasing the level of parallelism.
+
+Key differences between parallel processing and instruction level parallelism:
+- Parallel processing is a broad term that includes various techniques, while ILP is a specific type of parallel processing at the instruction level.
+- Parallel processing can occur at different levels of complexity, from data level to instruction level, while ILP operates at the instruction level.
+- Parallel processing can distribute data among multiple functional units, while ILP distributes instructions among multiple functional units.
+
+======================================================================
+
+QUESTION #12  (5 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Explain error detection using Hamming code.
+----------------------------------------------------------------------
+Model Answer:
+ERROR DETECTION
+
+📘 As per your notes, Error Detection is a binary code used to identify digital errors during data transmission. The Hamming Code is a specific type of error detection code that can detect single-bit errors and double-bit errors. It works by adding extra parity bits to the original data, which are calculated based on the original data bits. The parity bits are used to check the integrity of the data during transmission. If an error occurs, the received data will not match the calculated parity bits, indicating an error.
+
+💡 Simple way to understand it: Think of a game of Telephone, where a message is passed from person to person. The Hamming Code is like adding a few extra words at the end of the message that can be used to check if the message received is the same as the original message. If the received message doesn't match the extra words, it indicates an error occurred during transmission.
+
+Key differences between single-bit and double-bit errors:
+- Single-bit errors affect only one data bit, while double-bit errors affect two adjacent data bits.
+- Single-bit errors can be detected by the Hamming Code, but double-bit errors may not always be detected.
+- If a double-bit error occurs in a way that the sum of the original and erroneous bits is the same as the parity bits, the error will not be detected.
+
+======================================================================

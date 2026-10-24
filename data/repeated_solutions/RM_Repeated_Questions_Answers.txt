@@ -1,0 +1,62 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: RM
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (5 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Write a short note on : Fuzzy logic.
+----------------------------------------------------------------------
+Model Answer:
+FUZZY LOGIC
+
+📘 As per your notes, Fuzzy Logic is a mathematical approach that deals with vagueness and uncertainty in the mapping of terms from a symbolic theory to the real world. Unlike probability theory, it doesn't focus on the uncertainty about the truth of well-defined propositions, but rather on the vagueness of terms. In Fuzzy Logic, propositions have a degree of truth between 0 and 1. For instance, the sentence "Vienna is a large city" might be true to degree 0.8 in fuzzy logic.
+
+💡 A simple way to understand Fuzzy Logic is like a scale for truth. Instead of something being completely true or false, it has a degree of truth, like a thermometer measuring temperature.
+
+Key differences between Fuzzy Logic and treating conclusions as "believed until a better reason is found to believe something else" (Default Reasoning):
+
+- Fuzzy Logic propositions have a degree of truth between 0 and 1, while default reasoning treats conclusions as "believed until a better reason is found to believe something else."
+- Fuzzy Logic handles vagueness in the mapping from terms in a symbolic theory to the real world, while default reasoning is a separate approach that focuses on conclusions.
+- Fuzzy Logic is covered in Chapter 9, while default reasoning is covered in Chapter 10.
+
+======================================================================
+
+QUESTION #2  (10 Marks)  -  asked in 2 exam sittings [2026, 2022]
+Question: Explain the role of simulation in research with example.
+----------------------------------------------------------------------
+Model Answer:
+SIMULATION IN RESEARCH
+
+📘 As per your notes, simulation in research is a method used to represent the behavior of a process over time. It's particularly useful for understanding future conditions and can be applied in various fields. The simulation approach involves creating an artificial environment that mirrors the real one, allowing researchers to study and analyze the behavior of the process within this artificial setting.
+
+For example, consider a weather forecasting model. Meteorologists use simulation to predict future weather patterns. They create a digital model of the Earth's atmosphere, including factors like temperature, humidity, and wind speed. By running this simulation, they can predict weather conditions days or weeks in advance.
+
+💡 Simple way to understand it: Think of simulation as a video game where you can control and observe the behavior of a system. Instead of predicting the weather, you might be studying the spread of a disease in a population, or the impact of a policy change on an economy. By running the simulation, you can see how the system behaves under different conditions, helping you make informed decisions about the real world.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2026, 2023]
+Question: What is time series analysis in Research Methodology ? Discuss the major components of time series analysis.
+----------------------------------------------------------------------
+Model Answer:
+TIME SERIES ANALYSIS
+
+📘 Time Series Analysis refers to the study of dynamic conditions to achieve short-term and long-term goals of business firms, particularly in the context of economic and business research. It involves analyzing data collected over time to identify patterns, trends, and relationships.
+
+💡 Think of Time Series Analysis as studying the weather patterns over years to predict future weather conditions.
+
+Components of Time Series Analysis include:
+
+1. Trend (T): Represents the long-term direction of the series, showing whether it is increasing, decreasing, or stable over a long period.
+
+2. Cyclical Variations (C): Refers to fluctuations that occur due to economic cycles, such as recessions and booms, which repeat after a certain period.
+
+3. Seasonal Variations (S): Represents periodic fluctuations that occur at regular intervals, such as quarterly or yearly, due to seasonal factors like holidays or harvest seasons.
+
+4. Irregular Fluctuations (I): Also known as random or error components, these are the variations that cannot be explained by the trend, cyclical, or seasonal components and are often due to unforeseen events or random errors.
+
+The additive model in Time Series Analysis considers the total of these components to explain the given values of the overall time series: Y = T + C + S + I. Each component plays a crucial role in understanding the behavior of the time series and helping businesses make informed decisions.
+
+======================================================================

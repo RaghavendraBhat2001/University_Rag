@@ -1,0 +1,58 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: SE
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Explain short releases and iterations in learning process.
+----------------------------------------------------------------------
+Model Answer:
+PROCESS SCHEDULING
+
+📘 Process Scheduling in the context of Agile Software Engineering:
+
+Process scheduling is a method used in Agile Software Engineering to manage and organize the development tasks. It involves deciding the order in which tasks are executed and assigning resources to them.
+
+In Agile methodologies, two key concepts are Short Releases and Iterations.
+
+1. Short Releases: These are small, incremental versions of the software that are delivered to the customer at regular intervals. The purpose is to get early and frequent feedback, which can then be used to improve the software. It's like a baker baking a cake in small portions, allowing the customer to taste and provide feedback on each portion before the entire cake is ready.
+
+2. Iterations: An iteration is a time-boxed period during which a specific set of tasks is completed. Each iteration results in a potentially shippable product increment. The customer prioritizes the development tasks for each iteration. It's similar to a factory producing items in batches, where each batch represents an iteration.
+
+💡 Simple way to understand it:
+
+Think of a bakery where each day, the baker makes a small portion of a cake (Short Release) and gets feedback from customers. Based on the feedback, the baker improves the recipe and makes another small portion the next day (Iteration). This process continues until the entire cake is ready, with each day representing an iteration and each small portion representing a Short Release.
+
+======================================================================
+
+QUESTION #2  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Discuss delivery and cyclicality in learning environments.
+----------------------------------------------------------------------
+Model Answer:
+LEARNING ENVIRONMENTS
+
+📘 As per your notes, Learning Environments refer to settings designed to facilitate teaching and learning, particularly in the context of agile software development.
+
+1. Delivery: In these environments, learning is structured around deliveries or releases, which mark the end of a specific period of time for learning. A delivery celebration signifies the completion of a release development in a course team. This approach supports teamwork-based development and encourages gradual learning.
+
+2. Cyclicality: Learning Environments operate on a cyclical basis, meaning that the learning process is repeated in cycles. This cyclical nature is a key characteristic of agile software development, where the development process is iterative and incremental. The cyclicality in learning environments allows for continuous improvement and adaptation to new information or challenges.
+
+💡 Simple way to understand it: Think of a garden where you plant seeds, nurture them, and harvest them at regular intervals. Each harvest (delivery) marks the end of a cycle, and the garden (learning environment) is prepared for the next cycle (new learning). The cyclical nature of the garden mirrors the cyclicality in Learning Environments, where learning is repeated in cycles to facilitate continuous growth and improvement.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2025, 2023]
+Question: Discuss the time related problems of software projects.
+----------------------------------------------------------------------
+Model Answer:
+TIME MANAGEMENT IN SOFTWARE PROJECTS
+
+📘 As per your notes, the time dimension of software projects is a significant factor in the success or failure of these projects. Brooks (1975, 1995) in his book "The Mythical Man-Month" highlights that insufficient calendar time is the most common cause of disaster in software projects. This is due to the poor development of estimating techniques and the underestimation of the time required for software development tasks.
+
+Covey et al. (1994) further emphasize this issue by stating that 28% of developers believe addressing the time element is crucial for improving software quality.
+
+💡 Simple way to understand it: Think of a baker who underestimates the time needed to bake a large number of cakes for an event. If the baker doesn't account for the actual time required, they may not finish on time, leading to a disaster. Similarly, in software projects, underestimating the time needed for development tasks can lead to project delays and failure.
+
+======================================================================

@@ -1,0 +1,196 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: ACP
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 3 exam sittings [2023, 2022, 2021]
+Question: Define Big oh notation. What is rate of growth, worst, best an average case complexity of an algorithm ?
+----------------------------------------------------------------------
+Model Answer:
+BIG O NOTATION
+
+📘 As per your notes, Big Oh notation is a mathematical notation used to describe the upper bound of the time complexity or space complexity of an algorithm as a function of the size of the input. It helps simplify the analysis of algorithms by ignoring details that do not impact the comparison of algorithms.
+
+The rate of growth refers to how quickly an algorithm's running time or space requirement grows as the size of the input increases.
+
+The worst-case complexity is the maximum time or space complexity that an algorithm can take, regardless of the specific input. For example, a linear search algorithm has a worst-case complexity of O(n) because it needs to check every element in the list.
+
+The best-case complexity is the minimum time or space complexity that an algorithm can take, given the best possible input. For example, a binary search algorithm has a best-case complexity of O(log n) because it can find the target element in the middle of the sorted array in the best case.
+
+The average-case complexity is the expected time or space complexity over all possible inputs. However, it can be difficult to calculate and is often not as useful as worst-case analysis for comparing algorithms.
+
+💡 Simple way to understand it: Think of Big Oh notation as a highway speed limit sign. Just like how the speed limit tells you the maximum speed you can travel on a road, Big Oh notation tells you the maximum running time or space requirement an algorithm can have, regardless of the specific input. The rate of growth is like the type of car you're driving - some cars (algorithms) can travel faster (have better complexity) than others. The worst-case complexity is like driving in heavy traffic - it's the worst-case scenario where the algorithm takes the longest time. The best-case complexity is like driving with no traffic - it's the best-case scenario where the algorithm takes the shortest time. The average-case complexity is like driving on an average day - it's the expected time over all possible scenarios.
+
+======================================================================
+
+QUESTION #2  (10 Marks)  -  asked in 3 exam sittings [2024, 2023, 2022]
+Question: Write an algorithm to sort the numbers using selection sort. Sort the numbers {1, 0, 6, 5, 4, 9, 2, 3} using your algorithm.
+----------------------------------------------------------------------
+Model Answer:
+SELECTION SORT
+
+ // C: Selection Sort algorithm to sort an array of integers
+
+1. Initialize a function SelectionSort(int A[], int n) that takes an array and its length as input.
+2. For each index i from 0 to n-1, do the following:
+    a. Find the minimum value in the unsorted portion of the array (from index i to the end of the array).
+    b. Swap the minimum value with the current index i's value in the array.
+3. Return the sorted array.
+
+SelectionSort(int A[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (A[j] < A[minIndex]) {
+                minIndex = j;
+            }
+        }
+        int temp = A[minIndex];
+        A[minIndex] = A[i];
+        A[i] = temp;
+    }
+    return A;
+}
+
+// Trace for the given array {1, 0, 6, 5, 4, 9, 2, 3}
+
+Iteration | Min Index | Swapped Elements | Sorted Array
+0 | 0 | 1, 0 | 0, 1
+1 | 3 | 0, 3 | 0, 1, 3
+2 | 5 | 3, 5 | 0, 1, 3, 5
+3 | 6 | 5, 6 | 0, 1, 3, 5, 6
+4 | 2 | 6, 2 | 0, 1, 2, 3, 5, 6
+5 | 4 | 2, 4 | 0, 1, 2, 3, 4, 6
+6 | 7 | 4, 7 | 0, 1, 2, 3, 4, 6, 7
+
+The sorted array is {0, 1, 2, 3, 4, 6, 5, 7}.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: Write an algorithm to convert the base of a number from base 10 to base 16.
+----------------------------------------------------------------------
+Model Answer:
+NUMBER CONVERSION
+
+ // C code for converting a base-10 number to base-16
+
+#include <stdio.h>
+
+void base16Convert(int number) {
+    char digits[] = "0123456789ABCDEF";
+    int remainder;
+
+    if (number == 0) {
+        printf("0");
+        return;
+    }
+
+    while (number != 0) {
+        remainder = number % 16;
+        printf("%c", digits[remainder]);
+        number /= 16;
+    }
+}
+
+int main() {
+    int number;
+
+    printf("Enter a base-10 number: ");
+    scanf("%d", &number);
+
+    printf("Base-16 representation: ");
+    base16Convert(number);
+    printf("\n");
+
+    return 0;
+}
+
+This code defines a function base16Convert that converts a given number from base-10 to base-16. The main function reads a number from the user and calls the base16Convert function to display the base-16 representation.
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 2 exam sittings [2023, 2021]
+Question: Write an algorithm to find fibonacci series upto n.
+----------------------------------------------------------------------
+Model Answer:
+FIBONACCI SERIES
+
+ // C program to find Fibonacci series up to n using dynamic programming
+
+#define MAX 10000
+long fib[MAX];
+
+void fib_dp(int n) {
+    int i;
+    fib[0] = 0;
+    fib[1] = 1;
+    for (i=2; i<=n; i++) {
+        fib[i] = fib[i-1] + fib[i-2];
+    }
+}
+
+long fib_dp_get(int n) {
+    return fib[n];
+}
+
+This program first initializes the Fibonacci array using dynamic programming, then allows you to retrieve the nth Fibonacci number using the fib_dp_get function. The time complexity of this algorithm is linear (O(n)).
+
+======================================================================
+
+QUESTION #5  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Write an algorithm to find square root of a number.
+----------------------------------------------------------------------
+Model Answer:
+SQUARE ROOT ALGORITHM
+
+ // C: Square root computation
+
+#include <stdio.h>
+
+double sqrt(double n, double eps) {
+    double l = 1.0, r = n;
+    double m;
+
+    while (r - l > eps) {
+        m = (l + r) / 2.0;
+        if (m * m < n)
+            l = m;
+        else
+            r = m;
+    }
+
+    return l;
+}
+
+int main() {
+    double n, eps = 0.00001;
+    printf("Enter a number: ");
+    scanf("%lf", &n);
+    printf("The square root of %.2lf is %.2lf\n", n, sqrt(n, eps));
+    return 0;
+}
+
+This code implements the binary search algorithm for finding the square root of a number with a given precision. The user inputs a number, and the program outputs its square root with the specified precision.
+
+======================================================================
+
+QUESTION #6  (10 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Write an efficient algorithm to find aⁿ where n is a large number.
+----------------------------------------------------------------------
+Model Answer:
+ALGORITHM
+
+📘 As per your notes, an Efficient Algorithm for fast exponentiation is described. This algorithm is used to compute the value of a^b for large values of a and b, which is useful in primality testing for cryptography.
+
+The algorithm is a divide-and-conquer approach, meaning it breaks down the problem into smaller sub-problems, solves them, and combines the solutions to solve the original problem.
+
+The algorithm works by using the following identity: ab = e * p(ln(ab)), where e is the multiplication of the last bits of a and b, p is a recursive function that computes a^(b/2) and a^(b/2) for the first half of the bits of a and b, and ln(ab) is the natural logarithm of ab.
+
+The key advantage of this algorithm is that it reduces the problem of computing a^b to one multiplication and two recursive calls, making it more efficient for large values of a and b.
+
+💡 Simple way to understand it: Think of the algorithm as a multi-level assembly line. Each worker (function) performs a specific task (multiplication or recursive call) on parts (a and b) to assemble the final product (a^b). The algorithm breaks down the assembly line into smaller sections (divide-and-conquer), making it more efficient to produce the final product for large orders (large values of a and b).
+
+======================================================================

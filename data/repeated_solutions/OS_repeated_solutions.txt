@@ -1,0 +1,206 @@
+======================================================================
+uniRAG ACADEMIC INTELLIGENCE · READY MODEL SOLUTIONS
+Course / Subject Scope: OS
+Target Exam: Bangalore University MCA Examination
+Total Solved Repeated Questions: 5
+======================================================================
+
+QUESTION #1 [6 MARKS] (Exam Sittings: 2023, 2022)
+Question: Write difference between paging and segmentation.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Difference Between Paging and Segmentation (6 Marks)
+
+Both Paging and Segmentation are non-contiguous memory management schemes implemented in modern Operating Systems.
+
+| Parameter | Paging | Segmentation |
+| :--- | :--- | :--- |
+| **Block Size** | Fixed-size blocks called **Pages** (frame size = page size, e.g. 4KB). | Variable-size blocks called **Segments** reflecting logical program units. |
+| **Viewpoint** | Physical view; managed invisibly by the OS and Memory Management Unit (MMU). | Logical view; defined by user/compiler (code, data, stack, subroutines). |
+| **Address Structure** | Virtual address = `(Page Number, Offset)`. | Virtual address = `(Segment Number, Offset)`. |
+| **Internal Fragmentation** | **Present** (in the final page frame of a process). | **Absent** (segments allocated exactly to required byte length). |
+| **External Fragmentation** | **Absent** (any page can fit into any free physical frame). | **Present** (free variable memory holes between segments require compaction). |
+| **Table Structure** | Uses a **Page Table** containing Base address of each physical frame. | Uses a **Segment Table** containing both **Base** address and **Limit** (size). |
+| **Protection & Sharing** | Difficult to share logical procedures cleanly. | Natural for sharing code modules and protecting functions.
+
+======================================================================
+
+QUESTION #2 [6 MARKS] (Exam Sittings: 2023, 2020)
+Question: Explain Readers-Writers problem of synchronization.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### The Readers-Writers Problem of Synchronization (6 Marks)
+
+#### 1. Problem Statement:
+A shared database or file is accessed concurrently by multiple processes:
+- **Readers:** Only read the dataset; multiple readers can access data simultaneously without conflict.
+- **Writers:** Modify the dataset; require exclusive access (no other reader or writer may access concurrently).
+
+#### 2. Synchronization Primitives:
+- `semaphore rw_mutex = 1;` // Controls mutual exclusion for writers and first/last reader
+- `semaphore mutex = 1;`    // Protects updates to `read_count`
+- `int read_count = 0;`     // Number of active reader processes
+
+#### 3. Reader Process Pseudocode:
+```c
+do {
+    wait(mutex);
+    read_count++;
+    if (read_count == 1)
+        wait(rw_mutex); // First reader locks out all writers
+    signal(mutex);
+
+    // Reading performed here...
+
+    wait(mutex);
+    read_count--;
+    if (read_count == 0)
+        signal(rw_mutex); // Last reader releases lock for writers
+    signal(mutex);
+} while (TRUE);
+```
+
+#### 4. Writer Process Pseudocode:
+```c
+do {
+    wait(rw_mutex);
+
+    // Writing / Modifying data performed here...
+
+    signal(rw_mutex);
+} while (TRUE);
+```
+
+#### 5. Starvation Concern:
+In the first readers-writers solution shown above (Reader Preference), continuous incoming readers can keep `rw_mutex` locked indefinitely, causing **Writer Starvation**.
+
+======================================================================
+
+QUESTION #3 [5 MARKS] (Exam Sittings: 2023, 2020)
+Question: Define semaphores. Explain the implementation of semaphore in solving dining-philosophers problem.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Semaphores and the Dining-Philosophers Problem (5 Marks)
+
+#### 1. Definition of Semaphore:
+A **Semaphore** is an integer synchronization variable accessed only through two standard atomic operations:
+- **`wait(S)` (or `P(S)`):**
+  ```c
+  wait(S) {
+      while (S <= 0) ; // busy wait (or block process in queue)
+      S--;
+  }
+  ```
+- **`signal(S)` (or `V(S)`):**
+  ```c
+  signal(S) { S++; }
+  ```
+Types: **Binary Semaphore (Mutex)** (range 0 to 1) and **Counting Semaphore** (unbounded range).
+
+#### 2. Dining Philosophers Problem:
+Five philosophers sit around a circular table with 5 bowls of rice and 5 chopsticks. A philosopher alternately thinks and eats. To eat, a philosopher requires both the left and right chopsticks.
+
+#### 3. Semaphore Solution & Deadlock Prevention:
+Represent each chopstick as a semaphore: `semaphore chopstick[5] = {1, 1, 1, 1, 1};`
+
+*Naïve Solution:* Each philosopher picks left chopstick, then right chopstick.
+**Deadlock Hazard:** If all 5 philosophers get hungry simultaneously and pick their left chopstick, all chopsticks are held and none can pick their right chopstick.
+
+*Deadlock-Free Asymmetric Solution:*
+An odd philosopher picks left first then right; an even philosopher picks right first then left:
+```c
+void philosopher(int i) {
+    while (1) {
+        think();
+        if (i % 2 == 0) {
+            wait(chopstick[(i + 1) % 5]); // pick right
+            wait(chopstick[i]);           // pick left
+        } else {
+            wait(chopstick[i]);           // pick left
+            wait(chopstick[(i + 1) % 5]); // pick right
+        }
+        eat();
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+    }
+}
+```
+
+======================================================================
+
+QUESTION #4 [3 MARKS] (Exam Sittings: 2025, 2023)
+Question: Write short notes on a virtual machine.
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Virtual Machine (VM) (3 Marks)
+
+A **Virtual Machine** is a completely isolated software emulation of a physical computer architecture that executes programs and guest operating systems just like a physical machine.
+
+- **Hypervisor / Virtual Machine Monitor (VMM):** Software layer that virtualizes hardware resources (CPU, RAM, Storage).
+  * **Type 1 (Bare-Metal):** Runs directly on physical hardware (e.g., VMware ESXi, KVM, Xen).
+  * **Type 2 (Hosted):** Runs on top of a host OS (e.g., Oracle VirtualBox, VMware Workstation).
+- **Key Advantages:**
+  1. *Resource Consolidation:* Maximizes hardware utilization by running multiple VMs on one physical server.
+  2. *Security & Sandboxing:* Failures or malware inside one VM cannot breach the host or peer VMs.
+  3. *Snapshotting & Migration:* Seamless backup and live migration across cloud clusters.
+
+======================================================================
+
+QUESTION #5 [10 MARKS] (Exam Sittings: 2025, 2024)
+Question: Consider the following system snapshot using data structures in Banker’s Algorithm, with resources A, B, C, D and process P0 to P4. Max (A B C D) / Allocation (A B C D) / Available (A B C D) — P0: 6 0 1 2 / 4 0 0 1 / 3 2 1 1; P1: 1 7 5 0 / 1 1 0 0; P2: 2 3 5 6 / 1 2 5 4; P3: 1 6 5 3 / 0 6 3 3; P4: 1 6 5 6 / 0 2 1 2. a) Compute need matrix. b) Is the system in a safe state ? Why ?
+------------------------------------------------------------
+Model Solution (calibrated for full marks):
+### Banker's Algorithm Safety Analysis (10 Marks)
+
+#### Given Data:
+- Resources: `A, B, C, D`
+- Initial Available Vector: `Available = [3, 2, 1, 1]`
+
+#### Part (a): Need Matrix Computation
+$$\text{Need}[i][j] = \text{Max}[i][j] - \text{Allocation}[i][j]$$
+
+| Process | Max (A B C D) | Allocation (A B C D) | Need = Max - Allocation |
+| :---: | :---: | :---: | :---: |
+| **P0** | 6 0 1 2 | 4 0 0 1 | **[2, 0, 1, 1]** |
+| **P1** | 1 7 5 0 | 1 1 0 0 | **[0, 6, 5, 0]** |
+| **P2** | 2 3 5 6 | 1 2 5 4 | **[1, 1, 0, 2]** |
+| **P3** | 1 6 5 3 | 0 6 3 3 | **[1, 0, 2, 0]** |
+| **P4** | 1 6 5 6 | 0 2 1 2 | **[1, 4, 4, 4]** |
+
+---
+#### Part (b): Safety Algorithm Trace
+Initialize: `Work = Available = [3, 2, 1, 1]`, `Finish[P0..P4] = false`
+
+1. **Check P0:**
+   - $\text{Need}_0 = [2, 0, 1, 1] \le \text{Work} = [3, 2, 1, 1]$ -> **TRUE**
+   - Execute P0. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_0 = [3, 2, 1, 1] + [4, 0, 0, 1] = \mathbf{[7, 2, 1, 2]}$
+   - `Finish[P0] = true`
+
+2. **Check P2:**
+   - $\text{Need}_2 = [1, 1, 0, 2] \le \text{Work} = [7, 2, 1, 2]$ -> **TRUE**
+   - Execute P2. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_2 = [7, 2, 1, 2] + [1, 2, 5, 4] = \mathbf{[8, 4, 6, 6]}$
+   - `Finish[P2] = true`
+
+3. **Check P1:**
+   - $\text{Need}_1 = [0, 6, 5, 0] \le \text{Work} = [8, 4, 6, 6]$ -> `6 > 4` (**FALSE**, must wait)
+
+4. **Check P3:**
+   - $\text{Need}_3 = [1, 0, 2, 0] \le \text{Work} = [8, 4, 6, 6]$ -> **TRUE**
+   - Execute P3. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_3 = [8, 4, 6, 6] + [0, 6, 3, 3] = \mathbf{[8, 10, 9, 9]}$
+   - `Finish[P3] = true`
+
+5. **Re-check P1:**
+   - $\text{Need}_1 = [0, 6, 5, 0] \le \text{Work} = [8, 10, 9, 9]$ -> **TRUE**
+   - Execute P1. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_1 = [8, 10, 9, 9] + [1, 1, 0, 0] = \mathbf{[9, 11, 9, 9]}$
+   - `Finish[P1] = true`
+
+6. **Check P4:**
+   - $\text{Need}_4 = [1, 4, 4, 4] \le \text{Work} = [9, 11, 9, 9]$ -> **TRUE**
+   - Execute P4. $\text{Work} \leftarrow \text{Work} + \text{Alloc}_4 = [9, 11, 9, 9] + [0, 2, 1, 2] = \mathbf{[9, 13, 10, 11]}$
+   - `Finish[P4] = true`
+
+#### Conclusion:
+Yes, the system is in a **SAFE STATE** because all processes can finish without deadlock.
+**Safe Sequence Found:** `P0 -> P2 -> P3 -> P1 -> P4` (or `P0 -> P3 -> P2 -> P1 -> P4`).
+
+======================================================================

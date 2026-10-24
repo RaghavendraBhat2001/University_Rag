@@ -1,0 +1,242 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: CN
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 3 exam sittings [2024, 2023, 2022]
+Question: Define network topology. Explain different topologies with its merits and demerits.
+----------------------------------------------------------------------
+Model Answer:
+Network Topologies: Classification, Merits & Demerits (6 Marks)
+
+1. Definition:
+A Network Topology is the structural arrangement of nodes (computers, switches, routers) and connecting communication links in a computer network.
+
+2. Topologies Comparison:
+1. Mesh Topology:
+   - Every device has a dedicated point-to-point link to every other device (n(n-1)/2 links).
+   - Merits: Robust, dedicated links prevent traffic congestion, highly secure, easy fault isolation.
+   - Demerits: Massive cabling requirement, high hardware and I/O port cost, difficult installation.
+2. Star Topology:
+   - All nodes connect to a central controller (Hub or Switch).
+   - Merits: Easy to install and reconfigure, link failure affects only that node, easy fault detection.
+   - Demerits: Single point of failure (if central hub fails, the entire network goes down).
+3. Bus Topology:
+   - All devices tap into a single shared backbone cable with terminators at both ends.
+   - Merits: Minimal cabling, low cost, simple to implement for small networks.
+   - Demerits: Difficult fault detection, signal reflection, backbone cable break stops all communication.
+4. Ring Topology:
+   - Each device connects to exactly two neighbors, forming a closed transmission ring.
+   - Merits: Orderly token-based transmission, equal access opportunity.
+   - Demerits: Unidirectional traffic; break in the ring disables the entire loop.
+
+======================================================================
+
+QUESTION #2  (6 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: What is switching ? Explain circuit switching technique.
+----------------------------------------------------------------------
+Model Answer:
+SWITCHING CIRCUIT SWITCHING TECHNIQUE
+
+📘 Circuit Switching:
+Circuit switching is a method of establishing a dedicated communication path between two devices for the duration of a communication session. This technique is used primarily at the physical layer in data communication networks. In circuit switching, a continuous path is created between the communicating devices, and this path remains active for the entire duration of the communication.
+
+At the network layer, the data is divided into manageable packets, and each packet is sent through the network independently. However, in circuit switching, the entire path is established before any data transmission begins. This is similar to reserving a dedicated phone line for a phone call, where the line remains active for the duration of the call.
+
+💡 Simple way to understand it:
+Think of circuit switching like reserving a private taxi for a long journey. You book the taxi (establish the circuit) before starting the journey (communicating), and the taxi (communication path) stays with you throughout the journey (communication session). In contrast, packet switching is like hailing multiple taxis (sending multiple packets) to reach your destination (receiving data) without reserving a specific taxi in advance.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: What do you mean by transmission error ? With an example explain Cyclic Redundancy Check Technique.
+----------------------------------------------------------------------
+Model Answer:
+TRANSMISSION ERROR
+
+📘 Transmission Error refers to any discrepancy or alteration that occurs in the data during its transmission from the sender to the receiver. This can be due to various reasons such as noise, interference, or hardware malfunctions. In the context of data communication, a single-bit error or a burst error can lead to transmission errors.
+
+💡 Think of transmission error as a game of telephone, where a message gets distorted as it travels from one person to another due to noise or misunderstandings.
+
+📘 Cyclic Redundancy Check (CRC) Technique is a method used to detect transmission errors. It works by adding extra bits (check bits) to the original data. These check bits are generated based on a polynomial function and are appended to the data before transmission. Upon receiving the data, the receiver recalculates the check bits and compares them with the received check bits. If they match, the data is assumed to be error-free; otherwise, an error has occurred.
+
+💡 Imagine you're sending a secret message to a friend. To ensure the message isn't altered during delivery, you add a few extra words that can be easily recognized by your friend. If your friend receives the message with the extra words intact, they know the message is correct; otherwise, an error has occurred.
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: Write a note on Transmission Impairment.
+----------------------------------------------------------------------
+Model Answer:
+TRANSMISSION IMPAIRMENT
+
+📘 As per your notes, Transmission Impairment refers to the degradation of a signal as it travels through a transmission medium. This degradation can occur due to three main factors: attenuation, distortion, and noise.
+
+Attenuation is the loss of signal strength as it travels through the medium. This loss can be due to the distance the signal travels, the properties of the medium, or the power of the signal at its source.
+
+Distortion is the alteration of the signal's shape or characteristics as it travels through the medium. This can occur due to non-linearities in the medium or the equipment used for transmission.
+
+Noise is unwanted interference that can affect the signal. This can be due to external sources like electromagnetic interference or internal sources like thermal noise in the equipment.
+
+💡 Simple way to understand it: Think of a game of telephone. As the message is passed from person to person, it becomes distorted due to misheard words, added words, or omitted words. Similarly, in transmission, the signal can become distorted, attenuated, or noisy as it travels through the medium.
+
+======================================================================
+
+QUESTION #5  (10 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Explain ISO-OSI reference model with a neat diagram.
+----------------------------------------------------------------------
+Model Answer:
+ISO-OSI Reference Model (10 Marks)
+
+The Open Systems Interconnection (OSI) model developed by ISO is a 7-layer architectural framework for standardized network communications.
+
++-----------------------------------------------------------+
+| Layer 7: APPLICATION LAYER (HTTP, FTP, SMTP, DNS)        |
++-----------------------------------------------------------+
+| Layer 6: PRESENTATION LAYER (SSL/TLS, ASCII, Encryption)  |
++-----------------------------------------------------------+
+| Layer 5: SESSION LAYER (Sockets, RPC, Session Checkpoints)|
++-----------------------------------------------------------+
+| Layer 4: TRANSPORT LAYER (TCP, UDP - Segments)            |
++-----------------------------------------------------------+
+| Layer 3: NETWORK LAYER (IP, ICMP, Routing - Packets)      |
++-----------------------------------------------------------+
+| Layer 2: DATA LINK LAYER (Ethernet, MAC, PPP - Frames)    |
++-----------------------------------------------------------+
+| Layer 1: PHYSICAL LAYER (Cables, Bits, Voltages, Connect) |
++-----------------------------------------------------------+
+
+Functions of the 7 Layers:
+1. Layer 1 - Physical Layer: Transmits raw unstructured bit streams over physical media (voltages, pins, frequencies).
+2. Layer 2 - Data Link Layer: Provides hop-to-hop node transfer; frames packets, handles physical addressing (MAC), flow control, and error detection (CRC).
+3. Layer 3 - Network Layer: Responsible for end-to-end packet routing across networks using logical IP addressing and routing protocols (OSPF, BGP).
+4. Layer 4 - Transport Layer: End-to-end host-to-host process delivery (ports), segmentation and reassembly, reliable delivery (TCP acknowledgments), flow control.
+5. Layer 5 - Session Layer: Establishes, manages, and terminates conversational sessions between remote applications; maintains synchronization checkpoints.
+6. Layer 6 - Presentation Layer: Formats, translates, encrypts, and compresses data (JSON, JPEG, TLS/SSL) so applications understand transmitted payload.
+7. Layer 7 - Application Layer: Direct interface to end-user network services and software (Web browsers, Email clients, File transfers).
+
+======================================================================
+
+QUESTION #6  (10 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: Explain in brief the different types of Guided and Unguided transmission media.
+----------------------------------------------------------------------
+Model Answer:
+TRANSMISSION MEDIA
+
+📘 As per your notes, Transmission Media refers to the physical pathway through which data or signals travel from the sender to the receiver in telecommunications. The notes divide transmission media into two broad categories: Guided Transmission Media and Unguided Transmission Media.
+
+Guided Transmission Media, as the name suggests, guides the signals through a physical conduit from one device to another. This type of transmission media includes wired media like Twisted Pair Cable, Coaxial Cable, and Fiber Optic Cable. These wired media are used for various purposes such as telephone lines, Ethernet connections, and high-speed internet connections.
+
+Unguided Transmission Media, on the other hand, does not require a physical conduit to transmit signals. Instead, signals are transmitted through space. Examples of unguided transmission media include Radio Waves, Microwaves, Infrared, and Satellite Communication. These media are used for wireless communication like radio and television broadcasts, mobile phone networks, and satellite communication systems.
+
+💡 Simple way to understand it:
+Think of guided transmission media as a road system where data travels from one device to another through wires, similar to cars on a road. Unguided transmission media, however, is like sending messages using radio waves or satellite signals, where data travels through space without a physical road.
+
+======================================================================
+
+QUESTION #7  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Explain Reservation and Polling controlled access methods.
+----------------------------------------------------------------------
+Model Answer:
+RESERVATION POLLING CONTROLLED ACCESS METHODS
+
+📘 As per your notes, Reservation Polling Controlled Access Method is a combination of Reservation and Polling methods. In this method, a primary station is designated, and other stations are secondary. The primary station polls the secondary stations to check if they have data to transmit. If a secondary station has data, it sends a Poll/Final (P/F) bit in the control field of HDLC. If the primary station receives a P/F bit, it sends a poll frame to the station that sent the P/F bit. The secondary station then sends its data followed by an ACK frame. If the primary station does not receive a P/F bit within a certain time, it assumes no station has data and continues polling.
+
+💡 Simple way to understand it:
+Think of a classroom where the teacher (primary station) calls on students (secondary stations) one by one to check if they have questions (data). If a student has a question, they raise their hand (send a P/F bit), the teacher calls on them (sends a poll frame), and the student asks their question (sends data). The teacher then acknowledges the question (sends an ACK frame). If no student raises their hand within a certain time, the teacher assumes no one has a question and continues calling on students.
+
+======================================================================
+
+QUESTION #8  (4 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Write a note on IPV6 address.
+----------------------------------------------------------------------
+Model Answer:
+IPV6 ADDRESS
+
+📘 As per your notes, IPv6 (Internet Protocol version 6) is the latest version of the Internet Protocol, used to identify devices on a network and route traffic between them. IPv6 addresses are 128 bits long and are represented in hexadecimal format, divided into eight 16-bit blocks separated by colons. To make it easier for humans to read and write, abbreviation methods are available.
+
+IPv6 addresses can belong to one of three categories: unicast, anycast, and multicast.
+
+- Unicast addresses are used to send data to a specific device.
+- Anycast addresses are used to send data to the nearest device among a group of devices that share the same address.
+- Multicast addresses are used to send data to a group of devices simultaneously.
+
+💡 Think of an IPv6 address as a long phone number. The colon hexadecimal notation divides this number into eight sections, similar to how a phone number is divided into area code, exchange code, and local number. Unicast addresses are like calling a specific person, anycast addresses are like calling the nearest pizza delivery service, and multicast addresses are like sending a broadcast message to a specific group of people.
+
+======================================================================
+
+QUESTION #9  (6 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Explain the various transmission modes used in network.
+----------------------------------------------------------------------
+Model Answer:
+TRANSMISSION MODES IN NETWORK
+
+📘 As per your notes, the transmission modes used in networks are primarily divided into two categories: Circuit-switched and Packet-switched.
+
+- Circuit-switched mode: This mode establishes a dedicated physical path (circuit) between two devices for the duration of the communication. It is similar to reserving a private line for the exclusive use of the communicating devices. Examples of circuit-switched networks include traditional telephone networks and certain types of data networks like Frame Relay and Integrated Services Digital Network (ISDN).
+
+- Packet-switched mode: In contrast, packet-switched networks break data into smaller packets, each containing the source and destination addresses. These packets are then sent independently over the network, and the receiving device reassembles them to restore the original message. The Internet is the most well-known example of a packet-switched network.
+
+💡 Simple way to understand it:
+Think of a busy restaurant (circuit-switched) where you reserve a table for the entire meal, and a food delivery service (packet-switched) where your food is broken down into smaller boxes and delivered to you via multiple routes. In both cases, you eventually receive your meal, but the methods of delivery are different.
+
+======================================================================
+
+QUESTION #10  (7 Marks)  -  asked in 2 exam sittings [2024, 2022]
+Question: What is IPV4 addressing format ? Explain class A, class B and class C addressing format. Identify the following address. a → 192.10.127.35 b → 14.12.22.3
+----------------------------------------------------------------------
+Model Answer:
+IPV4 ADDRESSING
+
+📘 As per your notes:
+
+IPv4 addressing is a crucial concept in the network layer, particularly important for understanding the current version of the Internet. The address space refers to the range of unique addresses that can be assigned to devices connected to a network.
+
+In classful addressing, which is now outdated but useful for understanding classless addressing, the address space was divided into classes A, B, and C, each with a different range of addresses and a default network and host size.
+
+- Class A addresses range from 1.0.0.0 to 126.255.255.255, with the first octet indicating the network number and the remaining three octets for host addresses. This class can support a maximum of 16,777,214 hosts per network.
+- Class B addresses range from 128.0.0.0 to 191.255.255.255, with the first two octets indicating the network number and the remaining two octets for host addresses. This class can support a maximum of 65,534 hosts per network.
+- Class C addresses range from 192.0.0.0 to 223.255.255.255, with the first three octets indicating the network number and the remaining octet for host addresses. This class can support a maximum of 254 hosts per network.
+
+Classless addressing, on the other hand, does not restrict the number of classes and allows for a more flexible allocation of addresses.
+
+💡 Simple way to understand it:
+
+Think of IPv4 addressing as a phonebook for the internet. In the past, we had three different-sized phonebooks (Class A, B, and C) for different-sized towns (networks). Each entry in the phonebook (IP address) had a specific format, with the first few digits (octets) indicating the town (network) and the remaining digits indicating the individual (host). However, with the advent of classless addressing, we now have one big phonebook that can accommodate addresses of any size, making it more flexible and efficient.
+
+======================================================================
+
+QUESTION #11  (4 Marks)  -  asked in 2 exam sittings [2025, 2022]
+Question: Write a note on Domain Name System.
+----------------------------------------------------------------------
+Model Answer:
+DOMAIN NAME SYSTEM
+
+📘 As per your notes, the Domain Name System (DNS) is a client-server application that functions as the directory system of the Internet. It assigns a unique name to each host on the Internet, helping to decentralize the responsibilities involved in naming. The DNS organizes the name space in a hierarchical structure to facilitate easier navigation and access.
+
+💡 Simple way to understand it: Think of the DNS as a phonebook for the Internet. Just like a phonebook helps you find the phone number for a person using their name, the DNS helps you find the IP address for a website or server using its domain name.
+
+Key differences between the DNS and a traditional phonebook:
+- The DNS is decentralized, meaning there isn't a single authority managing all the names and addresses. Instead, the responsibility is divided among multiple servers.
+- The DNS is hierarchical, meaning it organizes the names and addresses in a structured manner, making it easier to find the correct information.
+- A traditional phonebook only contains phone numbers for people, while the DNS contains IP addresses for various types of entities on the Internet, such as websites, servers, and email hosts.
+
+======================================================================
+
+QUESTION #12  (5 Marks)  -  asked in 2 exam sittings [2025, 2022]
+Question: Write a short note on congestion control methods.
+----------------------------------------------------------------------
+Model Answer:
+CONGESTION CONTROL
+
+📘 As per your notes, Congestion Control refers to the mechanisms and techniques used to manage and control congestion in a network, preventing it from exceeding the network's capacity. The congestion occurs when the number of datagrams (data packets) sent by source computers is beyond the capacity of the network or routers, causing some routers to drop packets.
+
+💡 Think of a freeway during rush hour. To manage the traffic and prevent congestion, authorities can implement measures such as adjusting speed limits, adding lanes, or using traffic signals. Similarly, in a network, congestion control methods help manage the flow of data packets to prevent network congestion.
+
+Key differences between various congestion control methods are not explicitly mentioned in the provided context. However, common methods include TCP (Transmission Control Protocol) congestion avoidance, which aims to prevent congestion by monitoring network conditions and adjusting the sending rate, and Active Queue Management (AQM), which aims to reduce the queue length in routers by actively managing the queue.
+
+In the case of TCP congestion avoidance, the sender reduces its sending rate when it detects network congestion, while in AQM, the router drops or marks certain packets to signal congestion to the sender, which then adjusts its sending rate.
+
+======================================================================

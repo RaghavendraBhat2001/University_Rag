@@ -1,0 +1,623 @@
+{
+  "DBMS": {
+    "Discuss ACID properties of a transaction.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2022",
+        "2020"
+      ],
+      "answer": "### ACID Properties of a Database Transaction (6 Marks)\n\nA transaction is a logical unit of work that contains one or more database operations (read/write). To maintain database integrity, every DBMS enforces the four ACID properties:\n\n1. **Atomicity (\"All or Nothing\")**:\n   - Ensures that either all operations of the transaction are executed successfully and committed, or none of them take effect.\n   - If a failure occurs mid-transaction, all changes are rolled back to the pre-transaction state.\n   - *DBMS Component:* Managed by the **Transaction Manager** and **Recovery Subsystem** using write-ahead transaction logs (UNDO logs).\n\n2. **Consistency (Preserving Invariants)**:\n   - A transaction must transform the database from one valid consistent state to another consistent state satisfying all integrity constraints (e.g., primary keys, foreign keys, balance >= 0).\n   - If a transaction violates any constraint, it is aborted and rolled back.\n   - *DBMS Component:* Enforced by the **Integrity Subsystem** and application logic.\n\n3. **Isolation (Concurrent Execution Separation)**:\n   - Multiple transactions executing concurrently must execute without interfering with each other. The intermediate state of a transaction remains invisible to other concurrently executing transactions.\n   - Prevents concurrency anomalies: Dirty Reads, Non-repeatable Reads, and Phantom Reads.\n   - *DBMS Component:* Enforced by the **Concurrency Control Subsystem** using Locking protocols (2PL) or Timestamp Ordering.\n\n4. **Durability (Permanence of Committed Changes)**:\n   - Once a transaction commits successfully, its updates persist permanently in non-volatile storage, even in the event of an immediate system crash or power outage.\n   - *DBMS Component:* Enforced by the **Recovery Manager** using REDO logs and write-ahead logging (WAL).\n\n---\n**Illustrative Real-World Example (Bank Fund Transfer):**\nTransferring ₹5,000 from Account A (₹20,000) to Account B (₹10,000):\n```sql\nSTART TRANSACTION;\nUPDATE Accounts SET balance = balance - 5000 WHERE acc_no = 'A';\nUPDATE Accounts SET balance = balance + 5000 WHERE acc_no = 'B';\nCOMMIT;\n```\n- *Atomicity:* If power fails after debiting A, B is not credited; rollback restores ₹5,000 to A.\n- *Consistency:* Total money across A and B remains ₹30,000 before and after transaction.\n- *Isolation:* A concurrent balance inquiry cannot see A debited before B is credited.\n- *Durability:* Once COMMIT executes, ₹15,000 in both accounts survives a server restart."
+    },
+    "Write a note on hashing techniques.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2020"
+      ],
+      "answer": "### Hashing Techniques in DBMS (6 Marks)\n\nHashing is a direct data access technique that maps search key values directly to storage bucket addresses using a mathematical hash function $h(K)$, achieving average $O(1)$ search, insert, and delete complexity.\n\n#### 1. Static Hashing:\n- The number of bucket addresses $M$ is fixed at database creation time.\n- Hash function: $h(K) = K \\pmod M$.\n- **Bucket Overflow Problem:** When a record hashes to a bucket that is already full.\n  - Handled via **Open Hashing (Chaining / Overflow Buckets):** Overflow linked lists attached to the primary bucket.\n  - Handled via **Closed Hashing (Linear/Quadratic Probing):** Searches for the next available bucket sequentially.\n- *Limitation:* Poor scalability when databases grow or shrink significantly.\n\n#### 2. Dynamic Hashing (Extendible & Linear Hashing):\nAllows the hash table structure to grow and shrink dynamically without requiring complete re-hashing of all records.\n\n- **Extendible Hashing:**\n  - Uses an in-memory directory of pointers to disk buckets.\n  - **Global Depth ($d$):** Number of bits used to index the directory ($2^d$ directory entries).\n  - **Local Depth ($d' \\le d$):** Number of bits shared by records inside a specific bucket.\n  - When a bucket overflows:\n    * If $d' = d$: Directory doubles in size ($d \\leftarrow d + 1$).\n    * If $d' < d$: Only the overflowing bucket splits into two; local depths increment to $d'+1$; directory does not double.\n- **Linear Hashing:**\n  - Does not use a directory. Splits buckets linearly in round-robin order using a split pointer, maintaining an average storage utilization of ~75-80%.\n\n#### Summary Comparison:\n| Parameter | Static Hashing | Extendible Hashing | Linear Hashing |\n| :--- | :--- | :--- | :--- |\n| **Bucket Count** | Fixed | Dynamic ($2^d$ directory) | Dynamic (split pointer) |\n| **Directory Overhead** | None | Yes (Memory directory) | None |\n| **Re-hashing Overhead** | Massive when full | Localized to split bucket | Incremental |"
+    },
+    "What is Schema ? Explain with a neat diagram 3 schema architecture of DBMS.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2020"
+      ],
+      "answer": "### Schema and 3-Schema Architecture in DBMS (6 Marks)\n\n#### 1. Definition of Schema:\nA **Database Schema** is the overall structural design and skeleton of the database, specifying tables, fields, data types, constraints, and relationships. It is stored in the data dictionary (system catalog) and rarely changes, whereas the data stored at a particular moment is termed the **Database Instance**.\n\n#### 2. Three-Schema (ANSI/SPARC) Architecture:\nThe primary objective is to separate user applications from the physical database, achieving **Data Independence**.\n\n```\n+-----------------------------------------------------------+\n|              EXTERNAL LEVEL (User Views)                  |\n|   [ View 1: Student ]      [ View 2: Accounts ]  [ View 3 ]|\n+-----------------------------------------------------------+\n                             |\n                   External / Conceptual Mapping\n                             |\n+-----------------------------------------------------------+\n|              CONCEPTUAL LEVEL (Logical Schema)            |\n|   Entities, Attributes, Relationships, Integrity Rules     |\n|   (Relational Schema: e.g., Students, Courses, Grades)    |\n+-----------------------------------------------------------+\n                             |\n                  Conceptual / Internal Mapping\n                             |\n+-----------------------------------------------------------+\n|              INTERNAL LEVEL (Physical Schema)             |\n|   Storage Structures, Record Formats, B+ Trees, Hashing   |\n+-----------------------------------------------------------+\n                             |\n                 [ Physical Database Storage ]\n```\n\n#### 3. The Three Levels Explained:\n1. **External Level (Sub-schemas / Views):**\n   - The view closest to the end-users. Each user group views only the subset of data relevant to their role, hiding confidential fields (e.g., students view marks, HR views salary).\n2. **Conceptual Level (Logical Community Schema):**\n   - Describes *what* data is stored in the whole database and relationships among them without detailing storage mechanisms. Includes entities, data types, user constraints, and security rules.\n3. **Internal Level (Physical Schema):**\n   - Describes *how* data is stored physically on disk: file organizations (heap, sorted, hashed), indexing mechanisms (B+ trees), data compression, and block allocations.\n\n#### 4. Data Independence Achieved:\n- **Logical Data Independence:** Ability to modify the Conceptual Schema (e.g. adding a new table or attribute) without altering existing External Views or application programs.\n- **Physical Data Independence:** Ability to modify the Internal Schema (e.g. reorganizing file structures or adding indexes) without altering the Conceptual Schema or application programs."
+    },
+    "Explain domain constraint, key constraint and referential integrity constraints.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2020"
+      ],
+      "answer": "### Relational Integrity Constraints (6 Marks)\n\nIntegrity constraints are rules enforced by the DBMS to ensure database accuracy, consistency, and validity during insert, update, and delete operations.\n\n#### 1. Domain Constraint:\n- Specifies that the value of each attribute $A$ in any tuple must be an atomic value belonging to the predefined domain $dom(A)$.\n- Enforces data type, format, permissible range, and nullability.\n- *Examples in SQL:*\n  ```sql\n  age INT CHECK (age >= 18 AND age <= 60),\n  gender CHAR(1) CHECK (gender IN ('M', 'F', 'O')),\n  email VARCHAR(100) NOT NULL\n  ```\n- *Violation:* Attempting to insert `\"abc\"` into an `INT` field or `age = 15` triggers a constraint violation error.\n\n#### 2. Key Constraint:\n- States that no two distinct tuples in any relation state $r(R)$ can have identical values for the Primary Key or Candidate Key attribute(s).\n- **Superkey:** A set of attributes that uniquely identifies a tuple.\n- **Candidate Key:** A minimal superkey (no redundant attributes).\n- **Primary Key:** The chosen candidate key; strictly requires **Uniqueness** and **Entity Integrity** (Primary key attributes can never be `NULL`).\n- *SQL Example:*\n  ```sql\n  student_id VARCHAR(10) PRIMARY KEY\n  ```\n\n#### 3. Referential Integrity Constraint:\n- Enforced between two relations (Referencing relation $R_1$ and Referenced relation $R_2$).\n- A tuple in $R_1$ has a **Foreign Key (FK)** that references the **Primary Key (PK)** of $R_2$.\n- The foreign key value must either:\n  1. Match an existing primary key value in the referenced relation, or\n  2. Be `NULL` (if nulls are allowed).\n- **Referential Action Rules:**\n  * `ON DELETE CASCADE`: Deleting referenced parent tuple automatically deletes matching child tuples.\n  * `ON DELETE RESTRICT / NO ACTION`: Rejects deletion of parent tuple if child records exist.\n  * `ON DELETE SET NULL`: Sets child foreign key to `NULL`.\n- *SQL Example:*\n  ```sql\n  FOREIGN KEY (dept_id) REFERENCES Department(dept_id)\n      ON DELETE RESTRICT ON UPDATE CASCADE\n  ```"
+    },
+    "Explain views in SQL with example.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2020"
+      ],
+      "answer": "### Views in SQL (6 Marks)\n\n#### 1. Definition:\nA **View** in SQL is a virtual table whose contents are defined by an underlying `SELECT` query. A view does not store data physically on disk (except in materialized views); instead, the DBMS stores the view definition in the system catalog and dynamically executes the underlying query whenever the view is queried.\n\n#### 2. Syntax and Creation:\n```sql\nCREATE VIEW view_name AS\nSELECT column1, column2, ...\nFROM table_name\nWHERE condition;\n```\n\n#### 3. Practical Example:\nSuppose a university has an `Employees` table:\n`Employees(emp_id, emp_name, department, salary, ssn)`\n\nTo allow department managers to see employee details without exposing confidential `salary` and `ssn`:\n```sql\n-- Create View:\nCREATE VIEW DeptStaffView AS\nSELECT emp_id, emp_name, department\nFROM Employees\nWHERE department = 'Computer Science';\n\n-- Querying the View:\nSELECT * FROM DeptStaffView WHERE emp_name LIKE 'R%';\n\n-- Dropping the View:\nDROP VIEW DeptStaffView;\n```\n\n#### 4. Advantages of Views:\n1. **Data Security & Confidentiality:** Restricts user access to specific rows and columns without granting table-level permissions.\n2. **Query Simplification:** Pre-packages complex multi-table `JOIN`s, subqueries, and aggregations into a simple virtual table.\n3. **Logical Data Independence:** If table structures change slightly, the view query can be updated without breaking legacy client applications.\n\n#### 5. Updatable Views vs. Non-Updatable Views:\nA view is updatable (`INSERT`, `UPDATE`, `DELETE`) only if:\n- It is based on a single base table.\n- It contains the primary key of the base table.\n- It contains **no** `GROUP BY`, `DISTINCT`, aggregate functions (`COUNT`, `AVG`), or `UNION` operations."
+    },
+    "Explain different types of database users.": {
+      "marks": 10,
+      "years": [
+        "2022",
+        "2020"
+      ],
+      "answer": "### Classification of Database Users (10 Marks)\n\nDatabase users interact with the DBMS across various abstractions, from system governance to routine data retrieval. They are categorized into the following distinct classes:\n\n#### 1. Database Administrator (DBA):\nThe central authority responsible for enterprise database management and operations:\n- **Schema Definition & Modification:** Defines internal, conceptual, and external schemas.\n- **Access Control & Security:** Grants/revokes user permissions and privileges.\n- **Integrity Enforcement:** Establishes constraints, triggers, and consistency rules.\n- **Backup & Disaster Recovery:** Schedules regular backups and handles crash recovery.\n- **Performance Tuning:** Monitors disk utilization, rebuilds indexes, and tunes buffer pools.\n\n#### 2. Database Designers:\n- **Logical Designers:** Model business requirements into Conceptual schemas (ER diagrams), perform normalization (BCNF/3NF), and specify business constraints.\n- **Physical Designers:** Translate logical schemas into storage structures, choosing indexing strategies (B+ trees, hashing) and partitioning methods.\n\n#### 3. End Users:\nEnd users access the database for day-to-day operations and decision-making:\n- **a) Naive / Parametric Users:**\n  - Largest user group. They do not know SQL or database internals.\n  - Interact exclusively through canned forms, mobile apps, or web interfaces.\n  - *Examples:* Bank tellers, airline reservation clerks, e-commerce shoppers.\n- **b) Casual / Sophisticated Users:**\n  - Understand query languages (SQL) and relational concepts.\n  - Write complex ad-hoc queries, generate custom reports, and perform data analysis without using application interfaces.\n  - *Examples:* Business analysts, researchers, data scientists.\n- **c) Standalone Users:**\n  - Maintain personal databases using ready-made software packages (e.g., Microsoft Access, personal SQLite applications).\n\n#### 4. Application Programmers (Software Developers):\n- Write software applications in host languages (Java, Python, C#, Node.js) that embed DML statements or use ORM frameworks (Hibernate, SQLAlchemy) to interact with the DBMS.\n- Test, debug, and maintain database application interfaces.\n\n#### 5. System Analysts:\n- Determine end-user requirements and bridge business needs with database developers to formulate functional specifications."
+    },
+    "What are the main characteristics of DBMS ?": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "### Main Characteristics of the Database Approach (6 Marks)\n\nUnlike traditional file-processing systems where each application manages its own files, a Database Management System (DBMS) exhibits the following core characteristics:\n\n1. **Self-Describing Nature of a Database System:**\n   - A DBMS contains not only the database itself but also a complete definition of its structure and constraints stored in the **System Catalog (Data Dictionary / Metadata)**.\n   - Allows DBMS software to work with different databases dynamically without hardcoded assumptions.\n\n2. **Program-Data and Program-Operation Independence:**\n   - In file systems, file record formats are hardcoded in application source code.\n   - In a DBMS, data structures (physical storage, indexing) can change without altering application programs (**Data Independence**).\n\n3. **Support of Multiple Views of the Data:**\n   - Different users have different perspectives. A DBMS allows each user group to access only the subset of data relevant to their role via tailored **External Views**.\n\n4. **Multi-User Transaction Processing and Concurrency Control:**\n   - Allows hundreds of concurrent users to read and update data simultaneously without conflict.\n   - Enforces **ACID properties** through concurrency control (locking/timestamping) ensuring serializability.\n\n5. **Data Sharing and Integration:**\n   - Centralizes enterprise data, eliminating redundant data silos and ensuring a single source of truth.\n\n6. **Enforcement of Integrity Constraints:**\n   - Automatically validates data against business rules: Primary key uniqueness, Foreign key referential integrity, and Domain validation."
+    },
+    "Discuss Embedded SQL and Dynamic SQL.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "### Embedded SQL vs. Dynamic SQL (6 Marks)\n\nBoth Embedded SQL and Dynamic SQL enable high-level programming languages (C, C++, Java) to communicate with relational databases.\n\n#### 1. Embedded SQL (Static SQL):\n- SQL statements are directly written inside the host program source code and prefixed with `EXEC SQL`.\n- Processed by an application **pre-compiler** before host language compilation.\n- Query structure is completely fixed at design/compile time; only parameter values (host variables) vary at runtime.\n- *Syntax Example (in C):*\n  ```c\n  EXEC SQL SELECT salary INTO :emp_sal FROM Employee WHERE emp_id = :id;\n  ```\n- *Advantages:* High runtime efficiency, syntax and semantic checks performed at compile time, strong security.\n\n#### 2. Dynamic SQL:\n- SQL statements are constructed as character strings at runtime and executed dynamically.\n- Used when queries cannot be determined ahead of time (e.g. ad-hoc filter screens with variable checkboxes).\n- Enabled via standardized APIs: **JDBC, ODBC, or `PREPARE` / `EXECUTE` commands**.\n- *Syntax Example:*\n  ```sql\n  PREPARE stmt FROM 'SELECT * FROM Students WHERE marks >= ?';\n  EXECUTE stmt USING @min_marks;\n  ```\n\n#### 3. Key Comparison:\n| Feature | Embedded (Static) SQL | Dynamic SQL |\n| :--- | :--- | :--- |\n| **Query Formulation** | Fixed at compile time | Constructed as string at runtime |\n| **Parsing & Optimization**| Done ahead-of-time (pre-compile) | Done at runtime per invocation |\n| **Execution Speed** | Fast (pre-compiled execution plan) | Slightly slower (runtime compilation) |\n| **Flexibility** | Rigid query structure | Highly versatile & dynamic |\n| **SQL Injection Risk** | Very Low | Higher if string concatenation is used |"
+    },
+    "Explain Two Phase Locking Protocol used in concurrency control.": {
+      "marks": 10,
+      "years": [
+        "2022",
+        "2020"
+      ],
+      "answer": "### Two-Phase Locking (2PL) Protocol (10 Marks)\n\nThe Two-Phase Locking (2PL) protocol is a concurrency control mechanism that guarantees **Conflict Serializability** by enforcing strict rules on when transactions may acquire and release locks.\n\n#### 1. Lock Types:\n- **Shared Lock (S):** Acquired for reading data items (`read_lock`). Multiple transactions can hold shared locks concurrently on the same item.\n- **Exclusive Lock (X):** Acquired for writing data items (`write_lock`). Only one transaction can hold an exclusive lock; all other lock requests are blocked.\n\n#### 2. The Two Phases of 2PL:\nEvery transaction must execute in two distinct phases:\n\n```\nNumber of\nLocks Held\n   ^\n   |        Lock Point\n   |            *\n   |          /   \\\n   |         /     \\\n   |        /       \\\n   |       /         \\\n   +-------------------------> Time\n     Growing Phase   Shrinking Phase\n     (Locks Acquired) (Locks Released)\n```\n\n1. **Phase 1: Growing Phase (Expanding Phase):**\n   - The transaction may obtain new locks (both Shared and Exclusive) or upgrade an S lock to an X lock.\n   - **Crucial Rule:** The transaction CANNOT release any lock during this phase.\n2. **Lock Point:**\n   - The exact moment when the transaction has acquired the final lock it requires. Serializability order is determined by the order of lock points.\n3. **Phase 2: Shrinking Phase (Contracting Phase):**\n   - The transaction may release locks or downgrade an X lock to an S lock.\n   - **Crucial Rule:** The transaction CANNOT acquire any new lock once it releases its first lock.\n\n#### 3. Variations of 2PL:\n- **Basic 2PL:** Guarantees conflict serializability, but is vulnerable to **Cascading Aborts** and Deadlocks.\n- **Strict 2PL:**\n  - Requires all **Exclusive (X) locks** to be held until the transaction commits or aborts.\n  - Guarantees **Strict Schedules** and completely eliminates cascading rollbacks.\n- **Rigorous 2PL:**\n  - Requires all **Shared (S) AND Exclusive (X) locks** to be held until transaction commit. Easiest to implement.\n\n#### 4. Limitations of 2PL:\n- **Deadlocks:** Concurrent transactions waiting for locks held by each other can form cycles (e.g. $T_1$ holds $A$ waiting for $B$, while $T_2$ holds $B$ waiting for $A$). Resolved via Wait-For Graphs or Timeout mechanisms."
+    }
+  },
+  "DS": {
+    "Define data structure and explain the operations performed on the linear data structure.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "### Data Structures & Linear Operations (6 Marks)\n\n#### 1. Definition:\nA **Data Structure** is a specialized mathematical and logical format for organizing, storing, processing, and retrieving data efficiently inside computer memory.\n\n#### 2. Linear Data Structure:\nA data structure is linear if its elements form a sequential sequence where each element (except first and last) has a unique predecessor and successor (e.g., Arrays, Linked Lists, Stacks, Queues).\n\n#### 3. Standard Operations Performed:\n1. **Traversal:** Visiting each element in the data structure exactly once to process or display it (e.g., printing all array elements in $O(n)$).\n2. **Insertion:** Adding a new element at a designated position (at beginning, middle, or end).\n3. **Deletion:** Removing an existing element from the data structure and reorganizing adjacent elements.\n4. **Searching:** Finding the location of an element with a specified target key:\n   - *Linear Search:* $O(n)$ on unsorted lists.\n   - *Binary Search:* $O(\\log n)$ on sorted sequential arrays.\n5. **Sorting:** Arranging elements in a specified logical order (ascending or descending) using algorithms like QuickSort, MergeSort, or BubbleSort.\n6. **Merging:** Combining elements of two distinct linear structures into a single composite structure."
+    },
+    "Convert the following infix expression to postfix expression using stack A – (B/C)*D + (E^F).": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "### Infix to Postfix Conversion Using Stack (6 Marks)\n\n**Given Infix Expression:** `A - ( B / C ) * D + ( E ^ F )`\n\n#### Operator Precedence & Associativity:\n- `^` (Exponentiation): Precedence 3, Right-to-Left\n- `*`, `/` (Multiplication/Division): Precedence 2, Left-to-Right\n- `+`, `-` (Addition/Subtraction): Precedence 1, Left-to-Right\n- `(`: Pushed to stack; popped upon matching `)`\n\n#### Step-by-Step Stack Trace Table:\n| Symbol Scanned | Operator Stack | Postfix Output Buffer |\n| :---: | :---: | :---: |\n| `A` | *(empty)* | `A` |\n| `-` | `-` | `A` |\n| `(` | `- (` | `A` |\n| `B` | `- (` | `A B` |\n| `/` | `- ( /` | `A B` |\n| `C` | `- ( /` | `A B C` |\n| `)` | `-` *(pops `/`)* | `A B C /` |\n| `*` | `- *` *(higher than `-`)* | `A B C /` |\n| `D` | `- *` | `A B C / D` |\n| `+` | `+` *(pops `*` then `-`)* | `A B C / D * -` |\n| `(` | `+ (` | `A B C / D * -` |\n| `E` | `+ (` | `A B C / D * - E` |\n| `^` | `+ ( ^` | `A B C / D * - E` |\n| `F` | `+ ( ^` | `A B C / D * - E F` |\n| `)` | `+` *(pops `^`)* | `A B C / D * - E F ^` |\n| *(End of input)* | *(empty, pops `+`)* | `A B C / D * - E F ^ +` |\n\n---\n**Final Resulting Postfix Expression:**\n`A B C / D * - E F ^ +`"
+    },
+    "Write an algorithm for PUSH and POP operations on stack.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "### Algorithms for PUSH and POP Operations on Stack (6 Marks)\n\nA **Stack** is a Last-In, First-Out (LIFO) linear data structure where all insertions and deletions occur at a single end termed `TOP`.\n\nAssume an array `STACK[1..MAXSIZE]` with pointer `TOP` initialized to `0` (or `-1` in 0-indexed systems).\n\n#### 1. PUSH Operation:\nInserts element `ITEM` onto the top of the stack.\n```text\nAlgorithm PUSH(STACK, TOP, MAXSIZE, ITEM)\nStep 1: [Check for Stack Overflow]\n        If TOP = MAXSIZE then:\n            Write \"Error: Stack Overflow\"\n            Exit\nStep 2: [Increment Top Pointer]\n        TOP := TOP + 1\nStep 3: [Insert Element]\n        STACK[TOP] := ITEM\nStep 4: [Success]\n        Write \"Item pushed successfully\"\n        Exit\n```\n*Time Complexity:* $O(1)$ | *Space Complexity:* $O(1)$\n\n#### 2. POP Operation:\nRemoves and returns the topmost element `ITEM` from the stack.\n```text\nAlgorithm POP(STACK, TOP, ITEM)\nStep 1: [Check for Stack Underflow]\n        If TOP = 0 then:\n            Write \"Error: Stack Underflow\"\n            Exit\nStep 2: [Retrieve Top Element]\n        ITEM := STACK[TOP]\nStep 3: [Decrement Top Pointer]\n        TOP := TOP - 1\nStep 4: [Return Value]\n        Return ITEM\n        Exit\n```\n*Time Complexity:* $O(1)$ | *Space Complexity:* $O(1)$"
+    },
+    "Write an algorithm to insert an element in the beginning of the linked list.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "### Algorithm: Insert at Beginning of Singly Linked List (6 Marks)\n\nIn a Singly Linked List, each node contains two fields: `INFO` (data) and `NEXT` (pointer to the succeeding node). `START` points to the first node.\n\n#### Algorithm:\n```text\nAlgorithm INSERT_FIRST(START, ITEM)\nStep 1: [Allocate Memory for New Node]\n        NEW_NODE := Allocate Node in Memory\nStep 2: [Check Memory Allocation]\n        If NEW_NODE = NULL then:\n            Write \"Error: Memory Overflow / Out of Heap Space\"\n            Exit\nStep 3: [Set Node Data]\n        NEW_NODE.INFO := ITEM\nStep 4: [Link New Node to Current Head]\n        NEW_NODE.NEXT := START\nStep 5: [Update Start Pointer]\n        START := NEW_NODE\nStep 6: [Finished]\n        Write \"Element inserted successfully at head\"\n        Exit\n```\n\n#### Diagrammatic Representation:\n```\nBefore:\n  START ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]\n\nNew Node Created:\n  [ ITEM | NULL ]\n\nStep 4 & 5 (Linked & Re-pointed):\n  NEW_NODE.NEXT = START;\n  START = NEW_NODE;\n\nAfter:\n  START ----> [ ITEM | NEXT ] ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]\n```\n*Time Complexity:* $O(1)$ (constant time, no traversal required)."
+    },
+    "What is Adjacency matrix of graph ? Write the adjacency matrix for the given graph.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "### Adjacency Matrix Representation of Graphs (6 Marks)\n\n#### 1. Definition:\nAn **Adjacency Matrix** is a 2-dimensional square boolean array $A$ of size $V \times V$ (where $V$ is the number of vertices in graph $G = (V, E)$).\nThe matrix entry $A[i][j]$ is defined as:\n$$A[i][j] = \\begin{cases} 1 & \\text{if there is an edge from vertex } v_i \\text{ to } v_j \\\\ 0 & \\text{otherwise} \\end{cases}$$\n*(For weighted graphs, $A[i][j]$ stores the edge weight $w(i,j)$ instead of $1$, and $\\infty$ or $0$ if no edge exists).*\n\n#### 2. Key Properties:\n- For an **Undirected Graph**, the adjacency matrix is symmetric ($A[i][j] = A[j][i]$).\n- For a **Directed Graph (Digraph)**, the matrix is generally asymmetric.\n- *Space Complexity:* $\\Theta(V^2)$ regardless of the number of edges. Best suited for **Dense Graphs**.\n- *Edge Existence Check:* $O(1)$ time complexity.\n\n#### 3. Standard Example (4-Vertex Undirected Cycle Graph $V = \\{1, 2, 3, 4\\}$ with edges $(1,2), (2,3), (3,4), (4,1)$):\n```\n    1 --------- 2\n    |           |\n    |           |\n    4 --------- 3\n```\n**Adjacency Matrix:**\n```\n     1   2   3   4\n1  [ 0   1   0   1 ]\n2  [ 1   0   1   0 ]\n3  [ 0   1   0   1 ]\n4  [ 1   0   1   0 ]\n```"
+    },
+    "Explain the technique of collision resolution with open addressing.": {
+      "marks": 5,
+      "years": [
+        "2024",
+        "2022"
+      ],
+      "answer": "### Collision Resolution Using Open Addressing (5 Marks)\n\nIn hashing, a **collision** occurs when two distinct keys hash to the same bucket address ($h(k_1) = h(k_2)$). In **Open Addressing (Closed Hashing)**, all elements are stored directly inside the hash table array without linked lists. When a collision occurs, alternative cells are probed until an empty slot is found.\n\n#### 1. Linear Probing:\n- Checks sequential slots: $h(k, i) = (h'(k) + i) \\pmod M$, for $i = 0, 1, 2, \\dots, M-1$.\n- *Advantage:* Excellent CPU cache locality.\n- *Disadvantage:* Suffers from **Primary Clustering** (long blocks of occupied slots build up, drastically increasing average probe time).\n\n#### 2. Quadratic Probing:\n- Uses a quadratic function of probe number:\n  $$h(k, i) = (h'(k) + c_1 i + c_2 i^2) \\pmod M$$\n- Eliminates primary clustering, but can lead to **Secondary Clustering** (keys with the same initial hash follow identical probe sequences).\n\n#### 3. Double Hashing:\n- Uses two independent hash functions $h_1(k)$ and $h_2(k)$:\n  $$h(k, i) = (h_1(k) + i \\cdot h_2(k)) \\pmod M$$\n- *Condition:* $h_2(k)$ must be relatively prime to $M$ (e.g. $M$ is prime).\n- *Advantage:* Produces near-ideal uniform distribution; minimizes clustering anomalies."
+    },
+    "What are Asymptotic Notations ? Explain with an example.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "### Asymptotic Notations in Algorithm Analysis (6 Marks)\n\nAsymptotic notations are mathematical tools used to describe the limiting behavior and growth rate of an algorithm's running time or memory usage as the input size $n$ approaches infinity ($n \to \\infty$).\n\n#### 1. Big-O Notation ($O$ - Asymptotic Upper Bound):\n- Represents the **worst-case** performance (maximum time an algorithm can take).\n- **Formal Definition:** $f(n) = O(g(n))$ if there exist positive constants $c > 0$ and $n_0 \\ge 1$ such that:\n  $$0 \\le f(n) \\le c \\cdot g(n) \\quad \forall n \\ge n_0$$\n- *Example:* If $f(n) = 3n^2 + 5n + 2$, choose $c = 4$ and $n_0 = 6$, so $f(n) \\le 4n^2$, meaning $f(n) = O(n^2)$.\n\n#### 2. Big-$\\Omega$ Notation ($\\Omega$ - Asymptotic Lower Bound):\n- Represents the **best-case** performance (minimum time guaranteed).\n- **Formal Definition:** $f(n) = \\Omega(g(n))$ if there exist positive constants $c > 0$ and $n_0 \\ge 1$ such that:\n  $$0 \\le c \\cdot g(n) \\le f(n) \\quad \forall n \\ge n_0$$\n- *Example:* $3n^2 + 5n \\ge 3n^2$ for all $n \\ge 1$, so $f(n) = \\Omega(n^2)$.\n\n#### 3. Big-$\\Theta$ Notation ($\\Theta$ - Asymptotic Tight Bound):\n- Bounds the function from both above and below within constant factors.\n- **Formal Definition:** $f(n) = \\Theta(g(n))$ if there exist positive constants $c_1, c_2 > 0$ and $n_0 \\ge 1$ such that:\n  $$0 \\le c_1 \\cdot g(n) \\le f(n) \\le c_2 \\cdot g(n) \\quad \forall n \\ge n_0$$\n- *Example:* Linear search on an array of size $n$ has worst-case $O(n)$, best-case $\\Omega(1)$, and average-case $\\Theta(n)$."
+    }
+  },
+  "OS": {
+    "Write difference between paging and segmentation.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "### Difference Between Paging and Segmentation (6 Marks)\n\nBoth Paging and Segmentation are non-contiguous memory management schemes implemented in modern Operating Systems.\n\n| Parameter | Paging | Segmentation |\n| :--- | :--- | :--- |\n| **Block Size** | Fixed-size blocks called **Pages** (frame size = page size, e.g. 4KB). | Variable-size blocks called **Segments** reflecting logical program units. |\n| **Viewpoint** | Physical view; managed invisibly by the OS and Memory Management Unit (MMU). | Logical view; defined by user/compiler (code, data, stack, subroutines). |\n| **Address Structure** | Virtual address = `(Page Number, Offset)`. | Virtual address = `(Segment Number, Offset)`. |\n| **Internal Fragmentation** | **Present** (in the final page frame of a process). | **Absent** (segments allocated exactly to required byte length). |\n| **External Fragmentation** | **Absent** (any page can fit into any free physical frame). | **Present** (free variable memory holes between segments require compaction). |\n| **Table Structure** | Uses a **Page Table** containing Base address of each physical frame. | Uses a **Segment Table** containing both **Base** address and **Limit** (size). |\n| **Protection & Sharing** | Difficult to share logical procedures cleanly. | Natural for sharing code modules and protecting functions."
+    },
+    "Explain Readers-Writers problem of synchronization.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2020"
+      ],
+      "answer": "### The Readers-Writers Problem of Synchronization (6 Marks)\n\n#### 1. Problem Statement:\nA shared database or file is accessed concurrently by multiple processes:\n- **Readers:** Only read the dataset; multiple readers can access data simultaneously without conflict.\n- **Writers:** Modify the dataset; require exclusive access (no other reader or writer may access concurrently).\n\n#### 2. Synchronization Primitives:\n- `semaphore rw_mutex = 1;` // Controls mutual exclusion for writers and first/last reader\n- `semaphore mutex = 1;`    // Protects updates to `read_count`\n- `int read_count = 0;`     // Number of active reader processes\n\n#### 3. Reader Process Pseudocode:\n```c\ndo {\n    wait(mutex);\n    read_count++;\n    if (read_count == 1)\n        wait(rw_mutex); // First reader locks out all writers\n    signal(mutex);\n\n    // Reading performed here...\n\n    wait(mutex);\n    read_count--;\n    if (read_count == 0)\n        signal(rw_mutex); // Last reader releases lock for writers\n    signal(mutex);\n} while (TRUE);\n```\n\n#### 4. Writer Process Pseudocode:\n```c\ndo {\n    wait(rw_mutex);\n\n    // Writing / Modifying data performed here...\n\n    signal(rw_mutex);\n} while (TRUE);\n```\n\n#### 5. Starvation Concern:\nIn the first readers-writers solution shown above (Reader Preference), continuous incoming readers can keep `rw_mutex` locked indefinitely, causing **Writer Starvation**."
+    },
+    "Define semaphores. Explain the implementation of semaphore in solving dining-philosophers problem.": {
+      "marks": 5,
+      "years": [
+        "2023",
+        "2020"
+      ],
+      "answer": "### Semaphores and the Dining-Philosophers Problem (5 Marks)\n\n#### 1. Definition of Semaphore:\nA **Semaphore** is an integer synchronization variable accessed only through two standard atomic operations:\n- **`wait(S)` (or `P(S)`):**\n  ```c\n  wait(S) {\n      while (S <= 0) ; // busy wait (or block process in queue)\n      S--;\n  }\n  ```\n- **`signal(S)` (or `V(S)`):**\n  ```c\n  signal(S) { S++; }\n  ```\nTypes: **Binary Semaphore (Mutex)** (range 0 to 1) and **Counting Semaphore** (unbounded range).\n\n#### 2. Dining Philosophers Problem:\nFive philosophers sit around a circular table with 5 bowls of rice and 5 chopsticks. A philosopher alternately thinks and eats. To eat, a philosopher requires both the left and right chopsticks.\n\n#### 3. Semaphore Solution & Deadlock Prevention:\nRepresent each chopstick as a semaphore: `semaphore chopstick[5] = {1, 1, 1, 1, 1};`\n\n*Naïve Solution:* Each philosopher picks left chopstick, then right chopstick.\n**Deadlock Hazard:** If all 5 philosophers get hungry simultaneously and pick their left chopstick, all chopsticks are held and none can pick their right chopstick.\n\n*Deadlock-Free Asymmetric Solution:*\nAn odd philosopher picks left first then right; an even philosopher picks right first then left:\n```c\nvoid philosopher(int i) {\n    while (1) {\n        think();\n        if (i % 2 == 0) {\n            wait(chopstick[(i + 1) % 5]); // pick right\n            wait(chopstick[i]);           // pick left\n        } else {\n            wait(chopstick[i]);           // pick left\n            wait(chopstick[(i + 1) % 5]); // pick right\n        }\n        eat();\n        signal(chopstick[i]);\n        signal(chopstick[(i + 1) % 5]);\n    }\n}\n```"
+    },
+    "Write short notes on a virtual machine.": {
+      "marks": 3,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "### Virtual Machine (VM) (3 Marks)\n\nA **Virtual Machine** is a completely isolated software emulation of a physical computer architecture that executes programs and guest operating systems just like a physical machine.\n\n- **Hypervisor / Virtual Machine Monitor (VMM):** Software layer that virtualizes hardware resources (CPU, RAM, Storage).\n  * **Type 1 (Bare-Metal):** Runs directly on physical hardware (e.g., VMware ESXi, KVM, Xen).\n  * **Type 2 (Hosted):** Runs on top of a host OS (e.g., Oracle VirtualBox, VMware Workstation).\n- **Key Advantages:**\n  1. *Resource Consolidation:* Maximizes hardware utilization by running multiple VMs on one physical server.\n  2. *Security & Sandboxing:* Failures or malware inside one VM cannot breach the host or peer VMs.\n  3. *Snapshotting & Migration:* Seamless backup and live migration across cloud clusters."
+    },
+    "Consider the following system snapshot using data structures in Banker’s Algorithm, with resources A, B, C, D and process P0 to P4. Max (A B C D) / Allocation (A B C D) / Available (A B C D) — P0: 6 0 1 2 / 4 0 0 1 / 3 2 1 1; P1: 1 7 5 0 / 1 1 0 0; P2: 2 3 5 6 / 1 2 5 4; P3: 1 6 5 3 / 0 6 3 3; P4: 1 6 5 6 / 0 2 1 2. a) Compute need matrix. b) Is the system in a safe state ? Why ?": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "### Banker's Algorithm Safety Analysis (10 Marks)\n\n#### Given Data:\n- Resources: `A, B, C, D`\n- Initial Available Vector: `Available = [3, 2, 1, 1]`\n\n#### Part (a): Need Matrix Computation\n$$\\text{Need}[i][j] = \\text{Max}[i][j] - \\text{Allocation}[i][j]$$\n\n| Process | Max (A B C D) | Allocation (A B C D) | Need = Max - Allocation |\n| :---: | :---: | :---: | :---: |\n| **P0** | 6 0 1 2 | 4 0 0 1 | **[2, 0, 1, 1]** |\n| **P1** | 1 7 5 0 | 1 1 0 0 | **[0, 6, 5, 0]** |\n| **P2** | 2 3 5 6 | 1 2 5 4 | **[1, 1, 0, 2]** |\n| **P3** | 1 6 5 3 | 0 6 3 3 | **[1, 0, 2, 0]** |\n| **P4** | 1 6 5 6 | 0 2 1 2 | **[1, 4, 4, 4]** |\n\n---\n#### Part (b): Safety Algorithm Trace\nInitialize: `Work = Available = [3, 2, 1, 1]`, `Finish[P0..P4] = false`\n\n1. **Check P0:**\n   - $\\text{Need}_0 = [2, 0, 1, 1] \\le \\text{Work} = [3, 2, 1, 1]$ -> **TRUE**\n   - Execute P0. $\\text{Work} \\leftarrow \\text{Work} + \\text{Alloc}_0 = [3, 2, 1, 1] + [4, 0, 0, 1] = \\mathbf{[7, 2, 1, 2]}$\n   - `Finish[P0] = true`\n\n2. **Check P2:**\n   - $\\text{Need}_2 = [1, 1, 0, 2] \\le \\text{Work} = [7, 2, 1, 2]$ -> **TRUE**\n   - Execute P2. $\\text{Work} \\leftarrow \\text{Work} + \\text{Alloc}_2 = [7, 2, 1, 2] + [1, 2, 5, 4] = \\mathbf{[8, 4, 6, 6]}$\n   - `Finish[P2] = true`\n\n3. **Check P1:**\n   - $\\text{Need}_1 = [0, 6, 5, 0] \\le \\text{Work} = [8, 4, 6, 6]$ -> `6 > 4` (**FALSE**, must wait)\n\n4. **Check P3:**\n   - $\\text{Need}_3 = [1, 0, 2, 0] \\le \\text{Work} = [8, 4, 6, 6]$ -> **TRUE**\n   - Execute P3. $\\text{Work} \\leftarrow \\text{Work} + \\text{Alloc}_3 = [8, 4, 6, 6] + [0, 6, 3, 3] = \\mathbf{[8, 10, 9, 9]}$\n   - `Finish[P3] = true`\n\n5. **Re-check P1:**\n   - $\\text{Need}_1 = [0, 6, 5, 0] \\le \\text{Work} = [8, 10, 9, 9]$ -> **TRUE**\n   - Execute P1. $\\text{Work} \\leftarrow \\text{Work} + \\text{Alloc}_1 = [8, 10, 9, 9] + [1, 1, 0, 0] = \\mathbf{[9, 11, 9, 9]}$\n   - `Finish[P1] = true`\n\n6. **Check P4:**\n   - $\\text{Need}_4 = [1, 4, 4, 4] \\le \\text{Work} = [9, 11, 9, 9]$ -> **TRUE**\n   - Execute P4. $\\text{Work} \\leftarrow \\text{Work} + \\text{Alloc}_4 = [9, 11, 9, 9] + [0, 2, 1, 2] = \\mathbf{[9, 13, 10, 11]}$\n   - `Finish[P4] = true`\n\n#### Conclusion:\nYes, the system is in a **SAFE STATE** because all processes can finish without deadlock.\n**Safe Sequence Found:** `P0 -> P2 -> P3 -> P1 -> P4` (or `P0 -> P3 -> P2 -> P1 -> P4`)."
+    }
+  },
+  "CN": {
+    "Define network topology. Explain different topologies with its merits and demerits.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "answer": "### Network Topologies: Classification, Merits & Demerits (6 Marks)\n\n#### 1. Definition:\nA **Network Topology** is the structural arrangement of nodes (computers, switches, routers) and connecting communication links in a computer network.\n\n#### 2. Topologies Comparison:\n1. **Mesh Topology:**\n   - Every device has a dedicated point-to-point link to every other device ($n(n-1)/2$ links).\n   - *Merits:* Robust, dedicated links prevent traffic congestion, highly secure, easy fault isolation.\n   - *Demerits:* Massive cabling requirement, high hardware and I/O port cost, difficult installation.\n2. **Star Topology:**\n   - All nodes connect to a central controller (Hub or Switch).\n   - *Merits:* Easy to install and reconfigure, link failure affects only that node, easy fault detection.\n   - *Demerits:* Single point of failure (if central hub fails, the entire network goes down).\n3. **Bus Topology:**\n   - All devices tap into a single shared backbone cable with terminators at both ends.\n   - *Merits:* Minimal cabling, low cost, simple to implement for small networks.\n   - *Demerits:* Difficult fault detection, signal reflection, backbone cable break stops all communication.\n4. **Ring Topology:**\n   - Each device connects to exactly two neighbors, forming a closed transmission ring.\n   - *Merits:* Orderly token-based transmission, equal access opportunity.\n   - *Demerits:* Unidirectional traffic; break in the ring disables the entire loop."
+    },
+    "Explain ISO-OSI reference model with a neat diagram.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "### ISO-OSI Reference Model (10 Marks)\n\nThe Open Systems Interconnection (OSI) model developed by ISO is a 7-layer architectural framework for standardized network communications.\n\n```\n+-----------------------------------------------------------+\n| Layer 7: APPLICATION LAYER (HTTP, FTP, SMTP, DNS)        |\n+-----------------------------------------------------------+\n| Layer 6: PRESENTATION LAYER (SSL/TLS, ASCII, Encryption)  |\n+-----------------------------------------------------------+\n| Layer 5: SESSION LAYER (Sockets, RPC, Session Checkpoints)|\n+-----------------------------------------------------------+\n| Layer 4: TRANSPORT LAYER (TCP, UDP - Segments)            |\n+-----------------------------------------------------------+\n| Layer 3: NETWORK LAYER (IP, ICMP, Routing - Packets)      |\n+-----------------------------------------------------------+\n| Layer 2: DATA LINK LAYER (Ethernet, MAC, PPP - Frames)    |\n+-----------------------------------------------------------+\n| Layer 1: PHYSICAL LAYER (Cables, Bits, Voltages, Connect) |\n+-----------------------------------------------------------+\n```\n\n#### Functions of the 7 Layers:\n1. **Layer 1 - Physical Layer:** Transmits raw unstructured bit streams over physical media (voltages, pins, frequencies).\n2. **Layer 2 - Data Link Layer:** Provides hop-to-hop node transfer; frames packets, handles physical addressing (MAC), flow control, and error detection (CRC).\n3. **Layer 3 - Network Layer:** Responsible for end-to-end packet routing across networks using logical IP addressing and routing protocols (OSPF, BGP).\n4. **Layer 4 - Transport Layer:** End-to-end host-to-host process delivery (ports), segmentation and reassembly, reliable delivery (TCP acknowledgments), flow control.\n5. **Layer 5 - Session Layer:** Establishes, manages, and terminates conversational sessions between remote applications; maintains synchronization checkpoints.\n6. **Layer 6 - Presentation Layer:** Formats, translates, encrypts, and compresses data (JSON, JPEG, TLS/SSL) so applications understand transmitted payload.\n7. **Layer 7 - Application Layer:** Direct interface to end-user network services and software (Web browsers, Email clients, File transfers)."
+    }
+  },
+  "DAA": {
+    "Explain different asymptotic notations in detail.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "### Asymptotic Notations in Algorithm Analysis (6 Marks)\n\nAsymptotic analysis evaluates algorithmic time and space complexity as input size $n \\to \\infty$, abstracting hardware variations.\n\n1. **Big-O Notation ($O$):**\n   - Upper bound (Worst-Case rate of growth).\n   - $f(n) = O(g(n)) \\iff \\exists c > 0, n_0 \\ge 1$ such that $0 \\le f(n) \\le c \\cdot g(n) \\; \\forall n \\ge n_0$.\n2. **Big-Omega Notation ($\\Omega$):**\n   - Lower bound (Best-Case guarantee).\n   - $f(n) = \\Omega(g(n)) \\iff \\exists c > 0, n_0 \\ge 1$ such that $0 \\le c \\cdot g(n) \\le f(n) \\; \\forall n \\ge n_0$.\n3. **Big-Theta Notation ($\\Theta$):**\n   - Asymptotically tight bound.\n   - $f(n) = \\Theta(g(n)) \\iff c_1 g(n) \\le f(n) \\le c_2 g(n) \\; \\forall n \\ge n_0$.\n4. **Little-o ($o$) and Little-omega ($\\omega$):**\n   - Strictly upper ($f(n) < c \\cdot g(n)$) and strictly lower bounds where ratio limits converge to 0 and $\\infty$ respectively."
+    },
+    "Present Brute-force based algorithm to perform pattern matching and investigate its efficiency.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "### Brute-Force String Pattern Matching Algorithm & Efficiency (6 Marks)\n\nGiven Text $T[0..n-1]$ and Pattern $P[0..m-1]$ ($m \\le n$):\n\n#### Algorithm:\n```text\nAlgorithm BruteForceStringMatch(T[0..n-1], P[0..m-1])\nFor i := 0 to n - m do:\n    j := 0\n    While j < m and P[j] = T[i + j] do:\n        j := j + 1\n    If j = m then:\n        Return i  // Match found at index i\nReturn -1         // No match found\n```\n\n#### Efficiency Analysis:\n- **Best Case:** $O(m)$ when pattern matches at the very beginning of text.\n- **Worst Case:** $O(m(n - m + 1)) \\approx O(m \\cdot n)$ when characters match repeatedly until the last pattern character (e.g., $T = \\text{\"AAAAAAA\"}$, $P = \\text{\"AAAAB\"}$).\n- **Space Complexity:** $O(1)$ auxiliary space."
+    },
+    "Given a digraph, how do you arrive at its transitive closure for the graph ? Write the procedure for the task.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "Transitive closure of a digraph (Warshall's algorithm) (6 Marks)\n\nDefinition: the transitive closure of a digraph with n vertices is the n x n boolean matrix T in which T[i][j] = 1 if there is a path of length one or more from vertex i to vertex j, and 0 otherwise.\n\nWarshall's algorithm builds a series of matrices R0, R1, ..., Rn:\n- R0 is the adjacency matrix.\n- Rk[i][j] = 1 if there is a path from i to j whose intermediate vertices are only among the first k vertices.\n- Rk[i][j] = R(k-1)[i][j] OR ( R(k-1)[i][k] AND R(k-1)[k][j] ).\nRn is the transitive closure.\n\nAlgorithm Warshall(A[1..n, 1..n])\n1. R = A\n2. for k = 1 to n do\n3.     for i = 1 to n do\n4.         for j = 1 to n do\n5.             R[i][j] = R[i][j] or (R[i][k] and R[k][j])\n6. return R\n\nExample: 4 vertices with edges 1->2, 2->4, 4->1, 4->3.\nR0 = rows: 1: 0100, 2: 0001, 3: 0000, 4: 1010\nk = 1: row 4 becomes 1110 (4 -> 1 -> 2 added)\nk = 2: row 1 becomes 0101, row 4 becomes 1111\nk = 3: no change (vertex 3 has no outgoing edge)\nk = 4: rows 1 and 2 become 1111\nTransitive closure = rows: 1: 1111, 2: 1111, 3: 0000, 4: 1111\n\nComplexity: three nested loops give a time of Theta(n^3) and a space of Theta(n^2).",
+      "source": "manual"
+    },
+    "Trace the Prim’s Algorithm for the following graph.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "Prim's algorithm for a minimum spanning tree (6 Marks)\n\nNote: the graph of this question is not part of the extracted text, so the algorithm is traced on a sample graph. Apply the same steps to the given graph.\n\nAlgorithm:\n1. Start the tree with any vertex (here a).\n2. Repeat until all vertices are in the tree: among all edges that join a vertex in the tree with a vertex outside it, choose the one of least weight and add it (and its new vertex) to the tree.\n3. The edges chosen form the minimum spanning tree (MST), with n - 1 edges.\n\nSample graph (edge weights): a-b 3, a-e 6, a-f 5, b-c 1, b-f 4, c-d 6, c-f 4, d-e 8, d-f 5, e-f 2.\n\nStep   Tree vertices        Edge chosen   Weight\n1      {a}                  a-b           3\n2      {a, b}               b-c           1\n3      {a, b, c}            b-f           4   (c-f also has weight 4; either may be taken)\n4      {a, b, c, f}         f-e           2\n5      {a, b, c, e, f}      f-d           5\nTotal weight of the MST = 3 + 1 + 4 + 2 + 5 = 15.\n\nComplexity: O(V^2) with an adjacency matrix, or O(E log V) with a min-heap and adjacency lists.",
+      "source": "manual"
+    },
+    "Given the following frequency chart, find Huffman’s tree. Character / Frequency : i 0.15, a 0.2, b 0.2, m 0.15, f 0.1, o 0.05, l 0.15. Find the encoding for ibambabfool.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "Huffman tree and encoding of ibambabfool (10 Marks)\n\nFrequencies: i 0.15, a 0.20, b 0.20, m 0.15, f 0.10, o 0.05, l 0.15.\n\nHuffman algorithm: repeatedly merge the two nodes of smallest frequency into a new node whose frequency is their sum, until only one node (the root) is left.\n\nMerging steps (sorted):\n1. o (0.05) + f (0.10) -> N1 (0.15)\n2. N1 (0.15) + i (0.15) -> N2 (0.30)\n3. m (0.15) + l (0.15) -> N3 (0.30)\n4. a (0.20) + b (0.20) -> N4 (0.40)\n5. N2 (0.30) + N3 (0.30) -> N5 (0.60)\n6. N4 (0.40) + N5 (0.60) -> Root (1.00)\n\nTree (left edge = 0, right edge = 1):\nRoot -> 0: N4 -> 0: a, 1: b\nRoot -> 1: N5 -> 0: N2 -> 0: N1 -> 0: o, 1: f ; N2 -> 1: i\n                 N5 -> 1: N3 -> 0: m, 1: l\n\nCodes:\na = 00, b = 01, i = 101, m = 110, l = 111, o = 1000, f = 1001.\n\nAverage code length = 0.20x2 + 0.20x2 + 0.15x3 + 0.15x3 + 0.15x3 + 0.05x4 + 0.10x4 = 2.75 bits per character.\n\nEncoding of ibambabfool:\ni = 101, b = 01, a = 00, m = 110, b = 01, a = 00, b = 01, f = 1001, o = 1000, o = 1000, l = 111\nEncoded string: 1010100110010001100110001000111 (31 bits). Fixed 8-bit ASCII would need 11 x 8 = 88 bits.\n\n(When frequencies tie, a different but equally optimal tree may result; the average code length 2.75 is the same.)",
+      "source": "manual"
+    },
+    "Find ⁷C₄ using dynamic programming. Find complexity to find ⁿCₚ.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "Finding 7C4 by dynamic programming (10 Marks)\n\nBinomial coefficients satisfy the recurrence (Pascal's rule):\nC(n, k) = C(n-1, k-1) + C(n-1, k) for n > k > 0,\nwith C(n, 0) = C(n, n) = 1.\n\nDynamic programming fills a table row by row, so that each value is computed once from two values of the previous row.\n\nAlgorithm Binomial(n, k)\n1. for i = 0 to n do\n2.     for j = 0 to min(i, k) do\n3.         if j = 0 or j = i then C[i][j] = 1\n4.         else C[i][j] = C[i-1][j-1] + C[i-1][j]\n5. return C[n][k]\n\nTable for n = 7, k = 4:\nn\\k   0   1   2   3   4\n0      1\n1      1   1\n2      1   2   1\n3      1   3   3   1\n4      1   4   6   4   1\n5      1   5  10  10   5\n6      1   6  15  20  15\n7      1   7  21  35  35\n\nAnswer: 7C4 = 35. (Check: 7! / (4! x 3!) = 35.)\n\nComplexity of finding nCp: the table has about (n + 1)(p + 1) entries and each is computed with one addition, so the time is Theta(n x p) and the space is Theta(n x p) (it can be reduced to Theta(p) by keeping a single row).",
+      "source": "manual"
+    },
+    "Find DFS and BFS for the following. What is the complexity of these algorithms ?": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "Depth-first search (DFS) and breadth-first search (BFS) with their complexity (10 Marks)\n\nNote: the graph of this question is not part of the extracted text, so both algorithms are shown on a sample graph. Apply the same steps to the given graph, visiting neighbours in alphabetical (or numerical) order.\n\nDFS (uses a stack or recursion): go as deep as possible along a path, and backtrack when stuck.\nDFS(v): mark v visited; for each unvisited neighbour w of v do DFS(w).\n\nBFS (uses a queue): visit the start vertex, then all its neighbours, then their neighbours, level by level.\nBFS(s): mark s, enqueue s; while the queue is not empty: remove u; for each unmarked neighbour w of u: mark w and enqueue w.\n\nSample graph with edges A-B, A-C, B-D, B-E, C-F, E-F (start at A):\nDFS order: A, B, D, E, F, C\n   (A -> B -> D, which is a dead end, so back to B -> E -> F -> C. C is reached from F; all its neighbours are already visited, so the search backtracks to A and ends.)\nBFS order: A, B, C, D, E, F\n   (level 0: A; level 1: B, C; level 2: D, E, F)\n\nComplexity (graph with V vertices and E edges):\n- Adjacency list: O(V + E) for both DFS and BFS.\n- Adjacency matrix: O(V^2) for both, because finding the neighbours of a vertex scans a whole row.\n- Extra space: O(V) for the visited array and the stack or queue.\nUses: DFS gives connectivity, cycle detection and topological sorting; BFS gives shortest paths in an unweighted graph.",
+      "source": "manual"
+    },
+    "Find the Hamiltonian path for the following.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "Hamiltonian path (10 Marks)\n\nNote: the graph of this question is not part of the extracted text, so the method is shown on a sample graph. Apply the same steps to the given graph.\n\nDefinition: a Hamiltonian path is a path that visits every vertex of the graph exactly once. If it also returns to the starting vertex, it is a Hamiltonian cycle. Deciding whether one exists is NP-complete, so no polynomial-time algorithm is known.\n\nMethod (backtracking):\n1. Start from a vertex and put it in the path.\n2. Extend the path with an adjacent vertex that is not already in the path.\n3. If the path has all n vertices, a Hamiltonian path is found.\n4. If no unused adjacent vertex exists, backtrack: remove the last vertex and try another choice.\n\nSample graph with 5 vertices and edges 1-2, 1-3, 2-3, 2-4, 3-5, 4-5, searching from vertex 1:\n1 -> 2 -> 3 -> 5 -> 4 : all five vertices visited, so this is a Hamiltonian path.\nOther paths found from vertex 1: 1-2-4-5-3, 1-3-2-4-5, 1-3-5-4-2.\nSince 3 is adjacent to 1, the path 1-2-4-5-3 can be closed back to 1, so the graph also has a Hamiltonian cycle 1-2-4-5-3-1.\n\nComplexity: in the worst case the search tries all orderings of the vertices, which is O(n!) (about O(n x n!) with the checks).",
+      "source": "manual"
+    }
+  },
+  "TOC": {
+    "Write short notes on Rice theorem and Halting problem.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2022",
+        "2021"
+      ],
+      "answer": "### Rice's Theorem & The Halting Problem (6 Marks)\n\n#### 1. Rice's Theorem:\n- **Statement:** Any non-trivial semantic property of the language recognized by a Turing machine is **Undecidable**.\n- A property $P$ of recursively enumerable languages is *non-trivial* if at least one RE language satisfies $P$ and at least one RE language does not satisfy $P$.\n- *Implication:* Questions like \"Does Turing machine $M$ accept an empty language?\", \"Does $M$ accept a regular language?\", or \"Does $M$ accept all strings?\" cannot be solved by any general algorithm.\n\n#### 2. The Halting Problem of Turing Machine:\n- **Statement:** Given a description of an arbitrary Turing machine $M$ and input $w$, determine whether $M$ will eventually halt on input $w$ or loop forever:\n  $$H = \\{ \\langle M, w \\rangle \\mid M \\text{ halts on input } w \\}$$\n- **Alan Turing's Proof (by Contradiction / Diagonalization):**\n  - Assume a decider $H$ exists that returns `TRUE` if $M(w)$ halts and `FALSE` if it loops.\n  - Construct a new machine $D$: On input $\\langle M \\rangle$, run $H(\\langle M, \\langle M \\rangle \\rangle)$. If $H$ says halts, $D$ loops forever; if $H$ says loops, $D$ halts immediately.\n  - Now run $D$ on its own description: $D(\\langle D \\rangle)$.\n    * If $D(\\langle D \\rangle)$ halts $\\implies D$ must loop.\n    * If $D(\\langle D \\rangle)$ loops $\\implies D$ must halt.\n  - A logical contradiction! Thus, no such decider $H$ can exist. The Halting Problem is **Undecidable**."
+    },
+    "Convert the following NFA into its equivalent DFA.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "Conversion of an NFA to an equivalent DFA (Subset Construction) (6 Marks)\n\nNote: the NFA diagram of this question is not part of the extracted text, so the standard method is given with a worked example. Apply the same steps to the given NFA.\n\nMethod:\n1. Start state of the DFA = {q0}, where q0 is the NFA start state.\n2. For every DFA state S (a set of NFA states) and every input symbol a, compute delta'(S, a) = union of delta(q, a) for all q in S.\n3. Every new set obtained becomes a new DFA state; repeat until no new set appears. Only reachable sets are built (at most 2^n).\n4. A DFA state is final if it contains at least one NFA final state.\n5. The empty set (if reached) is the dead/trap state.\n\nExample: NFA for strings ending in 01. States q0, q1, q2; start q0; final q2.\ndelta(q0,0) = {q0,q1}, delta(q0,1) = {q0}, delta(q1,1) = {q2}, all other moves are empty.\n\nDFA table:\nState          on 0         on 1\n{q0}           {q0,q1}      {q0}\n{q0,q1}        {q0,q1}      {q0,q2}\n{q0,q2} (final) {q0,q1}     {q0}\n\nResult: a DFA with 3 states (instead of the 2^3 = 8 possible), accepting the same language.",
+      "source": "manual"
+    },
+    "Write a short note on Halting problem of Turing Machine.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "Halting Problem of a Turing Machine (6 Marks)\n\nStatement: Given the description <M> of an arbitrary Turing machine M and an input string w, decide whether M halts on w.\nHALT = { <M, w> | M halts on input w }\n\nThe Halting Problem is undecidable: no Turing machine (algorithm) can answer this correctly for every pair <M, w>. HALT is recursively enumerable (simulate M on w and accept if it halts) but not recursive.\n\nProof (by contradiction / diagonalization):\n1. Assume a decider H exists: H(<M, w>) = accept if M halts on w, reject otherwise.\n2. Build a machine D that on input <M> runs H on <M, <M>>. If H accepts (M halts on <M>), D loops forever. If H rejects, D halts.\n3. Run D on its own description <D>:\n   - if D halts on <D>, then by construction D loops on <D>;\n   - if D loops on <D>, then by construction D halts on <D>.\n4. Both cases contradict, so H cannot exist.\n\nSignificance: it is the first proven undecidable problem. Other problems are shown undecidable by reducing the Halting Problem to them (for example the Rice's theorem properties, emptiness of a Turing machine language, and equivalence of two Turing machines).",
+      "source": "manual"
+    },
+    "Minimize the following DFA.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "Minimization of a DFA (Table-Filling / Myhill-Nerode method) (6 Marks)\n\nNote: the DFA diagram of this question is not part of the extracted text, so the standard method is given with a worked example. Apply the same steps to the given DFA.\n\nMethod:\n1. Remove unreachable states.\n2. List all pairs of states (p, q). Mark a pair as distinguishable if one state is final and the other is not.\n3. Repeat: mark (p, q) if for some input symbol a the pair (delta(p,a), delta(q,a)) is already marked.\n4. Stop when no new pair is marked. Unmarked pairs are equivalent; merge them into one state.\n5. Build the minimal DFA from the merged classes (start state = class of the old start state, final = classes of final states).\n\nExample: states q0 (start), q1, q2, q3 (final). q0 -0-> q1, q0 -1-> q2; q1 and q2 go to q3 on both 0 and 1; q3 loops on 0 and 1.\n- Step 2 marks (q0,q3), (q1,q3), (q2,q3).\n- (q0,q1): on 0 goes to (q1,q3), which is marked, so mark it. (q0,q2): on 0 goes to (q1,q3), marked, so mark it.\n- (q1,q2): on 0 and on 1 goes to (q3,q3), the same state, so it stays unmarked: q1 is equivalent to q2.\n\nMinimal DFA: {q0}, {q1,q2}, {q3}, with 3 states instead of 4.",
+      "source": "manual"
+    },
+    "Convert the following grammar into equivalent CNF. S → 0A/1B A → 0AA/1S/1 B → 1BB/0S/0.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "Conversion of the grammar into Chomsky Normal Form (6 Marks)\n\nGiven: S -> 0A | 1B,  A -> 0AA | 1S | 1,  B -> 1BB | 0S | 0\n\nCNF allows only productions of the form X -> YZ (two variables) or X -> a (one terminal).\n\nStep 1: There are no epsilon-productions, no unit productions and no useless symbols (S, A, B all generate strings and are reachable).\n\nStep 2: Remove terminals from bodies that also contain variables. Add C0 -> 0 and C1 -> 1:\nS -> C0 A | C1 B\nA -> C0 AA | C1 S | 1\nB -> C1 BB | C0 S | 0\n(A -> 1 and B -> 0 are already in CNF.)\n\nStep 3: Break bodies longer than two variables. Add D1 -> AA and D2 -> BB:\nA -> C0 D1,  B -> C1 D2\n\nEquivalent grammar in CNF:\nS -> C0 A | C1 B\nA -> C0 D1 | C1 S | 1\nB -> C1 D2 | C0 S | 0\nD1 -> AA\nD2 -> BB\nC0 -> 0\nC1 -> 1",
+      "source": "manual"
+    },
+    "Define Recursive and Recursively enumerable languages and prove that the union of two recursive languages is recursive.": {
+      "marks": 10,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "Recursive and Recursively Enumerable Languages (10 Marks)\n\nRecursive language (decidable): a language L is recursive if there is a Turing machine M that halts on every input and accepts exactly the strings of L (it accepts strings in L and rejects strings not in L).\n\nRecursively enumerable (RE) language: a language L is RE if there is a Turing machine M that accepts exactly the strings of L. On a string not in L, M may reject or loop forever.\n\nRelation: every recursive language is RE, but not every RE language is recursive. For example, the Halting language HALT is RE but not recursive.\n\nTheorem: the union of two recursive languages is recursive.\n\nProof: Let L1 and L2 be recursive. Then there are Turing machines M1 and M2 that decide L1 and L2, and both halt on every input.\nConstruct M. On input w:\n1. Run M1 on w. If M1 accepts, accept.\n2. Otherwise M1 has rejected (it always halts). Run M2 on w. If M2 accepts, accept; otherwise reject.\n\nCorrectness:\n- M halts on every input, because M1 and M2 each halt.\n- M accepts w exactly when w is in L1 or w is in L2, that is, when w is in the union of L1 and L2.\n\nSo M decides L1 union L2, and the union is recursive. (Recursive languages are also closed under intersection and complement.)",
+      "source": "manual"
+    },
+    "Explain DFA and NFA with suitable examples.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "DFA and NFA with Examples (6 Marks)\n\nA finite automaton is a 5-tuple (Q, Sigma, delta, q0, F): states, input alphabet, transition function, start state, set of final states.\n\nDFA (Deterministic Finite Automaton): for every state and input symbol there is exactly one next state, delta: Q x Sigma -> Q.\nExample: strings over {0,1} with an even number of 0s. States q0 (start, final) and q1.\ndelta(q0,0) = q1, delta(q0,1) = q0, delta(q1,0) = q0, delta(q1,1) = q1.\n\nNFA (Nondeterministic Finite Automaton): a state may have zero, one or several next states for a symbol, delta: Q x Sigma -> 2^Q (and moves on epsilon are allowed in an epsilon-NFA). A string is accepted if at least one path ends in a final state.\nExample: strings over {0,1} ending in 01. States q0 (start), q1, q2 (final).\ndelta(q0,0) = {q0,q1}, delta(q0,1) = {q0}, delta(q1,1) = {q2}.\n\nKey differences:\n- A DFA has exactly one move per symbol; an NFA may have many or none.\n- An NFA is usually smaller and easier to design; a DFA is easier to implement (one path).\n- Both accept exactly the regular languages. Every NFA with n states can be converted to an equivalent DFA with at most 2^n states (subset construction).",
+      "source": "manual"
+    },
+    "State and prove pumping lemma for regular languages and prove that the following language is not regular. L = {ωω|ω ∈ {a, b}*}": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "Pumping Lemma for Regular Languages (6 Marks)\n\nStatement: If L is a regular language, there is a constant p >= 1 (the pumping length) such that every string w in L with |w| >= p can be written as w = xyz where\n1. |y| >= 1,\n2. |xy| <= p,\n3. x y^i z is in L for every i >= 0.\n\nProof: Let a DFA with p states accept L. Take w in L with |w| >= p. While reading the first p symbols the DFA visits p + 1 states, so by the pigeonhole principle some state repeats. Let x be the part read before the first visit of that state, y the part read in the loop back to it, and z the rest. The loop y can be repeated any number of times, or skipped, and the DFA still ends in the same final state. Hence x y^i z is in L.\n\nTo prove L = { ww | w in {a,b}* } is not regular:\n1. Assume L is regular with pumping length p.\n2. Choose s = a^p b a^p b. It is in L (w = a^p b) and |s| >= p.\n3. Since |xy| <= p, y lies inside the first block of a's: y = a^k with k >= 1.\n4. Pump with i = 2: the string becomes a^(p+k) b a^p b.\n5. This string has exactly two b's, so if it were of the form uu, each u would contain one b and end with it. The first u would be a^(p+k) b, of length p+k+1, and the second u = a^p b has length p+1. These differ because k >= 1, so the string is not of the form uu.\n6. So x y^2 z is not in L, contradicting the lemma. Hence L is not regular.",
+      "source": "manual"
+    },
+    "Check whether the following grammar is ambiguous. S → iCtS/iCtSeS/a C → b": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "Ambiguity of the grammar (5 Marks)\n\nGrammar: S -> iCtS | iCtSeS | a,  C -> b\n(i = if, t = then, e = else; this is the classic dangling-else grammar.)\n\nA grammar is ambiguous if some string has two or more different parse trees (equivalently, two different leftmost derivations).\n\nTake the string w = ibtibtaea.\n\nLeftmost derivation 1 (the else belongs to the inner if):\nS => iCtS => ibtS => ibt iCtSeS => ibtibtSeS => ibtibtaeS => ibtibtaea\n\nLeftmost derivation 2 (the else belongs to the outer if):\nS => iCtSeS => ibtSeS => ibt iCtS eS => ibtibtSeS => ibtibtaeS => ibtibtaea\n\nThe two derivations use different productions at the first step (S -> iCtS versus S -> iCtSeS), so they give two different parse trees for the same string.\n\nTherefore the grammar is ambiguous.",
+      "source": "manual"
+    },
+    "Convert the following grammar into PDA. S → aABC A → aB | a B → bA | b C → a": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "Conversion of a CFG into a PDA (6 Marks)\n\nGiven: S -> aABC,  A -> aB | a,  B -> bA | b,  C -> a\n\nConstruction (acceptance by empty stack): M = ({q}, {a,b}, {S,A,B,C,a,b}, delta, q, S), with start stack symbol S.\n1. For every production X -> alpha, add delta(q, epsilon, X) containing (q, alpha). The variable on top of the stack is replaced by the right-hand side.\n2. For every terminal t, add delta(q, t, t) = {(q, epsilon)}. The input symbol is matched with the top of the stack and popped.\n\nTransitions:\ndelta(q, epsilon, S) = {(q, aABC)}\ndelta(q, epsilon, A) = {(q, aB), (q, a)}\ndelta(q, epsilon, B) = {(q, bA), (q, b)}\ndelta(q, epsilon, C) = {(q, a)}\ndelta(q, a, a) = {(q, epsilon)}\ndelta(q, b, b) = {(q, epsilon)}\n\nExample: the string aaba, derived as S => aABC => aaBC => aabC => aaba.\nStack (top at left): S -> aABC -> read a -> ABC -> aBC -> read a -> BC -> bC -> read b -> C -> a -> read a -> empty.\nThe stack is empty after the whole input is read, so the string is accepted.",
+      "source": "manual"
+    },
+    "Consider the given ε-NFA. Convert to DFA. δN / ε / a / b / c : →p Φ {p} {q} {r}; q {p} {q} {r} Φ; *r {q} {r} Φ {p}": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "Conversion of the epsilon-NFA to a DFA (6 Marks)\n\nTransition table (start state p, final state r):\n        epsilon   a     b     c\n->p     {}        {p}   {q}   {r}\nq       {p}       {q}   {r}   {}\n*r      {q}       {r}   {}    {p}\n\nStep 1: epsilon-closures\nECLOSE(p) = {p}\nECLOSE(q) = {p, q}   (q goes to p on epsilon)\nECLOSE(r) = {p, q, r}   (r goes to q, and q goes to p)\n\nStep 2: subset construction. Start state = ECLOSE(p) = {p}. New move = ECLOSE of the union of the moves of every state in the set.\nA = {p}:\n  a: ECLOSE{p} = {p} = A\n  b: ECLOSE{q} = {p,q} = B\n  c: ECLOSE{r} = {p,q,r} = C\nB = {p,q}:\n  a: ECLOSE{p,q} = {p,q} = B\n  b: ECLOSE{q,r} = {p,q,r} = C\n  c: ECLOSE{r} = {p,q,r} = C\nC = {p,q,r}:\n  a: ECLOSE{p,q,r} = C\n  b: ECLOSE{q,r} = C\n  c: ECLOSE{p,r} = C\n\nStep 3: final states = sets containing r, so only C is final.\n\nResulting DFA (start A, final C):\nState    a    b    c\n->A      A    B    C\nB        B    C    C\n*C       C    C    C",
+      "source": "manual"
+    },
+    "State and prove pumping lemma for context free languages. Show that L = {aⁿbⁿcⁿ/n>=1} is not context free.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "Pumping Lemma for Context-Free Languages (5 Marks)\n\nStatement: If L is a context-free language, there is a constant p >= 1 such that every string z in L with |z| >= p can be written as z = u v w x y where\n1. |vwx| <= p,\n2. |vx| >= 1 (v and x are not both empty),\n3. u v^i w x^i y is in L for every i >= 0.\n\nProof idea: take a grammar for L in Chomsky Normal Form with k variables and let p = 2^k. A parse tree of a string of length >= p has height more than k, so some root-to-leaf path contains a variable A twice. Then A =>* vAx and A =>* w, so the part generated by the upper A can be repeated (v and x pumped together) or removed, and the result is still in L.\n\nTo show L = { a^n b^n c^n | n >= 1 } is not context free:\n1. Assume L is context free with pumping length p.\n2. Choose z = a^p b^p c^p, which is in L with |z| >= p.\n3. Since |vwx| <= p, the part vwx cannot contain both a's and c's (the b's in between are p symbols long). It lies in one block or spans two neighbouring blocks.\n4. Pump with i = 2. Because |vx| >= 1, at least one letter increases in number. At most two of the three letters appear in vx, so the third keeps its old count.\n5. So the counts of a, b and c are no longer equal and u v^2 w x^2 y is not in L, a contradiction.\n\nHence L is not context free.",
+      "source": "manual"
+    }
+  },
+  "QTR": {
+    "At what time between 4 and 5 o’clock will the hands of a clock be at right angle ?": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "answer": "Hands of a clock at right angle between 4 and 5 o'clock (6 Marks)\n\nAt 4 o'clock the minute hand is at 12 and the hour hand is at 4, so the hour hand is 120 degrees ahead of the minute hand.\nThe minute hand moves 6 degrees per minute and the hour hand 0.5 degree per minute, so the minute hand gains 5.5 degrees per minute.\nLet the time be m minutes past 4.\n\nCase 1: the minute hand is 90 degrees behind the hour hand.\n120 - 5.5m = 90\n5.5m = 30, m = 60/11 = 5 5/11 minutes\nTime = 5 5/11 minutes past 4.\n\nCase 2: the minute hand is 90 degrees ahead of the hour hand.\n5.5m - 120 = 90\n5.5m = 210, m = 420/11 = 38 2/11 minutes\nTime = 38 2/11 minutes past 4.\n\nAnswer: the hands are at right angles at 5 5/11 minutes past 4 and again at 38 2/11 minutes past 4. (The standard textbook answer is 5 5/11 minutes past 4.)",
+      "source": "manual"
+    },
+    "A bag contains 6 Red and 4 Blue balls. Two balls are drawn at randomly. Find the probability that they are of the same color.": {
+      "marks": 5,
+      "years": [
+        "2026",
+        "2025",
+        "2021"
+      ],
+      "answer": "Probability that two balls drawn from 6 red and 4 blue balls have the same colour (5 Marks)\n\nTotal balls = 6 + 4 = 10. Two balls are drawn at random, so\ntotal number of ways = 10C2 = (10 x 9) / 2 = 45.\n\nFavourable cases:\n- both red: 6C2 = 15\n- both blue: 4C2 = 6\nSame colour = 15 + 6 = 21 ways.\n\nP(same colour) = 21 / 45 = 7/15.\n\nCheck by the other method: P(RR) = 6/10 x 5/9 = 30/90, P(BB) = 4/10 x 3/9 = 12/90, sum = 42/90 = 7/15.",
+      "source": "manual"
+    },
+    "A man can row 6 km/hr in still water. it takes him twice as long to row-up as to row-down the river. Find the rate of stream.": {
+      "marks": 5,
+      "years": [
+        "2026",
+        "2024"
+      ],
+      "answer": "Rate of the stream (5 Marks)\n\nSpeed of the man in still water = 6 km/hr. Let the rate of the stream be x km/hr.\nSpeed downstream = (6 + x) km/hr, speed upstream = (6 - x) km/hr.\n\nFor the same distance d, time = distance / speed.\nTime upstream = 2 x time downstream\nd / (6 - x) = 2 x d / (6 + x)\n6 + x = 2 (6 - x)\n6 + x = 12 - 2x\n3x = 6, x = 2\n\nAnswer: the rate of the stream is 2 km/hr.\nCheck: upstream speed = 4 km/hr, downstream speed = 8 km/hr. The time upstream is twice the time downstream, as required.",
+      "source": "manual"
+    },
+    "What was the day of the week on 12th January 1863 ?": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2021"
+      ],
+      "answer": "Day of the week on 12th January 1863 (5 Marks)\n\nMethod: count odd days (days left over after removing full weeks). 0 = Sunday, 1 = Monday, 2 = Tuesday, ... 6 = Saturday.\n\nCompleted years before 1863 = 1862 years = 1600 + 200 + 62.\n- 1600 years: 0 odd days.\n- 200 years: 3 odd days (100 years give 5, so 200 years give 10 = 3 odd days).\n- 62 years: it has 15 leap years (1804, 1808, ..., 1860) and 47 ordinary years.\n  Odd days = 15 x 2 + 47 x 1 = 77 = 0 odd days (77 is a multiple of 7).\n\nDays from 1 January to 12 January 1863 = 12 days = 5 odd days.\n\nTotal odd days = 0 + 3 + 0 + 5 = 8, and 8 mod 7 = 1.\n\nAnswer: 12th January 1863 was a Monday.",
+      "source": "manual"
+    },
+    "Of the three numbers, second is twice the first and is also thrice the third. If the average of the three numbers is 55. Find the largest number.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "Largest of three numbers (6 Marks)\n\nLet the first number be x.\nThe second is twice the first: second = 2x.\nThe second is also thrice the third: 2x = 3 x third, so third = 2x/3.\n\nThe average is 55, so the sum = 3 x 55 = 165.\nx + 2x + 2x/3 = 165\n(3x + 6x + 2x) / 3 = 165\n11x / 3 = 165\nx = 45\n\nThe numbers are:\nfirst = 45, second = 2 x 45 = 90, third = 90 / 3 = 30.\nCheck: 45 + 90 + 30 = 165 and 165 / 3 = 55.\n\nAnswer: the largest number is 90.",
+      "source": "manual"
+    }
+  },
+  "DM": {
+    "If A, B and C are three sets, then prove that A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C).": {
+      "marks": 3,
+      "years": [
+        "2025",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "Proof of A intersect (B union C) = (A intersect B) union (A intersect C) (3 Marks)\n\nTwo sets are equal if each is a subset of the other.\n\nPart 1: A n (B u C) is a subset of (A n B) u (A n C).\nLet x be in A n (B u C). Then x is in A and x is in B u C.\nSo x is in A and (x is in B or x is in C).\n- If x is in B, then x is in A and B, so x is in A n B.\n- If x is in C, then x is in A and C, so x is in A n C.\nIn both cases x is in (A n B) u (A n C).\n\nPart 2: (A n B) u (A n C) is a subset of A n (B u C).\nLet x be in (A n B) u (A n C). Then x is in A n B or x is in A n C.\n- If x is in A n B, then x is in A and x is in B, so x is in A and in B u C.\n- If x is in A n C, then x is in A and x is in C, so x is in A and in B u C.\nIn both cases x is in A n (B u C).\n\nBy Part 1 and Part 2, A n (B u C) = (A n B) u (A n C). This is the distributive law of intersection over union.",
+      "source": "manual"
+    },
+    "What is the expected value of the sum of the numbers that appear when a pair of fair dice is rolled ?": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "Expected value of the sum when a pair of fair dice is rolled (6 Marks)\n\nLet X1 and X2 be the numbers on the two dice. Each die takes the values 1 to 6 with probability 1/6.\n\nE(X1) = (1 + 2 + 3 + 4 + 5 + 6) / 6 = 21/6 = 3.5, and E(X2) = 3.5.\n\nBy linearity of expectation, E(X1 + X2) = E(X1) + E(X2) = 3.5 + 3.5 = 7.\n\nVerification from the distribution of the sum S (36 equally likely outcomes):\nS:        2  3  4  5  6  7  8  9  10 11 12\nWays:     1  2  3  4  5  6  5  4  3  2  1\nE(S) = (2x1 + 3x2 + 4x3 + 5x4 + 6x5 + 7x6 + 8x5 + 9x4 + 10x3 + 11x2 + 12x1) / 36\n     = (2 + 6 + 12 + 20 + 30 + 42 + 40 + 36 + 30 + 22 + 12) / 36\n     = 252 / 36 = 7.\n\nAnswer: the expected value of the sum is 7.",
+      "source": "manual"
+    },
+    "The probability distribution of a discrete random variable is given below : x: –2 –1 0 1 2 3 ; P(x): 0.1 K 0.2 2K 0.3 K. Find : i) K ii) Mean and iii) Variance.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "Discrete random variable with a constant K (5 Marks)\n\nx:     -2    -1    0     1     2     3\nP(x):  0.1   K     0.2   2K    0.3   K\n\ni) Value of K\nThe probabilities add up to 1:\n0.1 + K + 0.2 + 2K + 0.3 + K = 1\n0.6 + 4K = 1, so K = 0.1.\n\nThe distribution becomes: P(-2) = 0.1, P(-1) = 0.1, P(0) = 0.2, P(1) = 0.2, P(2) = 0.3, P(3) = 0.1.\n\nii) Mean E(x) = sum of x.P(x)\n= (-2)(0.1) + (-1)(0.1) + (0)(0.2) + (1)(0.2) + (2)(0.3) + (3)(0.1)\n= -0.2 - 0.1 + 0 + 0.2 + 0.6 + 0.3\n= 0.8\n\niii) Variance = E(x^2) - [E(x)]^2\nE(x^2) = (4)(0.1) + (1)(0.1) + (0)(0.2) + (1)(0.2) + (4)(0.3) + (9)(0.1)\n       = 0.4 + 0.1 + 0 + 0.2 + 1.2 + 0.9 = 2.8\nVariance = 2.8 - (0.8)^2 = 2.8 - 0.64 = 2.16\n\nAnswer: K = 0.1, mean = 0.8, variance = 2.16.",
+      "source": "manual"
+    },
+    "Prove that for any propositions p, q and r the compound proposition [(p→q)∧(q→r)]→(p→r) is a tautology.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "answer": "Proof that [(p -> q) and (q -> r)] -> (p -> r) is a tautology (5 Marks)\n\n(This is the law of hypothetical syllogism.) A compound proposition is a tautology if it is true for every assignment of truth values. Truth table:\n\np q r | p->q | q->r | (p->q)^(q->r) | p->r | whole statement\nT T T |  T   |  T   |       T       |  T   |  T\nT T F |  T   |  F   |       F       |  F   |  T\nT F T |  F   |  T   |       F       |  T   |  T\nT F F |  F   |  T   |       F       |  F   |  T\nF T T |  T   |  T   |       T       |  T   |  T\nF T F |  T   |  F   |       F       |  T   |  T\nF F T |  T   |  T   |       T       |  T   |  T\nF F F |  T   |  T   |       T       |  T   |  T\n\nThe last column is true in all 8 rows, so the proposition is a tautology.\n\nDirect argument: suppose p -> q and q -> r are both true. If p is true, then q is true (from p -> q), and then r is true (from q -> r), so p -> r is true. If p is false, p -> r is true automatically. Hence the implication always holds.",
+      "source": "manual"
+    },
+    "Prove that “null set is a subset of every set”.": {
+      "marks": 3,
+      "years": [
+        "2025",
+        "2023",
+        "2021"
+      ],
+      "answer": "Proof that the null set is a subset of every set (3 Marks)\n\nLet A be any set. We must show that the empty set (denoted by phi) is a subset of A.\n\nBy definition, phi is a subset of A if every element of phi is also an element of A, that is,\nfor all x: (x in phi) -> (x in A).\n\nProof by contradiction:\nSuppose phi is not a subset of A. Then there is at least one element x in phi such that x is not in A.\nBut the null set has no elements, so no such x can exist. This is a contradiction.\nHence our assumption is wrong and phi is a subset of A.\n\nProof by vacuous truth: the statement \"x in phi\" is false for every x, so the implication (x in phi) -> (x in A) is true for every x (a false hypothesis makes an implication true).\n\nTherefore the null set is a subset of every set.",
+      "source": "manual"
+    },
+    "Obtain an explicit form for the following sequence aₙ defined recursively by aₙ = 2aₙ₋₁ + 1 for n ≥ 2, with a₁ = 3.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023",
+        "2021"
+      ],
+      "answer": "Explicit form of a(n) = 2a(n-1) + 1, a(1) = 3 (6 Marks)\n\nMethod 1: iteration\na(1) = 3\na(2) = 2(3) + 1 = 7\na(3) = 2(7) + 1 = 15\na(4) = 2(15) + 1 = 31\nThe values 3, 7, 15, 31 are one less than 4, 8, 16, 32, so the guess is a(n) = 2^(n+1) - 1.\n\nMethod 2: solving the recurrence\nAdd 1 to both sides: a(n) + 1 = 2a(n-1) + 2 = 2 [a(n-1) + 1].\nPut b(n) = a(n) + 1. Then b(n) = 2 b(n-1) with b(1) = a(1) + 1 = 4.\nThis is a geometric sequence, so b(n) = 4 x 2^(n-1) = 2^(n+1).\nTherefore a(n) = b(n) - 1 = 2^(n+1) - 1.\n\nProof by induction:\nBase case n = 1: 2^2 - 1 = 3 = a(1). True.\nStep: assume a(k) = 2^(k+1) - 1. Then a(k+1) = 2 a(k) + 1 = 2 (2^(k+1) - 1) + 1 = 2^(k+2) - 1, which is the formula for n = k + 1.\n\nAnswer: a(n) = 2^(n+1) - 1 for n >= 1.",
+      "source": "manual"
+    },
+    "The matrix of a relation on the set A = {1, 2, 3} is given by M_R = [1 0 0 / 0 1 1 / 0 1 1]. Show that R is an equivalence relation.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2022",
+        "2021"
+      ],
+      "answer": "Showing that the relation R is an equivalence relation (5 Marks)\n\nA = {1, 2, 3} and M_R = \n1 0 0\n0 1 1\n0 1 1\nSo R = {(1,1), (2,2), (2,3), (3,2), (3,3)}.\n\nAn equivalence relation must be reflexive, symmetric and transitive.\n\n1. Reflexive: every diagonal entry of M_R is 1, so (1,1), (2,2), (3,3) are in R. R is reflexive.\n\n2. Symmetric: M_R equals its transpose. The only off-diagonal ones are m23 = 1 and m32 = 1, so (2,3) and (3,2) are both in R. R is symmetric.\n\n3. Transitive: compute the Boolean product M_R x M_R.\nRow 1 = [1 0 0]. Row 2 is the OR of rows 2 and 3 of M_R = [0 1 1]. Row 3 is also [0 1 1].\nSo M_R x M_R = M_R. Every pair obtained by a two-step path is already in R, so R is transitive.\n\nR is reflexive, symmetric and transitive, hence an equivalence relation.\nEquivalence classes: [1] = {1} and [2] = [3] = {2, 3}. They partition A.",
+      "source": "manual"
+    },
+    "State and prove the Bayes’ theorem.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023",
+        "2021"
+      ],
+      "answer": "Bayes' theorem (5 Marks)\n\nStatement: Let A1, A2, ..., An be mutually exclusive and exhaustive events (a partition of the sample space) with P(Ai) > 0, and let B be any event with P(B) > 0. Then for each i,\n\nP(Ai | B) = P(B | Ai) P(Ai) / [ P(B | A1) P(A1) + P(B | A2) P(A2) + ... + P(B | An) P(An) ]\n\nProof:\n1. By the definition of conditional probability, P(Ai | B) = P(Ai and B) / P(B).\n2. Also P(Ai and B) = P(B | Ai) P(Ai) (multiplication rule).\n3. The events A1, ..., An partition the sample space, so B = (A1 and B) or (A2 and B) or ... or (An and B), and these are mutually exclusive.\n   Hence P(B) = sum over j of P(Aj and B) = sum over j of P(B | Aj) P(Aj). This is the theorem of total probability.\n4. Substituting steps 2 and 3 into step 1:\n   P(Ai | B) = P(B | Ai) P(Ai) / sum over j of P(B | Aj) P(Aj).\n\nSpecial case for two events: P(A | B) = P(B | A) P(A) / P(B).",
+      "source": "manual"
+    },
+    "Use Dijktra’s algorithm, find the shortest path between a to z in the weighted graph.": {
+      "marks": 5,
+      "years": [
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "Dijkstra's shortest path algorithm from a to z (5 Marks)\n\nNote: the graph of this question is not part of the extracted text, so the algorithm is shown on a sample graph. Apply the same steps to the given graph.\n\nAlgorithm:\n1. Give every vertex a distance label: 0 for the start vertex a and infinity for all others. All vertices are unvisited.\n2. Pick the unvisited vertex u with the smallest label and mark it visited (its label is now final).\n3. For every unvisited neighbour v of u: if label(u) + weight(u,v) < label(v), update label(v) and remember u as its predecessor.\n4. Repeat steps 2 and 3 until z is visited. The label of z is the shortest distance; follow the predecessors back to get the path.\n\nSample graph (edge weights): a-b 4, a-c 2, b-c 1, b-d 5, c-d 8, c-e 10, d-e 2, d-z 6, e-z 3.\n\nStep   Visited   b    c    d    e    z\n1      a         4    2    -    -    -\n2      c         3    2    10   12   -\n3      b         3    2    8    12   -\n4      d         3    2    8    10   14\n5      e         3    2    8    10   13\n6      z         3    2    8    10   13\n\nShortest distance from a to z = 13.\nPath (following predecessors): a -> c -> b -> d -> e -> z.\nTime complexity: O(V^2) with an array, or O((V + E) log V) with a priority queue.",
+      "source": "manual"
+    },
+    "State and prove Hand Shaking theorem.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023",
+        "2022"
+      ],
+      "answer": "Handshaking theorem (5 Marks)\n\nStatement: in an undirected graph G = (V, E) with e edges, the sum of the degrees of all vertices is twice the number of edges:\nsum over v in V of deg(v) = 2e.\n\nProof:\nEvery edge joins two vertices (the two ends may coincide for a loop, which adds 2 to the degree of that vertex). When the degrees are added up, each edge contributes 1 to the degree of each of its two end vertices, that is, exactly 2 to the total. If there are e edges, the total is 2e. Hence the sum of the degrees equals 2e.\n\nCorollary: the number of vertices of odd degree in any graph is even.\nSplit the vertices into the set of even-degree vertices and the set of odd-degree vertices. Since 2e is even and the sum of the even degrees is even, the sum of the odd degrees must be even too. A sum of odd numbers is even only if there is an even number of terms, so the number of odd-degree vertices is even.\n\nExample: a graph with 5 edges has a degree sum of 10.",
+      "source": "manual"
+    },
+    "Show that p ∨ (q ∧ r) = (p ∨ q) ∧ (p ∨ r).": {
+      "marks": 3,
+      "years": [
+        "2023",
+        "2021"
+      ],
+      "answer": "Proof of p or (q and r) = (p or q) and (p or r) (3 Marks)\n\nThis is the distributive law of OR over AND. Two propositions are equal (equivalent) if they have the same truth value in every row of the truth table.\n\np q r | q^r | p v (q^r) | p v q | p v r | (p v q) ^ (p v r)\nT T T |  T  |     T     |   T   |   T   |        T\nT T F |  F  |     T     |   T   |   T   |        T\nT F T |  F  |     T     |   T   |   T   |        T\nT F F |  F  |     T     |   T   |   T   |        T\nF T T |  T  |     T     |   T   |   T   |        T\nF T F |  F  |     F     |   T   |   F   |        F\nF F T |  F  |     F     |   F   |   T   |        F\nF F F |  F  |     F     |   F   |   F   |        F\n\nThe columns \"p v (q ^ r)\" and \"(p v q) ^ (p v r)\" are identical in all 8 rows.\nHence p v (q ^ r) = (p v q) ^ (p v r).",
+      "source": "manual"
+    },
+    "Let x be the set of factors of 12 and let ≤ be the relation divisor i.e., x ≤ y, if and only if x divides y. Draw the Hasse diagram of (x, ≤).": {
+      "marks": 3,
+      "years": [
+        "2023",
+        "2021"
+      ],
+      "answer": "Hasse diagram of the divisors of 12 under divisibility (3 Marks)\n\nX = {1, 2, 3, 4, 6, 12} and x <= y means x divides y.\n\nSteps to draw a Hasse diagram:\n1. Remove the reflexive relations (x <= x), so no loops are drawn.\n2. Remove the transitive relations (if x <= y and y <= z, do not draw x <= z).\n3. Keep only the covering relations: y covers x if x < y and there is no z with x < z < y.\n4. Place smaller elements lower and draw upward lines without arrows.\n\nCovering pairs: 1-2, 1-3, 2-4, 2-6, 3-6, 4-12, 6-12.\n(The pairs 1-4, 1-6, 1-12, 2-12 and 3-12 are removed because they follow from the others.)\n\nHasse diagram:\n            12\n           /  \\\n          4    6\n           \\  / \\\n            2    3\n             \\  /\n              1\n\n1 is the least element and 12 is the greatest element. The poset is a lattice.",
+      "source": "manual"
+    }
+  },
+  "CA": {
+    "Convert the following : i) 7562₍₁₀₎ = ____₍₁₆₎ ii) 1110101₍₂₎ = ____₍₁₀₎ iii) F3A7₍₁₆₎ = ____₍₈₎": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2021"
+      ],
+      "answer": "Number base conversions (6 Marks)\n\ni) 7562 (decimal) to hexadecimal: divide repeatedly by 16.\n7562 / 16 = 472 remainder 10 (A)\n472 / 16 = 29 remainder 8\n29 / 16 = 1 remainder 13 (D)\n1 / 16 = 0 remainder 1\nReading the remainders from the bottom: 7562 (10) = 1D8A (16).\nCheck: 1 x 4096 + 13 x 256 + 8 x 16 + 10 = 4096 + 3328 + 128 + 10 = 7562.\n\nii) 1110101 (binary) to decimal: add the place values of the 1 bits.\n1110101 = 1x64 + 1x32 + 1x16 + 0x8 + 1x4 + 0x2 + 1x1 = 64 + 32 + 16 + 4 + 1 = 117.\nSo 1110101 (2) = 117 (10).\n\niii) F3A7 (hexadecimal) to octal: first convert to binary (4 bits per hex digit), then regroup in 3 bits.\nF = 1111, 3 = 0011, A = 1010, 7 = 0111\nBinary: 1111 0011 1010 0111 = 1111001110100111\nGroup from the right in threes: 001 111 001 110 100 111\nOctal digits: 1 7 1 6 4 7\nSo F3A7 (16) = 171647 (8).",
+      "source": "manual"
+    },
+    "Implement the following Boolean function using 8 : 1 multiplexer. F(A, B, C, D) = Σ m(1, 3, 5, 6)": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2021"
+      ],
+      "answer": "Implementing F(A, B, C, D) = sum of m(1, 3, 5, 6) using an 8:1 multiplexer (5 Marks)\n\nA 8:1 multiplexer has 3 select lines (S2 S1 S0), 8 data inputs I0 to I7 and one output. A function of 4 variables is implemented by taking the first three variables A, B, C as the select lines (A = S2, B = S1, C = S0) and using the fourth variable D to drive the data inputs.\n\nImplementation table: each data input Ii covers two minterms, one with D = 0 and one with D = 1.\n\nInput  ABC   Minterms (D=0, D=1)   Present in F?        Data input\nI0     000   m0, m1                only m1 (D = 1)      D\nI1     001   m2, m3                only m3 (D = 1)      D\nI2     010   m4, m5                only m5 (D = 1)      D\nI3     011   m6, m7                only m6 (D = 0)      D'\nI4     100   m8, m9                none                 0\nI5     101   m10, m11              none                 0\nI6     110   m12, m13              none                 0\nI7     111   m14, m15              none                 0\n\nRule: if both minterms are present the input is 1, if neither is present it is 0, if only the D = 1 minterm is present it is D, and if only the D = 0 minterm is present it is D'.\n\nConnections: A, B, C go to the select lines; I0 = I1 = I2 = D; I3 = D' (D through a NOT gate); I4 = I5 = I6 = I7 = 0 (ground); the output Y is F.",
+      "source": "manual"
+    }
+  },
+  "ACP": {
+    "Write an algorithm to sort the numbers using selection sort. Sort the numbers {1, 0, 6, 5, 4, 9, 2, 3} using your algorithm.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "answer": "Selection sort algorithm and its trace (10 Marks)\n\nIdea: repeatedly find the smallest element of the unsorted part and swap it to the front of that part.\n\nAlgorithm SelectionSort(A[0..n-1])\n1. for i = 0 to n - 2 do\n2.     min = i\n3.     for j = i + 1 to n - 1 do\n4.         if A[j] < A[min] then min = j\n5.     swap A[i] and A[min]\n6. end\n\nTrace for {1, 0, 6, 5, 4, 9, 2, 3} (n = 8, so 7 passes):\nStart    : 1 0 6 5 4 9 2 3\nPass 1   : smallest is 0 (index 1); swap with index 0 -> 0 1 6 5 4 9 2 3\nPass 2   : smallest of 1 6 5 4 9 2 3 is 1, already in place -> 0 1 6 5 4 9 2 3\nPass 3   : smallest of 6 5 4 9 2 3 is 2 (index 6); swap with 6 -> 0 1 2 5 4 9 6 3\nPass 4   : smallest of 5 4 9 6 3 is 3 (index 7); swap with 5 -> 0 1 2 3 4 9 6 5\nPass 5   : smallest of 4 9 6 5 is 4, already in place -> 0 1 2 3 4 9 6 5\nPass 6   : smallest of 9 6 5 is 5 (index 7); swap with 9 -> 0 1 2 3 4 5 6 9\nPass 7   : smallest of 6 9 is 6, already in place -> 0 1 2 3 4 5 6 9\n\nSorted array: 0 1 2 3 4 5 6 9\n\nComplexity: the comparisons are (n-1) + (n-2) + ... + 1 = n(n-1)/2, so the time is O(n^2) in the best, average and worst case. At most n - 1 swaps are made. Extra space is O(1).",
+      "source": "manual"
+    },
+    "Write an algorithm to convert the base of a number from base 10 to base 16.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "Algorithm to convert a base 10 number to base 16 (6 Marks)\n\nIdea: divide the number repeatedly by 16. The remainders (0 to 15, where 10 to 15 are written A to F) are the hexadecimal digits, found from the least significant digit to the most significant digit, so they must be read in reverse order.\n\nAlgorithm DecimalToHex(n)\n1. if n = 0 then print 0 and stop\n2. digits = \"0123456789ABCDEF\"; i = 0\n3. while n > 0 do\n4.     r = n mod 16\n5.     hex[i] = digits[r]; i = i + 1\n6.     n = n div 16\n7. end while\n8. for j = i - 1 down to 0 do print hex[j]     (reverse order)\n\nExample: n = 7562\n7562 / 16 = 472 remainder 10 -> A\n472 / 16 = 29 remainder 8 -> 8\n29 / 16 = 1 remainder 13 -> D\n1 / 16 = 0 remainder 1 -> 1\nReading in reverse: 1D8A.\n\nComplexity: the loop runs about log base 16 of n times, so the time is O(log n).",
+      "source": "manual"
+    },
+    "Write an algorithm to find fibonacci series upto n.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2021"
+      ],
+      "answer": "Algorithm to find the Fibonacci series up to n terms (6 Marks)\n\nThe Fibonacci series is 0, 1, 1, 2, 3, 5, 8, 13, ... where every term is the sum of the previous two terms.\n\nAlgorithm Fibonacci(n)\n1. a = 0; b = 1\n2. for i = 1 to n do\n3.     print a\n4.     c = a + b\n5.     a = b\n6.     b = c\n7. end for\n\nExample, n = 7:\ni = 1: print 0   (a, b) = (1, 1)\ni = 2: print 1   (a, b) = (1, 2)\ni = 3: print 1   (a, b) = (2, 3)\ni = 4: print 2   (a, b) = (3, 5)\ni = 5: print 3   (a, b) = (5, 8)\ni = 6: print 5   (a, b) = (8, 13)\ni = 7: print 8\nOutput: 0 1 1 2 3 5 8\n\nVariant \"all terms not exceeding n\": replace the loop by \"while a <= n do ... \".\n\nComplexity: the loop runs n times, so the time is O(n) and the space is O(1) because only three variables are used.",
+      "source": "manual"
+    },
+    "Write an efficient algorithm to find aⁿ where n is a large number.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "Efficient algorithm to find a^n for a large n (10 Marks)\n\nIdea: exponentiation by squaring (binary exponentiation). Instead of multiplying a by itself n - 1 times, which is O(n), use\na^n = (a^(n/2))^2 if n is even, and a^n = a x a^(n-1) if n is odd.\nThis needs only O(log n) multiplications.\n\nAlgorithm Power(a, n)  (iterative)\n1. result = 1\n2. while n > 0 do\n3.     if n is odd then result = result x a\n4.     a = a x a\n5.     n = n div 2\n6. end while\n7. return result\n\nRecursive form:\nPower(a, n): if n = 0 return 1; t = Power(a, n div 2); if n is even return t x t, else return a x t x t.\n\nExample: 3^13 (13 = 1101 in binary)\nn = 13 (odd): result = 3,   a = 9\nn = 6 (even): result = 3,   a = 81\nn = 3 (odd):  result = 243, a = 6561\nn = 1 (odd):  result = 243 x 6561 = 1594323\nSo 3^13 = 1594323, found with 4 squarings and 3 multiplications instead of 12 multiplications.\n\nComplexity: the number of loop iterations is floor(log2 n) + 1, so the time is O(log n) multiplications. If the result must be reduced modulo m (as in cryptography), take \"mod m\" after every multiplication to keep the numbers small.",
+      "source": "manual"
+    }
+  },
+  "AI": {
+    "Consider the following sentences. a) John likes all kinds of food. b) Apples are food. c) Chicken is food. d) Anything anyone eats and is not killed by food. e) Bill eats peanuts and is still alive. f) Sue eats everything Bill eats. Translate these sentences in to formulas in predicate logic. Prove that “John likes peanuts” using background chaining. Convert the formula into clause form.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "Predicate logic, backward chaining and clause form (10 Marks)\n\nPredicates: food(x), likes(x, y), eats(x, y), killed(x) (x has been killed), alive(x).\n\n1. Translation into predicate logic\na) John likes all kinds of food:  for all x: food(x) -> likes(John, x)\nb) Apples are food:  food(Apples)\nc) Chicken is food:  food(Chicken)\nd) Anything anyone eats and is not killed by is food:  for all x, y: eats(x, y) and not killed(x) -> food(y)\ne) Bill eats peanuts and is still alive:  eats(Bill, Peanuts) and alive(Bill)\nf) Sue eats everything Bill eats:  for all x: eats(Bill, x) -> eats(Sue, x)\nAdditional common-sense axiom needed for the proof: g) for all x: alive(x) -> not killed(x).\n\n2. Proof that John likes peanuts by backward chaining\nStart from the goal and work backwards, replacing a goal by the premises of a rule whose conclusion matches it.\nGoal: likes(John, Peanuts)\n- by (a) with x = Peanuts, it needs the sub-goal food(Peanuts)\n- by (d) with y = Peanuts, it needs eats(x, Peanuts) and not killed(x)\n- by (e), eats(Bill, Peanuts) is a fact, so x = Bill\n- the remaining sub-goal is not killed(Bill); by (g) it needs alive(Bill)\n- alive(Bill) is a fact from (e)\nAll sub-goals are proved, so likes(John, Peanuts) is true.\n\n3. Clause form (conjunctive normal form, no existential quantifiers, so no Skolem functions are needed)\nRemove implications (A -> B becomes not A or B), drop the universal quantifiers, and write each conjunct as a clause:\n1. not food(x) or likes(John, x)\n2. food(Apples)\n3. food(Chicken)\n4. not eats(x, y) or killed(x) or food(y)\n5. eats(Bill, Peanuts)\n6. alive(Bill)\n7. not eats(Bill, x) or eats(Sue, x)\n8. not alive(x) or not killed(x)\nCheck by resolution: add the negated goal not likes(John, Peanuts). It resolves with clause 1 to give not food(Peanuts); with clause 4 to give not eats(x, Peanuts) or killed(x); with clause 5 to give killed(Bill); with clause 8 (and clause 6) to get the empty clause. The contradiction proves the goal.",
+      "source": "manual"
+    }
+  }
+}

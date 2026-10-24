@@ -1,0 +1,1050 @@
+{
+  "ACP": {
+    "Define Big oh notation. What is rate of growth, worst, best an average case complexity of an algorithm ?": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "## BIG O NOTATION\n\n📘 As per your notes, Big Oh notation is a mathematical notation used to describe the upper bound of the time complexity or space complexity of an algorithm as a function of the size of the input. It helps simplify the analysis of algorithms by ignoring details that do not impact the comparison of algorithms.\n\nThe rate of growth refers to how quickly an algorithm's running time or space requirement grows as the size of the input increases.\n\nThe worst-case complexity is the maximum time or space complexity that an algorithm can take, regardless of the specific input. For example, a linear search algorithm has a worst-case complexity of O(n) because it needs to check every element in the list.\n\nThe best-case complexity is the minimum time or space complexity that an algorithm can take, given the best possible input. For example, a binary search algorithm has a best-case complexity of O(log n) because it can find the target element in the middle of the sorted array in the best case.\n\nThe average-case complexity is the expected time or space complexity over all possible inputs. However, it can be difficult to calculate and is often not as useful as worst-case analysis for comparing algorithms.\n\n💡 Simple way to understand it: Think of Big Oh notation as a highway speed limit sign. Just like how the speed limit tells you the maximum speed you can travel on a road, Big Oh notation tells you the maximum running time or space requirement an algorithm can have, regardless of the specific input. The rate of growth is like the type of car you're driving - some cars (algorithms) can travel faster (have better complexity) than others. The worst-case complexity is like driving in heavy traffic - it's the worst-case scenario where the algorithm takes the longest time. The best-case complexity is like driving with no traffic - it's the best-case scenario where the algorithm takes the shortest time. The average-case complexity is like driving on an average day - it's the expected time over all possible scenarios.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:12"
+    },
+    "Write an algorithm to sort the numbers using selection sort. Sort the numbers {1, 0, 6, 5, 4, 9, 2, 3} using your algorithm.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "answer": "## SELECTION SORT\n\n // C: Selection Sort algorithm to sort an array of integers\n\n1. Initialize a function SelectionSort(int A[], int n) that takes an array and its length as input.\n2. For each index i from 0 to n-1, do the following:\n    a. Find the minimum value in the unsorted portion of the array (from index i to the end of the array).\n    b. Swap the minimum value with the current index i's value in the array.\n3. Return the sorted array.\n\nSelectionSort(int A[], int n) {\n    for (int i = 0; i < n - 1; i++) {\n        int minIndex = i;\n        for (int j = i + 1; j < n; j++) {\n            if (A[j] < A[minIndex]) {\n                minIndex = j;\n            }\n        }\n        int temp = A[minIndex];\n        A[minIndex] = A[i];\n        A[i] = temp;\n    }\n    return A;\n}\n\n// Trace for the given array {1, 0, 6, 5, 4, 9, 2, 3}\n\n| Iteration | Min Index | Swapped Elements | Sorted Array |\n|-----------|-----------|------------------|--------------|\n| 0         | 0         | 1, 0             | 0, 1         |\n| 1         | 3         | 0, 3             | 0, 1, 3      |\n| 2         | 5         | 3, 5             | 0, 1, 3, 5   |\n| 3         | 6         | 5, 6             | 0, 1, 3, 5, 6 |\n| 4         | 2         | 6, 2             | 0, 1, 2, 3, 5, 6 |\n| 5         | 4         | 2, 4             | 0, 1, 2, 3, 4, 6 |\n| 6         | 7         | 4, 7             | 0, 1, 2, 3, 4, 6, 7 |\n\nThe sorted array is {0, 1, 2, 3, 4, 6, 5, 7}.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:17"
+    },
+    "Write an algorithm to convert the base of a number from base 10 to base 16.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## NUMBER CONVERSION\n\n // C code for converting a base-10 number to base-16\n\n```c\n#include <stdio.h>\n\nvoid base16Convert(int number) {\n    char digits[] = \"0123456789ABCDEF\";\n    int remainder;\n\n    if (number == 0) {\n        printf(\"0\");\n        return;\n    }\n\n    while (number != 0) {\n        remainder = number % 16;\n        printf(\"%c\", digits[remainder]);\n        number /= 16;\n    }\n}\n\nint main() {\n    int number;\n\n    printf(\"Enter a base-10 number: \");\n    scanf(\"%d\", &number);\n\n    printf(\"Base-16 representation: \");\n    base16Convert(number);\n    printf(\"\\n\");\n\n    return 0;\n}\n```\n\nThis code defines a function `base16Convert` that converts a given number from base-10 to base-16. The main function reads a number from the user and calls the `base16Convert` function to display the base-16 representation.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:19"
+    },
+    "Write an algorithm to find fibonacci series upto n.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2021"
+      ],
+      "answer": "## FIBONACCI SERIES\n\n // C program to find Fibonacci series up to n using dynamic programming\n\n```c\n#define MAX 10000\nlong fib[MAX];\n\nvoid fib_dp(int n) {\n    int i;\n    fib[0] = 0;\n    fib[1] = 1;\n    for (i=2; i<=n; i++) {\n        fib[i] = fib[i-1] + fib[i-2];\n    }\n}\n\nlong fib_dp_get(int n) {\n    return fib[n];\n}\n```\n\nThis program first initializes the Fibonacci array using dynamic programming, then allows you to retrieve the nth Fibonacci number using the `fib_dp_get` function. The time complexity of this algorithm is linear (O(n)).",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:21"
+    },
+    "Write an algorithm to find square root of a number.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## SQUARE ROOT ALGORITHM\n\n // C: Square root computation\n\n```c\n#include <stdio.h>\n\ndouble sqrt(double n, double eps) {\n    double l = 1.0, r = n;\n    double m;\n\n    while (r - l > eps) {\n        m = (l + r) / 2.0;\n        if (m * m < n)\n            l = m;\n        else\n            r = m;\n    }\n\n    return l;\n}\n\nint main() {\n    double n, eps = 0.00001;\n    printf(\"Enter a number: \");\n    scanf(\"%lf\", &n);\n    printf(\"The square root of %.2lf is %.2lf\\n\", n, sqrt(n, eps));\n    return 0;\n}\n```\n\nThis code implements the binary search algorithm for finding the square root of a number with a given precision. The user inputs a number, and the program outputs its square root with the specified precision.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:23"
+    },
+    "Write an efficient algorithm to find aⁿ where n is a large number.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## ALGORITHM\n\n📘 As per your notes, an Efficient Algorithm for fast exponentiation is described. This algorithm is used to compute the value of a^b for large values of a and b, which is useful in primality testing for cryptography.\n\nThe algorithm is a divide-and-conquer approach, meaning it breaks down the problem into smaller sub-problems, solves them, and combines the solutions to solve the original problem.\n\nThe algorithm works by using the following identity: ab = e * p(ln(ab)), where e is the multiplication of the last bits of a and b, p is a recursive function that computes a^(b/2) and a^(b/2) for the first half of the bits of a and b, and ln(ab) is the natural logarithm of ab.\n\nThe key advantage of this algorithm is that it reduces the problem of computing a^b to one multiplication and two recursive calls, making it more efficient for large values of a and b.\n\n💡 Simple way to understand it: Think of the algorithm as a multi-level assembly line. Each worker (function) performs a specific task (multiplication or recursive call) on parts (a and b) to assemble the final product (a^b). The algorithm breaks down the assembly line into smaller sections (divide-and-conquer), making it more efficient to produce the final product for large orders (large values of a and b).",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:26"
+    }
+  },
+  "AI": {
+    "Define expert system and explain its architecture with a neat diagram.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2022"
+      ],
+      "answer": "## EXPERT SYSTEM\n\n📘 Expert System:\nAn expert system is a computer program designed to mimic the decision-making ability of a human expert in a specific domain. It uses artificial intelligence (AI) techniques, primarily rule-based reasoning, to solve complex problems that require knowledge and experience.\n\nThe architecture of an expert system typically consists of three main components:\n\n1. Knowledge Base: This is the repository of the domain-specific knowledge and facts that the system uses to make decisions. It is usually represented in the form of rules, facts, and inference mechanisms.\n\n2. Inference Engine: This component applies logical reasoning to the knowledge base to draw conclusions, make decisions, or solve problems. It uses various reasoning strategies such as forward chaining, backward chaining, and resolution.\n\n3. User Interface: This is the interface through which users interact with the system. It can be a graphical interface, a command-line interface, or a natural language interface, depending on the system's complexity and the user's needs.\n\n💡 Simple way to understand it:\nThink of an expert system as a digital version of a human expert. It has a vast knowledge base (the expert's knowledge), an inference engine (the expert's reasoning ability), and a user interface (the way the expert communicates with others). The system uses this combination to solve problems and make decisions, just like a human expert would.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:29"
+    },
+    "Consider the following sentences. a) John likes all kinds of food. b) Apples are food. c) Chicken is food. d) Anything anyone eats and is not killed by food. e) Bill eats peanuts and is still alive. f) Sue eats everything Bill eats. Translate these sentences in to formulas in predicate logic. Prove that “John likes peanuts” using background chaining. Convert the formula into clause form.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## PREDICATE LOGIC\n\n📘 Predicate Logic:\nPredicate logic is an extension of propositional logic that allows for the representation of statements about objects and properties of those objects. It introduces predicates, which are functions that associate objects with truth values, and quantifiers, which are used to express generalizations about all or some objects.\n\nIn predicate logic, formulas are built using predicates, variables, logical connectives, and quantifiers. Predicates are symbols that represent properties or relations, such as \"is tall\" or \"loves\". Variables represent specific objects or values, such as \"x\" or \"y\". Logical connectives, like \"and\", \"or\", and \"not\", are used to combine formulas. Quantifiers, such as \"forall\" (for all) and \"exists\" (there exists), are used to express statements about all objects or some objects.\n\n💡 Simple way to understand it:\nThink of predicate logic as a more complex version of propositional logic. Instead of just dealing with simple statements like \"It is raining\" or \"The sky is blue\", it allows us to make statements about objects and their properties, like \"Every dog is a mammal\" or \"Some cats are black\". Quantifiers act like a magnifying glass, allowing us to look at all or some objects at once.\n\n7.4.2 Background Chaining:\nBackground chaining is a technique used in predicate logic to handle statements that are assumed to be true but not explicitly stated. These assumptions, or background knowledge, can be chained together to help infer new statements. For example, if we know that \"All humans are mortal\" and \"Socrates is a human\", we can infer that \"Socrates is mortal\" without explicitly stating it.\n\n💡 Simple way to understand it:\nThink of background chaining as a chain of dominoes. Each domino represents a statement, and when one falls, it knocks over the next one. In predicate logic, these dominoes can be statements about objects and their properties, and the chain can help us infer new statements.\n\n7.4.3 Clause Form:\nA formula in predicate logic is in clause form if it is a disjunction (OR) of literals, where each literal is either a predicate applied to variables or the negation (NOT) of a predicate applied to variables. Clause form is useful because it allows for efficient reasoning using the resolution principle, a method for logical inference that combines two clauses to produce a new clause.\n\n💡 Simple way to understand it:\nThink of clause form as a list of possible scenarios. Each scenario is a combination of statements about objects and their properties, or their negations. By combining these lists, we can find new scenarios that are the result of the combination of statements from both lists.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:32"
+    }
+  },
+  "BDA": {
+    "Mention and explain any two data reduction techniques.": {
+      "marks": 6,
+      "years": [
+        "2026",
+        "2024",
+        "2023"
+      ],
+      "answer": "## DATA REDUCTION TECHNIQUES\n\n📘 Data Reduction Techniques:\n\nData Reduction Techniques are methods used to minimize the size of data or simplify complex data structures. In the context of MapReduce programming, two primary techniques are discussed: Data Compression and Dimensionality Reduction.\n\n1. Data Compression: This technique reduces the space required to store files by encoding data more efficiently. In MapReduce, you can compress the MapReduce output file using the following configuration:\n\n   conf.setBoolean('mapred.output.compress', true);\n   conf.setClass(\"mapred.output.compression.codec\", GzipCodec.class, CompressionCodec.class);\n\n2. Dimensionality Reduction: This technique simplifies complex data structures by reducing the number of dimensions or variables. It is not explicitly mentioned in the context, but it is a common data reduction technique used in various fields, such as machine learning and data visualization.\n\n💡 Simple way to understand it:\n\nThink of data reduction techniques as simplifying a complex puzzle. Data Compression is like folding a map to fit it into a smaller pocket, while Dimensionality Reduction is like reducing the number of pieces in a jigsaw puzzle to make it easier to solve.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:35"
+    },
+    "explain in detail the architecture of a HDFs system.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "answer": "## HDFS\n\n📘 As per your notes, the Hadoop Distributed File System (HDFS) is a distributed storage system designed to handle large datasets on commodity hardware. It stores data in smaller subsets called chunks or blocks, which are distributed across multiple nodes in a cluster. The system is designed for write-once, read-many times operations, providing faster read/write access and better availability and fault tolerance.\n\nHDFS is a key component of the Hadoop ecosystem, and it is based on Google File System (GFS). The architecture of a HDFS system can be divided into two main components: the NameNode and DataNodes.\n\n1. NameNode: The NameNode is the master node in the HDFS system. It manages the file system namespace, maintains the metadata for all files in the file system, and provides the interface for clients to access the file system. The NameNode is responsible for naming, organizing, and managing the data blocks across the DataNodes.\n\n2. DataNodes: DataNodes are the worker nodes in the HDFS system. They store the actual data blocks and provide the data when requested by clients or the NameNode. Each DataNode runs a local file system and communicates with the NameNode to manage the data blocks it stores.\n\nIn the Hadoop high-level architecture, the HDFS Storage component consists of both the NameNode and DataNodes. The NameNode is responsible for managing the file system namespace and metadata, while the DataNodes store the actual data blocks.\n\n💡 Simple way to understand it:\nThink of a library where books are stored across multiple shelves in different rooms. The library's main desk (NameNode) keeps track of all the books (metadata), their locations (DataNodes), and manages the organization of the books (naming, organizing, and managing the data blocks). The readers (clients) can access the books (data) by asking the main desk (NameNode) for their location (DataNodes).",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:38"
+    },
+    "What is Hive ? explain its features and write brief notes on Hive Meta store.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## HIVE\n\n📘 As per your notes, Hive is a data warehousing tool that operates on top of Hadoop. It's designed to process structured data within the Hadoop environment. Hive shares similarities with SQL, making it easier to code and use.\n\nHive supports various data types such as structs, lists, and maps, and it incorporates SQL filters, group-by, and order-by clauses for efficient data manipulation. Custom types and functions can also be defined within Hive.\n\nOne key component of Hive is the Hive Metastore, which serves as a repository for managing metadata related to Hive tables, partitions, and other objects. It provides a centralized location for storing metadata, making it easier to manage and access data across multiple Hive instances.\n\n💡 Simple way to understand it: Think of Hive as a translator that helps you query and analyze structured data in Hadoop, similar to how Google Translate helps you understand different languages. The Hive Metastore acts as a library, storing information about the data you're working with, making it easier to find and use.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:40"
+    },
+    "What is Pig ? Discuss its Data Processing operations.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## PIG\n\n📘 As per your notes, Pig is a platform for analyzing large data sets that allows users to develop their own functions for reading, processing, and writing data. The main components of Pig are:\n\n1. Data flow language (Pig Latin): a language used to process data using Pig.\n2. Interactive shell (Grunt): an environment where you can type Pig Latin statements.\n3. Pig interpreter and execution engine: responsible for interpreting and executing Pig Latin statements.\n\nPig Latin statements are the basic constructs to process data using Pig. They are operators that take a relation as input and yield another relation as output. These statements include schemas and expressions to process data and should end with a semi-colon.\n\n💡 Simple way to understand it: Think of Pig as a kitchen where data is the ingredients. Pig Latin is the recipe book, Grunt is the chef's station, and the Pig interpreter and execution engine are the kitchen appliances that help prepare the data according to the recipes (Pig Latin statements).",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:41"
+    },
+    "explain Bayesian classification in detail.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2022"
+      ],
+      "answer": "## BAYESIAN CLASSIFICATION\n\n📘 As per your notes, Bayesian classification is a type of machine learning algorithm that belongs to the supervised learning category. It's based on Bayes' theorem, which allows for the calculation of conditional probabilities.\n\nIn Bayesian classification, the algorithm learns the probability distribution of the classes in the training data. For a new data point, it calculates the probability of that data point belonging to each class and assigns it to the class with the highest probability.\n\nThere are two main components in Bayesian classification: prior probabilities and conditional probabilities.\n\n- Prior probabilities: These are the probabilities of each class before seeing any data. They can be estimated from the training data or provided by the user.\n\n- Conditional probabilities: These are the probabilities of observing the data given that it belongs to a specific class. They are also estimated from the training data.\n\n💡 Simple way to understand it: Think of Bayesian classification as a judge in a courtroom. The judge has prior beliefs about the guilt or innocence of the defendant (prior probabilities). The evidence presented in court (data) changes the judge's beliefs about the defendant's guilt (conditional probabilities). The judge then makes a decision based on the evidence and their prior beliefs (classification). The key difference is that the judge updates their beliefs as new evidence comes in, just like Bayesian classification updates its probabilities as it sees more data.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:43"
+    },
+    "What is clustering ? explain various clustering techniques.": {
+      "marks": 10,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## CLUSTERING\n\n📘 As per your notes, Clustering is a process that involves grouping similar objects together. It is an example of unsupervised learning, meaning it doesn't require predefined classes or labels. Instead, it identifies natural patterns or similarities among the data. Clustering can be used to segment data, similar to classification algorithms, but without any predefined classes.\n\nIn the context of a supermarket, clustering could be used to group items like butter, cheese, and milk under the \"dairy products\" category, as they share similar characteristics.\n\n💡 A simple way to understand clustering is like organizing a library. Instead of having specific sections for fiction, non-fiction, and biographies, you group books based on their similarities, such as books with similar themes or authors.\n\nVarious clustering techniques include:\n\n- K-means Clustering: This is one of the most popular clustering algorithms. It works by dividing the data into K clusters, where K is a user-defined number. Each data point belongs to the cluster with the nearest mean.\n\n- Hierarchical Clustering: This technique builds a hierarchy of clusters, where each cluster is either a single data point or a group of data points that are very similar to each other. Hierarchical clustering can be either agglomerative (starting with individual data points and merging them) or divisive (starting with all data points in a single cluster and splitting them).\n\n- DBSCAN (Density-Based Spatial Clustering of Applications with Noise): This algorithm groups together points that are close to each other in the feature space and have a high density of neighboring points. DBSCAN also identifies outliers or noise points that do not belong to any cluster.\n\nKey differences between K-means and Hierarchical Clustering:\n\n- K-means is a centroid-based method, where each cluster has a centroid (mean), while Hierarchical Clustering builds a hierarchy of clusters.\n- K-means requires the number of clusters (K) to be specified beforehand, while Hierarchical Clustering does not require this information.\n- K-means is faster for large datasets, but it may not perform well when the data is not spherical or when the clusters have different shapes and sizes. Hierarchical Clustering, on the other hand, can handle non-spherical clusters and varying cluster sizes, but it can be computationally expensive for large datasets.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:46"
+    },
+    "Explain the ecosystem of HADOOP.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## HADOOP ECOSYSTEM\n\n📘 As per your notes, the Hadoop ecosystem refers to a collection of open-source projects that work together to enhance the functionality of the Hadoop Core Components. The ecosystem is designed to handle big data processing tasks, from data ingestion to analysis.\n\nThe Hadoop ecosystem consists of several components:\n1. Data Ingestion: Sqoop and Flume help with ingesting data into the Hadoop environment.\n2. Data Processing: MapReduce is the computational framework that splits a task across multiple nodes and processes data in parallel.\n3. Data Analysis: Hive, Pig, and Mahout are tools used for data analysis.\n4. Workflow Management: Oozie is used for managing Hadoop jobs.\n5. Database: HBase is a NoSQL database that runs on top of HDFS.\n6. Data Streaming: Flume is used for collecting, aggregating, and moving large amounts of data in real-time.\n\n💡 Simple way to understand it: Think of the Hadoop ecosystem as a toolbox for big data processing. Each tool in the box (like Sqoop, Flume, MapReduce, Hive, Pig, HBase, Oozie, and Mahout) serves a specific purpose, such as ingesting, processing, or analyzing data, just like how different tools in a carpenter's toolbox serve different purposes.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:48"
+    },
+    "Discuss the significance of big data in various industrial applications.": {
+      "marks": 10,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## BIG DATA\n\n📘 As per your notes, Big Data refers to a large volume of diverse and rapidly generated data that requires innovative methods for processing and analysis to extract valuable insights for decision-making.\n\n💡 Think of Big Data as a vast library containing books of various types (high-variety), being added to at a rapid pace (high-velocity), and occupying multiple floors (high-volume). The challenge is to find the right books (insights) quickly amidst this vast collection.\n\nIn various industrial applications, Big Data plays a significant role due to its potential to drive innovation, improve efficiency, and support informed decision-making. Here's a brief overview of its importance in different sectors:\n\n1. Healthcare: Big Data can help in predicting disease outbreaks, personalizing treatment plans, and improving patient care by analyzing vast amounts of patient data, medical records, and research findings.\n\n2. Finance: Big Data can be used for fraud detection, risk management, and customer behavior analysis in banking and insurance industries. It helps in making informed decisions, reducing losses, and improving customer service.\n\n3. Retail: Big Data can help retailers understand customer preferences, optimize supply chain management, and personalize marketing strategies by analyzing sales data, social media interactions, and customer feedback.\n\n4. Manufacturing: Big Data can be used for predictive maintenance, quality control, and demand forecasting in manufacturing industries. It helps in reducing downtime, improving product quality, and optimizing production processes.\n\nKey differences between these applications:\n\n- Data sources: Healthcare data comes from patient records, medical research, and wearable devices; finance data comes from transactions, credit reports, and market data; retail data comes from sales data, social media, and customer feedback; manufacturing data comes from production data, sensor data, and supply chain data.\n\n- Data types: Healthcare data includes structured (e.g., medical records) and unstructured (e.g., patient feedback) data; finance data includes structured (e.g., transactions) and semi-structured (e.g., emails) data; retail data includes structured (e.g., sales data) and unstructured (e.g., social media posts) data; manufacturing data includes structured (e.g., production data) and time-series (e.g., sensor data) data.\n\n- Data analysis techniques: Healthcare data analysis may involve machine learning algorithms, natural language processing, and statistical analysis; finance data analysis may involve predictive modeling, risk analysis, and market analysis; retail data analysis may involve customer segmentation, recommendation systems, and sentiment analysis; manufacturing data analysis may involve predictive maintenance, quality control, and demand forecasting.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:51"
+    },
+    "Explain Big Data and its characteristics.": {
+      "marks": 6,
+      "years": [
+        "2026",
+        "2023"
+      ],
+      "answer": "## BIG DATA\n\n📘 Big Data refers to a large and complex data set that cannot be processed using traditional data processing methods or software. It is characterized by three V's: Volume, Velocity, and Variety.\n\n- Volume: Refers to the sheer amount of data generated. This data is so large that it cannot be processed using traditional data processing methods.\n\n- Velocity: Refers to the speed at which data is generated and needs to be processed. This data is generated at a high speed and needs to be processed in real-time or near real-time.\n\n- Variety: Refers to the different types of data that are generated. This data can be structured (like relational databases), semi-structured (like XML or JSON), or unstructured (like emails, videos, or social media posts).\n\n💡 Think of Big Data as a massive library. The volume is like the number of books in the library, the velocity is like the rate at which new books are added, and the variety is like the different types of books (fiction, non-fiction, academic, etc.) in the library.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:52"
+    },
+    "Write short notes on : Big SQL.": {
+      "marks": 5,
+      "years": [
+        "2026",
+        "2023"
+      ],
+      "answer": "## BIG SQL\n\n📘 Big SQL (Big SQL Data Warehousing) is a term used to describe the application of SQL (Structured Query Language) in managing and analyzing large volumes of data, also known as Big Data. It's a scalable and high-performance solution for data warehousing, designed to handle the complex data processing requirements of modern businesses.\n\nBig SQL operates on distributed systems, allowing data to be stored and processed across multiple servers. This distribution helps in managing the large volumes of data and the complex queries that come with Big Data.\n\n💡 Think of Big SQL as a large library with many shelves (servers) filled with books (data). Instead of searching for a specific book in one library, you can search across multiple libraries simultaneously, making it faster and more efficient to find the information you need.\n\nKey differences between traditional SQL and Big SQL:\n- Traditional SQL is designed for managing smaller datasets, while Big SQL is designed for Big Data.\n- Traditional SQL operates on a single server, while Big SQL operates on distributed systems.\n- Traditional SQL is optimized for transactional processing, while Big SQL is optimized for analytical processing.\n- Traditional SQL uses a relational database model, while Big SQL can use various data models, such as columnar, document, and graph.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:54"
+    }
+  },
+  "CA": {
+    "Explain distributed memory MIMD architecture with neat diagram.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024",
+        "2022",
+        "2021"
+      ],
+      "answer": "## DISTRIBUTED MEMORY MIMD ARCHITECTURE\n\n📘 Distributed Memory MIMD Architecture:\n\nDistributed Memory MIMD (Multiple Instruction Multiple Data) architecture is a type of parallel computing system where each processor has its own private memory. This architecture allows multiple processors to work on different tasks simultaneously, improving the overall performance.\n\nIn a distributed memory system, each processor is connected to a local memory, and these processors are interconnected through a communication network. Each processor can access its own local memory directly but needs to communicate with other processors to share data or instructions.\n\nHowever, it does not specifically depict a distributed memory MIMD architecture.\n\nTo visualize a distributed memory MIMD system, imagine a group of workers (processors) each with their own toolbox (local memory) working on different tasks in a factory (communication network). They can work independently but need to share tools or information with others when necessary.\n\n💡 Simple way to understand it:\n\nThink of a distributed memory MIMD system as a factory where each worker (processor) has their own workbench (local memory) and tools. They can work on different tasks (microinstructions) independently, but they need to share tools (data) with other workers when necessary, which they do through a communication network (factory).",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:57"
+    },
+    "Differentiate CISC and RISC.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024",
+        "2021"
+      ],
+      "answer": "## CISC AND RISC\n\n📘 As per your notes, a Computer System can be classified as either a Complex Instruction Set Computer (CISC) or a Reduced Instruction Set Computer (RISC). The main difference between the two lies in the complexity and number of instructions they can handle.\n\nCISC processors can execute complex instructions in a single clock cycle, but these instructions are more complex and require more resources. On the other hand, RISC processors can only execute simpler instructions, but they can do so in a single clock cycle, and the simpler instructions require fewer resources.\n\nCISC uses many segments in its pipeline, with the longest segment requiring two or more clock cycles. In contrast, RISC can achieve pipeline segments, requiring just one clock cycle.\n\n💡 Simple way to understand it: Think of CISC as a chef who can prepare complex dishes quickly but requires more ingredients and tools. RISC, on the other hand, is like a chef who can only prepare simple dishes but can do so quickly and with fewer ingredients and tools.",
+      "source": "generated",
+      "generated_at": "2026-10-18 12:59"
+    },
+    "Explain different instruction formats with an example for each.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024",
+        "2021"
+      ],
+      "answer": "## INSTRUCTION FORMATS\n\n📘 As per your notes, Instruction Formats refer to the structure of computer instructions, which are divided into fields for easier processing. The most common fields include the Operation Code (OpCode), which specifies the operation to be performed.\n\n1. Sequence Instruction: These are simple instructions executed in a linear fashion, one after the other. They don't depend on any conditions or loops. For example, in a simple program that adds two numbers, the sequence of instructions might be: Load Number 1, Load Number 2, Add, Store Result.\n\n2. Conditional Instruction: These instructions perform an operation only if a certain condition is met. They often include a test (comparison or logical operation) and a jump instruction to execute the operation if the test is true. For example, an instruction might check if a variable is greater than zero, and if so, jump to an instruction that increments the variable.\n\n3. Loop Instruction: These instructions repeat a sequence of instructions until a certain condition is met. They typically include a test, a jump instruction to the start of the loop, and the sequence of instructions to be repeated. For example, an instruction might loop through an array, performing an operation on each element until it reaches the end of the array.\n\n4. Jump Instruction: These instructions change the sequence of instructions to be executed. They can be used to jump to a specific instruction, to a label, or to a subroutine. For example, an instruction might jump to a subroutine to perform a complex calculation, and then return to the main sequence of instructions.\n\n💡 Simple way to understand it: Think of instruction formats as a recipe book for a computer. Each recipe (instruction) has specific steps (fields) that tell the computer what to do. Sequence instructions are like following a recipe from start to finish, conditional instructions are like following a recipe but only if a certain ingredient is available, loop instructions are like repeating a step in a recipe until a certain condition is met, and jump instructions are like skipping to a different recipe altogether.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:01"
+    },
+    "Explain different types of ROM.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024",
+        "2021"
+      ],
+      "answer": "## ROM\n\n📘 As per your notes, ROM (Read-Only Memory) is a type of memory used in computer systems that stores coded information which cannot be altered or overwritten. There are two major types of ROM:\n\n1. Mask Programmed ROM (MPROM): This type of ROM is programmed during the manufacturing process of the chip. The patterns are etched onto the chip using a photolithographic process, making it impossible to change the stored data.\n\n2. Programmable Read-Only Memory (PROM): Unlike MPROM, PROM can be programmed after the manufacturing process. This is done by using a special device called a programmer that applies a high voltage to specific fuses within the chip, thereby making those memory locations permanent. Once the fuses are blown, the data in those locations cannot be changed.\n\n💡 Simple way to understand it: Think of ROM as a book that cannot be edited once it's printed. Mask Programmed ROM is like a book that's printed with the final version, while Programmable Read-Only Memory is like a book that can be written on, but once the ink dries, the words cannot be changed.\n\nKey differences:\n- Mask Programmed ROM is programmed during the manufacturing process, while Programmable Read-Only Memory can be programmed after manufacturing.\n- Once the data is stored in Mask Programmed ROM, it cannot be changed, whereas in Programmable Read-Only Memory, the data can be changed by blowing fuses during the programming process.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:03"
+    },
+    "Convert the following : i) 7562₍₁₀₎ = ____₍₁₆₎ ii) 1110101₍₂₎ = ____₍₁₀₎ iii) F3A7₍₁₆₎ = ____₍₈₎": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2021"
+      ],
+      "answer": "## CONVERT FOLLOWING : I) 7562₍₁₀₎ = ____₍₁₆₎ II) 1110101₍₂₎ = ____₍₁₀₎ III) F3A7₍₁₆₎ = ____₍₈₎\n\n📘 As per your notes, the process of converting numbers from one base to another involves replacing each digit with its equivalent in the target base, following a specific order based on the position of the digit. The value of each digit is determined by multiplying it by the base raised to the power of its position from the rightmost digit.\n\n1. To convert 7562₍₁₀₎ to hexadecimal (base 16), we replace each digit with its equivalent in hexadecimal. Since 7, 5, and 6 are less than 16, they remain unchanged. However, 2 is greater than 9 (the highest digit in base 10), so we replace it with its equivalent in hexadecimal, which is E. Therefore, 7562₍₁₀₎ = EDC2₍₁₆₎.\n\n2. To convert 1110101₍₂₎ to decimal (base 10), we calculate the value of each digit by multiplying it by the base (2) raised to the power of its position from the rightmost digit. Starting from the right, we have: 1*2^0 + 1*2^1 + 1*2^2 + 0*2^3 + 1*2^4 + 0*2^5 + 1*2^6 = 33.\n\n3. To convert F3A7₍₁₆₎ to octal (base 8), we replace each hexadecimal digit with its equivalent in octal. Since F, 3, and 7 are less than 8, they remain unchanged. However, A is greater than 7, so we replace it with its equivalent in octal, which is 10. Therefore, F3A7₍₁₆₎ = 13775₍₈₎.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:06"
+    },
+    "Construct a 4-to-1 line multiplexer using logic gates. Explain its working procedure.": {
+      "marks": 5,
+      "years": [
+        "2024",
+        "2021"
+      ],
+      "answer": "## 4-TO-1 LINE MULTIPLEXER\n\n📘 As per your notes, a 4-to-1-line multiplexer is a circuit that receives binary data from four input lines (A0, A1, A2, A3) and directs it to a single output line (O) based on the selection of a particular input data line, determined by a set of selection inputs (S0, S1).\n\nThe 4-to-1-line multiplexer can be constructed using logic gates, specifically AND gates, OR gates, and an Inverter. The working procedure involves the following steps:\n\n1. The selection inputs (S0, S1) are combined with the input data lines (A0, A1, A2, A3) using AND gates to create four separate product terms (P0, P1, P2, P3).\n\n2. Each product term (P0, P1, P2, P3) is then combined with the corresponding bit of the selection line (S0, S1) using an OR gate.\n\n3. The output of each OR gate is then passed through an Inverter to invert the polarity of the signal.\n\n4. The inverted signals from the OR gates are then combined using another OR gate, which serves as the final output gate. The output of this OR gate is the selected input data line that is sent to the output line (O).\n\n💡 A 4-to-1-line multiplexer can be thought of as a traffic intersection with four incoming roads (A0, A1, A2, A3) and one outgoing road (O). The selection inputs (S0, S1) act as traffic signals that allow only one road to send traffic to the outgoing road at a time. The AND gates act as the traffic lights, allowing traffic to pass only when both the road and the green light are present. The OR gates act as the intersection, combining the traffic from the allowed roads, and the Inverter acts as a one-way street, reversing the direction of the traffic.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:09"
+    },
+    "Implement the following Boolean function using 8 : 1 multiplexer. F(A, B, C, D) = Σ m(1, 3, 5, 6)": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2021"
+      ],
+      "answer": "## 8 : 1 MULTIPLEXER\n\n // C code for 8-to-1 multiplexer implementing Boolean function F(A, B, C, D) = Σ m(1, 3, 5, 6)\n\n```c\n#include <stdio.h>\n\nvoid multiplexer8to1(int A, int B, int C, int D, int Sel) {\n    int function = (Sel == 1) ? A : ((Sel == 3) ? B : ((Sel == 5) ? C : ((Sel == 6) ? D : 0)));\n    printf(\"Output: %d\\n\", function);\n}\n\nint main() {\n    multiplexer8to1(1, 0, 0, 1, 1); // Test with input A=1, B=0, C=0, D=1, Sel=1\n    multiplexer8to1(0, 1, 0, 0, 3); // Test with input A=0, B=1, C=0, D=0, Sel=3\n    multiplexer8to1(0, 0, 1, 0, 5); // Test with input A=0, B=0, C=1, D=0, Sel=5\n    multiplexer8to1(0, 0, 0, 1, 6); // Test with input A=0, B=0, C=0, D=1, Sel=6\n    return 0;\n}\n```\n\nThis code implements the 8-to-1 multiplexer for the given Boolean function F(A, B, C, D) = Σ m(1, 3, 5, 6). The `multiplexer8to1` function takes four input variables (A, B, C, D) and one selection variable (Sel) and outputs the result of the multiplexer operation. The `main` function tests the multiplexer with different input combinations.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:12"
+    },
+    "Explain the basic organization of a micro programmed control unit.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## MICROPROGRAMMED CONTROL UNIT\n\n📘 As per your notes, a microprogrammed control unit is a system where each word in control memory contains a microinstruction, which specifies one or more microoperations for the system. A sequence of microinstructions constitutes a microprogram. The control memory is typically a read-only memory (ROM) because alterations are not needed once the control unit is in operation. The basic components of a microprogrammed control unit are the control memory and the circuits that select the next address, known as the microprogram sequencer.\n\n💡 A microprogrammed control unit can be thought of as a set of instructions for a machine, similar to a recipe book for a chef. The control memory is like the book itself, containing all the instructions, and the microprogram sequencer acts like the chef, following the instructions one by one to prepare a meal (execute the microprogram). The microinstructions are like individual steps in the recipe, and the microoperations are the specific actions required to complete each step.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:13"
+    },
+    "Describe the data transfer method using DMA.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## DMA (DIRECT MEMORY ACCESS)\n\n📘 Direct Memory Access (DMA) is a data transfer method that allows an I/O device to access the main memory directly, bypassing the CPU. This method is used in systems with fast storage devices like magnetic disks to increase data transfer efficiency. The DMA controller manages the memory buses, ensuring that the data residing in main memory is always valid and up-to-date during the transfer.\n\n💡 Think of a conveyor belt system in a warehouse. Instead of workers manually moving boxes from the warehouse to trucks, a conveyor belt system takes over. In this analogy, the workers represent the CPU, the warehouse is the main memory, and the trucks are the I/O devices. The conveyor belt system (DMA controller) moves the boxes (data) directly from the warehouse to the trucks, bypassing the workers (CPU), increasing efficiency.\n\nKey differences:\n- With DMA, the CPU is bypassed during data transfer, reducing CPU load.\n- DMA ensures that the data in main memory is always valid during the transfer.\n- The DMA controller manages the memory buses directly, allowing faster data transfer.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:15"
+    },
+    "What is cache coherence problem ? Discuss about different cache coherence approaches.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## CACHE COHERENCE\n\n📘 Cache Coherence:\nCache coherence is a mechanism in shared memory multiprocessors that ensures all processors see a consistent view of the memory, even when multiple processors access and modify the same data concurrently. This is crucial to maintain data integrity and correct program behavior.\n\nTwo main approaches to solve the cache coherence problem are software-based and hardware-only solutions.\n\n1. Software-based solutions: These methods rely on software procedures that can tag information in the cache to disable caching of shared writable data. This approach requires more overhead as it involves frequent communication between processors and the memory controller.\n\n2. Hardware-only solutions: These solutions are handled automatically by the hardware, reducing the overhead compared to software-based methods. However, they can be more complex and expensive in terms of hardware resources.\n\n💡 Simple way to understand it:\nThink of a library where multiple readers and writers access the same books. Software-based solutions would require each reader and writer to notify the librarian (memory controller) whenever they access or modify a book (shared data), ensuring all readers have the most up-to-date version. Hardware-only solutions would have a system in place that automatically updates the books (data) in all locations whenever a change is made, without the need for constant librarian intervention.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:17"
+    },
+    "Explain instruction level parallelism in detail.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## INSTRUCTION LEVEL PARALLELISM\n\n📘 Instruction Level Parallelism (ILP) is a technique used in computer systems to increase computational speed by executing multiple instructions simultaneously. This is achieved by breaking down a sequence of instructions into smaller, independent pieces that can be executed concurrently.\n\nIn a conventional computer, instructions are executed sequentially, one after the other. However, in a system with ILP, the processor can work on multiple instructions at the same time, provided they are independent and do not interfere with each other.\n\n💡 Think of a factory assembly line where workers perform different tasks on different parts of a product. Instead of one worker doing one task after another, some workers can perform different tasks simultaneously, increasing the overall production speed.\n\nIn the context of registers with parallel load, these registers can load multiple bits of a word simultaneously, allowing for more instructions to be processed at the same time. Similarly, in more complex systems, multiple functional units can perform identical or different operations simultaneously, further increasing the level of parallelism.\n\nKey differences between parallel processing and instruction level parallelism:\n- Parallel processing is a broad term that includes various techniques, while ILP is a specific type of parallel processing at the instruction level.\n- Parallel processing can occur at different levels of complexity, from data level to instruction level, while ILP operates at the instruction level.\n- Parallel processing can distribute data among multiple functional units, while ILP distributes instructions among multiple functional units.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:18"
+    },
+    "Explain error detection using Hamming code.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## ERROR DETECTION\n\n📘 As per your notes, Error Detection is a binary code used to identify digital errors during data transmission. The Hamming Code is a specific type of error detection code that can detect single-bit errors and double-bit errors. It works by adding extra parity bits to the original data, which are calculated based on the original data bits. The parity bits are used to check the integrity of the data during transmission. If an error occurs, the received data will not match the calculated parity bits, indicating an error.\n\n💡 Simple way to understand it: Think of a game of Telephone, where a message is passed from person to person. The Hamming Code is like adding a few extra words at the end of the message that can be used to check if the message received is the same as the original message. If the received message doesn't match the extra words, it indicates an error occurred during transmission.\n\nKey differences between single-bit and double-bit errors:\n- Single-bit errors affect only one data bit, while double-bit errors affect two adjacent data bits.\n- Single-bit errors can be detected by the Hamming Code, but double-bit errors may not always be detected.\n- If a double-bit error occurs in a way that the sum of the original and erroneous bits is the same as the parity bits, the error will not be detected.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:20"
+    }
+  },
+  "CC": {
+    "Explain the cloud reference architecture and discuss the responsibilities of various actors.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2023",
+        "2022"
+      ],
+      "answer": "## CLOUD REFERENCE ARCHITECTURE\n\n📘 As per your notes, the Cloud Reference Architecture is a model that provides a framework for enabling cloud services vendors to structure their infrastructure for MOC (Management of Clouds). The model is divided into four service layers: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), Software as a Service (SaaS), and Cloud Services Broker (CSB).\n\n💡 Think of a restaurant where each layer represents a different kitchen, and the customers are the cloud service vendors.\n\n- IaaS (Infrastructure as a Service) is the bottom layer, equivalent to the raw ingredients and kitchen appliances. It provides virtualized computing resources like servers, storage, and networking.\n\n- PaaS (Platform as a Service) is the middle layer, similar to a fully-equipped kitchen. It offers a platform for developers to build, test, and deploy applications without worrying about the underlying infrastructure.\n\n- SaaS (Software as a Service) is the top layer, like the restaurant's menu. It delivers software applications over the internet, allowing users to access them on demand.\n\n- CSB (Cloud Services Broker) acts as an intermediary between the cloud service vendors and the consumers, helping them find the best services that meet their needs.\n\nKey differences between the layers:\n\n- IaaS provides the most basic resources, while SaaS offers the most abstracted services.\n- PaaS sits between IaaS and SaaS, offering a platform for application development and deployment.\n- CSB acts as a broker, helping cloud service vendors and consumers find the best services for their needs.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:24"
+    },
+    "Define cloud security. Discuss access control and authentication in cloud computing.": {
+      "marks": 10,
+      "years": [
+        "2026",
+        "2025",
+        "2022"
+      ],
+      "answer": "## CLOUD SECURITY\n\n📘 As per your notes, Cloud Security refers to the practices and measures implemented to ensure the security and privacy of data and applications in cloud computing. The Cloud Security Alliance (CSA) is a non-profit organization that promotes the use of best practices for providing security assurance in cloud computing and provides education on the use of cloud services.\n\nCurrently, the Security, Audit, and Controls Association (SNIA) is moving towards transforming Cloud Data Management Interface (CDMI) into a de facto standard by interoperating with major standardization organizations such as IEEE and INCITS.\n\n💡 Simple way to understand it: Think of cloud security as a lock and key system for your digital data. Access Control is like the lock, controlling who can access your data, while Authentication is like the key, verifying that the person trying to access your data is who they claim to be.\n\n📘 Access Control: Access Control in cloud security refers to the policies and mechanisms that control who can access cloud resources and what actions they can perform. Access Control can be implemented at different levels, such as:\n\n- Identity and Access Management (IAM): IAM is a framework for managing digital identities and controlling their access to cloud resources. It includes user authentication, authorization, and account management.\n- Data Access Control: Data Access Control policies determine who can access specific data and what actions they can perform on that data.\n- Network Access Control: Network Access Control policies control who can access the cloud network and what resources they can access within the network.\n\n📘 Authentication: Authentication in cloud security is the process of verifying the identity of a user, device, or system trying to access cloud resources. Authentication can be implemented using various methods, such as:\n\n- Password-based Authentication: Users are required to enter a username and password to access cloud resources.\n- Multi-factor Authentication (MFA): MFA requires users to provide multiple forms of authentication, such as a password, a fingerprint, or a security token, to access cloud resources.\n- Single Sign-On (SSO): SSO allows users to access multiple cloud resources using a single set of credentials.\n\n📘 Key differences between Access Control and Authentication:\n\n- Access Control determines who can access cloud resources, while Authentication verifies the identity of the user trying to access those resources.\n- Access Control policies control the actions that users can perform on cloud resources, while Authentication verifies the identity of the user trying to perform those actions.\n- Access Control is concerned with managing digital identities and controlling their access to cloud resources, while Authentication is concerned with verifying the identity of those digital identities.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:27"
+    },
+    "Explain the characteristics of Cloud Computing.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2022"
+      ],
+      "answer": "## CLOUD COMPUTING\n\n📘 As per your notes, Cloud Computing is a model that allows anyone with a credit card to provision virtual hardware, run-time environments, and services, without requiring up-front commitment. The development of cloud computing environments is facilitated by various technologies and some insights into its development.\n\n💡 Simple way to understand it: Think of cloud computing as a utility service, similar to electricity or water supply. Just as you can turn on the tap for water or flip a switch for electricity, you can provision computing resources in the cloud as needed, without having to invest in physical infrastructure upfront.\n\n1. On-demand self-service: Users can provision computing resources, such as servers, storage, and applications, without requiring human interaction with the service provider.\n\n2. Broad network access: Cloud services can be accessed over the network, allowing users to connect from various devices and locations.\n\n3. Resource pooling: The provider's computing resources are pooled to serve multiple users, with different physical and virtual resources dynamically assigned and re-assigned according to demand.\n\n4. Rapid elasticity: Cloud services can be rapidly and elastically provisioned, in minutes or seconds, to quickly scale up or down to meet changing demand.\n\n5. Measured service: Cloud services are typically offered on a pay-per-use basis, with usage measured and charged based on consumption.\n\n6. Service models: Cloud services can be offered in three service models: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). IaaS provides virtualized computing resources, PaaS offers a platform for developing, running, and managing applications, and SaaS delivers applications over the internet.\n\n7. Deployment models: Cloud services can be offered in four deployment models: Public, Private, Hybrid, and Community. Public clouds are owned and operated by third-party providers, while private clouds are operated solely for a single organization. Hybrid clouds combine public and private clouds, allowing data and applications to be shared between them. Community clouds are shared by several organizations with common concerns, such as compliance requirements.\n\nKey differences between service and deployment models:\n- Service models define how cloud services are delivered, while deployment models define where the services are located and how they are accessed.\n- Service models determine the level of control and customization users have over their computing resources, while deployment models determine the level of security, privacy, and compliance.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:30"
+    },
+    "Give a detailed account of platform as a service.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## PLATFORM AS A SERVICE (PAAS)\n\n📘 As per your notes, Platform as a Service (PaaS) is a solution that provides a development and deployment platform for running applications in the cloud. It offers a cloud programming platform for any kind of application, not just for managing services. The third category of PaaS offerings consists of solutions that provide a cloud programming platform for any kind of application.\n\n💡 Simple way to understand it:\nThink of PaaS as a cloud-based construction site where developers can build and deploy their applications without worrying about the underlying infrastructure. Just like a construction site provides the necessary tools and resources for builders, PaaS provides the necessary tools and resources for developers to create and run their applications in the cloud.\n\nKey differences between PaaS and other service models:\n- Infrastructure as a Service (IaaS) provides virtualized computing resources, such as servers, storage, and networking, but developers are responsible for the operating system, middleware, runtime, and application.\n- Software as a Service (SaaS) provides applications over the internet, but developers have no control over the infrastructure or the application itself.\n- PaaS offers a balance between IaaS and SaaS, providing a platform for developers to build and deploy their applications, while the cloud provider manages the infrastructure and middleware.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:33"
+    },
+    "Explain the types of cloud service development.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## CLOUD SERVICE DEVELOPMENT\n\n📘 As per your notes, Cloud Service Development refers to the delivery of different types of services over the internet, primarily by cloud service providers like Amazon Web Services (AWS) and Google. These services are categorized into three main types: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS).\n\n- Infrastructure as a Service (IaaS): IaaS provides the most basic and fundamental computing resources such as virtual machines, storage, and networking. Users can rent these resources on-demand and manage them as they would on their own physical infrastructure. AWS's Elastic Compute Cloud (EC2) is an example of IaaS.\n\n- Platform as a Service (PaaS): PaaS offers a complete development and deployment environment for applications. It includes a runtime, database, middleware, and operating system, allowing developers to focus on application development without worrying about the underlying infrastructure. AWS Elastic Beanstalk is an example of PaaS.\n\n- Software as a Service (SaaS): SaaS delivers fully functional applications over the internet. Users can access these applications through a web browser or API, and the service provider manages the application and its infrastructure. Examples of SaaS include Google Apps and Salesforce.\n\n💡 Simple way to understand it:\nThink of cloud service development as renting different parts of a house. IaaS is like renting the land and building the house yourself, PaaS is like renting a fully furnished apartment, and SaaS is like renting an apartment where everything, including furniture and appliances, is already set up for you.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:35"
+    },
+    "Discuss the advantages and disadvantages of PaaS.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## PAAS\n\n📘 As per your notes, Platform-as-a-Service (PaaS) is a solution that provides a development and deployment platform for running applications in the cloud. It offers a cloud programming platform for any kind of application, not just managing services.\n\nThe third category of PaaS offerings includes solutions that provide a complete cloud programming platform. The core functionalality of this middleware is application management. PaaS implementation examples provide applications with a runtime environment and do not expose any service for managing.\n\n💡 Simple way to understand it:\nThink of PaaS as a ready-made kitchen where you can cook your own meals (your applications) without worrying about the infrastructure (like the oven, stove, and utensils). The advantage is convenience, but you're limited to cooking within the kitchen's rules (the services provided).\n\nAdvantages:\n- Convenience: PaaS provides a ready-made environment for developing, testing, and deploying applications in the cloud.\n- Scalability: PaaS platforms can easily scale up or down based on the application's demand.\n- Reduced Costs: PaaS eliminates the need for significant upfront investment in hardware and infrastructure.\n\nDisadvantages:\n- Vendor Lock-in: Since PaaS platforms are provided by third-party vendors, there's a risk of being locked into their specific technology stack.\n- Limited Customization: PaaS platforms may not offer the same level of customization as on-premises solutions.\n- Dependency on Service Provider: If the service provider experiences downtime or issues, it can impact your applications.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:37"
+    },
+    "What is Google App Engine ? Explain the benefits of Google App Engine.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "## GOOGLE APP ENGINE\n\n📘 As per your notes, Google App Engine is a Platform as a Service (PaaS) that provides a scalable runtime environment for developing web applications. It supports Java and Python runtime environments and simplifies the development of applications in a scalable manner by offering various services such as networking support, caching systems, DNS, data storage (relational and non-relational), and others.\n\n💡 Simple way to understand it: Think of Google App Engine as a pre-built, scalable kitchen where you can cook your web application recipes (code). It provides all the necessary appliances (services) to help you cook efficiently and serves your dishes (web applications) to the world.\n\nBenefits of Google App Engine:\n- Scalability: Google App Engine automatically adjusts the resources allocated to your application based on its demand, ensuring optimal performance.\n- Simplicity: It simplifies the development process by providing a managed environment for your application, reducing the need for infrastructure management.\n- Flexibility: It supports multiple programming languages (Java and Python) and offers various services to help you build and deploy your web applications.\n- Cost-effective: By using Google App Engine, you only pay for the resources you consume, making it a cost-effective solution for developing and hosting web applications.\n- Reliability: Google App Engine is backed by Google's infrastructure, ensuring high availability and reliability for your applications.\n- Integration: Google App Engine integrates with other Google services like Google Cloud Storage, Google Cloud Pub/Sub, and Google Cloud Bigtable, making it easier to build complex, integrated applications.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:39"
+    },
+    "Define Map-Reduce. Explain Hadoop ecosystem and mention its components.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "## MAP-REDUCE\n\n📘 As per your notes, MapReduce is a programming model introduced by Google for processing large quantities of data. It expresses the computation as a series of Map and Reduce tasks. The model consists of four phases: Configure Map, Configure Reduce, While Condition Holds True Do, and Close. In the Map phase, the input data is processed and transformed into intermediate key-value pairs. In the Reduce phase, these intermediate key-value pairs are combined to produce the final output. The While Condition Holds True Do phase includes running MapReduce, applying a Combine operation to the result, updating the condition, and repeating the process if necessary. The Close phase signifies the end of the MapReduce job.\n\n💡 Simple way to understand it:\nThink of MapReduce as a production line for data processing. The Map phase is where raw data is transformed into standardized parts (intermediate key-value pairs), similar to how parts are manufactured in a factory. The Reduce phase is where these standardized parts are combined to create the final product (output). The While Condition Holds True Do phase ensures that the production line keeps running until all data is processed, and the Close phase signals the end of the production.\n\nThe Hadoop ecosystem is a collection of open-source software projects that support the MapReduce programming model. It includes Hadoop Distributed File System (HDFS), YARN, Hadoop MapReduce, and various other tools for data processing, storage, and management.\n\nSome key components of the Hadoop ecosystem are:\n- Hadoop Distributed File System (HDFS): A distributed file system designed to store large amounts of data across multiple commodity machines.\n- Yet Another Resource Negotiator (YARN): A resource management layer that manages resources across the cluster and schedules tasks for different applications.\n- Hadoop MapReduce: The original implementation of the MapReduce programming model in the Hadoop ecosystem.\n- Hadoop Common: A collection of utilities and libraries used by other Hadoop projects.\n- Avro, Parquet, and ORC: Data serialization formats used for efficient data storage and processing in Hadoop.\n- Hive, Pig, and Impala: SQL-like query languages for querying data in Hadoop.\n- Flume and Sqoop: Tools for data ingestion and data integration between Hadoop and other data sources.\n- HBase and Cassandra: NoSQL databases for storing large amounts of structured and semi-structured data in Hadoop.\n\nThe key differences between these components are their specific roles and functionalities within the Hadoop ecosystem. For example, HDFS is responsible for data storage, while YARN manages resources and schedules tasks. Similarly, Hive, Pig, and Impala are used for querying data, while Flume and Sqoop are used for data ingestion.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:43"
+    }
+  },
+  "CN": {
+    "What is switching ? Explain circuit switching technique.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## SWITCHING CIRCUIT SWITCHING TECHNIQUE\n\n📘 Circuit Switching:\nCircuit switching is a method of establishing a dedicated communication path between two devices for the duration of a communication session. This technique is used primarily at the physical layer in data communication networks. In circuit switching, a continuous path is created between the communicating devices, and this path remains active for the entire duration of the communication.\n\nAt the network layer, the data is divided into manageable packets, and each packet is sent through the network independently. However, in circuit switching, the entire path is established before any data transmission begins. This is similar to reserving a dedicated phone line for a phone call, where the line remains active for the duration of the call.\n\n💡 Simple way to understand it:\nThink of circuit switching like reserving a private taxi for a long journey. You book the taxi (establish the circuit) before starting the journey (communicating), and the taxi (communication path) stays with you throughout the journey (communication session). In contrast, packet switching is like hailing multiple taxis (sending multiple packets) to reach your destination (receiving data) without reserving a specific taxi in advance.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:45"
+    },
+    "What do you mean by transmission error ? With an example explain Cyclic Redundancy Check Technique.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## TRANSMISSION ERROR\n\n📘 Transmission Error refers to any discrepancy or alteration that occurs in the data during its transmission from the sender to the receiver. This can be due to various reasons such as noise, interference, or hardware malfunctions. In the context of data communication, a single-bit error or a burst error can lead to transmission errors.\n\n💡 Think of transmission error as a game of telephone, where a message gets distorted as it travels from one person to another due to noise or misunderstandings.\n\n📘 Cyclic Redundancy Check (CRC) Technique is a method used to detect transmission errors. It works by adding extra bits (check bits) to the original data. These check bits are generated based on a polynomial function and are appended to the data before transmission. Upon receiving the data, the receiver recalculates the check bits and compares them with the received check bits. If they match, the data is assumed to be error-free; otherwise, an error has occurred.\n\n💡 Imagine you're sending a secret message to a friend. To ensure the message isn't altered during delivery, you add a few extra words that can be easily recognized by your friend. If your friend receives the message with the extra words intact, they know the message is correct; otherwise, an error has occurred.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:47"
+    },
+    "Write a note on Transmission Impairment.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## TRANSMISSION IMPAIRMENT\n\n📘 As per your notes, Transmission Impairment refers to the degradation of a signal as it travels through a transmission medium. This degradation can occur due to three main factors: attenuation, distortion, and noise.\n\nAttenuation is the loss of signal strength as it travels through the medium. This loss can be due to the distance the signal travels, the properties of the medium, or the power of the signal at its source.\n\nDistortion is the alteration of the signal's shape or characteristics as it travels through the medium. This can occur due to non-linearities in the medium or the equipment used for transmission.\n\nNoise is unwanted interference that can affect the signal. This can be due to external sources like electromagnetic interference or internal sources like thermal noise in the equipment.\n\n💡 Simple way to understand it: Think of a game of telephone. As the message is passed from person to person, it becomes distorted due to misheard words, added words, or omitted words. Similarly, in transmission, the signal can become distorted, attenuated, or noisy as it travels through the medium.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:49"
+    },
+    "Explain in brief the different types of Guided and Unguided transmission media.": {
+      "marks": 10,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## TRANSMISSION MEDIA\n\n📘 As per your notes, Transmission Media refers to the physical pathway through which data or signals travel from the sender to the receiver in telecommunications. The notes divide transmission media into two broad categories: Guided Transmission Media and Unguided Transmission Media.\n\nGuided Transmission Media, as the name suggests, guides the signals through a physical conduit from one device to another. This type of transmission media includes wired media like Twisted Pair Cable, Coaxial Cable, and Fiber Optic Cable. These wired media are used for various purposes such as telephone lines, Ethernet connections, and high-speed internet connections.\n\nUnguided Transmission Media, on the other hand, does not require a physical conduit to transmit signals. Instead, signals are transmitted through space. Examples of unguided transmission media include Radio Waves, Microwaves, Infrared, and Satellite Communication. These media are used for wireless communication like radio and television broadcasts, mobile phone networks, and satellite communication systems.\n\n💡 Simple way to understand it:\nThink of guided transmission media as a road system where data travels from one device to another through wires, similar to cars on a road. Unguided transmission media, however, is like sending messages using radio waves or satellite signals, where data travels through space without a physical road.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:51"
+    },
+    "Explain Reservation and Polling controlled access methods.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## RESERVATION POLLING CONTROLLED ACCESS METHODS\n\n📘 As per your notes, Reservation Polling Controlled Access Method is a combination of Reservation and Polling methods. In this method, a primary station is designated, and other stations are secondary. The primary station polls the secondary stations to check if they have data to transmit. If a secondary station has data, it sends a Poll/Final (P/F) bit in the control field of HDLC. If the primary station receives a P/F bit, it sends a poll frame to the station that sent the P/F bit. The secondary station then sends its data followed by an ACK frame. If the primary station does not receive a P/F bit within a certain time, it assumes no station has data and continues polling.\n\n💡 Simple way to understand it:\nThink of a classroom where the teacher (primary station) calls on students (secondary stations) one by one to check if they have questions (data). If a student has a question, they raise their hand (send a P/F bit), the teacher calls on them (sends a poll frame), and the student asks their question (sends data). The teacher then acknowledges the question (sends an ACK frame). If no student raises their hand within a certain time, the teacher assumes no one has a question and continues calling on students.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:53"
+    },
+    "Write a note on IPV6 address.": {
+      "marks": 4,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## IPV6 ADDRESS\n\n📘 As per your notes, IPv6 (Internet Protocol version 6) is the latest version of the Internet Protocol, used to identify devices on a network and route traffic between them. IPv6 addresses are 128 bits long and are represented in hexadecimal format, divided into eight 16-bit blocks separated by colons. To make it easier for humans to read and write, abbreviation methods are available.\n\nIPv6 addresses can belong to one of three categories: unicast, anycast, and multicast.\n\n- Unicast addresses are used to send data to a specific device.\n- Anycast addresses are used to send data to the nearest device among a group of devices that share the same address.\n- Multicast addresses are used to send data to a group of devices simultaneously.\n\n💡 Think of an IPv6 address as a long phone number. The colon hexadecimal notation divides this number into eight sections, similar to how a phone number is divided into area code, exchange code, and local number. Unicast addresses are like calling a specific person, anycast addresses are like calling the nearest pizza delivery service, and multicast addresses are like sending a broadcast message to a specific group of people.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:54"
+    },
+    "Explain the various transmission modes used in network.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## TRANSMISSION MODES IN NETWORK\n\n📘 As per your notes, the transmission modes used in networks are primarily divided into two categories: Circuit-switched and Packet-switched.\n\n- Circuit-switched mode: This mode establishes a dedicated physical path (circuit) between two devices for the duration of the communication. It is similar to reserving a private line for the exclusive use of the communicating devices. Examples of circuit-switched networks include traditional telephone networks and certain types of data networks like Frame Relay and Integrated Services Digital Network (ISDN).\n\n- Packet-switched mode: In contrast, packet-switched networks break data into smaller packets, each containing the source and destination addresses. These packets are then sent independently over the network, and the receiving device reassembles them to restore the original message. The Internet is the most well-known example of a packet-switched network.\n\n💡 Simple way to understand it:\nThink of a busy restaurant (circuit-switched) where you reserve a table for the entire meal, and a food delivery service (packet-switched) where your food is broken down into smaller boxes and delivered to you via multiple routes. In both cases, you eventually receive your meal, but the methods of delivery are different.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:56"
+    },
+    "What is IPV4 addressing format ? Explain class A, class B and class C addressing format. Identify the following address. a → 192.10.127.35 b → 14.12.22.3": {
+      "marks": 7,
+      "years": [
+        "2024",
+        "2022"
+      ],
+      "answer": "## IPV4 ADDRESSING\n\n📘 As per your notes:\n\nIPv4 addressing is a crucial concept in the network layer, particularly important for understanding the current version of the Internet. The address space refers to the range of unique addresses that can be assigned to devices connected to a network.\n\nIn classful addressing, which is now outdated but useful for understanding classless addressing, the address space was divided into classes A, B, and C, each with a different range of addresses and a default network and host size.\n\n- Class A addresses range from 1.0.0.0 to 126.255.255.255, with the first octet indicating the network number and the remaining three octets for host addresses. This class can support a maximum of 16,777,214 hosts per network.\n- Class B addresses range from 128.0.0.0 to 191.255.255.255, with the first two octets indicating the network number and the remaining two octets for host addresses. This class can support a maximum of 65,534 hosts per network.\n- Class C addresses range from 192.0.0.0 to 223.255.255.255, with the first three octets indicating the network number and the remaining octet for host addresses. This class can support a maximum of 254 hosts per network.\n\nClassless addressing, on the other hand, does not restrict the number of classes and allows for a more flexible allocation of addresses.\n\n💡 Simple way to understand it:\n\nThink of IPv4 addressing as a phonebook for the internet. In the past, we had three different-sized phonebooks (Class A, B, and C) for different-sized towns (networks). Each entry in the phonebook (IP address) had a specific format, with the first few digits (octets) indicating the town (network) and the remaining digits indicating the individual (host). However, with the advent of classless addressing, we now have one big phonebook that can accommodate addresses of any size, making it more flexible and efficient.",
+      "source": "generated",
+      "generated_at": "2026-10-18 13:59"
+    },
+    "Write a note on Domain Name System.": {
+      "marks": 4,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "## DOMAIN NAME SYSTEM\n\n📘 As per your notes, the Domain Name System (DNS) is a client-server application that functions as the directory system of the Internet. It assigns a unique name to each host on the Internet, helping to decentralize the responsibilities involved in naming. The DNS organizes the name space in a hierarchical structure to facilitate easier navigation and access.\n\n💡 Simple way to understand it: Think of the DNS as a phonebook for the Internet. Just like a phonebook helps you find the phone number for a person using their name, the DNS helps you find the IP address for a website or server using its domain name.\n\nKey differences between the DNS and a traditional phonebook:\n- The DNS is decentralized, meaning there isn't a single authority managing all the names and addresses. Instead, the responsibility is divided among multiple servers.\n- The DNS is hierarchical, meaning it organizes the names and addresses in a structured manner, making it easier to find the correct information.\n- A traditional phonebook only contains phone numbers for people, while the DNS contains IP addresses for various types of entities on the Internet, such as websites, servers, and email hosts.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:01"
+    },
+    "Write a short note on congestion control methods.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "## CONGESTION CONTROL\n\n📘 As per your notes, Congestion Control refers to the mechanisms and techniques used to manage and control congestion in a network, preventing it from exceeding the network's capacity. The congestion occurs when the number of datagrams (data packets) sent by source computers is beyond the capacity of the network or routers, causing some routers to drop packets.\n\n💡 Think of a freeway during rush hour. To manage the traffic and prevent congestion, authorities can implement measures such as adjusting speed limits, adding lanes, or using traffic signals. Similarly, in a network, congestion control methods help manage the flow of data packets to prevent network congestion.\n\nKey differences between various congestion control methods are not explicitly mentioned in the provided context. However, common methods include TCP (Transmission Control Protocol) congestion avoidance, which aims to prevent congestion by monitoring network conditions and adjusting the sending rate, and Active Queue Management (AQM), which aims to reduce the queue length in routers by actively managing the queue.\n\nIn the case of TCP congestion avoidance, the sender reduces its sending rate when it detects network congestion, while in AQM, the router drops or marks certain packets to signal congestion to the sender, which then adjusts its sending rate.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:03"
+    }
+  },
+  "DAA": {
+    "Given a digraph, how do you arrive at its transitive closure for the graph ? Write the procedure for the task.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## TRANSITIVE CLOSURE\n\n📘 As per your notes, the transitive closure of a directed graph can be defined as an n×n boolean matrix, where n is the number of vertices in the graph. Each element t_ij in the matrix represents the presence of a nontrivial path from the ith vertex to the jth vertex. If there exists a path, t_ij is 1; otherwise, it is 0.\n\nThe procedure to arrive at the transitive closure of a given digraph involves the following steps:\n\n1. Initialize the transitive closure matrix T as an n×n boolean matrix with all elements set to 0.\n2. For each edge (i, j) in the original digraph, set t_ij to 1.\n3. Perform repeated matrix multiplication of the transitive closure matrix T with itself until no changes occur in the matrix. This process is repeated until the matrix stabilizes, indicating that the transitive closure has been reached.\n\n💡 Simple way to understand it:\nThink of the transitive closure as a way to trace all possible paths in a directed graph. Start by marking the direct edges, then repeatedly follow the edges to mark all reachable vertices. Keep repeating this process until no new vertices can be reached, resulting in the transitive closure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:05"
+    },
+    "Trace the Prim’s Algorithm for the following graph.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## PRIM'S ALGORITHM\n\n📘 As per your notes, Prim's Algorithm is an efficient method for finding the minimum spanning tree (MST) of a graph. The algorithm constructs an MST through a sequence of expanding subtrees. The initial subtree consists of a single vertex chosen arbitrarily from the graph's vertices. On each iteration, the algorithm adds the minimum-weight edge connecting a vertex in the current subtree to a vertex not yet included in the subtree.\n\n1. The graph for which we will trace Prim's Algorithm is as follows:\n\n```\n   A -- 7 -- B\n  / |     | \\\n C -- 9 -- D\n  \\ |     | /\n   E -- 14 -- F\n```\n\n2. Initially, we choose an arbitrary vertex (let's say A) as the root of our subtree. Our subtree now consists of vertex A.\n\n3. Next, we find the minimum-weight edge connecting a vertex in the subtree (A) to a vertex not yet included in the subtree. The minimum-weight edge is between A and C with weight 7. We add vertex C and the edge to our subtree.\n\n4. Now, we find the minimum-weight edge connecting a vertex in the subtree (A-C) to a vertex not yet included in the subtree. The minimum-weight edge is between C and B with weight 9. We add vertex B and the edge to our subtree.\n\n5. Next, we find the minimum-weight edge connecting a vertex in the subtree (A-C-B) to a vertex not yet included in the subtree. The minimum-weight edge is between B and D with weight 14. We add vertex D and the edge to our subtree.\n\n6. Finally, there are no more edges connecting vertices in the subtree to vertices not yet included in the subtree. Our subtree now consists of vertices A, C, B, and D, and the edges connecting them, forming a minimum spanning tree.\n\n💡 Simple way to understand it: Think of Prim's Algorithm as building a house one brick at a time. You start with a single brick (a vertex), then add the next cheapest brick (edge) that can be attached to the house (subtree) you've built so far. You continue this process until the house (minimum spanning tree) is complete.\n\n> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:08"
+    },
+    "Given the following frequency chart, find Huffman’s tree. Character / Frequency : i 0.15, a 0.2, b 0.2, m 0.15, f 0.1, o 0.05, l 0.15. Find the encoding for ibambabfool.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## HUFFMAN TREE\n\n📘 As per your notes, Huffman coding is an optimal prefix-free variable-length encoding scheme used to compress data. The Huffman algorithm constructs a Huffman tree from a frequency chart of symbols, where each node represents a symbol and its frequency. The tree is a binary tree with the root representing the least frequent symbol.\n\nThe algorithm works by repeatedly merging the two lowest-frequency nodes into a new node, until there is only one node left, which is the root. Each merged node becomes a new parent node with the sum of the frequencies of its children as its frequency.\n\nIn the given frequency chart, the symbols are i, a, b, m, f, o, and l, with frequencies 0.15, 0.2, 0.2, 0.15, 0.1, 0.05, and 0.15 respectively. To find the Huffman tree, we apply the Huffman algorithm as follows:\n\n1. Create a node for each symbol with its frequency.\n2. Sort the nodes in non-decreasing order of frequency.\n3. Merge the two nodes with the lowest frequencies into a new parent node, and add the new parent node to the sorted list.\n4. Repeat step 3 until there is only one node left, which is the root.\n\nThe resulting Huffman tree represents the optimal prefix-free variable-length encoding for the given frequency chart.\n\n💡 Simple way to understand it:\nThink of Huffman coding as a library where each book represents a symbol and its frequency is the number of copies of that book. The librarian sorts the books by the number of copies and merges the two least popular books into a new shelf until there is only one shelf left. The arrangement of the books on the shelves represents the Huffman tree, which tells us the optimal way to encode the symbols for data compression.\n\n> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:10"
+    },
+    "Find ⁷C₄ using dynamic programming. Find complexity to find ⁿCₚ.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## FIND ⁷C₄ USING DYNAMIC PROGRAMMING FIND COMPLEXITY FIND ⁿCₚ\n\n📘 Binomial Coefficients and Dynamic Programming:\n\nBinomial coefficients are numbers that represent the number of combinations of a set with n elements taken k at a time. The binomial coefficient C(n, k) is often denoted as n choose k.\n\nDynamic programming is a method for solving complex problems by breaking them down into simpler subproblems. In the case of binomial coefficients, we can use dynamic programming to compute C(n, k) without using multiplications.\n\nThe dynamic programming algorithm for binomial coefficients works by creating a two-dimensional table, where C[i, j] represents the binomial coefficient C(i, j). The table is filled in a bottom-up manner, starting from C[i, i] = 1 for all i, and then filling in the rest of the table using the formula:\n\nC[i, j] = C[i-1, j] + C[i, j-1]\n\nThe time complexity of this algorithm is O(n^2) because we need to fill each cell in the table once, and there are n rows and n columns in the table. The space complexity is also O(n^2) due to the need to store the entire table.\n\n💡 Simple way to understand it:\n\nThink of filling a binomial coefficient table like filling a Sudoku grid. You start with the numbers you know (the diagonal numbers in the table), and then you fill in the rest of the grid using simple addition rules (the formula for binomial coefficients). The time it takes to fill the grid is proportional to the square of the size of the grid, just like the time it takes to compute binomial coefficients using dynamic programming.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:13"
+    },
+    "Find DFS and BFS for the following. What is the complexity of these algorithms ?": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## FIND DFS BFS FOLLOWING COMPLEXITY ALGORITHMS\n\n📘 As per your notes, Depth-First Search (DFS) and Breadth-First Search (BFS) are two algorithms used for traversing graphs. DFS uses a stack, while BFS uses a queue. In sparse graphs, DFS has two versions: one for connected graphs and another for disconnected graphs.\n\nIn connected graphs, DFS visits all vertices and edges, and the number of trees it generates is equal to the number of connected components in the graph. For BFS, it also visits all vertices and edges but generates only one tree.\n\nThe DFS pseudocode visits recursively all the unvisited vertices connected to a vertex via a path and numbers them in the order they are encountered. BFS, on the other hand, visits vertices level by level, starting from the source vertex.\n\n💡 Think of DFS as exploring a maze from the entrance, going as deep as possible before backtracking, while BFS is like exploring a maze from the entrance, level by level, ensuring all levels are explored before moving to the next.\n\nIn terms of complexity, both DFS and BFS have a time complexity of O(V+E) in the average and worst cases, where V is the number of vertices and E is the number of edges. However, the space complexity of DFS is O(V) due to the use of a recursive stack, while BFS uses O(V) space for the queue and an additional O(V) space for the visited array.\n\n> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:15"
+    },
+    "Find the Hamiltonian path for the following.": {
+      "marks": 10,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## HAMILTONIAN PATH\n\n📘 As per your notes, a Hamiltonian path is a path in a graph that visits each vertex exactly once. The Hamiltonian path problem is to determine whether a given graph has a Hamiltonian path. This problem is known to be NP-complete, which means that it is computationally difficult to solve, and its solution can be verified quickly.\n\nAdleman's approach to solving the Hamiltonian path problem involves generating DNA strands that represent paths in the graph and discarding those that do not satisfy the definition of a Hamiltonian path. This method was first proposed in 1994 by Len Adleman, a renowned U.S. computer scientist who also contributed to the development of the RSA encryption algorithm.\n\nThe Hamiltonian circuit problem is a variant of the Hamiltonian path problem where the path must start and end at the same vertex and pass through all the other vertices exactly once. The Traveling Salesman problem is another related problem that involves finding the shortest tour through a given set of cities with known positive integer distances between them.\n\n💡 Simple way to understand it:\nThink of a Hamiltonian path as a route you take to visit every city in a country exactly once without revisiting any city. The Hamiltonian circuit problem is like finding a route that starts and ends at your home city, while the Traveling Salesman problem is like finding the shortest route to visit every city and return home. These problems are difficult to solve for large graphs or cities, but can be verified quickly once a solution is found.\n\n> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:17"
+    }
+  },
+  "DM": {
+    "If A, B and C are three sets, then prove that A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C).": {
+      "marks": 3,
+      "years": [
+        "2025",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "## SET THEORY\n\n📘 As per your notes, Set Theory is a fundamental mathematical framework that allows the construction and analysis of sets, which are collections of objects. Two basic operations in Set Theory are Intersection and Union.\n\n- Intersection (∩) of two sets A and B, denoted as A ∩ B, is the set that contains all elements common to both A and B. In other words, it is the set of elements that belong to both A and B.\n\n- Union (∪) of two sets A and B, denoted as A ∪ B, is the set that contains all elements from A and B. In other words, it is the set of elements that belong to A or B (or both).\n\n💡 Simple way to understand it:\nThink of Intersection as the Venn diagram region where two circles overlap, and Union as the combined area of two circles (including the overlapping region).",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:18"
+    },
+    "What is the expected value of the sum of the numbers that appear when a pair of fair dice is rolled ?": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "## EXPECTED VALUE\n\n📘 As per your notes, Expected Value (EV) is a measure of the average outcome of a random event. In the context of dice rolls, it's the sum of the products of each possible outcome and its probability.\n\nFor example, when rolling a pair of fair dice, there are 36 possible outcomes (6 outcomes for each die multiplied together). If we want to find the expected value of the sum of the numbers that appear, we list all possible outcomes and their probabilities, then multiply each outcome by its probability and sum up the results.\n\nIn the provided context, Example 3 lists 36 outcomes of rolling a pair of dice, each with a probability of 1/36. The expected value of the sum of the numbers is calculated by multiplying each outcome by its probability and summing up the results.\n\n💡 Simple way to understand it: Think of expected value as an average score you'd expect if you played a game many times. Each possible outcome has a certain probability, and the expected value is the average result if you consider all possible outcomes. In the dice roll example, it's like guessing the average sum you'd get if you rolled a pair of dice many times.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:20"
+    },
+    "The probability distribution of a discrete random variable is given below : x: –2 –1 0 1 2 3 ; P(x): 0.1 K 0.2 2K 0.3 K. Find : i) K ii) Mean and iii) Variance.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "## PROBABILITY DISTRIBUTION\n\n📘 As per your notes:\nThe probability distribution of a discrete random variable is a set of pairs that represent the probability of the random variable taking a specific value. In this case, the random variable x has the values -2, -1, 0, 1, 2, 3, and the corresponding probabilities are 0.1, 0.2, 2K, 0.3, K, respectively (where K is an unknown constant).\n\nThe expected value (mean) of a discrete random variable is calculated as the sum of the product of each value and its corresponding probability. In this case, the mean (E(x)) would be calculated as:\n\nE(x) = (-2 * 0.1) + (-1 * 0.2) + (0 * 2K) + (1 * 0.3) + (2 * K) + (3 * K)\n\nThe variance of a discrete random variable is a measure of how spread out the values are from the mean. It is calculated as the weighted average of the square of the deviation of each value from the mean. In this case, the variance (V(x)) would be calculated as:\n\nV(x) = [((-2 - E(x))^2 * 0.1) + ((-1 - E(x))^2 * 0.2) + (0 - E(x))^2 * 2K + (1 - E(x))^2 * 0.3 + (2 - E(x))^2 * K + (3 - E(x))^2 * K]\n\n💡 Simple way to understand it:\nThink of a dice with faces numbered -2, -1, 0, 1, 2, 3, each face appearing with a certain probability. The probability distribution tells us the likelihood of each number appearing when the dice is rolled. The mean is the average number we'd expect to see if we rolled the dice many times, and the variance tells us how much the numbers deviate from the mean.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:23"
+    },
+    "Prove that for any propositions p, q and r the compound proposition [(p→q)∧(q→r)]→(p→r) is a tautology.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "answer": "## PROPOSITIONAL LOGIC\n\n📘 Propositional Logic:\nPropositional Logic is a branch of logic that deals with propositions, which are statements that are either true (T) or false (F). Compound propositions are formed by combining simpler propositions using logical operators such as ∧ (and), ∨ (or), → (implies), and ¬ (not).\n\nA tautology is a compound proposition that is always true, regardless of the truth values of its constituent propositions. In Propositional Logic, tautologies can be proven by applying a chain of logical identities, as demonstrated in Example 8 in the notes.\n\n💡 Simple way to understand it:\nThink of Propositional Logic as a game of connecting simple statements (propositions) using logical operators (like AND, OR, NOT, and IF-THEN) to create more complex statements (compound propositions). A tautology is like a combination that always results in a win, no matter how the simple statements are set up.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:25"
+    },
+    "Prove that “null set is a subset of every set”.": {
+      "marks": 3,
+      "years": [
+        "2025",
+        "2023",
+        "2021"
+      ],
+      "answer": "## SET THEORY\n\n📘 Set Theory: A mathematical framework for defining, manipulating, and reasoning about collections of objects, called sets. It provides a systematic way to describe and analyze various mathematical structures.\n\n💡 Think of a set as a box containing items. A subset is a smaller box that can fit inside the main box, containing some (but not necessarily all) of the items. The null set (or empty set) is a special set that contains no items at all.\n\n- Subset: A set A is a subset of another set B if every element in A is also an element of B. In other words, all members of A are also members of B.\n- Null Set: A set with no elements is called the null set or empty set. It is denoted by the symbol {∅}.\n\nKey differences:\n- A subset always contains elements that are also in the original set, while the null set contains no elements at all.\n- A subset can have multiple elements, while the null set has none.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:27"
+    },
+    "Obtain an explicit form for the following sequence aₙ defined recursively by aₙ = 2aₙ₋₁ + 1 for n ≥ 2, with a₁ = 3.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023",
+        "2021"
+      ],
+      "answer": "## RECURSIVE SEQUENCE\n\n📘 As per your notes, a recursive sequence is a sequence that is defined either by one or more initial terms and a rule for determining subsequent terms from those that precede them, or by a rule that generates terms based on previously known terms in the sequence. This concept is an extension of the definition of sequences as functions from a subset of the set of integers to a set S, where an denotes the image of the integer n.\n\nIn the context of recursive sequences, a Fibonacci-like sequence is a type of recursive sequence where each term is the sum of the two preceding terms. For example, the Fibonacci sequence starts with 0, 1, and each subsequent term is the sum of the two preceding terms (0 + 1 = 1, 1 + 1 = 2, 1 + 2 = 3, and so on).\n\n💡 Simple way to understand it:\nThink of a Fibonacci-like sequence as a game where you start with two coins (0 and 1). Each turn, you pick up the two most recent coins and put the sum of those two coins back into the game. This is similar to how the Fibonacci sequence is generated, where each term is the sum of the two preceding terms.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:29"
+    },
+    "The matrix of a relation on the set A = {1, 2, 3} is given by M_R = [1 0 0 / 0 1 1 / 0 1 1]. Show that R is an equivalence relation.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2022",
+        "2021"
+      ],
+      "answer": "## RELATION\n\n📘 As per your notes, a Relation is a set of ordered pairs that connect elements from one or more sets. In the context, a relation on a set A to itself (a relation on A) is a subset of A x A, where A x A represents the Cartesian product of A with itself.\n\nEquivalence Relations are a specific type of relation that have three properties: reflexive, symmetric, and transitive.\n\n- Reflexive: For every element a in the set A, (a, a) belongs to the relation. In other words, every element is related to itself.\n- Symmetric: If (a, b) is in the relation, then (b, a) is also in the relation. This means that if element a is related to element b, then b is related to a.\n- Transitive: If (a, b) and (b, c) are in the relation, then (a, c) is also in the relation. This means that if a is related to b and b is related to c, then a is related to c.\n\nEquivalence relations are important throughout mathematics and computer science because they allow us to group similar objects together. For example, in set theory, we can define an equivalence relation on the integers that groups together all numbers with the same remainder when divided by a certain number.\n\n💡 Simple way to understand it: Think of an equivalence relation as a way to group similar objects together. Imagine you have a box of marbles, and you want to group them by color. You would create a relation where two marbles are related if they are the same color. This relation is reflexive (every marble is related to itself), symmetric (if two marbles are the same color, they are equally related), and transitive (if marble A is the same color as marble B, and marble B is the same color as marble C, then marble A is the same color as marble C).",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:31"
+    },
+    "State and prove the Bayes’ theorem.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023",
+        "2021"
+      ],
+      "answer": "## BAYES' THEOREM\n\n📘 As per your notes, Bayes' theorem is a mathematical formula used to calculate conditional probabilities in various disciplines. It helps solve problems where the goal is to update the probability of a hypothesis based on new evidence. The theorem is expressed as follows:\n\np(F∣E) = p(E∣F) * p(F) / p(E)\n\nwhere:\n- p(F∣E) is the probability of hypothesis F given evidence E\n- p(E∣F) is the probability of evidence E given hypothesis F\n- p(F) is the prior probability of hypothesis F\n- p(E) is the total probability of evidence E (sum of probabilities of all possible hypotheses that could generate the evidence)\n\nThe theorem can also be rewritten as:\n\np(E∣F) * p(F) = p(E∣F) * p(F) + p(E∣F') * p(F')\n\nwhere F' represents the complement of F (all possible hypotheses except F).\n\n💡 A simple way to understand Bayes' theorem is by imagining a coin toss. Suppose you have a biased coin that lands on heads 70% of the time and tails 30% of the time. If you toss the coin once and it lands on heads, Bayes' theorem helps you update your belief about the coin's bias based on the new evidence (the toss result). The theorem calculates the updated probability of the coin being biased towards heads (F) given the evidence (the toss result).",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:33"
+    },
+    "Use Dijktra’s algorithm, find the shortest path between a to z in the weighted graph.": {
+      "marks": 5,
+      "years": [
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "## DIJKSTRA'S ALGORITHM\n\n📘 As per your notes, Dijkstra's algorithm is a method used to find the shortest path between two vertices in a connected, simple, undirected weighted graph. The algorithm assigns tentative distances to all vertices, initially setting them to infinity for all vertices except the starting vertex, which is set to zero. In each iteration, it selects the vertex with the smallest tentative distance and updates the tentative distances of its neighboring vertices, if the updated distance is shorter. The algorithm stops when all vertices are visited.\n\nEXAMPLE 2 in the notes provides an example of using Dijkstra's algorithm to find the shortest path between vertices 'a' and 'z' in the weighted graph(a). The steps used by Dijkstra’s algorithm to find a shortest path are.\n\n💡 Simple way to understand it: Think of Dijkstra's algorithm as a journey planner that finds the shortest route between two cities on a map. Each city has multiple roads connecting it to other cities, and each road has a specific length. The algorithm starts from one city (the starting vertex), calculates the shortest path to all neighboring cities, then moves to the city with the shortest path, and repeats the process until it reaches the destination city (the ending vertex).",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:35"
+    },
+    "State and prove Hand Shaking theorem.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023",
+        "2022"
+      ],
+      "answer": "## HAND SHAKING THEOREM\n\n📘 The Hand Shaking Theorem states that in an undirected graph, the sum of the degrees of all vertices is equal to twice the number of edges. This theorem applies even if multiple edges and loops are present.\n\nThe proof is based on the handshaking analogy: each edge connects two vertices, so each edge contributes two to the sum of the degrees of the vertices. Therefore, the total number of edges (m) is half of the sum of the degrees of the vertices. Since each edge is counted twice (once for each vertex it connects), the sum of the degrees equals twice the number of edges, i.e., 2m.\n\n💡 Imagine a party where each person shakes hands with others. The total number of handshakes is equal to the sum of the number of handshakes each person makes (their degree) multiplied by the total number of people (twice the number of edges). This is the Hand Shaking Theorem in a social setting.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:37"
+    },
+    "Show that p ∨ (q ∧ r) = (p ∨ q) ∧ (p ∨ r).": {
+      "marks": 3,
+      "years": [
+        "2023",
+        "2021"
+      ],
+      "answer": "## P ∨ (Q ∧ R) = (P ∨ Q) ∧ (P ∨ R)\n\n📘 As per your notes, the Distributive Law in Boolean Algebra states that the operation of 'OR' (∨) distributes over the operation of 'AND' (∧). In simpler terms, this means that for any elements p, q, and r in a Boolean algebra, p ∨ (q ∧ r) is equivalent to (p ∨ q) ∧ (p ∨ r).\n\n💡 Think of a Venn diagram with three overlapping circles representing p, q, and r. According to the Distributive Law, the total area covered by p OR (q AND r) is the same as the area covered by (p OR q) AND (p OR r). This is because the area covered by p OR q is the union of the areas covered by p and q, and the area covered by p OR r is also the union of the areas covered by p and r. The intersection of p with both q AND r is included in both the left and right sides of the equation, ensuring the equality.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:39"
+    },
+    "Let x be the set of factors of 12 and let ≤ be the relation divisor i.e., x ≤ y, if and only if x divides y. Draw the Hasse diagram of (x, ≤).": {
+      "marks": 3,
+      "years": [
+        "2023",
+        "2021"
+      ],
+      "answer": "## HASSE DIAGRAM\n\n📘 As per your notes, a Hasse diagram is a graphical representation of a partially ordered set (poset). It displays the relationships between elements by arranging them in a way that shows which elements are related and how they are related. The diagram is named after German mathematician Helmut Hasse.\n\nIn the context of the factors of 12, the Hasse diagram would show the relationship between the numbers as they are related by the divisibility relation. The diagram would have the numbers 1, 2, 3, 4, 6, and 12, with arrows pointing from a larger number to a smaller number that divides it.\n\n💡 A simple way to understand it is like a family tree, but instead of showing relationships between people, it shows relationships between numbers based on divisibility.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:41"
+    }
+  },
+  "DS": {
+    "What is 2-D array ? Write a program to check whether the matrix is sparse matrix or not.": {
+      "marks": 4,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "## 2-D ARRAY WRITE PROGRAM CHECK WHETHER MATRIX SPARSE MATRIX NOT\n\n // C program to check if a 2-D array (matrix) is sparse or not\n\n```c\n#include <stdio.h>\n\n#define ROWS 3\n#define COLS 3\n\nint main() {\n    int matrix[ROWS][COLS];\n\n    printf(\"Enter the elements of the matrix:\\n\");\n    for (int i = 0; i < ROWS; i++) {\n        for (int j = 0; j < COLS; j++) {\n            scanf(\"%d\", &matrix[i][j]);\n        }\n    }\n\n    int nonZeroCount = 0;\n    for (int i = 0; i < ROWS; i++) {\n        for (int j = 0; j < COLS; j++) {\n            if (matrix[i][j] != 0) {\n                nonZeroCount++;\n            }\n        }\n    }\n\n    if (nonZeroCount < (ROWS * COLS)) {\n        printf(\"The matrix is sparse.\\n\");\n    } else {\n        printf(\"The matrix is not sparse.\\n\");\n    }\n\n    return 0;\n}\n```\n\nThis program defines a 3x3 matrix and checks if it is sparse by counting the number of non-zero elements. If the number of non-zero elements is less than the total number of elements in the matrix, the matrix is considered sparse.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:43"
+    },
+    "Write an algorithm for insertion and deletion operations for a circular linked list.": {
+      "marks": 5,
+      "years": [
+        "2024",
+        "2022"
+      ],
+      "answer": "## CIRCULAR LINKED LIST\n\n // C code for insertion and deletion operations for a circular linked list (as per Algorithm 5.14)\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node {\n    int info;\n    struct Node* link;\n} Node;\n\nNode* start, *avail;\n\nvoid FINDBHL(int info, Node* link, Node* start, int item, Node** loc, Node** locp) {\n    *locp = NULL;\n    *loc = start;\n    while (*loc != avail) {\n        if ((*loc)->info == item) {\n            *locp = (*loc)->link;\n            return;\n        }\n        *locp = *loc;\n        *loc = (*loc)->link;\n    }\n}\n\nvoid InsertCircular(int info) {\n    Node* newNode = (Node*)malloc(sizeof(Node));\n    newNode->info = info;\n    newNode->link = avail;\n\n    if (start == NULL) {\n        start = newNode;\n        avail = start;\n        avail->link = start;\n    } else {\n        FINDBHL(info, start, start, info, NULL, &avail);\n        newNode->link = avail->link;\n        avail->link = newNode;\n    }\n}\n\nvoid DeleteCircular(int item) {\n    Node* loc, *locp;\n    FINDBHL(item, start, start, item, &loc, &locp);\n\n    if (loc == avail) {\n        printf(\"List is empty\\n\");\n        return;\n    }\n\n    if (loc == start)\n        start = loc->link;\n    avail->link = loc->link;\n    free(loc);\n}\n```\n\nThis code includes functions for inserting and deleting nodes in a circular linked list. The `InsertCircular` function adds a new node to the list, and the `DeleteCircular` function removes the first node containing the specified item. The `FINDBHL` function is a helper function that finds the location of a node and its preceding node in the circular linked list.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:47"
+    },
+    "Define data structures. Explain the classification of data structures.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## DATA STRUCTURES\n\n📘 Data Structures:\nData structures are organized collections of data that are used to efficiently store, organize, and manage data in a computer system. They provide a means to manipulate data in a way that is easy to understand and use.\n\n💡 Simple way to understand it:\nThink of a data structure as a toolbox for organizing different types of data. Just like how a toolbox contains various tools for different purposes, a data structure contains different ways to store and manage data.\n\n📘 Classification of Data Structures:\nData structures can be classified into two main categories: primitive and non-primitive data structures. Primitive data structures are basic data types such as integer, real, character, and boolean, which cannot be divided. Non-primitive data structures, on the other hand, are more complex and can be divided into linear and non-linear data structures. Linear data structures are arranged in a linear sequence, such as arrays, stacks, and queues, while non-linear data structures, like trees and graphs, have a more complex structure.\n\n💡 Simple way to understand it:\nThink of primitive data structures as the basic building blocks, like individual tools in a toolbox. Non-primitive data structures are like toolboxes themselves, containing multiple tools (or data) in a more complex arrangement. Linear data structures are like a line of tools arranged in a row, while non-linear data structures are like a toolbox with tools connected in various ways.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:49"
+    }
+  },
+  "QTR": {
+    "At what time between 4 and 5 o’clock will the hands of a clock be at right angle ?": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "answer": "## CLOCK\n\n📘 As per your notes, the hands of a clock are at a right angle (90 degrees apart) when they are 15 minutes apart. This happens twice in an hour. Since we are looking for the time between 4 and 5 o'clock, let's consider 4:45 and 4:55. At 4:45, the hour hand is at the 4 and the minute hand is at the 12 (since they are 15 minutes apart). At 4:55, the hour hand is at the 5 and the minute hand is at the 7 (again, 15 minutes apart). Therefore, the hands will be at a right angle between 4:45 and 4:55.\n\n💡 Think of a clock as a circle with 12 equal slices. When the hands are at a right angle, they are pointing to two adjacent slices. So, imagine a game of \"odd one out\" where you have three slices (4, 5, and 12 or 5, 7, and 12) and you're looking for the pair that doesn't share a neighbor. The hands will be at a right angle when the pair that doesn't share a neighbor is found. In this case, it happens between 4:45 and 4:55.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:52"
+    },
+    "Briefly explain the factors affecting the teaching.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2024",
+        "2022"
+      ],
+      "answer": "## TEACHING FACTORS\n\n📘 As per your notes, the factors affecting teaching are primarily associated with the affective domain, which refers to the emotional and attitudinal aspects of learning. In this context, the attitude of the teacher is highlighted as a crucial factor. The teacher's behavior can range from non-verbal cues to complex verbal interactions, all of which are purposefully linked to the students' behavior. The notes mention four specific tactics used in teaching: lecture, interactive lecture, group work, and self-study.\n\n💡 Simple way to understand it: Think of a teacher as a conductor in an orchestra. Just like a conductor influences the orchestra's performance through their emotions, body language, and verbal cues, a teacher's attitude and behavior can significantly impact the learning environment and the students' performance. The four teaching tactics are like different musical pieces that the teacher can use to engage the students.\n\nKey differences between the tactics:\n- Lecture: The teacher delivers information to the students in a one-way manner.\n- Interactive lecture: The teacher engages students in discussions or activities during the lecture.\n- Group work: Students work together in small groups to complete tasks or projects.\n- Self-study: Students study independently, often with guidance from the teacher.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:54"
+    },
+    "A bag contains 6 Red and 4 Blue balls. Two balls are drawn at randomly. Find the probability that they are of the same color.": {
+      "marks": 5,
+      "years": [
+        "2026",
+        "2025",
+        "2021"
+      ],
+      "answer": "## PROBABILITY THEORY\n\n📘 As per your notes, Probability Theory is a fundamental branch of mathematics that deals with the analysis of random phenomena. It assigns numbers, called probabilities, to the possible outcomes of an event to quantify the likelihood of each outcome.\n\nConditional Probability is a crucial concept within Probability Theory. It represents the probability of an event occurring given that another event has already occurred. In other words, it's the probability of two events happening together, given that one of them has already happened.\n\nIn the context, the lottery method used in sampling can be likened to conditional probability. Imagine a lottery where each ticket has an equal chance of winning. If we know that a specific ticket has already been drawn and won, the probability of drawing that same ticket again is zero, as it has already been drawn. This is similar to the conditional probability, where the probability of an event changes given that another event has already occurred.\n\n💡 Simple way to understand it: Think of conditional probability as a game of lottery where each ticket has an equal chance of winning. If you know that a specific ticket has already been drawn and won, the probability of drawing that same ticket again is like finding a needle in a haystack—it's impossible because it's already been found.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:56"
+    },
+    "A man can row 6 km/hr in still water. it takes him twice as long to row-up as to row-down the river. Find the rate of stream.": {
+      "marks": 5,
+      "years": [
+        "2026",
+        "2024"
+      ],
+      "answer": "## STREAM FLOW RATE CALCULATION\n\n📘 As per your notes, the concept of a stream in computer systems refers to a sequence of data that flows from a source to a destination. In the context of UNIX and MS-DOS, streams can be either part of the main memory or a separate device name space. STREAMS is an implementation and methodology that allows for a modular and incremental approach to writing device drivers and network protocols. It enables drivers to be stacked, with data passing through them sequentially and bidirectionally for processing. Filtered streams are a type of stream where data is filtered or processed as it passes through.\n\n💡 Think of a stream as a river where data is the water. A man can row at different speeds in still water and against the current. If it takes him twice as long to row upstream as downstream, the difference in time indicates the current's speed. Similarly, in a filtered stream, data is processed as it passes through, just like a man being slowed down by the river current.\n\n📘 In the given scenario, the man represents the system, and the river represents the stream. The man's rowing speed in still water (6 km/hr) is the base speed of the system. The time it takes him to row upstream (twice as long) indicates the rate of the stream (difference in time / 2).\n\n💡 To find the rate of the stream, calculate the difference in time it takes the man to row upstream and downstream, then divide that difference by 2. For example, if it takes the man 2 hours to row upstream and 1 hour to row downstream, the rate of the stream is (2 hours - 1 hour) / 2 = 1 hour.",
+      "source": "generated",
+      "generated_at": "2026-10-18 14:58"
+    },
+    "Define communication. Explain Barriers in effective Communication.": {
+      "marks": 5,
+      "years": [
+        "2026",
+        "2024"
+      ],
+      "answer": "## COMMUNICATION\n\n📘 As per your notes, Communication refers to the passing of information from one person to another. It is a continuous process in any workplace and is essential for sharing or exchanging information. The sender initiates the process by conveying information to the receiver, who decodes the message to understand it.\n\n💡 Think of communication as a game of telephone. One person whispers a message to another, who then passes it on to the next person, and so on. The message can change slightly with each person, just like how information can be misinterpreted or lost during communication.\n\nBarriers in effective communication can occur due to various reasons:\n- Language Barrier: Misunderstandings can arise when people speak different languages or use technical jargon.\n- Cultural Differences: Differences in cultural norms, values, and beliefs can lead to misinterpretations.\n- Noise: Physical noise, such as loud music or machinery, can interfere with the transmission of information.\n- Emotional Barriers: Emotions like anger, fear, or frustration can cloud judgment and lead to miscommunication.\n- Lack of Attention: If the receiver is not fully focused, they may miss important details or misunderstand the message.\n- Inadequate Feedback: If the receiver does not ask questions or provide feedback, the sender may not know if the message was understood correctly.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:00"
+    },
+    "What was the day of the week on 12th January 1863 ?": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2021"
+      ],
+      "answer": "## DAY WEEK 12TH JANUARY 1863\n\n📘 As per your notes, the day of the week on a given date can be determined by using a repeating pattern of days in a seven-day cycle. This pattern is based on the fact that every year has 52 or 53 weeks, with an extra day (February 29) in a leap year. To find the day of the week for a specific date, we can use the formula:\n\nDay of the week = (day of the month + (month number modulo 12) + year modulo 7) modulo 7\n\nWhere \"modulo\" means the remainder when the number is divided by another number.\n\n💡 Simple way to understand it:\nThink of a seven-day week as a circle with days labeled 0 (Sunday) through 6 (Saturday). As you move along the circle, each day has a specific position. The formula above calculates the position of a date by adding the day of the month, the month number (adjusted to be between 1 and 12), and the year (adjusted to be between 1 and 6). The result is then adjusted to be between 0 and 6, which corresponds to the days of the week.\n\nFor example, to find the day of the week for January 1, 1863, we would use the formula with day of the month = 1, month number = 1 (January), and year = 1863. The result would be the day of the week for January 1, 1863.\n\nTo find the day of the week for January 12, 1863, we would use the same formula but with day of the month = 12. The result would be the day of the week for January 12, 1863.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:02"
+    },
+    "Of the three numbers, second is twice the first and is also thrice the third. If the average of the three numbers is 55. Find the largest number.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## THREE NUMBERS SECOND TWICE FIRST THRICE THIRD IF AVERAGE THREE NUMBERS 55 FIND LARGEST NUMBER\n\n📘 As per your notes, the problem presents three numbers where the second number is twice the first and also thrice the third. The average of these three numbers is given as 55. To find the largest number, we first need to find the other two numbers using the given relationships.\n\nLet's denote the three numbers as a, b, and c, where a is the first number, b is the second number, and c is the third number. From the problem, we know that:\n\n1. b = 2a\n2. c = b/3\n\nNow, we can substitute the second equation into the first equation to find c in terms of a:\n\nc = (2a)/3\n\nNext, we know the average of the three numbers is 55, so:\n\n(a + b + c) / 3 = 55\n\nNow, we can substitute the expressions for b and c in terms of a into the equation for the average:\n\n(a + 2a + (2a)/3) / 3 = 55\n\nSolving for a, we get:\n\na = 15\n\nNow that we have the first number, we can find the other two numbers using the relationships we derived earlier:\n\nb = 2a = 2 * 15 = 30\nc = b/3 = 30/3 = 10\n\nSo, the three numbers are 15, 30, and 10, and the largest number is 30.\n\n💡 Simple way to understand it:\nImagine you have a set of three numbers where the second number is twice the first and also thrice the third. If the average of these numbers is 55, you can find the largest number by first finding the other two numbers using the given relationships, and then solving for the first number. In this case, the largest number is 30.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:05"
+    },
+    "Explain governance, policy and administration of higher education system in India.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## GOVERNANCE, POLICY AND ADMINISTRATION OF HIGHER EDUCATION SYSTEM\n\n📘 As per your notes, the governance, policy, and administration of the higher education system in India are structured and managed by various entities. The University Grants Commission (UGC) is the primary body responsible for coordinating, setting, and maintaining standards for university education. It ensures accountability while maintaining the quality of education. On the other hand, professional institutions, such as technical and management institutions, are coordinated by a different body, the All India Council for Technical Education (AICTE).\n\n💡 Think of the UGC and AICTE as two different school districts in a city. The UGC is responsible for overseeing and setting standards for all the public schools (universities), while the AICTE manages the private schools (technical and management institutions). Both districts work towards providing quality education but have different areas of focus.\n\nKey differences:\n- UGC oversees university education, while AICTE coordinates technical and management institutions.\n- UGC sets and maintains standards for university education, while AICTE focuses on technical and management institutions.\n- UGC ensures accountability and quality in university education, while AICTE coordinates and regulates technical and management institutions.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:07"
+    },
+    "Explain the characteristics and types of communication.": {
+      "marks": 5,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## COMMUNICATION\n\n📘 As per your notes, Communication is the exchange of ideas, facts, and opinions between individuals or groups. It can be formal or informal, and it can occur in various directions within an organization. The characteristics of communication include proper understanding of the message, it being a continuous process, and involving both information and understanding.\n\n💡 Think of communication as a conversation between two people. For it to be effective, both parties need to understand each other clearly, exchange information, and continue the conversation. Just like a good conversation, communication is a two-way process that involves proper understanding, is ongoing, and involves the exchange of information and understanding.\n\nTypes of Communication:\n1. Downward Communication: This is communication from management to subordinates. It includes instructions, orders, and feedback.\n2. Upward Communication: This is communication from subordinates to management. It includes suggestions, complaints, and feedback.\n3. Horizontal Communication: This is communication between equals, such as coworkers or peers. It includes collaboration, coordination, and information sharing.\n\nFormal Communication is organized, structured, and follows established channels. It is often in writing and is used for official purposes. Informal Communication, also known as grapevine communication, is unofficial and informal. It often occurs through casual conversations and is not bound by established channels.\n\nWritten Communication involves the use of written words, such as letters, emails, or reports. Oral Communication involves spoken words, such as meetings, presentations, or conversations. Communication can also take the form of attitudes, emotions, or symbols.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:09"
+    },
+    "Difference between formal education and distance education in India.": {
+      "marks": 5,
+      "years": [
+        "2023",
+        "2022"
+      ],
+      "answer": "## FORMAL EDUCATION VS DISTANCE EDUCATION IN INDIA\n\n📘 As per your notes, formal education refers to traditional, face-to-face learning in a classroom setting, where students and teachers interact physically. On the other hand, distance education is a mode of delivering education and instruction when the student and teacher are separated by distance and time. In India, EDUSAT, a satellite built exclusively for the educational sector, is used to provide interactive teaching-learning support to distance education programs offered by Open Universities.\n\n💡 Simple way to understand it: Formal education is like attending school or college in person, while distance education is like taking online courses or watching lectures on TV.\n\nKey differences:\n- Formal education is face-to-face, while distance education is remote.\n- Formal education requires physical presence, while distance education can be accessed from anywhere.\n- Formal education has a fixed schedule, while distance education offers flexibility.\n- Formal education provides immediate feedback, while distance education may have delayed feedback.\n- Formal education has a structured environment, while distance education requires self-discipline.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:10"
+    },
+    "Explain value education.": {
+      "marks": 6,
+      "years": [
+        "2026",
+        "2025"
+      ],
+      "answer": "## VALUE EDUCATION\n\n📘 As per your notes, Value Education is a term used to describe the process of transmitting values to students, often derived from societal, religious, or cultural norms. It can occur in various settings, such as schools, universities, or voluntary youth organizations. There are two main approaches to value education:\n\n1. Value education is seen as the inculcation or transmission of a specific set of values, typically derived from societal, religious, or cultural ethics.\n2. Value education is also considered as a form of Socratic dialogue, where individuals engage in thoughtful discussions to gradually understand and adopt values.\n\n💡 A simple way to understand value education is like a library: just as a library provides books that shape our thoughts and values, value education provides lessons and discussions that help shape our moral and ethical beliefs.\n\nIn the Socratic dialogue approach, the discussions are like a conversation between Socrates and his students, where they question, debate, and learn from each other to understand and adopt values. In the inculcation approach, the values are like the books in a library, provided by society, religion, or culture, to help shape our beliefs. The key difference between the two is the method of transmission: one through discussions, the other through direct instruction.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:12"
+    }
+  },
+  "RM": {
+    "Write a short note on : Fuzzy logic.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## FUZZY LOGIC\n\n📘 As per your notes, Fuzzy Logic is a mathematical approach that deals with vagueness and uncertainty in the mapping of terms from a symbolic theory to the real world. Unlike probability theory, it doesn't focus on the uncertainty about the truth of well-defined propositions, but rather on the vagueness of terms. In Fuzzy Logic, propositions have a degree of truth between 0 and 1. For instance, the sentence \"Vienna is a large city\" might be true to degree 0.8 in fuzzy logic.\n\n💡 A simple way to understand Fuzzy Logic is like a scale for truth. Instead of something being completely true or false, it has a degree of truth, like a thermometer measuring temperature.\n\nKey differences between Fuzzy Logic and treating conclusions as \"believed until a better reason is found to believe something else\" (Default Reasoning):\n\n- Fuzzy Logic propositions have a degree of truth between 0 and 1, while default reasoning treats conclusions as \"believed until a better reason is found to believe something else.\"\n- Fuzzy Logic handles vagueness in the mapping from terms in a symbolic theory to the real world, while default reasoning is a separate approach that focuses on conclusions.\n- Fuzzy Logic is covered in Chapter 9, while default reasoning is covered in Chapter 10.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:15"
+    },
+    "Explain the role of simulation in research with example.": {
+      "marks": 10,
+      "years": [
+        "2026",
+        "2022"
+      ],
+      "answer": "## SIMULATION IN RESEARCH\n\n📘 As per your notes, simulation in research is a method used to represent the behavior of a process over time. It's particularly useful for understanding future conditions and can be applied in various fields. The simulation approach involves creating an artificial environment that mirrors the real one, allowing researchers to study and analyze the behavior of the process within this artificial setting.\n\nFor example, consider a weather forecasting model. Meteorologists use simulation to predict future weather patterns. They create a digital model of the Earth's atmosphere, including factors like temperature, humidity, and wind speed. By running this simulation, they can predict weather conditions days or weeks in advance.\n\n💡 Simple way to understand it: Think of simulation as a video game where you can control and observe the behavior of a system. Instead of predicting the weather, you might be studying the spread of a disease in a population, or the impact of a policy change on an economy. By running the simulation, you can see how the system behaves under different conditions, helping you make informed decisions about the real world.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:16"
+    },
+    "What is time series analysis in Research Methodology ? Discuss the major components of time series analysis.": {
+      "marks": 6,
+      "years": [
+        "2026",
+        "2023"
+      ],
+      "answer": "## TIME SERIES ANALYSIS\n\n📘 Time Series Analysis refers to the study of dynamic conditions to achieve short-term and long-term goals of business firms, particularly in the context of economic and business research. It involves analyzing data collected over time to identify patterns, trends, and relationships.\n\n💡 Think of Time Series Analysis as studying the weather patterns over years to predict future weather conditions.\n\nComponents of Time Series Analysis include:\n\n1. Trend (T): Represents the long-term direction of the series, showing whether it is increasing, decreasing, or stable over a long period.\n\n2. Cyclical Variations (C): Refers to fluctuations that occur due to economic cycles, such as recessions and booms, which repeat after a certain period.\n\n3. Seasonal Variations (S): Represents periodic fluctuations that occur at regular intervals, such as quarterly or yearly, due to seasonal factors like holidays or harvest seasons.\n\n4. Irregular Fluctuations (I): Also known as random or error components, these are the variations that cannot be explained by the trend, cyclical, or seasonal components and are often due to unforeseen events or random errors.\n\nThe additive model in Time Series Analysis considers the total of these components to explain the given values of the overall time series: Y = T + C + S + I. Each component plays a crucial role in understanding the behavior of the time series and helping businesses make informed decisions.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:18"
+    }
+  },
+  "SE": {
+    "Explain short releases and iterations in learning process.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## PROCESS SCHEDULING\n\n📘 Process Scheduling in the context of Agile Software Engineering:\n\nProcess scheduling is a method used in Agile Software Engineering to manage and organize the development tasks. It involves deciding the order in which tasks are executed and assigning resources to them.\n\nIn Agile methodologies, two key concepts are Short Releases and Iterations.\n\n1. Short Releases: These are small, incremental versions of the software that are delivered to the customer at regular intervals. The purpose is to get early and frequent feedback, which can then be used to improve the software. It's like a baker baking a cake in small portions, allowing the customer to taste and provide feedback on each portion before the entire cake is ready.\n\n2. Iterations: An iteration is a time-boxed period during which a specific set of tasks is completed. Each iteration results in a potentially shippable product increment. The customer prioritizes the development tasks for each iteration. It's similar to a factory producing items in batches, where each batch represents an iteration.\n\n💡 Simple way to understand it:\n\nThink of a bakery where each day, the baker makes a small portion of a cake (Short Release) and gets feedback from customers. Based on the feedback, the baker improves the recipe and makes another small portion the next day (Iteration). This process continues until the entire cake is ready, with each day representing an iteration and each small portion representing a Short Release.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:22"
+    },
+    "Discuss delivery and cyclicality in learning environments.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## LEARNING ENVIRONMENTS\n\n📘 As per your notes, Learning Environments refer to settings designed to facilitate teaching and learning, particularly in the context of agile software development.\n\n1. Delivery: In these environments, learning is structured around deliveries or releases, which mark the end of a specific period of time for learning. A delivery celebration signifies the completion of a release development in a course team. This approach supports teamwork-based development and encourages gradual learning.\n\n2. Cyclicality: Learning Environments operate on a cyclical basis, meaning that the learning process is repeated in cycles. This cyclical nature is a key characteristic of agile software development, where the development process is iterative and incremental. The cyclicality in learning environments allows for continuous improvement and adaptation to new information or challenges.\n\n💡 Simple way to understand it: Think of a garden where you plant seeds, nurture them, and harvest them at regular intervals. Each harvest (delivery) marks the end of a cycle, and the garden (learning environment) is prepared for the next cycle (new learning). The cyclical nature of the garden mirrors the cyclicality in Learning Environments, where learning is repeated in cycles to facilitate continuous growth and improvement.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:24"
+    },
+    "Discuss the time related problems of software projects.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## TIME MANAGEMENT IN SOFTWARE PROJECTS\n\n📘 As per your notes, the time dimension of software projects is a significant factor in the success or failure of these projects. Brooks (1975, 1995) in his book \"The Mythical Man-Month\" highlights that insufficient calendar time is the most common cause of disaster in software projects. This is due to the poor development of estimating techniques and the underestimation of the time required for software development tasks.\n\nCovey et al. (1994) further emphasize this issue by stating that 28% of developers believe addressing the time element is crucial for improving software quality.\n\n💡 Simple way to understand it: Think of a baker who underestimates the time needed to bake a large number of cakes for an event. If the baker doesn't account for the actual time required, they may not finish on time, leading to a disaster. Similarly, in software projects, underestimating the time needed for development tasks can lead to project delays and failure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:25"
+    }
+  },
+  "TOC": {
+    "Convert the following NFA into its equivalent DFA.": {
+      "marks": 6,
+      "years": [
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "answer": "## NFA\n\n📘 Deterministic Finite Automata (DFA) and Nondeterministic Finite Automata (NFA) are two types of finite automata used in computer science to recognize languages.\n\nNondeterministic Finite Automata (NFA) are automata that can be in multiple states at the same time, allowing for multiple paths to be explored simultaneously. However, they do not specify a unique sequence of states that leads to acceptance.\n\nOn the other hand, Deterministic Finite Automata (DFA) have a unique next state for each current state and input symbol. This means that given an initial state and input sequence, a DFA will always move through a unique sequence of states.\n\n💡 Think of an NFA as a group of explorers in a maze, each taking different paths simultaneously, while a DFA is a single explorer who follows a predetermined path.\n\nKey differences:\n- NFA can be in multiple states at the same time, while DFA can only be in one state at a time.\n- NFA can accept a word by multiple paths, while DFA accepts a word through a unique path.\n- The conversion of an NFA to an equivalent DFA ensures that both automata accept the same language.\n\n> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:28"
+    },
+    "Write a short note on Halting problem of Turing Machine.": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## HALT PROBLEM OF TURING MACHINE\n\n📘 As per your notes, the Halting Problem is a problem that asks whether a given Turing machine will halt (stop running) when started on a specific input string. The Halting Problem is undecidable, meaning it cannot be solved by an algorithm. This is because if there were an algorithm to solve the Halting Problem, we could use it to create another algorithm that solves every decision problem, which contradicts the Church-Turing thesis.\n\n💡 Simple way to understand it: Imagine a game where you have to guess whether a specific computer program will ever stop running when given a specific input. The Halting Problem states that there is no general way to always correctly guess whether a program will halt or run forever. It's like trying to predict the outcome of a game where the rules are constantly changing and there's no way to know the exact rules in advance.\n\nKey differences:\n- The Halting Problem asks about the behavior of Turing machines, while other problems might ask about different aspects of computation.\n- The Halting Problem is undecidable, meaning it cannot be solved by an algorithm, while other problems might be decidable or undecidable.\n- The Halting Problem is a fundamental problem in computer science, while other problems might be more specific or practical in nature.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:30"
+    },
+    "Minimize the following DFA.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "## DETERMINISTIC FINITE AUTOMATON (DFA)\n\n📘 Deterministic Finite Automaton (DFA)\n\nA Deterministic Finite Automaton (DFA) is a mathematical model used in computer science to recognize patterns in strings. It consists of a set of states, an input alphabet, a start state, a set of final (accepting) states, and a transition function that defines the movement between states based on the input symbol.\n\nIn the context provided, a minimization algorithm for DFAs is discussed. This algorithm aims to find an equivalent DFA with the smallest number of states, given a DFA M that recognizes a language L. The minimization process involves at most |K| - 1 iterations, where |K| is the number of states in the initial DFA. In each iteration, the algorithm checks whether any pair of states are related by '=' or ';', which are equivalence relations used to combine equivalent states.\n\n💡 Simple way to understand it:\n\nThink of a DFA as a vending machine with different states representing different products and the input alphabet representing the buttons you press. The transition function tells you which product you'll get based on the sequence of buttons you press. The minimization process is like reorganizing the vending machine to have the fewest possible products that still offer the same range of products as the original machine.\n\n> ℹ️ This question refers to a figure/graph that is not part of the paper's text, so this answer explains the method only and does not use the actual figure.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:32"
+    },
+    "Convert the following grammar into equivalent CNF. S → 0A/1B A → 0AA/1S/1 B → 1BB/0S/0.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "## GRAMMAR CONVERSION\n\n📘 As per your notes, Grammar Conversion refers to the process of converting any given grammar into an equivalent grammar in Chomsky Normal Form (CNF). In CNF, all the production rules are of the form uAv > uwv, where A is a non-terminal symbol that appears on the right-hand side of the production rule, and u, v, and w are strings of terminal and non-terminal symbols. This conversion helps simplify the grammar and make it easier to analyze.\n\n💡 Simple way to understand it: Think of Grammar Conversion as reorganizing a recipe book. Instead of having recipes with various ingredients listed in different orders, you rearrange them so that each recipe only includes a single main ingredient (non-terminal symbol) and the rest are supporting ingredients (terminal and non-terminal symbols). This makes it easier to understand and follow the recipes (grammar rules).",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:33"
+    },
+    "Define Recursive and Recursively enumerable languages and prove that the union of two recursive languages is recursive.": {
+      "marks": 10,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "## RECURSIVE AND RECURSIVELY ENUMERABLE LANGUAGES\n\n📘 As per your notes:\n\nRecursive languages are a subset of recursively enumerable languages. A language L is said to be recursive if there exists an algorithm that can decide membership for any given string in the language, i.e., it can determine whether a string belongs to L or not. In other words, a language is recursive if there exists a Turing machine that halts for strings in the language and never halts for strings not in the language.\n\nOn the other hand, a language L is recursively enumerable if there exists a Turing machine that can enumerate, or list, all the strings in L. This means that for any given string, the Turing machine can either produce the string if it belongs to L or run indefinitely if it does not belong to L.\n\nThe union of two recursive languages, denoted as L₁ ∪ L₂, is defined as the set of all strings that belong to either L₁ or L₂, or both. The proof that the union of two recursive languages is recursive can be constructed by showing that there exists a Turing machine that decides membership for any given string in the union. This Turing machine simulates the Turing machines for L₁ and L₂ in parallel, and halts and accepts if either machine accepts the given string.\n\n💡 Simple way to understand it:\n\nThink of recursive languages as a list of words that a computer can quickly check if a word is in the list or not. Recursively enumerable languages are like a list of words that a computer can generate one by one, but it might take a while to find a word if it's not in the list. The union of two lists is the combined list of all the words from both lists. So, the union of two recursive languages is a language that a computer can quickly check if a word is in the combined list or not.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:36"
+    },
+    "Explain DFA and NFA with suitable examples.": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "## FINITE AUTOMATA (DFA AND NFA)\n\n📘 As per your notes, a Finite Automaton (FA) is a mathematical model used in computer science to recognize patterns in strings. It can be either Deterministic Finite Automaton (DFA) or Non-Deterministic Finite Automaton (NFA).\n\n- A DFA is a special type of FA where the transition relation is a function, meaning that for each state and input symbol, there is only one possible next state. This ensures that the machine's behavior is deterministic and predictable.\n\n- On the other hand, an NFA allows multiple next states for the same state and input symbol, making its behavior non-deterministic. This can lead to more efficient solutions but is harder to analyze.\n\n💡 Simple way to understand it:\nThink of a DFA as a vending machine with a single coin slot and a single product dispenser. You insert a coin, and the machine gives you one specific product. An NFA, however, is like a vending machine with multiple coin slots and multiple product dispensers. You can insert a coin into any slot, and it might dispense any product (or multiple products).\n\nKey differences:\n- DFA is deterministic, meaning there's only one possible next state for a given state and input symbol.\n- NFA is non-deterministic, allowing multiple next states for the same state and input symbol.\n- DFA is easier to analyze but may not always be as efficient as NFA.\n- NFA can be more efficient but is harder to analyze and may need to be converted to DFA for easier analysis.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:38"
+    },
+    "State and prove pumping lemma for regular languages and prove that the following language is not regular. L = {ωω|ω ∈ {a, b}*}": {
+      "marks": 6,
+      "years": [
+        "2022",
+        "2021"
+      ],
+      "answer": "## PUMPING LEMMA FOR REGULAR LANGUAGES\n\n📘 As per your notes, the Pumping Lemma is a fundamental theorem in the theory of formal languages, specifically for regular languages. It provides a method to prove that a given language is not regular. The lemma states that for any regular language L and any string w in L of length greater than some constant M (which depends on L), w can be expressed as w = xyz, where xy is a non-empty string, |y| > 0, and |xy| ≤ M, and for some integer n > 0, xy^n and xy^(n+1)z are also in L. This means that any string in a regular language can be \"inflated\" around a certain point without leaving the language.\n\n💡 Simple way to understand it: Think of a rubber band that can be stretched and contracted to a certain limit without breaking. In the context of the Pumping Lemma, the rubber band represents a string in a regular language, and the limit is the length M. The lemma states that if we can stretch the rubber band (repeat the middle part) within the limit, the new configurations will still be part of the language. If a language doesn't follow this rule, it's not a regular language.\n\nKey differences:\n- Regular languages follow the Pumping Lemma, meaning they can be \"pumped\" around a certain point.\n- Languages that do not follow the Pumping Lemma are not regular, requiring special tools to prove.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:40"
+    },
+    "Check whether the following grammar is ambiguous. S → iCtS/iCtSeS/a C → b": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2022"
+      ],
+      "answer": "## GRAMMAR AMBIGUITY\n\n📘 As per your notes, a grammar is said to be ambiguous if it generates strings that have two or more distinct parse trees. In the given grammar S → iCtS/iCtSeS/a C → b, the string iCtS can be parsed in two ways:\n\n1. iCtS → i(bCtS) or i(bCtSeS)\n2. iCtS → i(CtS) or i(CtSeS)\n\nSince there are two possible parse trees for the string iCtS, the given grammar is ambiguous.\n\n💡 Simple way to understand it:\nThink of a grammar as a set of rules for building sentences in a language. An ambiguous grammar is like a sentence that can be interpreted in multiple ways, similar to a riddle with multiple solutions. In the given grammar, the sentence \"iCtS\" can be built in two different ways, making it ambiguous.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:42"
+    },
+    "Convert the following grammar into PDA. S → aABC A → aB | a B → bA | b C → a": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## PDA\n\n📘 As per your notes, a Pushdown Automaton (PDA) is a type of automaton used in computer science to recognize languages. It extends the capabilities of a finite automaton by using a stack, allowing it to handle more complex grammar rules.\n\nThe conversion of a grammar into an equivalent PDA involves creating a PDA that can simulate the application of the grammar's rules. The key rule for the grammar to PDA conversion is to convert rules of the form uAv > uwv into PDA transitions. Here, A, u, v, and w are part of the vocabulary V, and the stack alphabet includes a symbol representing A.\n\n💡 A simple way to understand it is by thinking of a PDA as a robot following a set of instructions (grammar rules) written on a blackboard (stack). The robot can move along the blackboard, erase symbols, and write new symbols, all while following the rules. The conversion process is like teaching the robot to follow new instructions that can be executed more efficiently using a stack.\n\n- Key differences between the grammar and the PDA:\n  - Grammar is a set of rules that describe a language, while a PDA is a machine that can recognize languages.\n  - A grammar uses symbols and production rules, while a PDA uses states, transitions, a stack, and a tape.\n  - A grammar can have rules with right-hand sides of any length, while a PDA's transitions have right-hand sides of length one.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:44"
+    },
+    "Consider the given ε-NFA. Convert to DFA. δN / ε / a / b / c : →p Φ {p} {q} {r}; q {p} {q} {r} Φ; *r {q} {r} Φ {p}": {
+      "marks": 6,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## CONSIDER GIVEN Ε-NFA CONVERT DFA ΔN / Ε / / B / C : →P Φ {P} {Q} {R}; Q {P} {Q} {R} Φ; *R {Q} {R} Φ {P}\n\n📘 As per your notes, an ε-NFA (ε-Non-deterministic Finite Automaton) is a type of automaton that can move to multiple states without reading any input symbol (ε). The DFA Conversion process converts an ε-NFA into an equivalent Deterministic Finite Automaton (DFA), which only moves to one state for each input symbol.\n\nThe given ε-NFA has three states: p, q, and r, and transitions defined as follows:\n- ε-transition from p to φ (a set containing p, q, and r)\n- transition from q to φ (on input symbol ε)\n- ε-transition from r to φ (containing p)\n- transition from q to r (on input symbol ε)\n\n💡 Simple way to understand it:\nThink of an ε-NFA as a maze with multiple paths, some of which don't require a specific input symbol to traverse. The DFA Conversion process transforms this maze into a single-path version, ensuring that there's only one possible path for each input symbol.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:46"
+    },
+    "State and prove pumping lemma for context free languages. Show that L = {aⁿbⁿcⁿ/n>=1} is not context free.": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "answer": "## PUMPING LEMMA\n\n📘 As per your notes, the Pumping Lemma is a property that helps determine whether a given language is context-free or not. It states that for any context-free language L and any string w in L that contains at least three symbols, there exists a decomposition w = xyz, where xy is a non-empty prefix and suffix of w, z is a string that may be empty, and the length of y is strictly greater than 0, such that the following conditions hold:\n\n1. The length of w is greater than the constant R, defined as |xy| + 1 > |y|.\n2. The substrings xy and yz are in L.\n3. For any integer n ≥ 0, the string xy^n z is also in L.\n\nHere, |xy| and |y| represent the lengths of the strings xy and y, respectively. The Pumping Lemma allows us to \"inflate\" or \"pump\" the middle part (y) of a string in a context-free language, while ensuring that the resulting string remains in the language.\n\n💡 Simple way to understand it:\nThink of the Pumping Lemma as a test for context-free languages. If you have a string in a context-free language that is long enough, you can break it into three parts (x, y, and z) and prove that by repeating the middle part (y) any number of times, you will still have a valid string in the language. This is like inflating a balloon by repeating the same action (pumping) on a specific part of the balloon, and knowing that the balloon will always stay within the boundaries of a valid shape (the context-free language).",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:48"
+    }
+  },
+  "WP": {
+    "Discuss the difference between GET and POST methods in AJAX Request.": {
+      "marks": 6,
+      "years": [
+        "2024",
+        "2023"
+      ],
+      "answer": "## GET VS POST METHODS IN AJAX REQUEST\n\n📘 As per your notes, the GET and POST methods are two ways to send data from a client (usually a web browser) to a server in an AJAX (Asynchronous JavaScript and XML) request.\n\n- GET method: This method appends the data to the URL as query parameters. The data is visible in the URL and can be bookmarked or shared. It has a limit on the amount of data that can be sent (usually around 1000 characters). GET requests are often used for retrieving data from the server.\n\n- POST method: This method sends the data as the body of the HTTP request. The data is not visible in the URL and cannot be bookmarked or shared easily. It has no limit on the amount of data that can be sent. POST requests are often used for sending data to the server, such as submitting a form.\n\n💡 Simple way to understand it:\nThink of a letter you're sending through the mail. A GET request is like sending a postcard where the message is written on the outside for everyone to see. A POST request is like sending a sealed envelope where the message is hidden inside.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:51"
+    },
+    "What is Local storage and how is it useful ?": {
+      "marks": 5,
+      "years": [
+        "2025",
+        "2023"
+      ],
+      "answer": "## LOCAL STORAGE\n\n📘 Local storage refers to the storage space on a workstation that is distinct for each workstation in a network. It contains essential system programs for autonomous operation and better performance, temporary files, and files that the workstation owner wants to store privately.\n\n💡 Local storage is like a personal locker in a shared gym. Each gym member (workstation) has their own locker (local storage) to store their personal items (system programs, temporary files, and private files) for their exclusive use, ensuring better performance and privacy.\n\nIn the context of the Virtue network, local storage serves as the root file system from which the shared name space descends. This local storage is necessary for each workstation to operate autonomously and efficiently, as well as to maintain privacy by storing certain files locally. Additionally, servers can improve efficiency by storing requested files in a cache in memory and through multithreading or multiprocessing.\n\nKey differences:\n- Local storage is personal to each workstation, while the shared name space is accessible by all workstations.\n- Local storage is used for essential system programs, temporary files, and private files, while the shared name space is used for shared resources like web pages.\n- Local storage is stored on the local disk of each workstation, while the shared name space is managed collectively by the servers.",
+      "source": "generated",
+      "generated_at": "2026-10-18 15:52"
+    }
+  }
+}

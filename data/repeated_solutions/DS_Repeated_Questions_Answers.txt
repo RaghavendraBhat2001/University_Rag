@@ -1,0 +1,373 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: DS
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Define data structure and explain the operations performed on the linear data structure.
+----------------------------------------------------------------------
+Model Answer:
+Data Structures & Linear Operations (6 Marks)
+
+1. Definition:
+A Data Structure is a specialized mathematical and logical format for organizing, storing, processing, and retrieving data efficiently inside computer memory.
+
+2. Linear Data Structure:
+A data structure is linear if its elements form a sequential sequence where each element (except first and last) has a unique predecessor and successor (e.g., Arrays, Linked Lists, Stacks, Queues).
+
+3. Standard Operations Performed:
+1. Traversal: Visiting each element in the data structure exactly once to process or display it (e.g., printing all array elements in O(n)).
+2. Insertion: Adding a new element at a designated position (at beginning, middle, or end).
+3. Deletion: Removing an existing element from the data structure and reorganizing adjacent elements.
+4. Searching: Finding the location of an element with a specified target key:
+   - Linear Search: O(n) on unsorted lists.
+   - Binary Search: O(log n) on sorted sequential arrays.
+5. Sorting: Arranging elements in a specified logical order (ascending or descending) using algorithms like QuickSort, MergeSort, or BubbleSort.
+6. Merging: Combining elements of two distinct linear structures into a single composite structure.
+
+======================================================================
+
+QUESTION #2  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Convert the following infix expression to postfix expression using stack A – (B/C)*D + (E^F).
+----------------------------------------------------------------------
+Model Answer:
+Infix to Postfix Conversion Using Stack (6 Marks)
+
+Given Infix Expression: A - ( B / C ) * D + ( E ^ F )
+
+Operator Precedence & Associativity:
+- ^ (Exponentiation): Precedence 3, Right-to-Left
+- *, / (Multiplication/Division): Precedence 2, Left-to-Right
+- +, - (Addition/Subtraction): Precedence 1, Left-to-Right
+- (: Pushed to stack; popped upon matching )
+
+Step-by-Step Stack Trace Table:
+Symbol Scanned | Operator Stack | Postfix Output Buffer
+A | (empty) | A
+- | - | A
+( | - ( | A
+B | - ( | A B
+/ | - ( / | A B
+C | - ( / | A B C
+) | - (pops /) | A B C /
+` | - * *(higher than -) | A B C /`
+D | - * | A B C / D
++ | + (pops ` then -)* | A B C / D * -`
+( | + ( | A B C / D * -
+E | + ( | A B C / D * - E
+^ | + ( ^ | A B C / D * - E
+F | + ( ^ | A B C / D * - E F
+) | + (pops ^) | A B C / D * - E F ^
+(End of input) | (empty, pops +) | A B C / D * - E F ^ +
+
+----------------------------------------
+Final Resulting Postfix Expression:
+A B C / D * - E F ^ +
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Write an algorithm for PUSH and POP operations on stack.
+----------------------------------------------------------------------
+Model Answer:
+Algorithms for PUSH and POP Operations on Stack (6 Marks)
+
+A Stack is a Last-In, First-Out (LIFO) linear data structure where all insertions and deletions occur at a single end termed TOP.
+
+Assume an array STACK[1..MAXSIZE] with pointer TOP initialized to 0 (or -1 in 0-indexed systems).
+
+1. PUSH Operation:
+Inserts element ITEM onto the top of the stack.
+Algorithm PUSH(STACK, TOP, MAXSIZE, ITEM)
+Step 1: [Check for Stack Overflow]
+        If TOP = MAXSIZE then:
+            Write "Error: Stack Overflow"
+            Exit
+Step 2: [Increment Top Pointer]
+        TOP := TOP + 1
+Step 3: [Insert Element]
+        STACK[TOP] := ITEM
+Step 4: [Success]
+        Write "Item pushed successfully"
+        Exit
+Time Complexity: O(1) | Space Complexity: O(1)
+
+2. POP Operation:
+Removes and returns the topmost element ITEM from the stack.
+Algorithm POP(STACK, TOP, ITEM)
+Step 1: [Check for Stack Underflow]
+        If TOP = 0 then:
+            Write "Error: Stack Underflow"
+            Exit
+Step 2: [Retrieve Top Element]
+        ITEM := STACK[TOP]
+Step 3: [Decrement Top Pointer]
+        TOP := TOP - 1
+Step 4: [Return Value]
+        Return ITEM
+        Exit
+Time Complexity: O(1) | Space Complexity: O(1)
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: Write an algorithm to insert an element in the beginning of the linked list.
+----------------------------------------------------------------------
+Model Answer:
+Algorithm: Insert at Beginning of Singly Linked List (6 Marks)
+
+In a Singly Linked List, each node contains two fields: INFO (data) and NEXT (pointer to the succeeding node). START points to the first node.
+
+Algorithm:
+Algorithm INSERT_FIRST(START, ITEM)
+Step 1: [Allocate Memory for New Node]
+        NEW_NODE := Allocate Node in Memory
+Step 2: [Check Memory Allocation]
+        If NEW_NODE = NULL then:
+            Write "Error: Memory Overflow / Out of Heap Space"
+            Exit
+Step 3: [Set Node Data]
+        NEW_NODE.INFO := ITEM
+Step 4: [Link New Node to Current Head]
+        NEW_NODE.NEXT := START
+Step 5: [Update Start Pointer]
+        START := NEW_NODE
+Step 6: [Finished]
+        Write "Element inserted successfully at head"
+        Exit
+
+Diagrammatic Representation:
+Before:
+  START ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]
+
+New Node Created:
+  [ ITEM | NULL ]
+
+Step 4 & 5 (Linked & Re-pointed):
+  NEW_NODE.NEXT = START;
+  START = NEW_NODE;
+
+After:
+  START ----> [ ITEM | NEXT ] ----> [ Data 1 | NEXT ] ----> [ Data 2 | NULL ]
+Time Complexity: O(1) (constant time, no traversal required).
+
+======================================================================
+
+QUESTION #5  (6 Marks)  -  asked in 2 exam sittings [2022, 2021]
+Question: What is Adjacency matrix of graph ? Write the adjacency matrix for the given graph.
+----------------------------------------------------------------------
+Model Answer:
+Adjacency Matrix Representation of Graphs (6 Marks)
+
+1. Definition:
+An Adjacency Matrix is a 2-dimensional square boolean array A of size V x V (where V is the number of vertices in graph G = (V, E)).
+The matrix entry A[i][j] is defined as:
+A[i][j] = begin{cases} 1 & if there is an edge from vertex v_i to v_j 0 & otherwise end{cases}
+(For weighted graphs, A[i][j] stores the edge weight w(i,j) instead of 1, and infinity or 0 if no edge exists).
+
+2. Key Properties:
+- For an Undirected Graph, the adjacency matrix is symmetric (A[i][j] = A[j][i]).
+- For a Directed Graph (Digraph), the matrix is generally asymmetric.
+- Space Complexity: Theta(V^2) regardless of the number of edges. Best suited for Dense Graphs.
+- Edge Existence Check: O(1) time complexity.
+
+3. Standard Example (4-Vertex Undirected Cycle Graph V = {1, 2, 3, 4} with edges (1,2), (2,3), (3,4), (4,1)):
+    1 --------- 2
+    |           |
+    |           |
+    4 --------- 3
+Adjacency Matrix:
+     1   2   3   4
+1  [ 0   1   0   1 ]
+2  [ 1   0   1   0 ]
+3  [ 0   1   0   1 ]
+4  [ 1   0   1   0 ]
+
+======================================================================
+
+QUESTION #6  (4 Marks)  -  asked in 2 exam sittings [2025, 2022]
+Question: What is 2-D array ? Write a program to check whether the matrix is sparse matrix or not.
+----------------------------------------------------------------------
+Model Answer:
+2-D ARRAY WRITE PROGRAM CHECK WHETHER MATRIX SPARSE MATRIX NOT
+
+ // C program to check if a 2-D array (matrix) is sparse or not
+
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+int main() {
+    int matrix[ROWS][COLS];
+
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    int nonZeroCount = 0;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            if (matrix[i][j] != 0) {
+                nonZeroCount++;
+            }
+        }
+    }
+
+    if (nonZeroCount < (ROWS * COLS)) {
+        printf("The matrix is sparse.\n");
+    } else {
+        printf("The matrix is not sparse.\n");
+    }
+
+    return 0;
+}
+
+This program defines a 3x3 matrix and checks if it is sparse by counting the number of non-zero elements. If the number of non-zero elements is less than the total number of elements in the matrix, the matrix is considered sparse.
+
+======================================================================
+
+QUESTION #7  (5 Marks)  -  asked in 2 exam sittings [2024, 2022]
+Question: Write an algorithm for insertion and deletion operations for a circular linked list.
+----------------------------------------------------------------------
+Model Answer:
+CIRCULAR LINKED LIST
+
+ // C code for insertion and deletion operations for a circular linked list (as per Algorithm 5.14)
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int info;
+    struct Node* link;
+} Node;
+
+Node* start, *avail;
+
+void FINDBHL(int info, Node* link, Node* start, int item, Node** loc, Node** locp) {
+    *locp = NULL;
+    *loc = start;
+    while (*loc != avail) {
+        if ((*loc)->info == item) {
+            *locp = (*loc)->link;
+            return;
+        }
+        *locp = *loc;
+        *loc = (*loc)->link;
+    }
+}
+
+void InsertCircular(int info) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->info = info;
+    newNode->link = avail;
+
+    if (start == NULL) {
+        start = newNode;
+        avail = start;
+        avail->link = start;
+    } else {
+        FINDBHL(info, start, start, info, NULL, &avail);
+        newNode->link = avail->link;
+        avail->link = newNode;
+    }
+}
+
+void DeleteCircular(int item) {
+    Node* loc, *locp;
+    FINDBHL(item, start, start, item, &loc, &locp);
+
+    if (loc == avail) {
+        printf("List is empty\n");
+        return;
+    }
+
+    if (loc == start)
+        start = loc->link;
+    avail->link = loc->link;
+    free(loc);
+}
+
+This code includes functions for inserting and deleting nodes in a circular linked list. The InsertCircular function adds a new node to the list, and the DeleteCircular function removes the first node containing the specified item. The FINDBHL function is a helper function that finds the location of a node and its preceding node in the circular linked list.
+
+======================================================================
+
+QUESTION #8  (5 Marks)  -  asked in 2 exam sittings [2024, 2022]
+Question: Explain the technique of collision resolution with open addressing.
+----------------------------------------------------------------------
+Model Answer:
+Collision Resolution Using Open Addressing (5 Marks)
+
+In hashing, a collision occurs when two distinct keys hash to the same bucket address (h(k_1) = h(k_2)). In Open Addressing (Closed Hashing), all elements are stored directly inside the hash table array without linked lists. When a collision occurs, alternative cells are probed until an empty slot is found.
+
+1. Linear Probing:
+- Checks sequential slots: h(k, i) = (h'(k) + i) mod M, for i = 0, 1, 2, ..., M-1.
+- Advantage: Excellent CPU cache locality.
+- Disadvantage: Suffers from Primary Clustering (long blocks of occupied slots build up, drastically increasing average probe time).
+
+2. Quadratic Probing:
+- Uses a quadratic function of probe number:
+  h(k, i) = (h'(k) + c_1 i + c_2 i^2) mod M
+- Eliminates primary clustering, but can lead to Secondary Clustering (keys with the same initial hash follow identical probe sequences).
+
+3. Double Hashing:
+- Uses two independent hash functions h_1(k) and h_2(k):
+  h(k, i) = (h_1(k) + i x h_2(k)) mod M
+- Condition: h_2(k) must be relatively prime to M (e.g. M is prime).
+- Advantage: Produces near-ideal uniform distribution; minimizes clustering anomalies.
+
+======================================================================
+
+QUESTION #9  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Define data structures. Explain the classification of data structures.
+----------------------------------------------------------------------
+Model Answer:
+DATA STRUCTURES
+
+📘 Data Structures:
+Data structures are organized collections of data that are used to efficiently store, organize, and manage data in a computer system. They provide a means to manipulate data in a way that is easy to understand and use.
+
+💡 Simple way to understand it:
+Think of a data structure as a toolbox for organizing different types of data. Just like how a toolbox contains various tools for different purposes, a data structure contains different ways to store and manage data.
+
+📘 Classification of Data Structures:
+Data structures can be classified into two main categories: primitive and non-primitive data structures. Primitive data structures are basic data types such as integer, real, character, and boolean, which cannot be divided. Non-primitive data structures, on the other hand, are more complex and can be divided into linear and non-linear data structures. Linear data structures are arranged in a linear sequence, such as arrays, stacks, and queues, while non-linear data structures, like trees and graphs, have a more complex structure.
+
+💡 Simple way to understand it:
+Think of primitive data structures as the basic building blocks, like individual tools in a toolbox. Non-primitive data structures are like toolboxes themselves, containing multiple tools (or data) in a more complex arrangement. Linear data structures are like a line of tools arranged in a row, while non-linear data structures are like a toolbox with tools connected in various ways.
+
+======================================================================
+
+QUESTION #10  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: What are Asymptotic Notations ? Explain with an example.
+----------------------------------------------------------------------
+Model Answer:
+Asymptotic Notations in Algorithm Analysis (6 Marks)
+
+Asymptotic notations are mathematical tools used to describe the limiting behavior and growth rate of an algorithm's running time or memory usage as the input size n approaches infinity (n -> infinity).
+
+1. Big-O Notation (O - Asymptotic Upper Bound):
+- Represents the worst-case performance (maximum time an algorithm can take).
+- Formal Definition: f(n) = O(g(n)) if there exist positive constants c > 0 and n_0 >= 1 such that:
+  0 <= f(n) <= c x g(n) quad for all n >= n_0
+- Example: If f(n) = 3n^2 + 5n + 2, choose c = 4 and n_0 = 6, so f(n) <= 4n^2, meaning f(n) = O(n^2).
+
+2. Big-Omega Notation (Omega - Asymptotic Lower Bound):
+- Represents the best-case performance (minimum time guaranteed).
+- Formal Definition: f(n) = Omega(g(n)) if there exist positive constants c > 0 and n_0 >= 1 such that:
+  0 <= c x g(n) <= f(n) quad for all n >= n_0
+- Example: 3n^2 + 5n >= 3n^2 for all n >= 1, so f(n) = Omega(n^2).
+
+3. Big-Theta Notation (Theta - Asymptotic Tight Bound):
+- Bounds the function from both above and below within constant factors.
+- Formal Definition: f(n) = Theta(g(n)) if there exist positive constants c_1, c_2 > 0 and n_0 >= 1 such that:
+  0 <= c_1 x g(n) <= f(n) <= c_2 x g(n) quad for all n >= n_0
+- Example: Linear search on an array of size n has worst-case O(n), best-case Omega(1), and average-case Theta(n).
+
+======================================================================

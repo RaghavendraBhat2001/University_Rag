@@ -1,0 +1,203 @@
+======================================================================
+uniRAG - MOST REPEATED EXAM QUESTIONS WITH MODEL ANSWERS
+Subject: CC
+Bangalore University - MCA Department
+Generated: 18 October 2026
+======================================================================
+
+QUESTION #1  (10 Marks)  -  asked in 3 exam sittings [2025, 2023, 2022]
+Question: Explain the cloud reference architecture and discuss the responsibilities of various actors.
+----------------------------------------------------------------------
+Model Answer:
+CLOUD REFERENCE ARCHITECTURE
+
+📘 As per your notes, the Cloud Reference Architecture is a model that provides a framework for enabling cloud services vendors to structure their infrastructure for MOC (Management of Clouds). The model is divided into four service layers: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), Software as a Service (SaaS), and Cloud Services Broker (CSB).
+
+💡 Think of a restaurant where each layer represents a different kitchen, and the customers are the cloud service vendors.
+
+- IaaS (Infrastructure as a Service) is the bottom layer, equivalent to the raw ingredients and kitchen appliances. It provides virtualized computing resources like servers, storage, and networking.
+
+- PaaS (Platform as a Service) is the middle layer, similar to a fully-equipped kitchen. It offers a platform for developers to build, test, and deploy applications without worrying about the underlying infrastructure.
+
+- SaaS (Software as a Service) is the top layer, like the restaurant's menu. It delivers software applications over the internet, allowing users to access them on demand.
+
+- CSB (Cloud Services Broker) acts as an intermediary between the cloud service vendors and the consumers, helping them find the best services that meet their needs.
+
+Key differences between the layers:
+
+- IaaS provides the most basic resources, while SaaS offers the most abstracted services.
+- PaaS sits between IaaS and SaaS, offering a platform for application development and deployment.
+- CSB acts as a broker, helping cloud service vendors and consumers find the best services for their needs.
+
+======================================================================
+
+QUESTION #2  (10 Marks)  -  asked in 3 exam sittings [2026, 2025, 2022]
+Question: Define cloud security. Discuss access control and authentication in cloud computing.
+----------------------------------------------------------------------
+Model Answer:
+CLOUD SECURITY
+
+📘 As per your notes, Cloud Security refers to the practices and measures implemented to ensure the security and privacy of data and applications in cloud computing. The Cloud Security Alliance (CSA) is a non-profit organization that promotes the use of best practices for providing security assurance in cloud computing and provides education on the use of cloud services.
+
+Currently, the Security, Audit, and Controls Association (SNIA) is moving towards transforming Cloud Data Management Interface (CDMI) into a de facto standard by interoperating with major standardization organizations such as IEEE and INCITS.
+
+💡 Simple way to understand it: Think of cloud security as a lock and key system for your digital data. Access Control is like the lock, controlling who can access your data, while Authentication is like the key, verifying that the person trying to access your data is who they claim to be.
+
+📘 Access Control: Access Control in cloud security refers to the policies and mechanisms that control who can access cloud resources and what actions they can perform. Access Control can be implemented at different levels, such as:
+
+- Identity and Access Management (IAM): IAM is a framework for managing digital identities and controlling their access to cloud resources. It includes user authentication, authorization, and account management.
+- Data Access Control: Data Access Control policies determine who can access specific data and what actions they can perform on that data.
+- Network Access Control: Network Access Control policies control who can access the cloud network and what resources they can access within the network.
+
+📘 Authentication: Authentication in cloud security is the process of verifying the identity of a user, device, or system trying to access cloud resources. Authentication can be implemented using various methods, such as:
+
+- Password-based Authentication: Users are required to enter a username and password to access cloud resources.
+- Multi-factor Authentication (MFA): MFA requires users to provide multiple forms of authentication, such as a password, a fingerprint, or a security token, to access cloud resources.
+- Single Sign-On (SSO): SSO allows users to access multiple cloud resources using a single set of credentials.
+
+📘 Key differences between Access Control and Authentication:
+
+- Access Control determines who can access cloud resources, while Authentication verifies the identity of the user trying to access those resources.
+- Access Control policies control the actions that users can perform on cloud resources, while Authentication verifies the identity of the user trying to perform those actions.
+- Access Control is concerned with managing digital identities and controlling their access to cloud resources, while Authentication is concerned with verifying the identity of those digital identities.
+
+======================================================================
+
+QUESTION #3  (6 Marks)  -  asked in 2 exam sittings [2024, 2022]
+Question: Explain the characteristics of Cloud Computing.
+----------------------------------------------------------------------
+Model Answer:
+CLOUD COMPUTING
+
+📘 As per your notes, Cloud Computing is a model that allows anyone with a credit card to provision virtual hardware, run-time environments, and services, without requiring up-front commitment. The development of cloud computing environments is facilitated by various technologies and some insights into its development.
+
+💡 Simple way to understand it: Think of cloud computing as a utility service, similar to electricity or water supply. Just as you can turn on the tap for water or flip a switch for electricity, you can provision computing resources in the cloud as needed, without having to invest in physical infrastructure upfront.
+
+1. On-demand self-service: Users can provision computing resources, such as servers, storage, and applications, without requiring human interaction with the service provider.
+
+2. Broad network access: Cloud services can be accessed over the network, allowing users to connect from various devices and locations.
+
+3. Resource pooling: The provider's computing resources are pooled to serve multiple users, with different physical and virtual resources dynamically assigned and re-assigned according to demand.
+
+4. Rapid elasticity: Cloud services can be rapidly and elastically provisioned, in minutes or seconds, to quickly scale up or down to meet changing demand.
+
+5. Measured service: Cloud services are typically offered on a pay-per-use basis, with usage measured and charged based on consumption.
+
+6. Service models: Cloud services can be offered in three service models: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). IaaS provides virtualized computing resources, PaaS offers a platform for developing, running, and managing applications, and SaaS delivers applications over the internet.
+
+7. Deployment models: Cloud services can be offered in four deployment models: Public, Private, Hybrid, and Community. Public clouds are owned and operated by third-party providers, while private clouds are operated solely for a single organization. Hybrid clouds combine public and private clouds, allowing data and applications to be shared between them. Community clouds are shared by several organizations with common concerns, such as compliance requirements.
+
+Key differences between service and deployment models:
+- Service models define how cloud services are delivered, while deployment models define where the services are located and how they are accessed.
+- Service models determine the level of control and customization users have over their computing resources, while deployment models determine the level of security, privacy, and compliance.
+
+======================================================================
+
+QUESTION #4  (6 Marks)  -  asked in 2 exam sittings [2024, 2023]
+Question: Give a detailed account of platform as a service.
+----------------------------------------------------------------------
+Model Answer:
+PLATFORM AS A SERVICE (PAAS)
+
+📘 As per your notes, Platform as a Service (PaaS) is a solution that provides a development and deployment platform for running applications in the cloud. It offers a cloud programming platform for any kind of application, not just for managing services. The third category of PaaS offerings consists of solutions that provide a cloud programming platform for any kind of application.
+
+💡 Simple way to understand it:
+Think of PaaS as a cloud-based construction site where developers can build and deploy their applications without worrying about the underlying infrastructure. Just like a construction site provides the necessary tools and resources for builders, PaaS provides the necessary tools and resources for developers to create and run their applications in the cloud.
+
+Key differences between PaaS and other service models:
+- Infrastructure as a Service (IaaS) provides virtualized computing resources, such as servers, storage, and networking, but developers are responsible for the operating system, middleware, runtime, and application.
+- Software as a Service (SaaS) provides applications over the internet, but developers have no control over the infrastructure or the application itself.
+- PaaS offers a balance between IaaS and SaaS, providing a platform for developers to build and deploy their applications, while the cloud provider manages the infrastructure and middleware.
+
+======================================================================
+
+QUESTION #5  (10 Marks)  -  asked in 2 exam sittings [2025, 2024]
+Question: Explain the types of cloud service development.
+----------------------------------------------------------------------
+Model Answer:
+CLOUD SERVICE DEVELOPMENT
+
+📘 As per your notes, Cloud Service Development refers to the delivery of different types of services over the internet, primarily by cloud service providers like Amazon Web Services (AWS) and Google. These services are categorized into three main types: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS).
+
+- Infrastructure as a Service (IaaS): IaaS provides the most basic and fundamental computing resources such as virtual machines, storage, and networking. Users can rent these resources on-demand and manage them as they would on their own physical infrastructure. AWS's Elastic Compute Cloud (EC2) is an example of IaaS.
+
+- Platform as a Service (PaaS): PaaS offers a complete development and deployment environment for applications. It includes a runtime, database, middleware, and operating system, allowing developers to focus on application development without worrying about the underlying infrastructure. AWS Elastic Beanstalk is an example of PaaS.
+
+- Software as a Service (SaaS): SaaS delivers fully functional applications over the internet. Users can access these applications through a web browser or API, and the service provider manages the application and its infrastructure. Examples of SaaS include Google Apps and Salesforce.
+
+💡 Simple way to understand it:
+Think of cloud service development as renting different parts of a house. IaaS is like renting the land and building the house yourself, PaaS is like renting a fully furnished apartment, and SaaS is like renting an apartment where everything, including furniture and appliances, is already set up for you.
+
+======================================================================
+
+QUESTION #6  (6 Marks)  -  asked in 2 exam sittings [2023, 2022]
+Question: Discuss the advantages and disadvantages of PaaS.
+----------------------------------------------------------------------
+Model Answer:
+PAAS
+
+📘 As per your notes, Platform-as-a-Service (PaaS) is a solution that provides a development and deployment platform for running applications in the cloud. It offers a cloud programming platform for any kind of application, not just managing services.
+
+The third category of PaaS offerings includes solutions that provide a complete cloud programming platform. The core functionalality of this middleware is application management. PaaS implementation examples provide applications with a runtime environment and do not expose any service for managing.
+
+💡 Simple way to understand it:
+Think of PaaS as a ready-made kitchen where you can cook your own meals (your applications) without worrying about the infrastructure (like the oven, stove, and utensils). The advantage is convenience, but you're limited to cooking within the kitchen's rules (the services provided).
+
+Advantages:
+- Convenience: PaaS provides a ready-made environment for developing, testing, and deploying applications in the cloud.
+- Scalability: PaaS platforms can easily scale up or down based on the application's demand.
+- Reduced Costs: PaaS eliminates the need for significant upfront investment in hardware and infrastructure.
+
+Disadvantages:
+- Vendor Lock-in: Since PaaS platforms are provided by third-party vendors, there's a risk of being locked into their specific technology stack.
+- Limited Customization: PaaS platforms may not offer the same level of customization as on-premises solutions.
+- Dependency on Service Provider: If the service provider experiences downtime or issues, it can impact your applications.
+
+======================================================================
+
+QUESTION #7  (5 Marks)  -  asked in 2 exam sittings [2025, 2022]
+Question: What is Google App Engine ? Explain the benefits of Google App Engine.
+----------------------------------------------------------------------
+Model Answer:
+GOOGLE APP ENGINE
+
+📘 As per your notes, Google App Engine is a Platform as a Service (PaaS) that provides a scalable runtime environment for developing web applications. It supports Java and Python runtime environments and simplifies the development of applications in a scalable manner by offering various services such as networking support, caching systems, DNS, data storage (relational and non-relational), and others.
+
+💡 Simple way to understand it: Think of Google App Engine as a pre-built, scalable kitchen where you can cook your web application recipes (code). It provides all the necessary appliances (services) to help you cook efficiently and serves your dishes (web applications) to the world.
+
+Benefits of Google App Engine:
+- Scalability: Google App Engine automatically adjusts the resources allocated to your application based on its demand, ensuring optimal performance.
+- Simplicity: It simplifies the development process by providing a managed environment for your application, reducing the need for infrastructure management.
+- Flexibility: It supports multiple programming languages (Java and Python) and offers various services to help you build and deploy your web applications.
+- Cost-effective: By using Google App Engine, you only pay for the resources you consume, making it a cost-effective solution for developing and hosting web applications.
+- Reliability: Google App Engine is backed by Google's infrastructure, ensuring high availability and reliability for your applications.
+- Integration: Google App Engine integrates with other Google services like Google Cloud Storage, Google Cloud Pub/Sub, and Google Cloud Bigtable, making it easier to build complex, integrated applications.
+
+======================================================================
+
+QUESTION #8  (10 Marks)  -  asked in 2 exam sittings [2025, 2022]
+Question: Define Map-Reduce. Explain Hadoop ecosystem and mention its components.
+----------------------------------------------------------------------
+Model Answer:
+MAP-REDUCE
+
+📘 As per your notes, MapReduce is a programming model introduced by Google for processing large quantities of data. It expresses the computation as a series of Map and Reduce tasks. The model consists of four phases: Configure Map, Configure Reduce, While Condition Holds True Do, and Close. In the Map phase, the input data is processed and transformed into intermediate key-value pairs. In the Reduce phase, these intermediate key-value pairs are combined to produce the final output. The While Condition Holds True Do phase includes running MapReduce, applying a Combine operation to the result, updating the condition, and repeating the process if necessary. The Close phase signifies the end of the MapReduce job.
+
+💡 Simple way to understand it:
+Think of MapReduce as a production line for data processing. The Map phase is where raw data is transformed into standardized parts (intermediate key-value pairs), similar to how parts are manufactured in a factory. The Reduce phase is where these standardized parts are combined to create the final product (output). The While Condition Holds True Do phase ensures that the production line keeps running until all data is processed, and the Close phase signals the end of the production.
+
+The Hadoop ecosystem is a collection of open-source software projects that support the MapReduce programming model. It includes Hadoop Distributed File System (HDFS), YARN, Hadoop MapReduce, and various other tools for data processing, storage, and management.
+
+Some key components of the Hadoop ecosystem are:
+- Hadoop Distributed File System (HDFS): A distributed file system designed to store large amounts of data across multiple commodity machines.
+- Yet Another Resource Negotiator (YARN): A resource management layer that manages resources across the cluster and schedules tasks for different applications.
+- Hadoop MapReduce: The original implementation of the MapReduce programming model in the Hadoop ecosystem.
+- Hadoop Common: A collection of utilities and libraries used by other Hadoop projects.
+- Avro, Parquet, and ORC: Data serialization formats used for efficient data storage and processing in Hadoop.
+- Hive, Pig, and Impala: SQL-like query languages for querying data in Hadoop.
+- Flume and Sqoop: Tools for data ingestion and data integration between Hadoop and other data sources.
+- HBase and Cassandra: NoSQL databases for storing large amounts of structured and semi-structured data in Hadoop.
+
+The key differences between these components are their specific roles and functionalities within the Hadoop ecosystem. For example, HDFS is responsible for data storage, while YARN manages resources and schedules tasks. Similarly, Hive, Pig, and Impala are used for querying data, while Flume and Sqoop are used for data ingestion.
+
+======================================================================
