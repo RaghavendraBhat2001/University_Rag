@@ -94,4 +94,10 @@ LLM_KEEP_ALIVE = "30m"
 
 # ANSWER_CACHE_PATCH: True = reuse saved answers when the model's input is identical (fast).
 # Set to False when running eval_questions.py so every answer is generated fresh.
+# Cross-subject fallback:
+# False (default) = When an explicit subject is chosen (e.g. "OS"), strictly search only that
+#                   subject's notes. If not found in OS, cleanly report that it's outside OS.
+# True            = Silently fall back to searching all notes across all subjects.
+ALLOW_CROSS_SUBJECT_FALLBACK = False
+
 ANSWER_CACHE = True

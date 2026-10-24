@@ -20,7 +20,7 @@ from langchain_core.documents import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from config import (
-    FAISS_DIR, LLM_MODEL, CHUNK_SIZE, CHUNK_OVERLAP, TOP_K,
+    FAISS_DIR, LLM_MODEL, ALLOW_CROSS_SUBJECT_FALLBACK, CHUNK_SIZE, CHUNK_OVERLAP, TOP_K,
     LLM_NUM_CTX, LLM_NUM_THREAD, MARKS_MAX_TOKENS, NOTES_DIR, PAPERS_DIR, SYLLABUS_DIR,
     PARSE_MODEL, LLM_KEEP_ALIVE, LAB_MAX_TOKENS, MAX_CONTINUATIONS, CONTINUATION_TOKENS, EMBEDDING_MODEL
 )
@@ -755,7 +755,7 @@ class RAGPipeline:
 
         # Cross-subject fallback: if a specific subject was scoped (e.g. ML) but yielded poor or 0 matches,
         # check all_notes_index for a significantly better authoritative match (e.g. from DS).
-        if subject and subject != "All / Auto-detect" and self.all_notes_index is not None:
+        if ALLOW_CROSS_SUBJECT_FALLBACK and subject and subject != "All / Auto-detect" and self.all_notes_index is not None:
             if not all_docs or (best_distance is not None and best_distance > 0.80):
                 fallback_scored = []
                 for q in queries_to_try:
